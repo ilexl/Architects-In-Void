@@ -10,10 +10,11 @@ config_version=5
 
 [application]
 
-config/name="Architects-in-void"
-config/features=PackedStringArray("4.2", "Forward Plus")
+config/name="Architects-In-Void"
+run/main_scene="res://Scenes/Test.tscn"
+config/features=PackedStringArray("4.2", "C#", "Double Precision", "Forward Plus")
 config/icon="res://icon.svg"
 
 [dotnet]
 
-project/assembly_name="Architects-in-void"
+project/assembly_name="Architects-In-Void"
