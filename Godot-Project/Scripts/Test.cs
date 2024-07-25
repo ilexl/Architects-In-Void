@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Diagnostics;
 
 public partial class Test : Node
 {
@@ -11,5 +12,9 @@ public partial class Test : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
+		Vector3 test = new Vector3();
+
+        Debug.WriteLine(test.X.GetType().ToString());
+
 	}
 }
