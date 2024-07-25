@@ -1,8 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bg6c78mool4xq"]
+[gd_scene load_steps=3 format=3 uid="uid://bg6c78mool4xq"]
 
+[ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://PlayerBody.tscn" id="1_celvm"]
 [ext_resource type="Script" path="res://Scripts/Test.cs" id="1_kytbn"]
 
 [node name="Node3D" type="Node3D"]
+
+[node name="PlayerOrigin" parent="." instance=ExtResource("1_celvm")]
 
 [node name="Node3D" type="Node3D" parent="."]
 script = ExtResource("1_kytbn")
