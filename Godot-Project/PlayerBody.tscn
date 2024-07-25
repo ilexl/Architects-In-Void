@@ -9,8 +9,9 @@
 
 [sub_resource type="BoxMesh" id="BoxMesh_vamg0"]
 
-[node name="PlayerOrigin" type="Node3D"]
+[node name="PlayerOrigin" type="Node3D" node_paths=PackedStringArray("head")]
 script = ExtResource("1_lfx0e")
+head = NodePath("Head")
 
 [node name="Body" type="RigidBody3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.04531, -0.0225849, 0.161224)

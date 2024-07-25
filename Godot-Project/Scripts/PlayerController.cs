@@ -29,7 +29,7 @@ public partial class PlayerController : Node3D
 		body = GetNode<RigidBody3D>("Body");
 		headPosition = body.GetNode<Node3D>("HeadPosition");
 
-		head = body.GetNode<Node3D>("Head");
+		head = GetNode<Node3D>("Head");
 		camera = head.GetNode<Camera3D>("Camera");
 
 		head.Transform = headPosition.Transform;
@@ -89,7 +89,7 @@ public partial class PlayerController : Node3D
 		if (Dampeners)
 		{
 			Vector3 transformedMoveVector = moveVector * headTransform;
-			float gravityLength = gravity.Length();
+			double gravityLength = gravity.Length();
 			Vector3 gravityDir = -(gravity/gravityLength);
 
 			Vector3 counterGravityVector = -gravity;
