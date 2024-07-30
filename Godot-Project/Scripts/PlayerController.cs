@@ -15,6 +15,7 @@ public partial class PlayerController : Node3D
 
 
 	public bool Dampeners = false;
+	public bool Jetpack = true;
 
 	// Config
 	public const float Acceleration = 25.0f;
@@ -125,6 +126,10 @@ public partial class PlayerController : Node3D
 		if (Input.IsActionJustPressed("toggle_dampeners"))
 		{
 			Dampeners = !Dampeners;
+		}
+		if (Input.IsActionJustPressed("toggle_jetpack"))
+		{
+			Jetpack = !Jetpack;
 		}
 
 		return new Vector3(inputLeftRight, inputUpDown, inputForwardBackward);
