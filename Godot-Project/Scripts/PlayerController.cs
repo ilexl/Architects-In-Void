@@ -56,19 +56,28 @@ public partial class PlayerController : Node3D
 		Basis headTransform = head.Transform.Basis.Inverse();
 		Basis bodyTransform = body.Transform.Basis.Inverse();
 
-
-
-		Vector3 moveVector = ProcessKeyInput(delta);
-
-		Debug.WriteLine(GetAcceleration(moveVector.Normalized(), headTransform).Length());
-		body.LinearVelocity += GetAcceleration(moveVector.Normalized(), headTransform) * (float)delta; // Our moveVector in PlayerOrigin space
-		
-		//DebugDraw3D.DrawLine(body.Position, body.Position + body.LinearVelocity, Colors.Red, 0.1f);
 		// Multiply head position by body transform to get the head position in PlayerOrigin space
 		head.Position = body.Position + headPosition.Position * bodyTransform;
 
+		// Process our key input
+		Vector3 moveVector = KeyInputProcess(delta);
 
 
+
+		
+
+
+
+		if (Jetpack) JetpackProcess(headTransform, bodyTransform, moveVector, delta);
+		else NoJetpackProcess(delta, headTransform, bodyTransform);
+
+
+
+
+	}
+
+	private void JetpackProcess(Basis headTransform, Basis bodyTransform, Vector3 moveVector, double delta)
+	{
 		var forwardPlayerSpace = Vector3.Forward * headTransform; // Direction that the body should face in PlayerOrigin space
 		var forwardBodySpace = bodyTransform * forwardPlayerSpace; // Direction that the body should face in body space
 		var upPlayerSpace = Vector3.Up * headTransform;
@@ -80,6 +89,8 @@ public partial class PlayerController : Node3D
 
 		body.AngularDamp = 0.0f;
 		body.AngularVelocity = new Vector3(desiredAngularChangeX, desiredAngularChangeY, desiredAngularChangeZ) * 10.0f * bodyTransform;
+
+		body.LinearVelocity += GetAcceleration(moveVector.Normalized(), headTransform) * delta; // Our moveVector in PlayerOrigin space
 	}
 
 
@@ -115,7 +126,7 @@ public partial class PlayerController : Node3D
 
 
 
-	private Vector3 ProcessKeyInput(double delta)
+	private Vector3 KeyInputProcess(double delta)
 	{
 		float inputRoll = Input.GetAxis("roll_left", "roll_right");
 		head.RotateObjectLocal(Vector3.Forward, Mathf.DegToRad(inputRoll * RollSensitivity * (float)delta));
