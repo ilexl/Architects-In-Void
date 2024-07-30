@@ -46,6 +46,8 @@ public partial class PlayerController : Node3D
 
 			head.RotateObjectLocal(Vector3.Up, Mathf.DegToRad(-mouseEvent.Relative.X * MouseSensitivity));
 			head.RotateObjectLocal(Vector3.Right, Mathf.DegToRad(-mouseEvent.Relative.Y * MouseSensitivity));
+			headRelativeRotation = head.Rotation - body.Rotation;
+
 		}
 	}
 
@@ -93,6 +95,14 @@ public partial class PlayerController : Node3D
 		body.LinearVelocity += GetAcceleration(moveVector.Normalized(), headTransform) * delta; // Our moveVector in PlayerOrigin space
 	}
 
+	Vector3 headRelativeRotation = Vector3.Zero;
+	private void NoJetpackProcess(double delta, Basis headTransform, Basis bodyTransform)
+	{
+
+
+
+		head.Rotation = body.Rotation + headRelativeRotation;
+	}
 
 	private Vector3 GetAcceleration(Vector3 moveVector, Basis headTransform)
 	{
