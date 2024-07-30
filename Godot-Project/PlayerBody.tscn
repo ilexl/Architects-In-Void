@@ -6,6 +6,7 @@
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10an4"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_r8y4y"]
+height = 3.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_vamg0"]
 
@@ -27,6 +28,7 @@ transform = Transform3D(0.453893, 0, 0, 0, 0.0130125, 1.07663, 0, -0.421086, 0.0
 mesh = SubResource("BoxMesh_vamg0")
 
 [node name="HeadPosition" type="Node3D" parent="Body"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Head" parent="." instance=ExtResource("2_ti0ub")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
