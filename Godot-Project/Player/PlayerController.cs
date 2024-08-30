@@ -1,17 +1,17 @@
 using Godot;
 
-namespace ArchitectsInVoid.Scripts;
+namespace ArchitectsInVoid.Player;
 
 public partial class PlayerController : Node3D
 {
 
 	// Body
-	RigidBody3D _body;
-	Node3D headPosition;
+	private RigidBody3D _body;
+	private Node3D _headPosition;
 
 	// Head
-	[Export] Node3D _head;
-	[Export] Camera3D camera;
+	[Export] private Node3D _head;
+	[Export] private Camera3D _camera;
 
 
 	private bool _dampeners = false;
@@ -23,16 +23,16 @@ public partial class PlayerController : Node3D
 	private const float RollSensitivity = 50.0f;
 
 	// get gravity from the world
-	public Vector3 gravity = ProjectSettings.GetSetting("physics/3d/default_gravity_vector").As<Vector3>() * ProjectSettings.GetSetting("physics/3d/default_gravity").As<float>();
+	private Vector3 _gravity = ProjectSettings.GetSetting("physics/3d/default_gravity_vector").As<Vector3>() * ProjectSettings.GetSetting("physics/3d/default_gravity").As<float>();
 	public override void _Ready()
 	{
 		_body = GetNode<RigidBody3D>("Body");
-		headPosition = _body.GetNode<Node3D>("HeadPosition");
+		_headPosition = _body.GetNode<Node3D>("HeadPosition");
 
 		_head = GetNode<Node3D>("Head");
-		camera = _head.GetNode<Camera3D>("Camera");
+		_camera = _head.GetNode<Camera3D>("Camera");
 
-		_head.Transform = headPosition.Transform;
+		_head.Transform = _headPosition.Transform;
 
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
@@ -45,7 +45,7 @@ public partial class PlayerController : Node3D
 
 			_head.RotateObjectLocal(Vector3.Up, Mathf.DegToRad(-mouseEvent.Relative.X * MouseSensitivity));
 			_head.RotateObjectLocal(Vector3.Right, Mathf.DegToRad(-mouseEvent.Relative.Y * MouseSensitivity));
-			headRelativeRotation = _head.Rotation - _body.Rotation;
+			_headRelativeRotation = _head.Rotation - _body.Rotation;
 
 		}
 	}
@@ -58,23 +58,14 @@ public partial class PlayerController : Node3D
 		Basis bodyTransform = _body.Transform.Basis.Inverse();
 
 		// Multiply head position by body transform to get the head position in PlayerOrigin space
-		_head.Position = _body.Position + headPosition.Position * bodyTransform;
+		_head.Position = _body.Position + _headPosition.Position * bodyTransform;
 
 		// Process our key input
 		Vector3 moveVector = KeyInputProcess(delta);
-
-
-
 		
-
-
-
 		if (_jetpack) JetpackProcess(headTransform, bodyTransform, moveVector, delta);
 		else NoJetpackProcess(delta, headTransform, bodyTransform);
-
-
-
-
+		
 	}
 
 	private void JetpackProcess(Basis headTransform, Basis bodyTransform, Vector3 moveVector, double delta)
@@ -94,13 +85,13 @@ public partial class PlayerController : Node3D
 		_body.LinearVelocity += GetAcceleration(moveVector.Normalized(), headTransform) * delta; // Our moveVector in PlayerOrigin space
 	}
 
-	Vector3 headRelativeRotation = Vector3.Zero;
+	Vector3 _headRelativeRotation = Vector3.Zero;
 	private void NoJetpackProcess(double delta, Basis headTransform, Basis bodyTransform)
 	{
 
 
 
-		_head.Rotation = _body.Rotation + headRelativeRotation;
+		_head.Rotation = _body.Rotation + _headRelativeRotation;
 	}
 
 	private Vector3 GetAcceleration(Vector3 moveVector, Basis headTransform)
@@ -108,10 +99,10 @@ public partial class PlayerController : Node3D
 		if (_dampeners)
 		{
 			Vector3 transformedMoveVector = moveVector * headTransform;
-			double gravityLength = gravity.Length();
-			Vector3 gravityDir = -(gravity/gravityLength);
+			double gravityLength = _gravity.Length();
+			Vector3 gravityDir = -(_gravity/gravityLength);
 
-			Vector3 counterGravityVector = -gravity;
+			Vector3 counterGravityVector = -_gravity;
 			Vector3 combined = counterGravityVector + (transformedMoveVector * Acceleration);
 
 			var requiredAcceleration = combined.Length();

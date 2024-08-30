@@ -1,6 +1,6 @@
 using Godot;
-using System;
-using System.Diagnostics;
+
+namespace ArchitectsInVoid.Player;
 
 public partial class Test : Node
 {
