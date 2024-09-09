@@ -11,13 +11,17 @@ config_version=5
 [application]
 
 config/name="Architects-In-Void"
-run/main_scene="res://Scenes/Test.tscn"
+run/main_scene="res://Scenes/MainMenu.tscn"
 config/features=PackedStringArray("4.2", "C#", "Double Precision", "Forward Plus")
-config/icon="res://Other/icon.svg"
+config/icon="res://Testing/InspectorButtons/icon.svg"
 
 [dotnet]
 
 project/assembly_name="Architects-In-Void"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/inspectorbutton/plugin.cfg")
 
 [input]
 
