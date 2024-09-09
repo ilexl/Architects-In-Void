@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://jdmahjx2sl5x"]
 
-[ext_resource type="Script" path="res://Thruster/EngineCreator.gd" id="1_ypan1"]
+[ext_resource type="Script" path="res://Testing/Thruster/EngineCreator.gd" id="1_ypan1"]
 
 [node name="EngineRoot" type="Node3D"]
 script = ExtResource("1_ypan1")

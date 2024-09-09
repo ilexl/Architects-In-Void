@@ -1,7 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://xjqrmh8r7gfp"]
+[gd_scene load_steps=5 format=3 uid="uid://xjqrmh8r7gfp"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_lfx0e"]
-[ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://PlayerHead.tscn" id="2_ti0ub"]
+[ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://Player/PlayerHead.tscn" id="2_ti0ub"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10an4"]
 
@@ -10,9 +9,7 @@ height = 3.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_vamg0"]
 
-[node name="PlayerOrigin" type="Node3D" node_paths=PackedStringArray("head")]
-script = ExtResource("1_lfx0e")
-head = NodePath("Head")
+[node name="PlayerOrigin" type="Node3D"]
 
 [node name="Body" type="RigidBody3D" parent="."]
 
