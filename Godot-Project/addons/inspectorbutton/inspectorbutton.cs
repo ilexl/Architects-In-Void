@@ -33,6 +33,11 @@ public partial class inspectorbutton : EditorPlugin
         public override void _ParseBegin(GodotObject @object)
         {
             base._ParseBegin(@object);
+            if (!@object.HasMethod("AddInspectorButtons"))
+            {
+                GD.PushError("Error with inspectorbuttons - not continuing...");
+                return;
+            }
             Godot.Collections.Array buttonsData = @object.Call("AddInspectorButtons").AsGodotArray();
             foreach(var buttonData in buttonsData)
             {
