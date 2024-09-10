@@ -1,0 +1,31 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0seddgp21d6n"]
+
+[ext_resource type="Texture2D" uid="uid://bcbk76n2qdfnp" path="res://UI/UIElements/Blank.png" id="1_bdd25"]
+[ext_resource type="Texture2D" uid="uid://bknxhhknxh4rm" path="res://Testing/InspectorButtons/icon.svg" id="1_huf0t"]
+
+[node name="Game" type="Node"]
+
+[node name="UI" type="Node2D" parent="."]
+scale = Vector2(0.851811, 0.723945)
+
+[node name="Canvas" type="CanvasLayer" parent="UI"]
+
+[node name="ResponsiveScaleBox" type="AspectRatioContainer" parent="UI/Canvas"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Blank" type="Sprite2D" parent="UI/Canvas/ResponsiveScaleBox"]
+scale = Vector2(1280, 720)
+texture = ExtResource("1_bdd25")
+centered = false
+
+[node name="Icon" type="Sprite2D" parent="UI/Canvas/ResponsiveScaleBox"]
+position = Vector2(373, 238)
+texture = ExtResource("1_huf0t")
+
+[node name="World" type="Node3D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
