@@ -1,0 +1,286 @@
+[gd_scene load_steps=19 format=3 uid="uid://bt33b5k48ip62"]
+
+[ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_16aoq"]
+[ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
+[ext_resource type="Script" path="res://UI/Window.cs" id="2_5w2l0"]
+[ext_resource type="Script" path="res://UI/Pause.cs" id="4_17pyg"]
+[ext_resource type="Texture2D" uid="uid://cykr4oe6uubyp" path="res://UI/Images/tempBG.png" id="4_g56cw"]
+[ext_resource type="Script" path="res://UI/SettingsMenu.cs" id="4_oc5pt"]
+[ext_resource type="Texture2D" uid="uid://7dnsnqjj7pxh" path="res://UI/UIElements/Button.svg" id="5_eegk4"]
+[ext_resource type="Script" path="res://UI/WorldManager.cs" id="5_v3f2b"]
+[ext_resource type="Shader" path="res://UI/blur.gdshader" id="6_alqpx"]
+[ext_resource type="Texture2D" uid="uid://cmt1p5l3pp2tc" path="res://UI/UIElements/Button-Pressed.svg" id="6_bw56o"]
+[ext_resource type="Texture2D" uid="uid://dm7u03mrumy6r" path="res://UI/Images/Rectangle 3.svg" id="6_pcm66"]
+[ext_resource type="Script" path="res://UI/LoadingScreen.cs" id="6_unkds"]
+[ext_resource type="Script" path="res://UI/HUD.cs" id="7_knsfs"]
+[ext_resource type="Texture2D" uid="uid://xycer0altein" path="res://UI/UIElements/Button-Highlight.svg" id="7_vpu1a"]
+[ext_resource type="Texture2D" uid="uid://dfac70vqa0amj" path="res://UI/UIElements/Button-Disabled.svg" id="8_j4xfe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_g1hjc"]
+noise_type = 2
+seed = 41646541
+frequency = 0.238
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_udrtq"]
+width = 1000
+height = 1000
+bump_strength = 0.0
+normalize = false
+noise = SubResource("FastNoiseLite_g1hjc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty6la"]
+shader = ExtResource("6_alqpx")
+shader_parameter/blur_power = 0.025
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_udrtq")
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("Windows")]
+script = ExtResource("1_st6gj")
+Windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+ShowOnStart = true
+
+[node name="MainMenuButtons" type="Node" parent="CanvasLayer/MainMenu"]
+script = ExtResource("1_16aoq")
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g56cw")
+expand_mode = 1
+
+[node name="Holder" type="Control" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -640.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/Holder"]
+layout_mode = 2
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -464.0
+
+[node name="Control" type="Control" parent="CanvasLayer/MainMenu/Holder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 216.0
+offset_right = -256.0
+offset_bottom = -16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureButton1" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_bottom = -423.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 96.0
+offset_bottom = -327.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 192.0
+offset_bottom = -231.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 288.0
+offset_bottom = -135.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 384.0
+offset_bottom = -39.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Settings" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="SettingsButtons" type="Node" parent="CanvasLayer/Settings"]
+script = ExtResource("4_oc5pt")
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Settings"]
+visible = false
+material = SubResource("ShaderMaterial_ty6la")
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g56cw")
+expand_mode = 1
+
+[node name="Blur" type="TextureRect" parent="CanvasLayer/Settings"]
+visible = false
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pcm66")
+expand_mode = 1
+
+[node name="WorldManager" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="WorldManagerButtons" type="Node" parent="CanvasLayer/WorldManager"]
+script = ExtResource("5_v3f2b")
+
+[node name="Blur" type="TextureRect" parent="CanvasLayer/WorldManager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pcm66")
+expand_mode = 1
+
+[node name="LoadingScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="LoadingScreenLogic" type="Node" parent="CanvasLayer/LoadingScreen"]
+script = ExtResource("6_unkds")
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="HUDButtons" type="Node" parent="CanvasLayer/HUD"]
+script = ExtResource("7_knsfs")
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="PauseMenuButtons" type="Node" parent="CanvasLayer/PauseMenu"]
+script = ExtResource("4_17pyg")
+
+[node name="Blur" type="TextureRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pcm66")
+expand_mode = 1
