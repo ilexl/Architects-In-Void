@@ -1,9 +1,9 @@
 [gd_scene load_steps=19 format=3 uid="uid://bt33b5k48ip62"]
 
-[ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_16aoq"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
 [ext_resource type="Script" path="res://UI/Window.cs" id="2_5w2l0"]
 [ext_resource type="Script" path="res://UI/Pause.cs" id="4_17pyg"]
+[ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="4_fvsai"]
 [ext_resource type="Texture2D" uid="uid://cykr4oe6uubyp" path="res://UI/Images/tempBG.png" id="4_g56cw"]
 [ext_resource type="Script" path="res://UI/SettingsMenu.cs" id="4_oc5pt"]
 [ext_resource type="Texture2D" uid="uid://7dnsnqjj7pxh" path="res://UI/UIElements/Button.svg" id="5_eegk4"]
@@ -55,9 +55,6 @@ grow_vertical = 2
 script = ExtResource("2_5w2l0")
 ShowOnStart = true
 
-[node name="MainMenuButtons" type="Node" parent="CanvasLayer/MainMenu"]
-script = ExtResource("1_16aoq")
-
 [node name="Background" type="TextureRect" parent="CanvasLayer/MainMenu"]
 layout_mode = 1
 anchors_preset = -1
@@ -70,112 +67,102 @@ expand_mode = 1
 
 [node name="Holder" type="Control" parent="CanvasLayer/MainMenu"]
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -640.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/Holder"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/Holder"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 45.0
+offset_bottom = -70.0
+theme_override_constants/separation = 25
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
 layout_mode = 2
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -464.0
+theme_override_colors/default_color = Color(0, 0, 0, 0)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
 
-[node name="Control" type="Control" parent="CanvasLayer/MainMenu/Holder"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 216.0
-offset_right = -256.0
-offset_bottom = -16.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Title2" type="RichTextLabel" parent="CanvasLayer/MainMenu/Holder/VBoxContainer/Title"]
+layout_mode = 2
+offset_top = 25.0
+offset_right = 1216.0
+offset_bottom = 155.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
 
-[node name="TextureButton1" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_bottom = -423.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureButton1" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
 texture_disabled = ExtResource("8_j4xfe")
 texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 96.0
-offset_bottom = -327.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
 texture_disabled = ExtResource("8_j4xfe")
 texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 192.0
-offset_bottom = -231.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
 texture_disabled = ExtResource("8_j4xfe")
 texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 288.0
-offset_bottom = -135.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
 texture_disabled = ExtResource("8_j4xfe")
 texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 384.0
-offset_bottom = -39.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
 texture_disabled = ExtResource("8_j4xfe")
 texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
 
 [node name="Settings" type="Control" parent="CanvasLayer"]
 visible = false
