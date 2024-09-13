@@ -1,5 +1,6 @@
-[gd_scene load_steps=19 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=20 format=3 uid="uid://bt33b5k48ip62"]
 
+[ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_16aoq"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
 [ext_resource type="Script" path="res://UI/Window.cs" id="2_5w2l0"]
 [ext_resource type="Script" path="res://UI/Pause.cs" id="4_17pyg"]
@@ -65,15 +66,7 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="Holder" type="Control" parent="CanvasLayer/MainMenu"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu/Holder"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu" node_paths=PackedStringArray("wm", "winSettings", "winWorldManager", "resumeBtn", "newBtn", "loadBtn", "optionsBtn", "exitBtn")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -82,8 +75,17 @@ offset_left = 64.0
 offset_top = 45.0
 offset_bottom = -70.0
 theme_override_constants/separation = 25
+script = ExtResource("1_16aoq")
+wm = NodePath("../..")
+winSettings = NodePath("../../Settings")
+winWorldManager = NodePath("../../WorldManager")
+resumeBtn = NodePath("Resume")
+newBtn = NodePath("New")
+loadBtn = NodePath("Load")
+optionsBtn = NodePath("Options")
+exitBtn = NodePath("Exit")
 
-[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 0)
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -95,7 +97,7 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="Title2" type="RichTextLabel" parent="CanvasLayer/MainMenu/Holder/VBoxContainer/Title"]
+[node name="Title2" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Title"]
 layout_mode = 2
 offset_top = 25.0
 offset_right = 1216.0
@@ -109,7 +111,35 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="TextureButton1" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+[node name="Resume" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+mouse_filter = 2
+disabled = true
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Resume"]
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.556863, 0.556863, 0.556863, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Continue Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="New" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -120,7 +150,21 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton2" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/New"]
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "New Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Load" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -131,7 +175,21 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton3" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Load"]
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Load Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Options" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -142,7 +200,21 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton4" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Options"]
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Options"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Exit" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -153,16 +225,19 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="TextureButton5" type="TextureButton" parent="CanvasLayer/MainMenu/Holder/VBoxContainer"]
-custom_minimum_size = Vector2(10, 65)
-layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
-ignore_texture_size = true
-stretch_mode = 4
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Exit"]
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Exit"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Settings" type="Control" parent="CanvasLayer"]
 visible = false

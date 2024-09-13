@@ -3,13 +3,84 @@ using System;
 
 public partial class MainMenu : Node
 {
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
+    [Export] WindowManager wm;
+    [Export] Window winSettings, winWorldManager;
+    [Export] TextureButton resumeBtn, newBtn, loadBtn, optionsBtn, exitBtn;
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
 	{
-	}
+        if (wm == null)
+        {
+            wm = (WindowManager)GetParent().GetParent();
+        }
+        if(wm == null)
+        {
+            GD.PushError("MainMenu is missing WindowManger...");
+            return;
+        }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
+        if (winSettings == null || winWorldManager == null)
+        {
+            winSettings = (Window)wm.FindChild("Settings");
+            winWorldManager = (Window)wm.FindChild("WorldManager");
+        }
+        if (winSettings == null || winWorldManager == null)
+        {
+            GD.PushError("MainMenu is missing windows...");
+            return;
+        }
+
+        if (resumeBtn == null || newBtn == null || loadBtn == null || optionsBtn == null || exitBtn == null)
+        {
+            resumeBtn = (TextureButton)FindChild("Resume");
+            newBtn = (TextureButton)FindChild("New");
+            loadBtn = (TextureButton)FindChild("Load");
+            optionsBtn = (TextureButton)FindChild("Options");
+            exitBtn = (TextureButton)FindChild("Exit");
+        }
+        if (resumeBtn == null || newBtn == null || loadBtn == null || optionsBtn == null || exitBtn == null)
+        {
+            GD.PushError("MainMenu is missing buttons...");
+            return;
+        }
+
+        resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
+        newBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGame));
+        loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadGame));
+        optionsBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Options));
+        exitBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Exit));
+    }
+
+    void ResumeGame()
 	{
+        GD.Print("INFO: Resume Game");
 	}
+    void NewGame()
+    {
+        GD.Print("INFO: New Game");
+
+    }
+    void LoadGame()
+    {
+        GD.Print("INFO: Load Game");
+
+    }
+    void Options()
+    {
+        GD.Print("INFO: Options");
+
+    }
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationWMCloseRequest)
+        {
+            Exit();
+        }
+    }
+    void Exit()
+    {
+        GD.Print("INFO: Exit");
+        GetTree().Quit();
+    }
 }
