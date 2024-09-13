@@ -12,4 +12,14 @@ public partial class WorldManager : Node
 	public override void _Process(double delta)
 	{
 	}
+
+	public void CallLoad()
+	{
+		GD.Print("WorldManager: load called");
+	}
+    public void CallNew()
+    {
+        GD.Print("WorldManager: new called");
+    }
+
 }

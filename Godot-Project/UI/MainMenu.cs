@@ -15,7 +15,7 @@ public partial class MainMenu : Node
         }
         if(wm == null)
         {
-            GD.PushError("MainMenu is missing WindowManger...");
+            GD.PushError("MainMenu: missing WindowManger...");
             return;
         }
 
@@ -26,7 +26,7 @@ public partial class MainMenu : Node
         }
         if (winSettings == null || winWorldManager == null)
         {
-            GD.PushError("MainMenu is missing windows...");
+            GD.PushError("MainMenu: missing windows...");
             return;
         }
 
@@ -40,7 +40,7 @@ public partial class MainMenu : Node
         }
         if (resumeBtn == null || newBtn == null || loadBtn == null || optionsBtn == null || exitBtn == null)
         {
-            GD.PushError("MainMenu is missing buttons...");
+            GD.PushError("MainMenu: missing buttons...");
             return;
         }
 
@@ -53,22 +53,40 @@ public partial class MainMenu : Node
 
     void ResumeGame()
 	{
-        GD.Print("INFO: Resume Game");
+        GD.Print("MainMenu: Resume Game");
 	}
     void NewGame()
     {
-        GD.Print("INFO: New Game");
-
+        GD.Print("MainMenu: New Game");
+        wm.ShowWindow(winWorldManager);
+        foreach (Node n in winWorldManager.GetChildren())
+        {
+            WorldManager w = (WorldManager)n;
+            if (w != null)
+            {
+                w.CallNew();
+                break;
+            }
+        }
     }
     void LoadGame()
     {
-        GD.Print("INFO: Load Game");
-
+        GD.Print("MainMenu: Load Game");
+        wm.ShowWindow(winWorldManager);
+        foreach (Node n in winWorldManager.GetChildren())
+        {
+            WorldManager w = (WorldManager)n;
+            if (w != null)
+            {
+                w.CallLoad();
+                break;
+            }
+        }
     }
     void Options()
     {
-        GD.Print("INFO: Options");
-
+        GD.Print("MainMenu: Options");
+        wm.ShowWindow(winSettings);
     }
 
     public override void _Notification(int what)
