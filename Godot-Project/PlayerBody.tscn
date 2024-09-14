@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://xjqrmh8r7gfp"]
+[gd_scene load_steps=10 format=3 uid="uid://xjqrmh8r7gfp"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.cs" id="1_mue7o"]
 [ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://PlayerHead.tscn" id="2_ti0ub"]
 [ext_resource type="Script" path="res://Player/ComponentCreator.cs" id="3_btxcd"]
 [ext_resource type="PackedScene" uid="uid://hjmtbffy8j1q" path="res://Vessel.tscn" id="4_g2tbp"]
 [ext_resource type="PackedScene" uid="uid://jdmahjx2sl5x" path="res://Thruster/EngineCreator.tscn" id="5_4r16y"]
+[ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://VesselComponent/Armour.tscn" id="6_xtdry"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10an4"]
 
@@ -40,4 +41,4 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("3_btxcd")
 _body = NodePath("../Body")
 _head = NodePath("../Head")
-Hotbar = Array[PackedScene]([null, ExtResource("5_4r16y"), ExtResource("4_g2tbp"), null, null, null, null, null, null, null])
+Hotbar = Array[PackedScene]([null, ExtResource("5_4r16y"), ExtResource("4_g2tbp"), ExtResource("6_xtdry"), null, null, null, null, null, null])
