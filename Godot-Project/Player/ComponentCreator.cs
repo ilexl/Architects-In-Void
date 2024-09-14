@@ -2,7 +2,7 @@ using Godot;
 
 namespace ArchitectsInVoid.Player;
 
-public partial class ComponentCreator : Node3D
+public partial class ComponentCreator : Node
 {
 	private RigidBody3D _body;
 	[Export] private Node3D _head;
