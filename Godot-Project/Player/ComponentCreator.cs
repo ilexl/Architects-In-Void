@@ -4,9 +4,9 @@ namespace ArchitectsInVoid.Player;
 
 public partial class ComponentCreator : Node
 {
-	private RigidBody3D _body;
+	[Export] private RigidBody3D _body;
 	[Export] private Node3D _head;
-	[Export] private Node3D _cursor;
+	private Node3D _cursor;
 	private Node3D _cursorNode;
 	
 	private PackedScene _cursorScene;
@@ -14,8 +14,6 @@ public partial class ComponentCreator : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_body = GetNode<RigidBody3D>("../Body");
-		_head = GetNode<Node3D>("../Head");
 		_cursor = GetNode<Node3D>("../Head/Cursor");
 		
 		_cursorScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
