@@ -8,16 +8,17 @@ public partial class ComponentCreator : Node
 	[Export] private Node3D _head;
 	[Export] private Node3D _cursor;
 	private Node3D _cursorNode;
+	
+	private PackedScene _cursorScene;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_body = GetNode<RigidBody3D>("Body");
-		_head = GetNode<Node3D>("Head");
-		_cursor = GetNode<Node3D>("Head/Cursor");
+		_body = GetNode<RigidBody3D>("../Body");
+		_head = GetNode<Node3D>("../Head");
+		_cursor = GetNode<Node3D>("../Head/Cursor");
 		
-		PackedScene myPackedScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
-		_cursorNode = (Node3D)myPackedScene.Instantiate();
-		GetTree().Root.AddChild(_cursorNode);
+		_cursorScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
+		_cursorNode = (Node3D)_cursorScene.Instantiate();
 		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		
 		CallDeferred("add_child", _cursorNode);
@@ -33,8 +34,7 @@ public partial class ComponentCreator : Node
 	{
 		if (Input.IsActionJustReleased("place_component"))
 		{
-			PackedScene myPackedScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
-			Node3D myInstance = (Node3D)myPackedScene.Instantiate();
+			Node3D myInstance = (Node3D)_cursorScene.Instantiate();
 			GetTree().Root.AddChild(myInstance);
 			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		}
