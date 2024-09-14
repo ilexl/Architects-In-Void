@@ -21,8 +21,8 @@ public partial class MainMenu : Node
 
         if (winSettings == null || winWorldManager == null)
         {
-            winSettings = (Window)wm.FindChild("Settings");
-            winWorldManager = (Window)wm.FindChild("WorldManager");
+            winSettings = (Window)wm.FindChild("Settings", recursive: false);
+            winWorldManager = (Window)wm.FindChild("WorldManager", recursive: false);
         }
         if (winSettings == null || winWorldManager == null)
         {

@@ -13,6 +13,7 @@ public partial class WindowManager : Node
         if (!startFeature) { return; }
         foreach (Window window in Windows)
         {
+            if(window == null) { continue; }
             if (window.ShowOnStart)
             {
                 window.Show();
@@ -36,8 +37,14 @@ public partial class WindowManager : Node
         };
         buttons.Add(gw);
 
+        if(Windows == null || Windows.Length == 0)
+        {
+            return buttons;
+        }
+
         foreach(Window w in Windows)
         {
+            if(w == null) { continue; } 
             w.SetWindowManager(this);
             Godot.Collections.Dictionary windowButtonShowOnly = new Godot.Collections.Dictionary
             {
@@ -92,6 +99,10 @@ public partial class WindowManager : Node
     /// <param name="window">The window to show</param>
     public void ShowWindow(Window window)
     {
+        if(window == null)
+        {
+            GD.PushError("Rebuild is needed for windows to work...");
+        }
         foreach (Window _window in Windows)
         {
             if (_window == window)
@@ -150,6 +161,10 @@ public partial class WindowManager : Node
     /// <param name="window">The window to show</param>
     public void ShowOnly(Window window)
     {
+        if (window == null)
+        {
+            GD.PushError("Rebuild is needed for windows to work...");
+        }
         foreach (Window _window in Windows)
         {
             if (_window == window)
@@ -205,6 +220,10 @@ public partial class WindowManager : Node
     {
         foreach (Window window in Windows)
         {
+            if (window == null)
+            {
+                GD.PushError("Rebuild is needed for windows to work...");
+            }
             window.Hide();
         }
     }
@@ -217,10 +236,18 @@ public partial class WindowManager : Node
     /// <param name="window">The window to hide</param>
     public void HideOnly(Window window)
     {
+        if (window == null)
+        {
+            GD.PushError("Rebuild is needed for windows to work...");
+        }
         foreach (Window _window in Windows)
         {
             if (_window == window)
             {
+                if (window == null)
+                {
+                    GD.PushError("Rebuild is needed for windows to work...");
+                }
                 _window.Hide(); // Shows the required window
             }
         }

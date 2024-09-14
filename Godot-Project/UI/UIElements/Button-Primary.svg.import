@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5sw4gii8n2cc"
-path="res://.godot/imported/IconReset.svg-7976ccce693edff59e8f25a3ee1383cc.ctex"
+uid="uid://sh5uhanyu3e3"
+path="res://.godot/imported/Button-Primary.svg-875803a222df6fb3294c2a51900e8d2d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/UIElements/IconReset.svg"
-dest_files=["res://.godot/imported/IconReset.svg-7976ccce693edff59e8f25a3ee1383cc.ctex"]
+source_file="res://UI/UIElements/Button-Primary.svg"
+dest_files=["res://.godot/imported/Button-Primary.svg-875803a222df6fb3294c2a51900e8d2d.ctex"]
 
 [params]
 

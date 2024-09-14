@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dsonfs2prm1yc"
-path="res://.godot/imported/IconDisplay.svg-b76e9fafb34e981a5988496acee467a9.ctex"
+uid="uid://brf6bpw7ab6m6"
+path="res://.godot/imported/IconReset.png-fd8238b5d1d6c3609acf3b551cf43df5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/UIElements/IconDisplay.svg"
-dest_files=["res://.godot/imported/IconDisplay.svg-b76e9fafb34e981a5988496acee467a9.ctex"]
+source_file="res://UI/UIElements/IconReset.png"
+dest_files=["res://.godot/imported/IconReset.png-fd8238b5d1d6c3609acf3b551cf43df5.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bh87f8j4qco6o"
-path="res://.godot/imported/IconGameplay.svg-59d3aa6007fbb9571deff3c7c60fca3c.ctex"
+uid="uid://csajhdj7xhv78"
+path="res://.godot/imported/IconGameSettings.png-707c2c3a221647a6dcb8633aaf90e313.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://UI/UIElements/IconGameplay.svg"
-dest_files=["res://.godot/imported/IconGameplay.svg-59d3aa6007fbb9571deff3c7c60fca3c.ctex"]
+source_file="res://UI/UIElements/IconGameSettings.png"
+dest_files=["res://.godot/imported/IconGameSettings.png-707c2c3a221647a6dcb8633aaf90e313.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false
