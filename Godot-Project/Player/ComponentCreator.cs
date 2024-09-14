@@ -44,7 +44,7 @@ public partial class ComponentCreator : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (Input.IsActionPressed("place_component"))
+		if (Input.IsActionJustPressed("place_component"))
 		{
 			_state = ComponentPlacerState.Placing;
 			_cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
