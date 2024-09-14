@@ -1,67 +1,70 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.UI;
 
 public partial class MainMenu : Node
 {
-    [Export] WindowManager wm;
-    [Export] Window winSettings, winWorldManager;
-    [Export] TextureButton resumeBtn, newBtn, loadBtn, optionsBtn, exitBtn;
+    [Export] private TextureButton _resumeBtn, _newBtn, _loadBtn, _optionsBtn, _exitBtn;
+    [Export] private Window _winSettings, _winWorldManager;
+
+    [Export] private WindowManager _wm;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
-        if (wm == null)
-        {
-            wm = (WindowManager)GetParent().GetParent();
-        }
-        if(wm == null)
+    {
+        if (_wm == null) _wm = (WindowManager)GetParent().GetParent();
+        if (_wm == null)
         {
             GD.PushError("MainMenu: missing WindowManger...");
             return;
         }
 
-        if (winSettings == null || winWorldManager == null)
+        if (_winSettings == null || _winWorldManager == null)
         {
-            winSettings = (Window)wm.FindChild("Settings", recursive: false);
-            winWorldManager = (Window)wm.FindChild("WorldManager", recursive: false);
+            _winSettings = (Window)_wm.FindChild("Settings", false);
+            _winWorldManager = (Window)_wm.FindChild("WorldManager", false);
         }
-        if (winSettings == null || winWorldManager == null)
+
+        if (_winSettings == null || _winWorldManager == null)
         {
             GD.PushError("MainMenu: missing windows...");
             return;
         }
 
-        if (resumeBtn == null || newBtn == null || loadBtn == null || optionsBtn == null || exitBtn == null)
+        if (_resumeBtn == null || _newBtn == null || _loadBtn == null || _optionsBtn == null || _exitBtn == null)
         {
-            resumeBtn = (TextureButton)FindChild("Resume");
-            newBtn = (TextureButton)FindChild("New");
-            loadBtn = (TextureButton)FindChild("Load");
-            optionsBtn = (TextureButton)FindChild("Options");
-            exitBtn = (TextureButton)FindChild("Exit");
+            _resumeBtn = (TextureButton)FindChild("Resume");
+            _newBtn = (TextureButton)FindChild("New");
+            _loadBtn = (TextureButton)FindChild("Load");
+            _optionsBtn = (TextureButton)FindChild("Options");
+            _exitBtn = (TextureButton)FindChild("Exit");
         }
-        if (resumeBtn == null || newBtn == null || loadBtn == null || optionsBtn == null || exitBtn == null)
+
+        if (_resumeBtn == null || _newBtn == null || _loadBtn == null || _optionsBtn == null || _exitBtn == null)
         {
             GD.PushError("MainMenu: missing buttons...");
             return;
         }
 
-        resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
-        newBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGame));
-        loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadGame));
-        optionsBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Options));
-        exitBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Exit));
+        _resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
+        _newBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGame));
+        _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadGame));
+        _optionsBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Options));
+        _exitBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Exit));
     }
 
-    void ResumeGame()
-	{
+    private void ResumeGame()
+    {
         GD.Print("MainMenu: Resume Game");
-	}
-    void NewGame()
+    }
+
+    private void NewGame()
     {
         GD.Print("MainMenu: New Game");
-        wm.ShowWindow(winWorldManager);
-        foreach (Node n in winWorldManager.GetChildren())
+        _wm.ShowWindow(_winWorldManager);
+        foreach (var n in _winWorldManager.GetChildren())
         {
-            WorldManager w = (WorldManager)n;
+            var w = (WorldManager)n;
             if (w != null)
             {
                 w.CallNew();
@@ -69,13 +72,14 @@ public partial class MainMenu : Node
             }
         }
     }
-    void LoadGame()
+
+    private void LoadGame()
     {
         GD.Print("MainMenu: Load Game");
-        wm.ShowWindow(winWorldManager);
-        foreach (Node n in winWorldManager.GetChildren())
+        _wm.ShowWindow(_winWorldManager);
+        foreach (var n in _winWorldManager.GetChildren())
         {
-            WorldManager w = (WorldManager)n;
+            var w = (WorldManager)n;
             if (w != null)
             {
                 w.CallLoad();
@@ -83,20 +87,19 @@ public partial class MainMenu : Node
             }
         }
     }
-    void Options()
+
+    private void Options()
     {
         GD.Print("MainMenu: Options");
-        wm.ShowWindow(winSettings);
+        _wm.ShowWindow(_winSettings);
     }
 
     public override void _Notification(int what)
     {
-        if (what == NotificationWMCloseRequest)
-        {
-            Exit();
-        }
+        if (what == NotificationWMCloseRequest) Exit();
     }
-    void Exit()
+
+    private void Exit()
     {
         GD.Print("INFO: Exit");
         GetTree().Quit();

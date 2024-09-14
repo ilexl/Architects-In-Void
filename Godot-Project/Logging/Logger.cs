@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.Logging;
 
 public partial class Logger : Node
 {

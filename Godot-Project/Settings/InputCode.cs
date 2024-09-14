@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.Settings;
 
 public partial class InputCode : Node
 {

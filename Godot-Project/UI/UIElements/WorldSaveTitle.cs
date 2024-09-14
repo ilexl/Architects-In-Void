@@ -1,68 +1,67 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.UI.UIElements;
 
 public partial class WorldSaveTitle : AspectRatioContainer
 {
-	[Export] public string title;
-	[Export] public string date;
+    [Export] private TextureButton _btn;
+    [Export] public string Date;
+    [Export] public string Title;
 
-	[Export] RichTextLabel worldName, saveDate;
-    [Export] TextureButton btn;
+    private WorldManager _worldManager;
 
-    WorldManager worldManager;
+    [Export] private RichTextLabel _worldName, _saveDate;
+
     public override void _Ready()
     {
-        if(worldName == null || saveDate == null)
-		{
-            worldName = (RichTextLabel)FindChild("WorldName");
-            saveDate = (RichTextLabel)FindChild("SaveDate");
+        if (_worldName == null || _saveDate == null)
+        {
+            _worldName = (RichTextLabel)FindChild("WorldName");
+            _saveDate = (RichTextLabel)FindChild("SaveDate");
         }
-        if (worldName == null || saveDate == null)
+
+        if (_worldName == null || _saveDate == null)
         {
             GD.PushError("WorldSaveTitle: missing text labels...");
             return;
         }
-        if(btn == null)
-        {
-            btn = (TextureButton)FindChild("TextureButton", recursive: true);
-        }
-        if (btn == null)
-        {
-            GD.PushError("WorldSaveTitle: missing button...");
-            return;
-        }
+
+        if (_btn == null) _btn = (TextureButton)FindChild("TextureButton");
+        if (_btn == null) GD.PushError("WorldSaveTitle: missing button...");
     }
 
     public void BindButtonToManager(WorldManager manager)
     {
-        worldManager = manager;
-        btn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ButtonPressed));
+        _worldManager = manager;
+        _btn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ButtonPressed));
     }
 
     public bool GetButtonState()
     {
-        return !btn.ButtonPressed;
+        return !_btn.ButtonPressed;
     }
 
-    void ButtonPressed()
+    private void ButtonPressed()
     {
-        worldManager.ListedWorldClicked(this);
+        _worldManager.ListedWorldClicked(this);
     }
-    public void UpdateWorldSaveTitle(string _title, string _date)
+
+    public void UpdateWorldSaveTitle(string title, string date)
     {
-        title = _title;
-        date = _date;
+        Title = title;
+        Date = date;
         UpdateWorldSaveTitle();
     }
+
     public void UpdateWorldSaveTitle()
     {
-        if (worldName == null || saveDate == null)
+        if (_worldName == null || _saveDate == null)
         {
             GD.PushError("WorldSaveTitle: missing text labels...");
             return;
         }
 
-        worldName.Text = title;
-        saveDate.Text = date;
+        _worldName.Text = Title;
+        _saveDate.Text = Date;
     }
 }

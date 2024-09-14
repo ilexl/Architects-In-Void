@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.WorldData;
 
 public partial class Data : Node
 {

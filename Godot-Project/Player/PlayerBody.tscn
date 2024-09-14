@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://xjqrmh8r7gfp"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.cs" id="1_mue7o"]
-[ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://PlayerHead.tscn" id="2_ti0ub"]
+[ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://Player/PlayerHead.tscn" id="2_ti0ub"]
 [ext_resource type="Script" path="res://Player/ComponentCreator.cs" id="3_btxcd"]
 [ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://VesselComponent/Armour.tscn" id="6_xtdry"]
 [ext_resource type="PackedScene" uid="uid://qtuqp5vywd8v" path="res://VesselComponent/Thruster.tscn" id="7_gucnc"]

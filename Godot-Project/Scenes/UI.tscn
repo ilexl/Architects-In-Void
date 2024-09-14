@@ -27,8 +27,8 @@
 [ext_resource type="Texture2D" uid="uid://bb2re1ccvs366" path="res://UI/UIElements/IconAudio.png" id="20_x7oi2"]
 [ext_resource type="Texture2D" uid="uid://c54is2cerp4ni" path="res://UI/UIElements/IconVideo.png" id="21_4wk1p"]
 [ext_resource type="Texture2D" uid="uid://brf6bpw7ab6m6" path="res://UI/UIElements/IconReset.png" id="22_lxoad"]
+[ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
-[ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_rh60s"]
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -38,9 +38,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("Windows")]
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
 script = ExtResource("1_st6gj")
-Windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
+_windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -242,22 +242,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="SettingsManager" type="Node" parent="CanvasLayer/Settings" node_paths=PackedStringArray("wmMain", "wmSettingSub", "winMainMenu", "winSubGame", "winSubControls", "winSubAudio", "winSubDisplay", "cancelBtn", "applyBtn", "resetBtn", "gameSBtn", "controlsSBtn", "audioSBtn", "displaySBtn")]
+[node name="SettingsManager" type="Node" parent="CanvasLayer/Settings" node_paths=PackedStringArray("_cancelBtn", "_applyBtn", "_resetBtn", "_gameSBtn", "_controlsSBtn", "_audioSBtn", "_displaySBtn", "_winMainMenu", "_winSubGame", "_winSubControls", "_winSubAudio", "_winSubDisplay", "_wmMain", "_wmSettingSub")]
 script = ExtResource("4_oc5pt")
-wmMain = NodePath("../..")
-wmSettingSub = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus")
-winMainMenu = NodePath("../../MainMenu")
-winSubGame = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings")
-winSubControls = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings")
-winSubAudio = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings")
-winSubDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings")
-cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
-applyBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn")
-resetBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn")
-gameSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn")
-controlsSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn")
-audioSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn")
-displaySBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn")
+_cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
+_applyBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn")
+_resetBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn")
+_gameSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn")
+_controlsSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn")
+_audioSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn")
+_displaySBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn")
+_winMainMenu = NodePath("../../MainMenu")
+_winSubGame = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings")
+_winSubControls = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings")
+_winSubAudio = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings")
+_winSubDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings")
+_wmMain = NodePath("../..")
+_wmSettingSub = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus")
 
 [node name="Background" type="TextureRect" parent="CanvasLayer/Settings"]
 layout_mode = 1
@@ -387,14 +387,14 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SettingsSubMenus" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("Windows")]
+[node name="SettingsSubMenus" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
 anchors_preset = 0
 offset_left = 132.0
 offset_top = 60.0
 offset_right = 1076.0
 offset_bottom = 516.0
 script = ExtResource("1_st6gj")
-Windows = []
+_windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 layout_mode = 3
@@ -659,16 +659,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="WorldManagerButtons" type="Node" parent="CanvasLayer/WorldManager" node_paths=PackedStringArray("wmMain", "winMainMenu", "worldListHolder", "cancelBtn", "loadBtn")]
+[node name="WorldManagerButtons" type="Node" parent="CanvasLayer/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder")]
 script = ExtResource("5_v3f2b")
-wmMain = NodePath("../..")
-winMainMenu = NodePath("../../MainMenu")
-worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
-testWorldList = true
-testAmount = 25
-worldSaveListScene = ExtResource("24_rh60s")
-cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
-loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
+_cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
+_loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
+_testAmount = 25
+_testWorldList = true
+_winMainMenu = NodePath("../../MainMenu")
+_winHud = NodePath("../../HUD")
+_wmMain = NodePath("../..")
+_worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
+_worldSaveListScene = ExtResource("24_6fqay")
 
 [node name="Background" type="TextureRect" parent="CanvasLayer/WorldManager"]
 layout_mode = 1

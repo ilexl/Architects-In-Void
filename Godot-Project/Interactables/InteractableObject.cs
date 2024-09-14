@@ -1,5 +1,6 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.Interactables;
 
 public partial class InteractableObject : Node
 {

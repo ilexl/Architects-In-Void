@@ -1,141 +1,144 @@
 using Godot;
-using System;
+using Godot.Collections;
+
+namespace ArchitectsInVoid.UI;
 
 [Tool]
 public partial class SettingsMenu : Node
 {
-    [Export] WindowManager wmMain, wmSettingSub;
-    [Export] Window winMainMenu, winSubGame, winSubControls, winSubAudio, winSubDisplay;
-    [Export] TextureButton cancelBtn, applyBtn, resetBtn, gameSBtn, controlsSBtn, audioSBtn, displaySBtn;
+    [Export] private TextureButton _cancelBtn, _applyBtn, _resetBtn, _gameSBtn, _controlsSBtn, _audioSBtn, _displaySBtn;
+    [Export] private Window _winMainMenu, _winSubGame, _winSubControls, _winSubAudio, _winSubDisplay;
+
+    [Export] private WindowManager _wmMain, _wmSettingSub;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
-        if (wmMain == null || wmSettingSub == null)
+    {
+        if (_wmMain == null || _wmSettingSub == null)
         {
-            wmMain = (WindowManager)GetParent().GetParent();
-            wmSettingSub = (WindowManager)GetParent().FindChild("SettingsSubMenus", recursive:true);
+            _wmMain = (WindowManager)GetParent().GetParent();
+            _wmSettingSub = (WindowManager)GetParent().FindChild("SettingsSubMenus");
         }
-        if (wmMain == null || wmSettingSub == null)
+
+        if (_wmMain == null || _wmSettingSub == null)
         {
             GD.PushError("Settings: missing WindowManger/s...");
             return;
         }
 
-        if (winMainMenu == null )
-        {
-            winMainMenu = (Window)wmMain.FindChild("MainMenu", recursive:false);
-        }
-        if (winMainMenu == null)
+        if (_winMainMenu == null) _winMainMenu = (Window)_wmMain.FindChild("MainMenu", false);
+        if (_winMainMenu == null)
         {
             GD.PushError("Settings: missing windows...");
             return;
         }
 
-        if (winSubGame == null || winSubControls == null || winSubAudio == null || winSubDisplay == null)
+        if (_winSubGame == null || _winSubControls == null || _winSubAudio == null || _winSubDisplay == null)
         {
-            winSubGame = (Window)wmSettingSub.FindChild("GameSettings");
-            winSubControls = (Window)wmSettingSub.FindChild("ControlSettings");
-            winSubAudio = (Window)wmSettingSub.FindChild("AudioSettings");
-            winSubDisplay = (Window)wmSettingSub.FindChild("DisplaySettings");
+            _winSubGame = (Window)_wmSettingSub.FindChild("GameSettings");
+            _winSubControls = (Window)_wmSettingSub.FindChild("ControlSettings");
+            _winSubAudio = (Window)_wmSettingSub.FindChild("AudioSettings");
+            _winSubDisplay = (Window)_wmSettingSub.FindChild("DisplaySettings");
         }
-        if (winSubGame == null || winSubControls == null || winSubAudio == null || winSubDisplay == null)
+
+        if (_winSubGame == null || _winSubControls == null || _winSubAudio == null || _winSubDisplay == null)
         {
             GD.PushError("Settings: missing windows...");
             return;
         }
 
-        if (cancelBtn == null || applyBtn == null || resetBtn == null || gameSBtn == null || controlsSBtn == null || audioSBtn == null || displaySBtn == null)
+        if (_cancelBtn == null || _applyBtn == null || _resetBtn == null || _gameSBtn == null || _controlsSBtn == null ||
+            _audioSBtn == null || _displaySBtn == null)
         {
-            cancelBtn = (TextureButton)GetParent().FindChild("CancelBtn");
-            applyBtn = (TextureButton)GetParent().FindChild("ApplyBtn");
-            resetBtn = (TextureButton)GetParent().FindChild("ResetSettingsBtn");
-            gameSBtn = (TextureButton)GetParent().FindChild("GameSettingsBtn");
-            controlsSBtn = (TextureButton)GetParent().FindChild("ControlsSettingsBtn");
-            audioSBtn = (TextureButton)GetParent().FindChild("AudioSettingsBtn");
-            displaySBtn = (TextureButton)GetParent().FindChild("DisplaySettingsBtn");
+            _cancelBtn = (TextureButton)GetParent().FindChild("CancelBtn");
+            _applyBtn = (TextureButton)GetParent().FindChild("ApplyBtn");
+            _resetBtn = (TextureButton)GetParent().FindChild("ResetSettingsBtn");
+            _gameSBtn = (TextureButton)GetParent().FindChild("GameSettingsBtn");
+            _controlsSBtn = (TextureButton)GetParent().FindChild("ControlsSettingsBtn");
+            _audioSBtn = (TextureButton)GetParent().FindChild("AudioSettingsBtn");
+            _displaySBtn = (TextureButton)GetParent().FindChild("DisplaySettingsBtn");
         }
-        if (cancelBtn == null || applyBtn == null || resetBtn == null || gameSBtn == null || controlsSBtn == null || audioSBtn == null || displaySBtn == null)
+
+        if (_cancelBtn == null || _applyBtn == null || _resetBtn == null || _gameSBtn == null || _controlsSBtn == null ||
+            _audioSBtn == null || _displaySBtn == null)
         {
             GD.PushError("Settings: missing buttons...");
             return;
         }
 
-        cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
-        applyBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Apply));
-        resetBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Reset));
-        gameSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubGame));
-        controlsSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubControls));
-        audioSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubAudio));
-        displaySBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubDisplay));
+        _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
+        _applyBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Apply));
+        _resetBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Reset));
+        _gameSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubGame));
+        _controlsSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubControls));
+        _audioSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubAudio));
+        _displaySBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubDisplay));
 
-        gameSBtn.ButtonPressed = true;
+        _gameSBtn.ButtonPressed = true;
     }
 
-    void Apply()
+    private void Apply()
     {
         GD.Print("Settings: Apply Button Pressed");
     }
 
-    void Cancel()
+    private void Cancel()
     {
         GD.Print("Settings: Cancel Button Pressed");
-        wmMain.ShowWindow(winMainMenu);
+        _wmMain.ShowWindow(_winMainMenu);
     }
 
-    void SubGame()
+    private void SubGame()
     {
         GD.Print("Settings: Game Settings Button Pressed");
-        controlsSBtn.ButtonPressed = false;
-        audioSBtn.ButtonPressed = false;
-        displaySBtn.ButtonPressed = false;
-        wmSettingSub.ShowWindow(winSubGame);
+        _controlsSBtn.ButtonPressed = false;
+        _audioSBtn.ButtonPressed = false;
+        _displaySBtn.ButtonPressed = false;
+        _wmSettingSub.ShowWindow(_winSubGame);
     }
 
-    void SubControls()
+    private void SubControls()
     {
         GD.Print("Settings: Controls Settings Button Pressed");
-        gameSBtn.ButtonPressed = false;
-        audioSBtn.ButtonPressed = false;
-        displaySBtn.ButtonPressed = false;
-        wmSettingSub.ShowWindow(winSubControls);
-
+        _gameSBtn.ButtonPressed = false;
+        _audioSBtn.ButtonPressed = false;
+        _displaySBtn.ButtonPressed = false;
+        _wmSettingSub.ShowWindow(_winSubControls);
     }
 
-    void SubAudio()
+    private void SubAudio()
     {
         GD.Print("Settings: Audio Settings Button Pressed");
-        gameSBtn.ButtonPressed = false;
-        controlsSBtn.ButtonPressed = false;
-        displaySBtn.ButtonPressed = false;
-        wmSettingSub.ShowWindow(winSubAudio);
-
+        _gameSBtn.ButtonPressed = false;
+        _controlsSBtn.ButtonPressed = false;
+        _displaySBtn.ButtonPressed = false;
+        _wmSettingSub.ShowWindow(_winSubAudio);
     }
 
-    void SubDisplay()
+    private void SubDisplay()
     {
         GD.Print("Settings: Display Settings Button Pressed");
-        gameSBtn.ButtonPressed = false;
-        controlsSBtn.ButtonPressed = false;
-        audioSBtn.ButtonPressed = false;
-        wmSettingSub.ShowWindow(winSubDisplay);
-
+        _gameSBtn.ButtonPressed = false;
+        _controlsSBtn.ButtonPressed = false;
+        _audioSBtn.ButtonPressed = false;
+        _wmSettingSub.ShowWindow(_winSubDisplay);
     }
 
-    void Reset()
+    private void Reset()
     {
         GD.Print("Settings: Reset Settings Button Pressed");
-
     }
 
-    public Godot.Collections.Array AddInspectorButtons()
+    public Array AddInspectorButtons()
     {
-        Godot.Collections.Array buttons = new Godot.Collections.Array();
+        var buttons = new Array();
 
-        Godot.Collections.Dictionary reload = new Godot.Collections.Dictionary
+        var reload = new Dictionary
         {
             { "name", "Reload" },
             { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
-            { "pressed", Callable.From(_Ready)
+            {
+                "pressed", Callable.From(_Ready)
             }
         };
         buttons.Add(reload);

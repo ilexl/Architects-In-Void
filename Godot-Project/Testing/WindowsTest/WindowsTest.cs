@@ -1,24 +1,29 @@
+using ArchitectsInVoid.UI;
 using Godot;
-using System;
+using Godot.Collections;
+
+namespace ArchitectsInVoid.Testing.WindowsTest;
 
 [Tool]
 public partial class WindowsTest : CanvasLayer
 {
-    Node win1, win2, win3;
-    WindowManager wm;
+    private Node _win1, _win2, _win3;
+
+    private WindowManager _wm;
+
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        wm = (WindowManager)GetNode("WindowManager");
-        if(wm != null )
+        _wm = (WindowManager)GetNode("WindowManager");
+        if (_wm != null)
         {
-            win1 = GetNode(GetPath().ToString() + "/WindowManager/Window1");
-            win2 = GetNode(GetPath().ToString() + "/WindowManager/Window2");
-            win3 = GetNode(GetPath().ToString() + "/WindowManager/Window3");
+            _win1 = GetNode(GetPath() + "/WindowManager/Window1");
+            _win2 = GetNode(GetPath() + "/WindowManager/Window2");
+            _win3 = GetNode(GetPath() + "/WindowManager/Window3");
 
-            Node but1 = win1.GetNode("Button");
-            Node but2 = win2.GetNode("Button");
-            Node but3 = win3.GetNode("Button");
+            var but1 = _win1.GetNode("Button");
+            var but2 = _win2.GetNode("Button");
+            var but3 = _win3.GetNode("Button");
 
             but1.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Button1));
             but2.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Button2));
@@ -30,24 +35,26 @@ public partial class WindowsTest : CanvasLayer
         }
     }
 
-    void Button1()
+    private void Button1()
     {
-        wm.ShowWindow("Window2");
-    }
-    void Button2()
-    {
-        wm.ShowWindow("Window3");
-    }
-    void Button3()
-    {
-        wm.ShowWindow("Window1");
+        _wm.ShowWindow("Window2");
     }
 
-    public Godot.Collections.Array AddInspectorButtons()
+    private void Button2()
     {
-        Godot.Collections.Array buttons = new Godot.Collections.Array();
+        _wm.ShowWindow("Window3");
+    }
 
-        Godot.Collections.Dictionary wt = new Godot.Collections.Dictionary
+    private void Button3()
+    {
+        _wm.ShowWindow("Window1");
+    }
+
+    public Array AddInspectorButtons()
+    {
+        var buttons = new Array();
+
+        var wt = new Dictionary
         {
             { "name", "Get Windows (Children)" },
             { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
