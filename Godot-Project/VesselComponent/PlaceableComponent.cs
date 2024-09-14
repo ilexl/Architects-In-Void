@@ -22,4 +22,9 @@ public partial class PlaceableComponent : Node3D
 		Position = position;
 		Transform.Scaled(placementScale);
 	}
+
+	protected virtual void Place(Vector3 position)
+	{
+		Position = position;
+	}
 }
