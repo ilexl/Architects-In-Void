@@ -3,7 +3,6 @@
 [ext_resource type="Script" path="res://VesselComponent/Armour.cs" id="1_ut5e1"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ka1ks"]
-size = Vector3(100, 100, 100)
 
 [node name="Armour" type="Node3D"]
 script = ExtResource("1_ut5e1")
