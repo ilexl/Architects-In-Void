@@ -37,5 +37,16 @@ public partial class ComponentCreator : Node
 			GetTree().Root.AddChild(myInstance);
 			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		}
+
+		for (int i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
+		{
+			if (Input.IsActionJustPressed($"hotbar_{i}"))
+			{
+				// Handle the hotbar action for index i
+				GD.Print($"Hotbar {i} pressed");
+				_cursorScene = Hotbar[i];
+			}
+		}
+		
 	}
 }
