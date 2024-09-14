@@ -1,0 +1,889 @@
+[gd_scene load_steps=30 format=3 uid="uid://bt33b5k48ip62"]
+
+[ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
+[ext_resource type="Script" path="res://UI/Window.cs" id="2_5w2l0"]
+[ext_resource type="Script" path="res://UI/Pause.cs" id="4_17pyg"]
+[ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="4_fvsai"]
+[ext_resource type="Texture2D" uid="uid://cykr4oe6uubyp" path="res://UI/Images/tempBG.png" id="4_g56cw"]
+[ext_resource type="Script" path="res://UI/SettingsMenu.cs" id="4_oc5pt"]
+[ext_resource type="Script" path="res://UI/MainMenu.cs" id="4_xc8gb"]
+[ext_resource type="Texture2D" uid="uid://7dnsnqjj7pxh" path="res://UI/UIElements/Button.svg" id="5_eegk4"]
+[ext_resource type="Script" path="res://UI/WorldManager.cs" id="5_v3f2b"]
+[ext_resource type="Texture2D" uid="uid://cmt1p5l3pp2tc" path="res://UI/UIElements/Button-Pressed.svg" id="6_bw56o"]
+[ext_resource type="Texture2D" uid="uid://cx47vnixnx8sh" path="res://UI/UIElements/SettingsBackground.svg" id="6_gx3n7"]
+[ext_resource type="Texture2D" uid="uid://dm7u03mrumy6r" path="res://UI/Images/Rectangle 3.svg" id="6_pcm66"]
+[ext_resource type="Script" path="res://UI/LoadingScreen.cs" id="6_unkds"]
+[ext_resource type="Script" path="res://UI/HUD.cs" id="7_knsfs"]
+[ext_resource type="Texture2D" uid="uid://xycer0altein" path="res://UI/UIElements/Button-Highlight.svg" id="7_vpu1a"]
+[ext_resource type="Texture2D" uid="uid://bs6y5j03uv4ia" path="res://UI/UIElements/SettingsIconHolder.svg" id="8_g5u0w"]
+[ext_resource type="Texture2D" uid="uid://dfac70vqa0amj" path="res://UI/UIElements/Button-Disabled.svg" id="8_j4xfe"]
+[ext_resource type="Texture2D" uid="uid://sh5uhanyu3e3" path="res://UI/UIElements/Button-Primary.svg" id="8_lf3yh"]
+[ext_resource type="Texture2D" uid="uid://d05p6givodlqm" path="res://UI/UIElements/SettingsIconHolderSelected.svg" id="9_nubwi"]
+[ext_resource type="Texture2D" uid="uid://bbtjl8a5pj1uo" path="res://UI/UIElements/Button-Primary-Pressed.svg" id="9_wbehq"]
+[ext_resource type="Texture2D" uid="uid://cto7segvlqt1" path="res://UI/UIElements/Button-Primary-Highlighted.svg" id="10_4g464"]
+[ext_resource type="Texture2D" uid="uid://dm8edayoimiwy" path="res://UI/UIElements/SettingsIconHolderHighlighted.svg" id="10_meldx"]
+[ext_resource type="Texture2D" uid="uid://csajhdj7xhv78" path="res://UI/UIElements/IconGameSettings.png" id="18_54gxq"]
+[ext_resource type="Texture2D" uid="uid://ccacsbwywn0ff" path="res://UI/UIElements/IconControls.png" id="18_gt1ff"]
+[ext_resource type="Texture2D" uid="uid://bb2re1ccvs366" path="res://UI/UIElements/IconAudio.png" id="20_x7oi2"]
+[ext_resource type="Texture2D" uid="uid://c54is2cerp4ni" path="res://UI/UIElements/IconVideo.png" id="21_4wk1p"]
+[ext_resource type="Texture2D" uid="uid://brf6bpw7ab6m6" path="res://UI/UIElements/IconReset.png" id="22_lxoad"]
+[ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
+[ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_rh60s"]
+
+[node name="UI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("Windows")]
+script = ExtResource("1_st6gj")
+Windows = [NodePath("Settings"), NodePath("MainMenu"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
+
+[node name="MainMenu" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+ShowOnStart = true
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g56cw")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 45.0
+offset_bottom = -70.0
+theme_override_constants/separation = 25
+script = ExtResource("4_xc8gb")
+
+[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 0)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Title2" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Title"]
+layout_mode = 2
+offset_top = 25.0
+offset_right = 1216.0
+offset_bottom = 155.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Resume" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+mouse_filter = 2
+disabled = true
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Resume"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.556863, 0.556863, 0.556863, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Continue Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="New" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/New"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "New Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Load" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Load"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Load Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Options" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Options"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Exit" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Exit"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Exit"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Settings" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="SettingsManager" type="Node" parent="CanvasLayer/Settings" node_paths=PackedStringArray("wmMain", "wmSettingSub", "winMainMenu", "winSubGame", "winSubControls", "winSubAudio", "winSubDisplay", "cancelBtn", "applyBtn", "resetBtn", "gameSBtn", "controlsSBtn", "audioSBtn", "displaySBtn")]
+script = ExtResource("4_oc5pt")
+wmMain = NodePath("../..")
+wmSettingSub = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus")
+winMainMenu = NodePath("../../MainMenu")
+winSubGame = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings")
+winSubControls = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings")
+winSubAudio = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings")
+winSubDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings")
+cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
+applyBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn")
+resetBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn")
+gameSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn")
+controlsSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn")
+audioSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn")
+displaySBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn")
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/Settings"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g56cw")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.270588, 0.270588, 0.270588, 0.392157)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.78
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="SettingsBackground" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("6_gx3n7")
+expand_mode = 1
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 3.55057
+offset_right = -2.0
+offset_bottom = -450.449
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 42
+text = "Settings"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CancelBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 924.0
+offset_top = 531.551
+offset_right = 1064.0
+offset_bottom = 573.551
+texture_normal = ExtResource("8_lf3yh")
+texture_pressed = ExtResource("9_wbehq")
+texture_hover = ExtResource("10_4g464")
+texture_focused = ExtResource("10_4g464")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Cancel"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ApplyBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 531.551
+offset_right = 896.0
+offset_bottom = 573.551
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+flip_v = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Apply"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SettingsSubMenus" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("Windows")]
+anchors_preset = 0
+offset_left = 132.0
+offset_top = 60.0
+offset_right = 1076.0
+offset_bottom = 516.0
+script = ExtResource("1_st6gj")
+Windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
+
+[node name="GameSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 944.0
+offset_bottom = 456.0
+script = ExtResource("2_5w2l0")
+ShowOnStart = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 191.551
+offset_right = 408.0
+offset_bottom = 231.551
+text = "G"
+
+[node name="ControlSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+visible = false
+anchors_preset = 0
+offset_right = 944.0
+offset_bottom = 456.0
+script = ExtResource("2_5w2l0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 191.551
+offset_right = 408.0
+offset_bottom = 231.551
+text = "C"
+
+[node name="AudioSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 944.0
+offset_bottom = 456.0
+script = ExtResource("2_5w2l0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 191.551
+offset_right = 408.0
+offset_bottom = 231.551
+text = "A"
+
+[node name="DisplaySettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 944.0
+offset_bottom = 456.0
+script = ExtResource("2_5w2l0")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
+layout_mode = 0
+offset_left = 368.0
+offset_top = 191.551
+offset_right = 408.0
+offset_bottom = 231.551
+text = "D"
+
+[node name="GameSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 99.5506
+offset_right = 113.0
+offset_bottom = 164.551
+toggle_mode = true
+button_pressed = true
+texture_normal = ExtResource("8_g5u0w")
+texture_pressed = ExtResource("9_nubwi")
+texture_hover = ExtResource("10_meldx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(65, 65)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("18_54gxq")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ControlsSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 187.551
+offset_right = 113.0
+offset_bottom = 252.551
+toggle_mode = true
+texture_normal = ExtResource("8_g5u0w")
+texture_pressed = ExtResource("9_nubwi")
+texture_hover = ExtResource("10_meldx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("18_gt1ff")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="AudioSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 275.551
+offset_right = 113.0
+offset_bottom = 340.551
+toggle_mode = true
+texture_normal = ExtResource("8_g5u0w")
+texture_pressed = ExtResource("9_nubwi")
+texture_hover = ExtResource("10_meldx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("20_x7oi2")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="DisplaySettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 361.551
+offset_right = 113.0
+offset_bottom = 426.551
+toggle_mode = true
+texture_normal = ExtResource("8_g5u0w")
+texture_pressed = ExtResource("9_nubwi")
+texture_hover = ExtResource("10_meldx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(45, 45)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("21_4wk1p")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ResetSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 443.551
+offset_right = 98.0
+offset_bottom = 493.551
+texture_normal = ExtResource("8_g5u0w")
+texture_pressed = ExtResource("9_nubwi")
+texture_hover = ExtResource("10_meldx")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer/MarginContainer"]
+custom_minimum_size = Vector2(40, 40)
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("22_lxoad")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="WorldManager" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="WorldManagerButtons" type="Node" parent="CanvasLayer/WorldManager" node_paths=PackedStringArray("wmMain", "winMainMenu", "worldListHolder", "cancelBtn", "loadBtn")]
+script = ExtResource("5_v3f2b")
+wmMain = NodePath("../..")
+winMainMenu = NodePath("../../MainMenu")
+worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
+testWorldList = true
+testAmount = 25
+worldSaveListScene = ExtResource("24_rh60s")
+cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
+loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
+
+[node name="Background" type="TextureRect" parent="CanvasLayer/WorldManager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g56cw")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/WorldManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.270588, 0.270588, 0.270588, 0.392157)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/WorldManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.78
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="SettingsBackground" type="TextureRect" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("24_jxwvm")
+expand_mode = 1
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+clip_contents = false
+layout_mode = 0
+offset_left = 84.0
+offset_top = 74.5506
+offset_right = 206.0
+offset_bottom = 100.551
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 20
+text = "World Name"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+clip_contents = false
+layout_mode = 0
+offset_left = 436.0
+offset_top = 74.5506
+offset_right = 558.0
+offset_bottom = 100.551
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 20
+text = "Last Saved"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 4.0
+offset_right = -412.0
+offset_bottom = -450.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 42
+text = "Load Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CancelBtn" type="TextureButton" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 924.0
+offset_top = 531.551
+offset_right = 1064.0
+offset_bottom = 573.551
+texture_normal = ExtResource("8_lf3yh")
+texture_pressed = ExtResource("9_wbehq")
+texture_hover = ExtResource("10_4g464")
+texture_focused = ExtResource("10_4g464")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Cancel"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LoadBtn" type="TextureButton" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 756.0
+offset_top = 531.551
+offset_right = 896.0
+offset_bottom = 573.551
+disabled = true
+texture_normal = ExtResource("5_eegk4")
+texture_pressed = ExtResource("6_bw56o")
+texture_hover = ExtResource("7_vpu1a")
+texture_disabled = ExtResource("8_j4xfe")
+texture_focused = ExtResource("7_vpu1a")
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+flip_v = true
+
+[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Load"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 108.0
+offset_right = 612.0
+offset_bottom = 496.0
+
+[node name="WorldListHolder" type="VBoxContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="LoadingScreen" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="LoadingScreenLogic" type="Node" parent="CanvasLayer/LoadingScreen"]
+script = ExtResource("6_unkds")
+
+[node name="HUD" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="HUDButtons" type="Node" parent="CanvasLayer/HUD"]
+script = ExtResource("7_knsfs")
+
+[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="PauseMenuButtons" type="Node" parent="CanvasLayer/PauseMenu"]
+script = ExtResource("4_17pyg")
+
+[node name="Blur" type="TextureRect" parent="CanvasLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pcm66")
+expand_mode = 1

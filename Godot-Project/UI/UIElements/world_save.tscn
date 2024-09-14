@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://27r5cfuywm27"]
+
+[ext_resource type="Script" path="res://UI/UIElements/WorldSaveTitle.cs" id="1_cf7er"]
+[ext_resource type="Texture2D" uid="uid://cwwqsmq2jk1r1" path="res://UI/UIElements/WorldSave-Normal.svg" id="1_t5uup"]
+[ext_resource type="Texture2D" uid="uid://ro1mqls0blla" path="res://UI/UIElements/WorldSave-Selected.svg" id="2_bfulf"]
+[ext_resource type="Texture2D" uid="uid://coqershkc7tvx" path="res://UI/UIElements/WorldSave-Highlight.svg" id="3_gyj78"]
+[ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="4_qngiq"]
+
+[node name="WorldSave" type="AspectRatioContainer"]
+ratio = 18.655
+stretch_mode = 1
+script = ExtResource("1_cf7er")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(566, 30)
+layout_mode = 2
+color = Color(0, 0, 0, 0)
+
+[node name="TextureButton" type="TextureButton" parent="ColorRect"]
+layout_mode = 0
+offset_top = -0.449432
+offset_right = 566.0
+offset_bottom = 29.5506
+toggle_mode = true
+texture_normal = ExtResource("1_t5uup")
+texture_pressed = ExtResource("2_bfulf")
+texture_hover = ExtResource("3_gyj78")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="WorldName" type="RichTextLabel" parent="ColorRect"]
+clip_contents = false
+layout_mode = 0
+offset_left = 40.0
+offset_top = 6.0
+offset_right = 328.0
+offset_bottom = 30.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_qngiq")
+theme_override_font_sizes/normal_font_size = 16
+text = "Lorem ipsum dolor 2"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SaveDate" type="RichTextLabel" parent="ColorRect"]
+clip_contents = false
+layout_mode = 0
+offset_left = 360.0
+offset_top = 6.0
+offset_right = 528.0
+offset_bottom = 30.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_qngiq")
+theme_override_font_sizes/normal_font_size = 16
+text = "00-00-0000 00:00:00"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
