@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://hjmtbffy8j1q"]
+
+[ext_resource type="Script" path="res://Vessel.cs" id="1_5i8yc"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_q0uda"]
+
+[node name="Vessel" type="Node3D"]
+script = ExtResource("1_5i8yc")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000989957, 0.00818537, -2.33661e-05)
+mesh = SubResource("BoxMesh_q0uda")
