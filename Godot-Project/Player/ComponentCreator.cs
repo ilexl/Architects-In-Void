@@ -42,11 +42,7 @@ public partial class ComponentCreator : Node
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
-	}
-
-	public override void _PhysicsProcess(double delta)
-	{
+		// _cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		if (Input.IsActionJustPressed("place_component"))
 		{
 			_state = ComponentPlacerState.Placing;
@@ -56,6 +52,10 @@ public partial class ComponentCreator : Node
 		if (_state == ComponentPlacerState.Placing)
 		{
 			_cursorEnd = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+			Vector3 position = _cursorStart.Lerp(_cursorEnd, 0.5);
+			Vector3 scale = _cursorStart - _cursorEnd;
+			_cursorNode.Position = position;
+			_cursorNode.Scale = scale;
 		}
 		
 		if (Input.IsActionJustReleased("place_component"))
