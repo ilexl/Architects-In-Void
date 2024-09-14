@@ -64,8 +64,10 @@ public partial class ComponentCreator : Node
 			Node3D myInstance = (Node3D)_SelectedComponentScene.Instantiate();
 			_root.AddChild(myInstance);
 			
-
+			_cursorNode.Scale = Vector3.Zero;
+			
 			PlaceableComponent placeableComponent = myInstance as PlaceableComponent;
+			
 			if (placeableComponent == null) return;
 			
 			Vector3 position = _cursorStart.Lerp(_cursorEnd, 0.5);
@@ -73,6 +75,11 @@ public partial class ComponentCreator : Node
 			placeableComponent.Place(position, scale);
 			
 		}
+	}
+
+	public override void _PhysicsProcess(double delta)
+	{
+		
 
 		for (int i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
 		{
