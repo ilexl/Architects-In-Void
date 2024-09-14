@@ -15,7 +15,7 @@ public partial class ComponentCreator : Node
 	[Export] private Node3D _head;
 	private Node3D _cursor;
 	private Node3D _cursorNode;
-	private PackedScene _SelectedComponentScene;
+	private PackedScene _selectedComponentScene;
 	[Export] public PackedScene[] Hotbar;
 
 	private Vector3 _cursorStart;
@@ -30,8 +30,8 @@ public partial class ComponentCreator : Node
 	{
 		_cursor = GetNode<Node3D>("../Head/Cursor");
 		
-		_SelectedComponentScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
-		_cursorNode = (Node3D)_SelectedComponentScene.Instantiate();
+		_selectedComponentScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
+		_cursorNode = (Node3D)_selectedComponentScene.Instantiate();
 		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		
 		CallDeferred("add_child", _cursorNode);
@@ -61,7 +61,7 @@ public partial class ComponentCreator : Node
 		if (Input.IsActionJustReleased("place_component"))
 		{
 			_state = ComponentPlacerState.Idle;
-			Node3D myInstance = (Node3D)_SelectedComponentScene.Instantiate();
+			Node3D myInstance = (Node3D)_selectedComponentScene.Instantiate();
 			_root.AddChild(myInstance);
 			
 			_cursorNode.Scale = Vector3.Zero;
@@ -85,7 +85,7 @@ public partial class ComponentCreator : Node
 		{
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
-				_SelectedComponentScene = Hotbar[i];
+				_selectedComponentScene = Hotbar[i];
 			}
 		}
 		
