@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public partial class WorldManager : Node
 {
     [Export] WindowManager wmMain;
-    [Export] Window winMainMenu;
+    [Export] Window winMainMenu, winHUD;
     [Export] Node worldListHolder;
 	[Export] bool testWorldList;
 	[Export] int testAmount;
@@ -26,11 +26,12 @@ public partial class WorldManager : Node
             GD.PushError("World Manager: missing WindowManger/s...");
             return;
         }
-        if (winMainMenu == null)
+        if (winMainMenu == null || winHUD == null)
         {
             winMainMenu = (Window)wmMain.FindChild("MainMenu", recursive: false);
+            winHUD = (Window)wmMain.FindChild("HUD", recursive: false);
         }
-        if (winMainMenu == null)
+        if (winMainMenu == null || winHUD == null)
         {
             GD.PushError("WorldManager: missing windows...");
             return;
@@ -114,6 +115,7 @@ public partial class WorldManager : Node
     void LoadSelectedWorld()
     {
         GD.Print("WorldManager: loading selected world");
+        wmMain.ShowWindow(winHUD);
     }
 
     public void ListedWorldClicked(WorldSaveTitle wst)
