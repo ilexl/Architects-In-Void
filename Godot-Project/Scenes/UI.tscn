@@ -38,9 +38,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("Windows")]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("1_st6gj")
-Windows = [NodePath("Settings"), NodePath("MainMenu"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="CanvasLayer"]
 layout_mode = 3
@@ -387,14 +386,13 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SettingsSubMenus" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("Windows")]
+[node name="SettingsSubMenus" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 anchors_preset = 0
 offset_left = 132.0
 offset_top = 60.0
 offset_right = 1076.0
 offset_bottom = 516.0
 script = ExtResource("1_st6gj")
-Windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 layout_mode = 3
@@ -661,12 +659,12 @@ script = ExtResource("2_5w2l0")
 
 [node name="WorldManagerButtons" type="Node" parent="CanvasLayer/WorldManager" node_paths=PackedStringArray("wmMain", "winMainMenu", "worldListHolder", "cancelBtn", "loadBtn")]
 script = ExtResource("5_v3f2b")
-wmMain = NodePath("../..")
-winMainMenu = NodePath("../../MainMenu")
-worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
 testWorldList = true
 testAmount = 25
 worldSaveListScene = ExtResource("24_rh60s")
+wmMain = NodePath("../..")
+winMainMenu = NodePath("../../MainMenu")
+worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
 cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
 
