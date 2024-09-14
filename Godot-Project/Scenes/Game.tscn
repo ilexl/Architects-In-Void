@@ -4,13 +4,6 @@
 
 [node name="Game" type="Node"]
 
-[node name="UI" type="Node2D" parent="."]
-scale = Vector2(0.851811, 0.723945)
-
-[node name="Canvas" type="CanvasLayer" parent="UI"]
-
-[node name="UI" parent="UI/Canvas" instance=ExtResource("1_18pnr")]
+[node name="UI" parent="." instance=ExtResource("1_18pnr")]
 
 [node name="World" type="Node3D" parent="."]
-
-[node name="Sprite2D" type="Sprite2D" parent="."]

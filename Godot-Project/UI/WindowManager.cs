@@ -38,6 +38,7 @@ public partial class WindowManager : Node
 
         foreach(Window w in Windows)
         {
+            w.SetWindowManager(this);
             Godot.Collections.Dictionary windowButtonShowOnly = new Godot.Collections.Dictionary
             {
                 { "name", $"Show Only {w.wGetName()}" },

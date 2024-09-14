@@ -1,0 +1,201 @@
+[gd_scene load_steps=9 format=3 uid="uid://brd7kyvv36htm"]
+
+[ext_resource type="Script" path="res://UI/Window.cs" id="1_vvdcc"]
+[ext_resource type="Texture2D" uid="uid://cykr4oe6uubyp" path="res://UI/Images/tempBG.png" id="2_85w0f"]
+[ext_resource type="Script" path="res://UI/MainMenu.cs" id="3_ihtkf"]
+[ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="4_2xwle"]
+[ext_resource type="Texture2D" uid="uid://7dnsnqjj7pxh" path="res://UI/UIElements/Button.svg" id="5_fvjd1"]
+[ext_resource type="Texture2D" uid="uid://cmt1p5l3pp2tc" path="res://UI/UIElements/Button-Pressed.svg" id="6_cckjj"]
+[ext_resource type="Texture2D" uid="uid://xycer0altein" path="res://UI/UIElements/Button-Highlight.svg" id="7_kons1"]
+[ext_resource type="Texture2D" uid="uid://dfac70vqa0amj" path="res://UI/UIElements/Button-Disabled.svg" id="8_723yq"]
+
+[node name="MainMenu" type="Control"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vvdcc")
+ShowOnStart = true
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_85w0f")
+expand_mode = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 64.0
+offset_top = 45.0
+offset_bottom = -70.0
+theme_override_constants/separation = 25
+script = ExtResource("3_ihtkf")
+
+[node name="Title" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_colors/default_color = Color(0, 0, 0, 0)
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Title2" type="RichTextLabel" parent="VBoxContainer/Title"]
+layout_mode = 2
+offset_top = 25.0
+offset_right = 1216.0
+offset_bottom = 155.0
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 100
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Resume" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+mouse_filter = 2
+disabled = true
+texture_normal = ExtResource("5_fvjd1")
+texture_pressed = ExtResource("6_cckjj")
+texture_hover = ExtResource("7_kons1")
+texture_disabled = ExtResource("8_723yq")
+texture_focused = ExtResource("7_kons1")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="VBoxContainer/Resume"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_colors/default_color = Color(0.556863, 0.556863, 0.556863, 1)
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Continue Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="New" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_fvjd1")
+texture_pressed = ExtResource("6_cckjj")
+texture_hover = ExtResource("7_kons1")
+texture_disabled = ExtResource("8_723yq")
+texture_focused = ExtResource("7_kons1")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="VBoxContainer/New"]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "New Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Load" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_fvjd1")
+texture_pressed = ExtResource("6_cckjj")
+texture_hover = ExtResource("7_kons1")
+texture_disabled = ExtResource("8_723yq")
+texture_focused = ExtResource("7_kons1")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="VBoxContainer/Load"]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 16.0
+offset_right = 200.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Load Game"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Options" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_fvjd1")
+texture_pressed = ExtResource("6_cckjj")
+texture_hover = ExtResource("7_kons1")
+texture_disabled = ExtResource("8_723yq")
+texture_focused = ExtResource("7_kons1")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 72.0
+offset_top = 16.0
+offset_right = 176.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Options"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="Exit" type="TextureButton" parent="VBoxContainer"]
+custom_minimum_size = Vector2(10, 65)
+layout_mode = 2
+texture_normal = ExtResource("5_fvjd1")
+texture_pressed = ExtResource("6_cckjj")
+texture_hover = ExtResource("7_kons1")
+texture_disabled = ExtResource("8_723yq")
+texture_focused = ExtResource("7_kons1")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="txt" type="RichTextLabel" parent="VBoxContainer/Exit"]
+layout_mode = 0
+offset_left = 96.0
+offset_top = 16.0
+offset_right = 256.0
+offset_bottom = 64.0
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_2xwle")
+theme_override_font_sizes/normal_font_size = 27
+bbcode_enabled = true
+text = "Exit"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

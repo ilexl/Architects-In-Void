@@ -1,38 +1,17 @@
-[gd_scene load_steps=20 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=13 format=3 uid="uid://bt33b5k48ip62"]
 
-[ext_resource type="Script" path="res://UI/MainMenu.cs" id="1_16aoq"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
+[ext_resource type="PackedScene" uid="uid://brd7kyvv36htm" path="res://Scenes/UI/ui_main_menu.tscn" id="2_2j1fk"]
 [ext_resource type="Script" path="res://UI/Window.cs" id="2_5w2l0"]
 [ext_resource type="Script" path="res://UI/Pause.cs" id="4_17pyg"]
 [ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="4_fvsai"]
 [ext_resource type="Texture2D" uid="uid://cykr4oe6uubyp" path="res://UI/Images/tempBG.png" id="4_g56cw"]
 [ext_resource type="Script" path="res://UI/SettingsMenu.cs" id="4_oc5pt"]
-[ext_resource type="Texture2D" uid="uid://7dnsnqjj7pxh" path="res://UI/UIElements/Button.svg" id="5_eegk4"]
 [ext_resource type="Script" path="res://UI/WorldManager.cs" id="5_v3f2b"]
-[ext_resource type="Shader" path="res://UI/blur.gdshader" id="6_alqpx"]
-[ext_resource type="Texture2D" uid="uid://cmt1p5l3pp2tc" path="res://UI/UIElements/Button-Pressed.svg" id="6_bw56o"]
+[ext_resource type="Texture2D" uid="uid://cx47vnixnx8sh" path="res://UI/UIElements/SettingsBackground.svg" id="6_gx3n7"]
 [ext_resource type="Texture2D" uid="uid://dm7u03mrumy6r" path="res://UI/Images/Rectangle 3.svg" id="6_pcm66"]
 [ext_resource type="Script" path="res://UI/LoadingScreen.cs" id="6_unkds"]
 [ext_resource type="Script" path="res://UI/HUD.cs" id="7_knsfs"]
-[ext_resource type="Texture2D" uid="uid://xycer0altein" path="res://UI/UIElements/Button-Highlight.svg" id="7_vpu1a"]
-[ext_resource type="Texture2D" uid="uid://dfac70vqa0amj" path="res://UI/UIElements/Button-Disabled.svg" id="8_j4xfe"]
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_g1hjc"]
-noise_type = 2
-seed = 41646541
-frequency = 0.238
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_udrtq"]
-width = 1000
-height = 1000
-bump_strength = 0.0
-normalize = false
-noise = SubResource("FastNoiseLite_g1hjc")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_ty6la"]
-shader = ExtResource("6_alqpx")
-shader_parameter/blur_power = 0.025
-shader_parameter/noise_texture = SubResource("NoiseTexture2D_udrtq")
 
 [node name="UI" type="Control"]
 layout_mode = 3
@@ -46,201 +25,9 @@ grow_vertical = 2
 script = ExtResource("1_st6gj")
 Windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
-[node name="MainMenu" type="Control" parent="CanvasLayer"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_5w2l0")
-ShowOnStart = true
-
-[node name="Background" type="TextureRect" parent="CanvasLayer/MainMenu"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_g56cw")
-expand_mode = 1
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu" node_paths=PackedStringArray("wm", "winSettings", "winWorldManager", "resumeBtn", "newBtn", "loadBtn", "optionsBtn", "exitBtn")]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 45.0
-offset_bottom = -70.0
-theme_override_constants/separation = 25
-script = ExtResource("1_16aoq")
-wm = NodePath("../..")
-winSettings = NodePath("../../Settings")
-winWorldManager = NodePath("../../WorldManager")
-resumeBtn = NodePath("Resume")
-newBtn = NodePath("New")
-loadBtn = NodePath("Load")
-optionsBtn = NodePath("Options")
-exitBtn = NodePath("Exit")
-
-[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 0)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "Architect In Void"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-text_direction = 1
-
-[node name="Title2" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Title"]
-layout_mode = 2
-offset_top = 25.0
-offset_right = 1216.0
-offset_bottom = 155.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "Architect In Void"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-text_direction = 1
-
-[node name="Resume" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
-custom_minimum_size = Vector2(10, 65)
-layout_mode = 2
-mouse_filter = 2
-disabled = true
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Resume"]
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 256.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_colors/default_color = Color(0.556863, 0.556863, 0.556863, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "Continue Game"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="New" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
-custom_minimum_size = Vector2(10, 65)
-layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/New"]
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 256.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "New Game"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Load" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
-custom_minimum_size = Vector2(10, 65)
-layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Load"]
-offset_left = 48.0
-offset_top = 16.0
-offset_right = 200.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "Load Game"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Options" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
-custom_minimum_size = Vector2(10, 65)
-layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Options"]
-offset_left = 72.0
-offset_top = 16.0
-offset_right = 176.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "Options"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="Exit" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
-custom_minimum_size = Vector2(10, 65)
-layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
-ignore_texture_size = true
-stretch_mode = 4
-
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Exit"]
-offset_left = 96.0
-offset_top = 16.0
-offset_right = 256.0
-offset_bottom = 64.0
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
-bbcode_enabled = true
-text = "Exit"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
+[node name="MainMenu" parent="CanvasLayer" instance=ExtResource("2_2j1fk")]
 
 [node name="Settings" type="Control" parent="CanvasLayer"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -253,8 +40,6 @@ script = ExtResource("2_5w2l0")
 script = ExtResource("4_oc5pt")
 
 [node name="Background" type="TextureRect" parent="CanvasLayer/Settings"]
-visible = false
-material = SubResource("ShaderMaterial_ty6la")
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -264,16 +49,44 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="Blur" type="TextureRect" parent="CanvasLayer/Settings"]
-visible = false
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Settings"]
 layout_mode = 1
-anchors_preset = -1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("6_pcm66")
+color = Color(0.270588, 0.270588, 0.270588, 0.392157)
+
+[node name="SettingsBackground" type="TextureRect" parent="CanvasLayer/Settings"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 150.0
+offset_top = 100.0
+offset_right = -150.0
+offset_bottom = -100.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_gx3n7")
 expand_mode = 1
+stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/SettingsBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.467347
+anchor_top = 0.0384615
+anchor_right = 0.630612
+anchor_bottom = 0.123077
+grow_horizontal = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 33
+text = "Settings"
+fit_content = true
+scroll_active = false
+metadata/_edit_use_anchors_ = true
 
 [node name="WorldManager" type="Control" parent="CanvasLayer"]
 visible = false
