@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://bg6c78mool4xq"]
 
-[ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://PlayerBody.tscn" id="1_celvm"]
+[ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://PlayerBody.tscn" id="1_ylv11"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_s1306"]
 
@@ -9,7 +9,7 @@ size = Vector3(50, 1, 50)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="PlayerOrigin" parent="." instance=ExtResource("1_celvm")]
+[node name="PlayerOrigin" parent="." instance=ExtResource("1_ylv11")]
 
 [node name="Node3D" type="Node3D" parent="."]
 
