@@ -16,7 +16,6 @@ public partial class PlaceableComponent : Node3D
 	{
 		Position = position;
 		Scale = scale;
-		GD.Print("Placed");
 	}
 
 	public virtual void Place(Vector3 position)
