@@ -10,15 +10,16 @@ public enum PlaceableComponentType
 }
 public partial class PlaceableComponent : Node3D
 {
-	protected virtual PlaceableComponentType Type => PlaceableComponentType.FixedScale;
+	protected virtual PlaceableComponentType ComponentType { get; set; }
 	
-	protected virtual void Place(Vector3 position, Vector3 placementScale)
+	public virtual void Place(Vector3 position, Vector3 scale)
 	{
 		Position = position;
-		Transform.Scaled(placementScale);
+		Scale = scale;
+		GD.Print("Placed");
 	}
 
-	protected virtual void Place(Vector3 position)
+	public virtual void Place(Vector3 position)
 	{
 		Position = position;
 	}
