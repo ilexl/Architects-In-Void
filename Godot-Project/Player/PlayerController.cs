@@ -158,6 +158,14 @@ public partial class PlayerController : Node3D
 			_jetpack = !_jetpack;
 		}
 
+		if (Input.IsActionJustReleased("place_component"))
+		{
+			PackedScene myPackedScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
+			Node3D myInstance = (Node3D)myPackedScene.Instantiate();
+			GetTree().Root.AddChild(myInstance);
+			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+		}
+		
 		return new Vector3(inputLeftRight, inputUpDown, inputForwardBackward);
 	}
 }
