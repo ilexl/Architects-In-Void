@@ -1,7 +1,10 @@
-[gd_scene load_steps=6 format=3 uid="uid://xjqrmh8r7gfp"]
+[gd_scene load_steps=9 format=3 uid="uid://xjqrmh8r7gfp"]
 
-[ext_resource type="Script" path="res://Scripts/PlayerController.cs" id="1_lfx0e"]
+[ext_resource type="Script" path="res://Player/PlayerController.cs" id="1_mue7o"]
 [ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://PlayerHead.tscn" id="2_ti0ub"]
+[ext_resource type="Script" path="res://Player/ComponentCreator.cs" id="3_btxcd"]
+[ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://VesselComponent/Armour.tscn" id="6_xtdry"]
+[ext_resource type="PackedScene" uid="uid://qtuqp5vywd8v" path="res://VesselComponent/Thruster.tscn" id="7_gucnc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10an4"]
 
@@ -10,13 +13,14 @@ height = 3.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_vamg0"]
 
-[node name="PlayerOrigin" type="Node3D" node_paths=PackedStringArray("head")]
-script = ExtResource("1_lfx0e")
-head = NodePath("Head")
+[node name="PlayerRoot" type="Node" node_paths=PackedStringArray("_head")]
+script = ExtResource("1_mue7o")
+_head = NodePath("Head")
 
 [node name="Body" type="RigidBody3D" parent="."]
 
 [node name="Mesh" type="MeshInstance3D" parent="Body"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00729418, -0.0148787, 0.00641991)
 mesh = SubResource("CapsuleMesh_10an4")
 
 [node name="Collider" type="CollisionShape3D" parent="Body"]
@@ -32,3 +36,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="Head" parent="." instance=ExtResource("2_ti0ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+
+[node name="ComponentCreator" type="Node" parent="." node_paths=PackedStringArray("_body", "_head")]
+script = ExtResource("3_btxcd")
+_body = NodePath("../Body")
+_head = NodePath("../Head")
+Hotbar = Array[PackedScene]([null, ExtResource("6_xtdry"), ExtResource("7_gucnc"), null, null, null, null, null, null, null])

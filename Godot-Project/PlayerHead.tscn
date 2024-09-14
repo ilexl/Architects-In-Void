@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://bds1pv8qbk2ms"]
+[gd_scene load_steps=3 format=3 uid="uid://bds1pv8qbk2ms"]
+
+[ext_resource type="Script" path="res://PlayerHead.cs" id="1_t55ts"]
 
 [sub_resource type="SphereMesh" id="SphereMesh_1nc7u"]
 
-[node name="Head" type="Node3D"]
+[node name="Head" type="Node3D" node_paths=PackedStringArray("Cursor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022219, -0.0483966, 0.0365229)
+script = ExtResource("1_t55ts")
+Cursor = NodePath("Cursor")
 
 [node name="Camera" type="Camera3D" parent="."]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("SphereMesh_1nc7u")
+
+[node name="Cursor" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006, -0.018, -10)

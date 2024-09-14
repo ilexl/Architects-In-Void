@@ -2,7 +2,7 @@ using Godot;
 
 namespace ArchitectsInVoid.Player;
 
-public partial class PlayerController : Node3D
+public partial class PlayerController : Node
 {
 
 	// Body
@@ -12,6 +12,7 @@ public partial class PlayerController : Node3D
 	// Head
 	[Export] private Node3D _head;
 	[Export] private Camera3D _camera;
+
 
 
 	private bool _dampeners = false;
@@ -30,10 +31,13 @@ public partial class PlayerController : Node3D
 		_headPosition = _body.GetNode<Node3D>("HeadPosition");
 
 		_head = GetNode<Node3D>("Head");
+
 		_camera = _head.GetNode<Camera3D>("Camera");
 
 		_head.Transform = _headPosition.Transform;
 
+		
+		
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -49,6 +53,8 @@ public partial class PlayerController : Node3D
 
 		}
 	}
+
+
 
 	public override void _PhysicsProcess(double delta)
 	{
@@ -143,6 +149,8 @@ public partial class PlayerController : Node3D
 			_jetpack = !_jetpack;
 		}
 
+
+		
 		return new Vector3(inputLeftRight, inputUpDown, inputForwardBackward);
 	}
 }
