@@ -23,7 +23,7 @@ public partial class ComponentCreator : Node
 	
 	private ComponentPlacerState _state = ComponentPlacerState.Idle;
 
-	private Window _root;
+	private Godot.Window _root;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
