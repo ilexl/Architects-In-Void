@@ -63,7 +63,6 @@ public partial class ComponentCreator : Node
 			_state = ComponentPlacerState.Idle;
 			Node3D myInstance = (Node3D)_SelectedComponentScene.Instantiate();
 			_root.AddChild(myInstance);
-			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 			
 
 			PlaceableComponent placeableComponent = myInstance as PlaceableComponent;
