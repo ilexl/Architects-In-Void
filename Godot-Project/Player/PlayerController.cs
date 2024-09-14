@@ -12,6 +12,8 @@ public partial class PlayerController : Node3D
 	// Head
 	[Export] private Node3D _head;
 	[Export] private Camera3D _camera;
+	[Export] private Node3D _cursor;
+	private Node3D _cursorNode;
 
 
 	private bool _dampeners = false;
@@ -30,10 +32,18 @@ public partial class PlayerController : Node3D
 		_headPosition = _body.GetNode<Node3D>("HeadPosition");
 
 		_head = GetNode<Node3D>("Head");
+		_cursor = GetNode<Node3D>("Head/Cursor");
 		_camera = _head.GetNode<Camera3D>("Camera");
 
 		_head.Transform = _headPosition.Transform;
 
+		
+		PackedScene myPackedScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
+		_cursorNode = (Node3D)myPackedScene.Instantiate();
+		GetTree().Root.AddChild(_cursorNode);
+		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+		
+		CallDeferred("add_child", _cursorNode);
 		Input.MouseMode = Input.MouseModeEnum.Captured;
 	}
 
@@ -48,6 +58,11 @@ public partial class PlayerController : Node3D
 			_headRelativeRotation = _head.Rotation - _body.Rotation;
 
 		}
+	}
+
+	public override void _Process(double delta)
+	{
+		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 	}
 
 	public override void _PhysicsProcess(double delta)
