@@ -43,23 +43,36 @@ public partial class ComponentCreator : Node
 		if (Input.IsActionPressed("place_component"))
 		{
 			_state = ComponentPlacerState.Placing;
+			_cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+		}
+
+		if (_state == ComponentPlacerState.Placing)
+		{
+			_cursorEnd = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		}
 		
 		if (Input.IsActionJustReleased("place_component"))
 		{
 			_state = ComponentPlacerState.Idle;
-			Node3D myInstance = (Node3D)_cursorScene.Instantiate();
+			Node3D myInstance = (Node3D)_SelectedComponentScene.Instantiate();
 			GetTree().Root.AddChild(myInstance);
 			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+			
+
+			PlaceableComponent placeableComponent = myInstance as PlaceableComponent;
+			if (placeableComponent == null) return;
+			
+			Vector3 position = _cursorStart.Lerp(_cursorEnd, 0.5);
+			Vector3 scale = _cursorStart - _cursorEnd;
+			placeableComponent.Place(position, scale);
+			
 		}
 
 		for (int i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
 		{
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
-				// Handle the hotbar action for index i
-				GD.Print($"Hotbar {i} pressed");
-				_cursorScene = Hotbar[i];
+				_SelectedComponentScene = Hotbar[i];
 			}
 		}
 		
