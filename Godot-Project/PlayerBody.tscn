@@ -14,8 +14,9 @@ height = 3.0
 
 [sub_resource type="BoxMesh" id="BoxMesh_vamg0"]
 
-[node name="PlayerOrigin" type="Node3D"]
+[node name="Node" type="Node" node_paths=PackedStringArray("_head")]
 script = ExtResource("1_mue7o")
+_head = NodePath("Head")
 
 [node name="Body" type="RigidBody3D" parent="."]
 

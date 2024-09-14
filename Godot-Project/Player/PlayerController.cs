@@ -2,7 +2,7 @@ using Godot;
 
 namespace ArchitectsInVoid.Player;
 
-public partial class PlayerController : Node3D
+public partial class PlayerController : Node
 {
 
 	// Body
