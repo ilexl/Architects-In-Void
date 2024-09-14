@@ -1,3 +1,4 @@
+using ArchitectsInVoid.VesselComponent;
 using Godot;
 
 namespace ArchitectsInVoid.Player;
@@ -14,19 +15,22 @@ public partial class ComponentCreator : Node
 	[Export] private Node3D _head;
 	private Node3D _cursor;
 	private Node3D _cursorNode;
-	private PackedScene _cursorScene;
+	private PackedScene _SelectedComponentScene;
 	[Export] public PackedScene[] Hotbar;
 
+	private Vector3 _cursorStart;
+	private Vector3 _cursorEnd;
 	
 	private ComponentPlacerState _state = ComponentPlacerState.Idle;
+	
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_cursor = GetNode<Node3D>("../Head/Cursor");
 		
-		_cursorScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
-		_cursorNode = (Node3D)_cursorScene.Instantiate();
+		_SelectedComponentScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
+		_cursorNode = (Node3D)_SelectedComponentScene.Instantiate();
 		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		
 		CallDeferred("add_child", _cursorNode);
