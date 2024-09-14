@@ -2,15 +2,24 @@ using Godot;
 
 namespace ArchitectsInVoid.Player;
 
+
+enum ComponentPlacerState
+{
+	Idle,
+	Placing
+}
 public partial class ComponentCreator : Node
 {
 	[Export] private RigidBody3D _body;
 	[Export] private Node3D _head;
 	private Node3D _cursor;
 	private Node3D _cursorNode;
-	
 	private PackedScene _cursorScene;
 	[Export] public PackedScene[] Hotbar;
+
+	
+	private ComponentPlacerState _state = ComponentPlacerState.Idle;
+	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
@@ -31,8 +40,14 @@ public partial class ComponentCreator : Node
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (Input.IsActionPressed("place_component"))
+		{
+			_state = ComponentPlacerState.Placing;
+		}
+		
 		if (Input.IsActionJustReleased("place_component"))
 		{
+			_state = ComponentPlacerState.Idle;
 			Node3D myInstance = (Node3D)_cursorScene.Instantiate();
 			GetTree().Root.AddChild(myInstance);
 			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
