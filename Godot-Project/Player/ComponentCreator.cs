@@ -10,6 +10,7 @@ public partial class ComponentCreator : Node
 	private Node3D _cursorNode;
 	
 	private PackedScene _cursorScene;
+	[Export] public PackedScene[] Hotbar;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
