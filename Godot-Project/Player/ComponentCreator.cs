@@ -22,7 +22,8 @@ public partial class ComponentCreator : Node
 	private Vector3 _cursorEnd;
 	
 	private ComponentPlacerState _state = ComponentPlacerState.Idle;
-	
+
+	private Window _root;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -34,6 +35,8 @@ public partial class ComponentCreator : Node
 		_cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 		
 		CallDeferred("add_child", _cursorNode);
+
+		_root = GetTree().Root;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -59,7 +62,7 @@ public partial class ComponentCreator : Node
 		{
 			_state = ComponentPlacerState.Idle;
 			Node3D myInstance = (Node3D)_SelectedComponentScene.Instantiate();
-			GetTree().Root.AddChild(myInstance);
+			_root.AddChild(myInstance);
 			myInstance.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 			
 
