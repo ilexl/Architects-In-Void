@@ -1,5 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=31 format=3 uid="uid://bt33b5k48ip62"]
 
+[ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
 [ext_resource type="Script" path="res://UI/Window.cs" id="2_5w2l0"]
 [ext_resource type="Script" path="res://UI/Pause.cs" id="4_17pyg"]
@@ -30,19 +31,23 @@
 [ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
 
-[node name="UI" type="Control"]
+[node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_windowManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ae7ch")
+_mainMenu = NodePath("WindowManager/MainMenu/MainMenuScript")
+_settingsMenu = NodePath("WindowManager/Settings/SettingsManager")
+_windowManager = NodePath("WindowManager")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
+[node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
 script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
-[node name="MainMenu" type="Control" parent="CanvasLayer"]
+[node name="MainMenu" type="Control" parent="WindowManager"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -52,7 +57,7 @@ grow_vertical = 2
 script = ExtResource("2_5w2l0")
 ShowOnStart = true
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/MainMenu"]
+[node name="Background" type="TextureRect" parent="WindowManager/MainMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -62,7 +67,7 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MainMenu"]
+[node name="MainMenuScript" type="VBoxContainer" parent="WindowManager/MainMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -73,7 +78,7 @@ offset_bottom = -70.0
 theme_override_constants/separation = 25
 script = ExtResource("4_xc8gb")
 
-[node name="Title" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer"]
+[node name="Title" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript"]
 layout_mode = 2
 theme_override_colors/default_color = Color(0, 0, 0, 0)
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -85,7 +90,7 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="Title2" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Title"]
+[node name="Title2" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Title"]
 layout_mode = 2
 offset_top = 25.0
 offset_right = 1216.0
@@ -99,7 +104,7 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="Resume" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+[node name="Resume" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 mouse_filter = 2
@@ -112,7 +117,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Resume"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Resume"]
 layout_mode = 0
 offset_left = 24.0
 offset_top = 16.0
@@ -128,7 +133,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="New" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+[node name="New" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -139,7 +144,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/New"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/New"]
 layout_mode = 0
 offset_left = 56.0
 offset_top = 16.0
@@ -154,7 +159,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Load" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+[node name="Load" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -165,7 +170,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Load"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Load"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 16.0
@@ -180,7 +185,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Options" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+[node name="Options" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -191,7 +196,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Options"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Options"]
 layout_mode = 0
 offset_left = 72.0
 offset_top = 16.0
@@ -206,7 +211,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Exit" type="TextureButton" parent="CanvasLayer/MainMenu/VBoxContainer"]
+[node name="Exit" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -217,7 +222,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="CanvasLayer/MainMenu/VBoxContainer/Exit"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Exit"]
 layout_mode = 0
 offset_left = 96.0
 offset_top = 16.0
@@ -232,7 +237,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Settings" type="Control" parent="CanvasLayer"]
+[node name="Settings" type="Control" parent="WindowManager"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -242,7 +247,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="SettingsManager" type="Node" parent="CanvasLayer/Settings" node_paths=PackedStringArray("_cancelBtn", "_applyBtn", "_resetBtn", "_gameSBtn", "_controlsSBtn", "_audioSBtn", "_displaySBtn", "_winMainMenu", "_winSubGame", "_winSubControls", "_winSubAudio", "_winSubDisplay", "_wmMain", "_wmSettingSub")]
+[node name="SettingsManager" type="Node" parent="WindowManager/Settings" node_paths=PackedStringArray("_cancelBtn", "_applyBtn", "_resetBtn", "_gameSBtn", "_controlsSBtn", "_audioSBtn", "_displaySBtn", "_winMainMenu", "_winSubGame", "_winSubControls", "_winSubAudio", "_winSubDisplay", "_wmMain", "_wmSettingSub")]
 script = ExtResource("4_oc5pt")
 _cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 _applyBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn")
@@ -259,7 +264,7 @@ _winSubDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackg
 _wmMain = NodePath("../..")
 _wmSettingSub = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus")
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/Settings"]
+[node name="Background" type="TextureRect" parent="WindowManager/Settings"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -269,7 +274,7 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/Settings"]
+[node name="ColorRect" type="ColorRect" parent="WindowManager/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -278,7 +283,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.270588, 0.270588, 0.270588, 0.392157)
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/Settings"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="WindowManager/Settings"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,19 +292,19 @@ grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="SettingsBackground" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer"]
+[node name="SettingsBackground" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("6_gx3n7")
 expand_mode = 1
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -310,7 +315,7 @@ offset_right = -2.0
 offset_bottom = -450.449
 grow_horizontal = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
 clip_contents = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -320,7 +325,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CancelBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="CancelBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 924.0
 offset_top = 531.551
@@ -333,7 +338,7 @@ texture_focused = ExtResource("10_4g464")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -342,7 +347,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -352,7 +357,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ApplyBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="ApplyBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 756.0
 offset_top = 531.551
@@ -368,7 +373,7 @@ stretch_mode = 0
 flip_h = true
 flip_v = true
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -377,7 +382,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -387,7 +392,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SettingsSubMenus" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
+[node name="SettingsSubMenus" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
 anchors_preset = 0
 offset_left = 132.0
 offset_top = 60.0
@@ -396,7 +401,7 @@ offset_bottom = 516.0
 script = ExtResource("1_st6gj")
 _windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
-[node name="GameSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+[node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 944.0
@@ -404,7 +409,7 @@ offset_bottom = 456.0
 script = ExtResource("2_5w2l0")
 ShowOnStart = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
 layout_mode = 0
 offset_left = 368.0
 offset_top = 191.551
@@ -412,14 +417,14 @@ offset_right = 408.0
 offset_bottom = 231.551
 text = "G"
 
-[node name="ControlSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+[node name="ControlSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
 anchors_preset = 0
 offset_right = 944.0
 offset_bottom = 456.0
 script = ExtResource("2_5w2l0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
 layout_mode = 0
 offset_left = 368.0
 offset_top = 191.551
@@ -427,7 +432,7 @@ offset_right = 408.0
 offset_bottom = 231.551
 text = "C"
 
-[node name="AudioSettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+[node name="AudioSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -435,7 +440,7 @@ offset_right = 944.0
 offset_bottom = 456.0
 script = ExtResource("2_5w2l0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
 layout_mode = 0
 offset_left = 368.0
 offset_top = 191.551
@@ -443,7 +448,7 @@ offset_right = 408.0
 offset_bottom = 231.551
 text = "A"
 
-[node name="DisplaySettings" type="Control" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+[node name="DisplaySettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
 layout_mode = 3
 anchors_preset = 0
@@ -451,7 +456,7 @@ offset_right = 944.0
 offset_bottom = 456.0
 script = ExtResource("2_5w2l0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
 layout_mode = 0
 offset_left = 368.0
 offset_top = 191.551
@@ -459,7 +464,7 @@ offset_right = 408.0
 offset_bottom = 231.551
 text = "D"
 
-[node name="GameSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="GameSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 99.5506
@@ -473,7 +478,7 @@ texture_hover = ExtResource("10_meldx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -482,7 +487,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -490,7 +495,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(65, 65)
 layout_mode = 2
 mouse_filter = 2
@@ -498,7 +503,7 @@ texture = ExtResource("18_54gxq")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ControlsSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="ControlsSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 187.551
@@ -511,7 +516,7 @@ texture_hover = ExtResource("10_meldx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -520,7 +525,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -528,7 +533,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 2
@@ -536,7 +541,7 @@ texture = ExtResource("18_gt1ff")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="AudioSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="AudioSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 275.551
@@ -549,7 +554,7 @@ texture_hover = ExtResource("10_meldx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -558,7 +563,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -566,7 +571,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 mouse_filter = 2
@@ -574,7 +579,7 @@ texture = ExtResource("20_x7oi2")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="DisplaySettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="DisplaySettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 361.551
@@ -587,7 +592,7 @@ texture_hover = ExtResource("10_meldx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -596,7 +601,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -604,7 +609,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(45, 45)
 layout_mode = 2
 mouse_filter = 2
@@ -612,7 +617,7 @@ texture = ExtResource("21_4wk1p")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ResetSettingsBtn" type="TextureButton" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="ResetSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 48.0
 offset_top = 443.551
@@ -624,7 +629,7 @@ texture_hover = ExtResource("10_meldx")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -633,7 +638,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 15
@@ -641,7 +646,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer/MarginContainer"]
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer/MarginContainer"]
 custom_minimum_size = Vector2(40, 40)
 layout_mode = 2
 mouse_filter = 2
@@ -649,7 +654,7 @@ texture = ExtResource("22_lxoad")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="WorldManager" type="Control" parent="CanvasLayer"]
+[node name="WorldManager" type="Control" parent="WindowManager"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -659,19 +664,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="WorldManagerButtons" type="Node" parent="CanvasLayer/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder")]
+[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder")]
 script = ExtResource("5_v3f2b")
 _cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 _loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
-_testAmount = 25
-_testWorldList = true
 _winMainMenu = NodePath("../../MainMenu")
 _winHud = NodePath("../../HUD")
 _wmMain = NodePath("../..")
 _worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
 _worldSaveListScene = ExtResource("24_6fqay")
 
-[node name="Background" type="TextureRect" parent="CanvasLayer/WorldManager"]
+[node name="Background" type="TextureRect" parent="WindowManager/WorldManager"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -681,7 +684,7 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="ColorRect" type="ColorRect" parent="CanvasLayer/WorldManager"]
+[node name="ColorRect" type="ColorRect" parent="WindowManager/WorldManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -690,7 +693,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.270588, 0.270588, 0.270588, 0.392157)
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="CanvasLayer/WorldManager"]
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="WindowManager/WorldManager"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -699,19 +702,19 @@ grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/WorldManager/AspectRatioContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="SettingsBackground" type="TextureRect" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer"]
+[node name="SettingsBackground" type="TextureRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("24_jxwvm")
 expand_mode = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 clip_contents = false
 layout_mode = 0
 offset_left = 84.0
@@ -725,7 +728,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="RichTextLabel2" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 clip_contents = false
 layout_mode = 0
 offset_left = 436.0
@@ -739,7 +742,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -750,7 +753,7 @@ offset_right = -412.0
 offset_bottom = -450.0
 grow_horizontal = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
 clip_contents = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -760,7 +763,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CancelBtn" type="TextureButton" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="CancelBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 924.0
 offset_top = 531.551
@@ -773,7 +776,7 @@ texture_focused = ExtResource("10_4g464")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -782,7 +785,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -792,7 +795,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="LoadBtn" type="TextureButton" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="LoadBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 756.0
 offset_top = 531.551
@@ -809,7 +812,7 @@ stretch_mode = 0
 flip_h = true
 flip_v = true
 
-[node name="CenterContainer" type="CenterContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -818,7 +821,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="RichTextLabel" type="RichTextLabel" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn/CenterContainer"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn/CenterContainer"]
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
@@ -828,19 +831,19 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ScrollContainer" type="ScrollContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
 offset_left = 44.0
 offset_top = 108.0
 offset_right = 612.0
 offset_bottom = 496.0
 
-[node name="WorldListHolder" type="VBoxContainer" parent="CanvasLayer/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer"]
+[node name="WorldListHolder" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer"]
 clip_contents = true
 layout_mode = 2
 theme_override_constants/separation = 0
 
-[node name="LoadingScreen" type="Control" parent="CanvasLayer"]
+[node name="LoadingScreen" type="Control" parent="WindowManager"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -850,10 +853,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="LoadingScreenLogic" type="Node" parent="CanvasLayer/LoadingScreen"]
+[node name="LoadingScreenLogic" type="Node" parent="WindowManager/LoadingScreen"]
 script = ExtResource("6_unkds")
 
-[node name="HUD" type="Control" parent="CanvasLayer"]
+[node name="HUD" type="Control" parent="WindowManager"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -863,10 +866,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="HUDButtons" type="Node" parent="CanvasLayer/HUD"]
+[node name="HUDButtons" type="Node" parent="WindowManager/HUD"]
 script = ExtResource("7_knsfs")
 
-[node name="PauseMenu" type="Control" parent="CanvasLayer"]
+[node name="PauseMenu" type="Control" parent="WindowManager"]
 visible = false
 layout_mode = 3
 anchors_preset = 15
@@ -876,10 +879,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="PauseMenuButtons" type="Node" parent="CanvasLayer/PauseMenu"]
+[node name="PauseMenuButtons" type="Node" parent="WindowManager/PauseMenu"]
 script = ExtResource("4_17pyg")
 
-[node name="Blur" type="TextureRect" parent="CanvasLayer/PauseMenu"]
+[node name="Blur" type="TextureRect" parent="WindowManager/PauseMenu"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

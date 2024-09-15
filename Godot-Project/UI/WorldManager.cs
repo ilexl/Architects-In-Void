@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using ArchitectsInVoid.UI.UIElements;
 using Godot;
+using Godot.Collections;
+
 
 namespace ArchitectsInVoid.UI;
 
@@ -20,53 +22,64 @@ public partial class WorldManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        if (_wmMain == null) _wmMain = (WindowManager)GetParent().GetParent();
         if (_wmMain == null)
         {
-            GD.PushError("World Manager: missing WindowManger/s...");
-            return;
+            _wmMain = (WindowManager)GetParent().GetParent();
+            if (_wmMain == null)
+            {
+                GD.PushError("World Manager: missing WindowManger/s...");
+                return;
+            }
         }
-
         if (_winMainMenu == null || _winHud == null)
         {
             _winMainMenu = (Window)_wmMain.FindChild("MainMenu", false);
             _winHud = (Window)_wmMain.FindChild("HUD", false);
+            if (_winMainMenu == null || _winHud == null)
+            {
+                GD.PushError("WorldManager: missing windows...");
+                return;
+            }
         }
-
-        if (_winMainMenu == null || _winHud == null)
-        {
-            GD.PushError("WorldManager: missing windows...");
-            return;
-        }
-
         if (_worldSaveListScene == null)
         {
-            GD.PushError("WorldManager: No Packed Scene found for worldSaveListScene...");
-            return;
+            _worldSaveListScene = (PackedScene)GD.Load("res://UI/UIElements/world_save.tscn");
+            if (_worldSaveListScene == null)
+            {
+                GD.PushError("WorldManager: No Packed Scene found for worldSaveListScene...");
+                return;
+            }
         }
-
-        if (_worldListHolder == null) _worldListHolder = GetParent().FindChild("WorldListHolder");
         if (_worldListHolder == null)
         {
-            GD.PushError("WorldManager: No node found for worldListHolder...");
-            return;
+            _worldListHolder = GetParent().FindChild("WorldListHolder");
+            if (_worldListHolder == null)
+            {
+                GD.PushError("WorldManager: No node found for worldListHolder...");
+                return;
+            }
         }
-
         if (_cancelBtn == null || _loadBtn == null)
         {
             _cancelBtn = (TextureButton)GetParent().FindChild("CancelBtn");
             _loadBtn = (TextureButton)GetParent().FindChild("LoadBtn");
+            if (_cancelBtn == null || _loadBtn == null)
+            {
+                GD.PushError("WorldManager: missing buttons...");
+                return;
+            }
         }
 
-        if (_cancelBtn == null || _loadBtn == null)
+        if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Cancel)))
         {
-            GD.PushError("WorldManager: missing buttons...");
-            return;
+            _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
+        }
+        if (!_loadBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld)))
+        {
+            _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld));
         }
 
         _currentlySelected = new List<WorldSaveTitle>();
-        _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
-        _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld));
         _loadBtn.Disabled = true;
     }
 
@@ -126,5 +139,23 @@ public partial class WorldManager : Node
             _loadBtn.Disabled = false;
         else
             GD.PushError("WorldManger: invalid amount in list...");
+    }
+
+    public Godot.Collections.Array AddInspectorButtons()
+    {
+        var buttons = new Godot.Collections.Array();
+
+        var reload = new Dictionary
+        {
+            { "name", "Reload" },
+            { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
+            {
+                "pressed", Callable.From(_Ready)
+            }
+        };
+        buttons.Add(reload);
+
+
+        return buttons;
     }
 }

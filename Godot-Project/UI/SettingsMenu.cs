@@ -18,37 +18,35 @@ public partial class SettingsMenu : Node
         {
             _wmMain = (WindowManager)GetParent().GetParent();
             _wmSettingSub = (WindowManager)GetParent().FindChild("SettingsSubMenus");
+            if (_wmMain == null || _wmSettingSub == null)
+            {
+                GD.PushError("Settings: missing WindowManger/s...");
+                return;
+            }
         }
-
-        if (_wmMain == null || _wmSettingSub == null)
-        {
-            GD.PushError("Settings: missing WindowManger/s...");
-            return;
-        }
-
-        if (_winMainMenu == null) _winMainMenu = (Window)_wmMain.FindChild("MainMenu", false);
         if (_winMainMenu == null)
         {
-            GD.PushError("Settings: missing windows...");
-            return;
+            _winMainMenu = (Window)_wmMain.FindChild("MainMenu", false);
+            if (_winMainMenu == null)
+            {
+                GD.PushError("Settings: missing windows...");
+                return;
+            }
         }
-
         if (_winSubGame == null || _winSubControls == null || _winSubAudio == null || _winSubDisplay == null)
         {
             _winSubGame = (Window)_wmSettingSub.FindChild("GameSettings");
             _winSubControls = (Window)_wmSettingSub.FindChild("ControlSettings");
             _winSubAudio = (Window)_wmSettingSub.FindChild("AudioSettings");
             _winSubDisplay = (Window)_wmSettingSub.FindChild("DisplaySettings");
+            if (_winSubGame == null || _winSubControls == null || _winSubAudio == null || _winSubDisplay == null)
+            {
+                GD.PushError("Settings: missing windows...");
+                return;
+            }
         }
-
-        if (_winSubGame == null || _winSubControls == null || _winSubAudio == null || _winSubDisplay == null)
-        {
-            GD.PushError("Settings: missing windows...");
-            return;
-        }
-
-        if (_cancelBtn == null || _applyBtn == null || _resetBtn == null || _gameSBtn == null || _controlsSBtn == null ||
-            _audioSBtn == null || _displaySBtn == null)
+        if (_cancelBtn == null || _applyBtn == null || _resetBtn == null || _gameSBtn == null || 
+            _controlsSBtn == null || _audioSBtn == null || _displaySBtn == null)
         {
             _cancelBtn = (TextureButton)GetParent().FindChild("CancelBtn");
             _applyBtn = (TextureButton)GetParent().FindChild("ApplyBtn");
@@ -57,22 +55,43 @@ public partial class SettingsMenu : Node
             _controlsSBtn = (TextureButton)GetParent().FindChild("ControlsSettingsBtn");
             _audioSBtn = (TextureButton)GetParent().FindChild("AudioSettingsBtn");
             _displaySBtn = (TextureButton)GetParent().FindChild("DisplaySettingsBtn");
+
+            if (_cancelBtn == null || _applyBtn == null || _resetBtn == null || _gameSBtn == null ||
+            _controlsSBtn == null || _audioSBtn == null || _displaySBtn == null)
+            {
+                GD.PushError("Settings: missing buttons...");
+                return;
+            }
         }
 
-        if (_cancelBtn == null || _applyBtn == null || _resetBtn == null || _gameSBtn == null || _controlsSBtn == null ||
-            _audioSBtn == null || _displaySBtn == null)
+        if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Cancel)))
         {
-            GD.PushError("Settings: missing buttons...");
-            return;
+            _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
         }
-
-        _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
-        _applyBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Apply));
-        _resetBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Reset));
-        _gameSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubGame));
-        _controlsSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubControls));
-        _audioSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubAudio));
-        _displaySBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubDisplay));
+        if (!_applyBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Apply)))
+        {
+            _applyBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Apply));
+        }
+        if (!_resetBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Reset)))
+        {
+            _resetBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Reset));
+        }
+        if (!_gameSBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SubGame)))
+        {
+            _gameSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubGame));
+        }
+        if (!_controlsSBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SubControls)))
+        {
+            _controlsSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubControls));
+        }
+        if (!_audioSBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SubAudio)))
+        {
+            _audioSBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubAudio));
+        }
+        if (!_displaySBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SubDisplay)))
+        {
+            _displaySBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SubDisplay));
+        }
 
         _gameSBtn.ButtonPressed = true;
     }

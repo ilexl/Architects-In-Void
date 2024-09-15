@@ -2,6 +2,7 @@ using Godot;
 
 namespace ArchitectsInVoid.UI;
 
+[Tool]
 public partial class LoadingScreen : Node
 {
     // Called when the node enters the scene tree for the first time.
