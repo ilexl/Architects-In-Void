@@ -12,28 +12,22 @@ public partial class WindowManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        if (!_startFeature) return;
-        foreach (var window in _windows)
+        if (_startFeature)
         {
-            if (window == null) continue;
-            if (window.ShowOnStart)
-                window.Show();
-            else
-                window.Hide();
+            foreach (var window in _windows)
+            {
+                if (window == null) continue;
+                if (window.ShowOnStart)
+                    window.Show();
+                else
+                    window.Hide();
+            }
         }
     }
 
     public Array AddInspectorButtons()
     {
         var buttons = new Array();
-
-        var gw = new Dictionary
-        {
-            { "name", "Get Windows (Children)" },
-            { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
-            { "pressed", Callable.From(GetWindowsInInspector) }
-        };
-        buttons.Add(gw);
 
         if (_windows == null || _windows.Length == 0) return buttons;
 
@@ -51,37 +45,6 @@ public partial class WindowManager : Node
         }
 
         return buttons;
-    }
-
-    // Gets the windows for this manager to manage!
-    public void GetWindowsInInspector()
-    {
-        _windows = new Window[] { };
-        var windowsAmount = 0;
-
-        foreach (var child in GetChildren())
-        {
-            var w = child as Window;
-            var successfullyFoundChildWindow = w != null;
-            if (successfullyFoundChildWindow)
-            {
-                GD.Print($"Window: {w.WGetName()} added to {Name} successfully!");
-                windowsAmount++;
-            }
-        }
-
-        _windows = new Window[windowsAmount];
-        var counter = 0;
-        foreach (var child in GetChildren())
-        {
-            var w = child as Window;
-            var successfullyFoundChildWindow = w != null;
-            if (successfullyFoundChildWindow)
-            {
-                w.SetWindowManager(this);
-                _windows[counter++] = w;
-            }
-        }
     }
 
     #region wmFunctions
