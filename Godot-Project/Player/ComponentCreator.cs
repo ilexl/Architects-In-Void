@@ -75,9 +75,4 @@ public partial class ComponentCreator : Node
         }
     }
 
-    public override void _PhysicsProcess(double delta)
-    {
-
-                
-    }
 }
