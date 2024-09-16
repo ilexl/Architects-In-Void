@@ -20,11 +20,10 @@ public partial class ComponentCreator : Node
     [Export] private Node3D _head;
 
     private Window _root;
-    private PackedScene _selectedComponentScene;
-    private int _hotbarIndex;
+    public PackedScene SelectedComponentScene;
 
     private ComponentPlacerState _state = ComponentPlacerState.Idle;
-    [Export] public PackedScene[] Hotbar;
+    
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -43,7 +42,7 @@ public partial class ComponentCreator : Node
     public override void _Process(double delta)
     {
         // _cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
-        if (Input.IsActionJustPressed("place_component") && _selectedComponentScene is not null)
+        if (Input.IsActionJustPressed("place_component") && SelectedComponentScene is not null)
         {
             _state = ComponentPlacerState.Placing;
             _cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
@@ -61,7 +60,7 @@ public partial class ComponentCreator : Node
         if (Input.IsActionJustReleased("place_component") && _state == ComponentPlacerState.Placing)
         {
             _state = ComponentPlacerState.Idle;
-            var myInstance = (Node3D)_selectedComponentScene.Instantiate();
+            var myInstance = (Node3D)SelectedComponentScene.Instantiate();
             _root.AddChild(myInstance);
 
             _cursorNode.Scale = Vector3.Zero;
@@ -78,12 +77,7 @@ public partial class ComponentCreator : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        for (var i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
-            if (Input.IsActionJustPressed($"hotbar_{i}"))
-            {
-                _selectedComponentScene = Hotbar[i];
-                _hotbarIndex = i;
-            }
+
                 
     }
 }
