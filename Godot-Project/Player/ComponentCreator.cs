@@ -6,7 +6,8 @@ namespace ArchitectsInVoid.Player;
 internal enum ComponentPlacerState
 {
     Idle,
-    Placing
+    Placing,
+    PlacingAfterHotbarChange
 }
 
 public partial class ComponentCreator : Node
