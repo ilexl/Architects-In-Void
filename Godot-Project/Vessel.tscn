@@ -8,5 +8,4 @@
 script = ExtResource("1_5i8yc")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.000989957, 0.00818537, -2.33661e-05)
 mesh = SubResource("BoxMesh_q0uda")
