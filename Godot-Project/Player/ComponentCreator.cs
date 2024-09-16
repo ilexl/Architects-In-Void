@@ -21,7 +21,27 @@ public partial class ComponentCreator : Node
     [Export] private Node3D _head;
 
     private Window _root;
-    public PackedScene SelectedComponentScene;
+    
+    private PackedScene _selectedComponentScene;
+    private PackedScene _queuedComponentScene;
+    public PackedScene SelectedComponentScene // The property to be read and set by other classes
+    {
+        get => _selectedComponentScene;
+        set
+        {
+            switch (_state)
+            {
+                case ComponentPlacerState.Idle:
+                    _selectedComponentScene = value;
+                    break;
+                
+                case ComponentPlacerState.Placing: case ComponentPlacerState.PlacingAfterHotbarChange:
+                    _queuedComponentScene = value;
+                    break;
+                
+            }
+        } 
+    }
 
     private ComponentPlacerState _state = ComponentPlacerState.Idle;
     
