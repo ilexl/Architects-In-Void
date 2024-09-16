@@ -36,6 +36,9 @@ public partial class ComponentCreator : Node
                     break;
                 
                 case ComponentPlacerState.Placing: case ComponentPlacerState.PlacingAfterHotbarChange:
+                    _state = ComponentPlacerState.PlacingAfterHotbarChange;
+                    DebugLog($"state changed to { _state }");
+                    DebugLog($"queueing new component { value.ResourcePath }");
                     _queuedComponent = value;
                     break;
                 
@@ -61,8 +64,8 @@ public partial class ComponentCreator : Node
     
     public override void _Process(double delta)
     {
-        bool placeActionPressed = Input.IsActionJustPressed("place_component");
-        bool placeActionReleased = Input.IsActionJustReleased("place_component");
+        bool placeActionPressed = Input.IsActionJustPressed("place_component" );
+        bool placeActionReleased = Input.IsActionJustReleased("place_component" );
 
         switch (_state)
         {
@@ -70,6 +73,8 @@ public partial class ComponentCreator : Node
                 if (placeActionPressed && SelectedComponent is not null)
                 {
                     _state = ComponentPlacerState.Placing;
+                    DebugLog($"state changed to { _state }");
+                    DebugLog($"placing component { SelectedComponent.ResourcePath }");
                     _cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
                 }
                 break;
@@ -81,8 +86,14 @@ public partial class ComponentCreator : Node
             
             case ComponentPlacerState.PlacingAfterHotbarChange:
                 PlacingVisuals();
-                if (placeActionReleased) PlaceActionReleased();
-                _selectedComponent = _queuedComponent;
+                if (placeActionReleased)
+                {
+                    PlaceActionReleased();
+                    DebugLog($"component placed successfully { _selectedComponent.ResourcePath }, setting new component { _queuedComponent.ResourcePath }");
+                    _selectedComponent = _queuedComponent;
+                    
+                }
+                   
                 break;
             
         }
@@ -99,8 +110,9 @@ public partial class ComponentCreator : Node
 
     private void PlaceActionReleased()
     {
+       
         _state = ComponentPlacerState.Idle;
-            
+        DebugLog($"state changed to { _state }");
         var myInstance = (Node3D)_selectedComponent.Instantiate();
         _root.AddChild(myInstance);
 
@@ -109,10 +121,11 @@ public partial class ComponentCreator : Node
         var placeableComponent = myInstance as PlaceableComponent;
 
         if (placeableComponent == null) return;
-
+        
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursorStart - _cursorEnd;
         placeableComponent.Place(position, scale);
+        
     }
 
     [Export] private bool _debug;

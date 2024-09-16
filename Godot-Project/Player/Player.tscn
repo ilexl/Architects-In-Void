@@ -42,6 +42,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 script = ExtResource("3_btxcd")
 _body = NodePath("../Body")
 _head = NodePath("../Head")
+_debug = true
 
 [node name="HotbarManager" type="Node" parent="."]
 script = ExtResource("6_llw38")
