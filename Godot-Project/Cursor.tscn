@@ -4,5 +4,70 @@
 
 [node name="Cursor" type="Node3D"]
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+[node name="EdgeSetX" type="Node3D" parent="."]
+transform = Transform3D(6.12323e-17, 0, 1, 0, 1, 0, -1, 0, 6.12323e-17, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EdgeSetX"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.45, 0.45, 0)
 mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EdgeSetX"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.45, 0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EdgeSetX"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.45, -0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EdgeSetX"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.45, -0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="EdgeSetY" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 6.12323e-17, -1, 0, 1, 6.12323e-17, 0, 0, 0)
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EdgeSetY"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.45, 0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EdgeSetY"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.45, 0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EdgeSetY"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.45, -0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EdgeSetY"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.45, -0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="EdgeSetZ" type="Node3D" parent="."]
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="EdgeSetZ"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.45, 0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="EdgeSetZ"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.45, 0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="EdgeSetZ"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, -0.45, -0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D5" type="MeshInstance3D" parent="EdgeSetZ"]
+transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 1, 0.45, -0.45, 0)
+mesh = SubResource("BoxMesh_q0uda")
+skeleton = NodePath("")
