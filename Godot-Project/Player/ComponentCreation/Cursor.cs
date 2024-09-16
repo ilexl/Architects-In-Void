@@ -14,6 +14,7 @@ public partial class Cursor : Node3D
 	private Label3D _label;
 	public override void _Ready()
 	{
+		Visible = false;
 		_edges = new Dictionary<char, List<MeshInstance3D>>()
 		{
 			{ 'X', new List<MeshInstance3D>(EdgeCount) },
@@ -35,11 +36,18 @@ public partial class Cursor : Node3D
 	}
 
 	
-	public override void _Process(double delta)
+	public void SetLabelName(PackedScene scene)
 	{
+		if (scene == null)
+		{
+			_label.Text = "No component selected!";
+		}
+
+		_label.Text = scene.ResourcePath;
+
 	}
 	
-	new public void SetScale(Vector3 scale)
+	public new void SetScale(Vector3 scale)
 	{
 		
 		var xEdges = _edges['X'];
@@ -67,14 +75,5 @@ public partial class Cursor : Node3D
 		edges[3].Position = new Vector3(min.X, min.Y, max.Z);
 	}
 
-	private void SetLabelName(PackedScene scene)
-	{
-		if (scene == null)
-		{
-			_label.Text = "No block selected!";
-		}
 
-		_label.Text = scene.ResourcePath;
-
-	}
 }

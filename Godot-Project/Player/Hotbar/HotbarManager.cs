@@ -1,13 +1,13 @@
 using ArchitectsInVoid.VesselComponent;
 using Godot;
 
-namespace ArchitectsInVoid.Player;
+namespace ArchitectsInVoid.Player.Hotbar;
 
 public partial class HotbarManager : Node
 {
 	[Export] public PackedScene[] Hotbar;
 	
-	private ComponentCreator _componentCreator;
+	private ComponentCreation.ComponentCreator _componentCreator;
 	private PackedScene _selectedScene;
 	private int _hotbarIndex;
 	
@@ -15,7 +15,7 @@ public partial class HotbarManager : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_componentCreator = GetNode<ComponentCreator>("../ComponentCreator");
+		_componentCreator = GetNode<ComponentCreation.ComponentCreator>("../ComponentCreator");
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
