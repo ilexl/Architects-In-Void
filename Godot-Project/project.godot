@@ -11,6 +11,7 @@ config_version=5
 [application]
 
 config/name="Architects-In-Void"
+config/version="0.0.1"
 run/main_scene="res://Scenes/Game.tscn"
 config/features=PackedStringArray("4.3", "C#", "Double Precision", "Forward Plus")
 config/icon="res://Testing/InspectorButtons/icon.svg"
