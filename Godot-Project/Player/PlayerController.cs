@@ -9,36 +9,37 @@ public partial class PlayerController : Node
     private const float MouseSensitivity = 0.05f;
     private const float RollSensitivity = 50.0f;
 
-    // Body
+    // References to player parts
     private RigidBody3D _body;
-    [Export] private Camera3D _camera;
+    private Node3D _head;
+    private Node3D _headPosition;
+    private Camera3D _camera;
 
-
-    private bool _dampeners;
-
-    // get gravity from the world
+    
+    private bool _dampeners = true;
+    private bool _jetpack = true;
+    private Vector3 _headRelativeRotation = Vector3.Zero;
+    
     private Vector3 _gravity = ProjectSettings.GetSetting("physics/3d/default_gravity_vector").As<Vector3>() *
                                ProjectSettings.GetSetting("physics/3d/default_gravity").As<float>();
+    
+    
+    
 
-    // Head
-    [Export] private Node3D _head;
-    private Node3D _headPosition;
-
-    private Vector3 _headRelativeRotation = Vector3.Zero;
-    private bool _jetpack = true;
+    
+    
 
     public override void _Ready()
     {
+        // Assign our components
         _body = GetNode<RigidBody3D>("Body");
-        _headPosition = _body.GetNode<Node3D>("HeadPosition");
-
         _head = GetNode<Node3D>("Head");
-
+        _headPosition = _body.GetNode<Node3D>("HeadPosition");
         _camera = _head.GetNode<Camera3D>("Camera");
-
+        
         _head.Transform = _headPosition.Transform;
-
-
+        
+        // This probably shouldn't be here
         Input.MouseMode = Input.MouseModeEnum.Captured;
     }
 
@@ -95,6 +96,7 @@ public partial class PlayerController : Node
         _head.Rotation = _body.Rotation + _headRelativeRotation;
     }
 
+    // This does not function as intended and needs to be rewritten
     private Vector3 GetAcceleration(Vector3 moveVector, Basis headTransform)
     {
         if (_dampeners)

@@ -3,6 +3,11 @@ using Godot;
 
 namespace ArchitectsInVoid.VesselComponent;
 
+/// <summary>
+/// A component that can be scaled and has stats determined by its size and width to length to height ratio.
+/// Longer thrusters have better thrust to weight/thrust to volume and spool times but worse resource efficiency.
+/// Too extreme at the moment, it should be toned down.
+/// </summary>
 public partial class Thruster : PlaceableComponent
 {
     [Export] private double _engineCornerRadius = 0.5;

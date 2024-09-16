@@ -7,7 +7,9 @@ public enum PlaceableComponentType
     FixedScale,
     DynamicScale
 }
-
+/// <summary>
+/// Base class for all objects that can be attached to vessels.
+/// </summary>
 public partial class PlaceableComponent : Node3D
 {
     protected virtual PlaceableComponentType ComponentType { get; set; }

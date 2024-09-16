@@ -1,31 +1,31 @@
 using ArchitectsInVoid.VesselComponent;
 using Godot;
 
-namespace ArchitectsInVoid.Player.Hotbar;
+namespace ArchitectsInVoid.Player.HotBar;
 
-public partial class HotbarManager : Node
+public partial class HotBarManager : Node
 {
-	[Export] public PackedScene[] Hotbar;
+	// Hotbar array made accessible to everything
+	[Export] public PackedScene[] HotBar;
 	
+	// Reference to the component creator for use with any scenes that inherit from PlaceableComponent
 	private ComponentCreation.ComponentCreator _componentCreator;
 	private PackedScene _selectedScene;
-	private int _hotbarIndex;
+	private int _hotBarIndex;
 	
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_componentCreator = GetNode<ComponentCreation.ComponentCreator>("../ComponentCreator");
 	}
-
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
+	
 	public override void _PhysicsProcess(double delta)
 	{
 		for (var i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
-				_selectedScene = Hotbar[i];
-				_hotbarIndex = i;
+				_selectedScene = HotBar[i];
+				_hotBarIndex = i;
 				
 				if (_selectedScene == null) // Hotbar slot is empty
 				{
