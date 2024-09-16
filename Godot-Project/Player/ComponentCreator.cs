@@ -21,6 +21,7 @@ public partial class ComponentCreator : Node
 
     private Window _root;
     private PackedScene _selectedComponentScene;
+    private int _hotbarIndex;
 
     private ComponentPlacerState _state = ComponentPlacerState.Idle;
     [Export] public PackedScene[] Hotbar;
@@ -29,9 +30,8 @@ public partial class ComponentCreator : Node
     public override void _Ready()
     {
         _cursor = GetNode<Node3D>("../Head/Cursor");
-
-        _selectedComponentScene = (PackedScene)ResourceLoader.Load("res://Vessel.tscn");
-        _cursorNode = (Node3D)_selectedComponentScene.Instantiate();
+        
+        _cursorNode = (Node3D)((PackedScene)ResourceLoader.Load("res://Cursor.tscn")).Instantiate();
         _cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
 
         CallDeferred("add_child", _cursorNode);
@@ -43,7 +43,7 @@ public partial class ComponentCreator : Node
     public override void _Process(double delta)
     {
         // _cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
-        if (Input.IsActionJustPressed("place_component"))
+        if (Input.IsActionJustPressed("place_component") && _selectedComponentScene is not null)
         {
             _state = ComponentPlacerState.Placing;
             _cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
@@ -58,7 +58,7 @@ public partial class ComponentCreator : Node
             _cursorNode.Scale = scale;
         }
 
-        if (Input.IsActionJustReleased("place_component"))
+        if (Input.IsActionJustReleased("place_component") && _state == ComponentPlacerState.Placing)
         {
             _state = ComponentPlacerState.Idle;
             var myInstance = (Node3D)_selectedComponentScene.Instantiate();
@@ -80,6 +80,10 @@ public partial class ComponentCreator : Node
     {
         for (var i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
             if (Input.IsActionJustPressed($"hotbar_{i}"))
+            {
                 _selectedComponentScene = Hotbar[i];
+                _hotbarIndex = i;
+            }
+                
     }
 }
