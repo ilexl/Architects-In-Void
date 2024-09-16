@@ -23,7 +23,6 @@ public partial class ComponentCreator : Node
     private Window _root;
     
     private PackedScene _selectedComponent;
-    private PackedScene _queuedComponent;
     public PackedScene SelectedComponent // The property to be read and set by other classes
     {
         get => _selectedComponent;
@@ -37,9 +36,7 @@ public partial class ComponentCreator : Node
                 
                 case ComponentPlacerState.Placing: case ComponentPlacerState.PlacingAfterHotbarChange:
                     _state = ComponentPlacerState.PlacingAfterHotbarChange;
-                    DebugLog($"state changed to { _state }");
-                    DebugLog($"queueing new component { value.ResourcePath }");
-                    _queuedComponent = value;
+                    _selectedComponent = value;
                     break;
                 
             }
@@ -81,21 +78,17 @@ public partial class ComponentCreator : Node
             
             case ComponentPlacerState.Placing:
                 PlacingVisuals();
-                if (placeActionReleased) PlaceActionReleased();
+                if (placeActionReleased) FinishPlace();
                 break;
             
             case ComponentPlacerState.PlacingAfterHotbarChange:
                 PlacingVisuals();
                 if (placeActionReleased)
                 {
-                    PlaceActionReleased();
-                    DebugLog($"component placed successfully { _selectedComponent.ResourcePath }, setting new component { _queuedComponent.ResourcePath }");
-                    _selectedComponent = _queuedComponent;
+                    FinishPlace();
                     
                 }
-                   
                 break;
-            
         }
     }
 
@@ -108,19 +101,16 @@ public partial class ComponentCreator : Node
         _cursorNode.Scale = scale;
     }
 
-    private void PlaceActionReleased()
+    private void FinishPlace()
     {
        
         _state = ComponentPlacerState.Idle;
-        DebugLog($"state changed to { _state }");
-        var myInstance = (Node3D)_selectedComponent.Instantiate();
-        _root.AddChild(myInstance);
-
         _cursorNode.Scale = Vector3.Zero;
-
-        var placeableComponent = myInstance as PlaceableComponent;
-
-        if (placeableComponent == null) return;
+        DebugLog($"state changed to { _state }");
+        if (_selectedComponent is null) return;
+        
+        var placeableComponent = _selectedComponent.Instantiate() as PlaceableComponent;
+        _root.AddChild(placeableComponent);
         
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursorStart - _cursorEnd;
