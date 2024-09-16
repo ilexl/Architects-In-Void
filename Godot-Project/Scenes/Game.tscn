@@ -1,11 +1,33 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0seddgp21d6n"]
+[gd_scene load_steps=8 format=3 uid="uid://d0seddgp21d6n"]
 
 [ext_resource type="PackedScene" uid="uid://bt33b5k48ip62" path="res://Scenes/UI.tscn" id="1_18pnr"]
+[ext_resource type="Script" path="res://WorldData/WorldDataManager.cs" id="2_1n58s"]
+[ext_resource type="Script" path="res://WorldData/Data.cs" id="2_c4xwi"]
+[ext_resource type="Script" path="res://WorldData/PlayerData.cs" id="3_gf60n"]
+[ext_resource type="Script" path="res://WorldData/ShipData.cs" id="4_5yenj"]
+[ext_resource type="PackedScene" uid="uid://ct2lcrtnb5t1c" path="res://Scenes/BlankPlayer.tscn" id="5_b4khj"]
+[ext_resource type="PackedScene" uid="uid://b6423yb2velep" path="res://Scenes/BlankShip.tscn" id="7_5sp14"]
 
 [node name="Game" type="Node"]
 
-[node name="UI" parent="." node_paths=PackedStringArray("_worldMenu", "_loadingMenu") instance=ExtResource("1_18pnr")]
-_worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
-_loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
+[node name="UI" parent="." instance=ExtResource("1_18pnr")]
 
-[node name="World" type="Node3D" parent="."]
+[node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
+script = ExtResource("2_c4xwi")
+_name = "New"
+_gameVersion = "0.0.1"
+_lastSaved = "16-09-2024 19:47:07"
+wmData = NodePath("../World")
+
+[node name="World" type="Node3D" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataShip")]
+script = ExtResource("2_1n58s")
+_dataPlayer = NodePath("Players")
+_dataShip = NodePath("Ships")
+
+[node name="Players" type="Node3D" parent="World"]
+script = ExtResource("3_gf60n")
+playerBlank = ExtResource("5_b4khj")
+
+[node name="Ships" type="Node3D" parent="World"]
+script = ExtResource("4_5yenj")
+shipBlank = ExtResource("7_5sp14")
