@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://c51mjaqb4ucvx"]
+
+[ext_resource type="Script" path="res://Player/ComponentCreation/Cursor.cs" id="1_muhx5"]
+
+[sub_resource type="SystemFont" id="SystemFont_ale0b"]
+
+[node name="Cursor" type="Node3D"]
+script = ExtResource("1_muhx5")
+
+[node name="Object Text" type="Label3D" parent="."]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+pixel_size = 0.002
+billboard = 1
+text = "Placeholder"
+font = SubResource("SystemFont_ale0b")
