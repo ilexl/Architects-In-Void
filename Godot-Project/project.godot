@@ -148,6 +148,11 @@ decrease_placement_distance={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Physics collision"
+3d_physics/layer_2="Component placement collision"
+
 [rendering]
 
 textures/canvas_textures/default_texture_filter=0
