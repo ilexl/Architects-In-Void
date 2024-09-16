@@ -31,6 +31,7 @@ public partial class HotbarManager : Node
 				if (_selectedScene == null) // Hotbar slot is empty
 				{
 					GD.Print("Hotbar slot is empty");
+					_componentCreator.SelectedComponentScene = null;
 					return;
 				}
 
