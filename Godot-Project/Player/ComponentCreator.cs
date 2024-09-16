@@ -114,6 +114,13 @@ public partial class ComponentCreator : Node
         var scale = _cursorStart - _cursorEnd;
         placeableComponent.Place(position, scale);
     }
+
+    [Export] private bool _debug;
+    private void DebugLog(object message)
+    {
+        if (!_debug) return;
+        GD.Print(message);
+    }
     
 
 }
