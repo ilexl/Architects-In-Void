@@ -24,7 +24,6 @@ public partial class HotbarManager : Node
 		for (var i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
-				GD.Print("Pressed");
 				_selectedScene = Hotbar[i];
 				_hotbarIndex = i;
 				
