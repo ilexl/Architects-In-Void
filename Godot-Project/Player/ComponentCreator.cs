@@ -22,21 +22,21 @@ public partial class ComponentCreator : Node
 
     private Window _root;
     
-    private PackedScene _selectedComponentScene;
-    private PackedScene _queuedComponentScene;
-    public PackedScene SelectedComponentScene // The property to be read and set by other classes
+    private PackedScene _selectedComponent;
+    private PackedScene _queuedComponent;
+    public PackedScene SelectedComponent // The property to be read and set by other classes
     {
-        get => _selectedComponentScene;
+        get => _selectedComponent;
         set
         {
             switch (_state)
             {
                 case ComponentPlacerState.Idle:
-                    _selectedComponentScene = value;
+                    _selectedComponent = value;
                     break;
                 
                 case ComponentPlacerState.Placing: case ComponentPlacerState.PlacingAfterHotbarChange:
-                    _queuedComponentScene = value;
+                    _queuedComponent = value;
                     break;
                 
             }
@@ -67,7 +67,7 @@ public partial class ComponentCreator : Node
         switch (_state)
         {
             case ComponentPlacerState.Idle:
-                if (placeActionPressed && SelectedComponentScene is not null)
+                if (placeActionPressed && SelectedComponent is not null)
                 {
                     _state = ComponentPlacerState.Placing;
                     _cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
@@ -82,7 +82,7 @@ public partial class ComponentCreator : Node
             case ComponentPlacerState.PlacingAfterHotbarChange:
                 PlacingVisuals();
                 if (placeActionReleased) PlaceActionReleased();
-                _selectedComponentScene = _queuedComponentScene;
+                _selectedComponent = _queuedComponent;
                 break;
             
         }
@@ -101,7 +101,7 @@ public partial class ComponentCreator : Node
     {
         _state = ComponentPlacerState.Idle;
             
-        var myInstance = (Node3D)_selectedComponentScene.Instantiate();
+        var myInstance = (Node3D)_selectedComponent.Instantiate();
         _root.AddChild(myInstance);
 
         _cursorNode.Scale = Vector3.Zero;
