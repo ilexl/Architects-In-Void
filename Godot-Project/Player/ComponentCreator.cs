@@ -58,42 +58,62 @@ public partial class ComponentCreator : Node
 
         _root = GetTree().Root;
     }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    
     public override void _Process(double delta)
     {
-        // _cursorNode.Position = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
-        if (Input.IsActionJustPressed("place_component") && SelectedComponentScene is not null)
+        bool placeActionPressed = Input.IsActionJustPressed("place_component");
+        bool placeActionReleased = Input.IsActionJustReleased("place_component");
+
+        switch (_state)
         {
-            _state = ComponentPlacerState.Placing;
-            _cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
-        }
-
-        if (_state == ComponentPlacerState.Placing)
-        {
-            _cursorEnd = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
-            var position = _cursorStart.Lerp(_cursorEnd, 0.5);
-            var scale = _cursorStart - _cursorEnd;
-            _cursorNode.Position = position;
-            _cursorNode.Scale = scale;
-        }
-
-        if (Input.IsActionJustReleased("place_component") && _state == ComponentPlacerState.Placing)
-        {
-            _state = ComponentPlacerState.Idle;
-            var myInstance = (Node3D)SelectedComponentScene.Instantiate();
-            _root.AddChild(myInstance);
-
-            _cursorNode.Scale = Vector3.Zero;
-
-            var placeableComponent = myInstance as PlaceableComponent;
-
-            if (placeableComponent == null) return;
-
-            var position = _cursorStart.Lerp(_cursorEnd, 0.5);
-            var scale = _cursorStart - _cursorEnd;
-            placeableComponent.Place(position, scale);
+            case ComponentPlacerState.Idle:
+                if (placeActionPressed && SelectedComponentScene is not null)
+                {
+                    _state = ComponentPlacerState.Placing;
+                    _cursorStart = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+                }
+                break;
+            
+            case ComponentPlacerState.Placing:
+                PlacingVisuals();
+                if (placeActionReleased) PlaceActionReleased();
+                break;
+            
+            case ComponentPlacerState.PlacingAfterHotbarChange:
+                PlacingVisuals();
+                if (placeActionReleased) PlaceActionReleased();
+                _selectedComponentScene = _queuedComponentScene;
+                break;
+            
         }
     }
+
+    private void PlacingVisuals()
+    {
+        _cursorEnd = _cursor.Position * _head.Transform.Basis.Inverse() + _head.Position;
+        var position = _cursorStart.Lerp(_cursorEnd, 0.5);
+        var scale = _cursorStart - _cursorEnd;
+        _cursorNode.Position = position;
+        _cursorNode.Scale = scale;
+    }
+
+    private void PlaceActionReleased()
+    {
+        _state = ComponentPlacerState.Idle;
+            
+        var myInstance = (Node3D)_selectedComponentScene.Instantiate();
+        _root.AddChild(myInstance);
+
+        _cursorNode.Scale = Vector3.Zero;
+
+        var placeableComponent = myInstance as PlaceableComponent;
+
+        if (placeableComponent == null) return;
+
+        var position = _cursorStart.Lerp(_cursorEnd, 0.5);
+        var scale = _cursorStart - _cursorEnd;
+        placeableComponent.Place(position, scale);
+    }
+    
 
 }
