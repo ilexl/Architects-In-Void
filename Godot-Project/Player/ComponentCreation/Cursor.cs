@@ -10,11 +10,11 @@ public partial class Cursor : Node3D
 	
 	
 	private Dictionary<char, List<MeshInstance3D>> _edges;
-	
+	private MeshInstance3D _startCorner;
+	private MeshInstance3D _endCorner;
 	private Label3D _label;
 	public override void _Ready()
 	{
-		Visible = false;
 		_edges = new Dictionary<char, List<MeshInstance3D>>()
 		{
 			{ 'X', new List<MeshInstance3D>(EdgeCount) },
@@ -32,7 +32,18 @@ public partial class Cursor : Node3D
 				edgeGroup.Value.Add(meshInstance);
 			}
 		}
+		
+		_startCorner = new MeshInstance3D();
+		_startCorner.Mesh = new SphereMesh();
+		_startCorner.Scale = new Vector3(0.5f, 0.5f, 0.5f);
+		AddChild(_startCorner);
+		_endCorner = new MeshInstance3D();
+		_endCorner.Mesh = new SphereMesh();
+		_endCorner.Scale = new Vector3(0.5f, 0.5f, 0.5f);
+		AddChild(_endCorner);
+		
 		_label = GetNode<Label3D>("Object Text");
+		_label.Visible = false;
 	}
 
 	
@@ -41,6 +52,7 @@ public partial class Cursor : Node3D
 		if (scene == null)
 		{
 			_label.Text = "No component selected!";
+			return;
 		}
 
 		_label.Text = scene.ResourcePath;
@@ -57,6 +69,17 @@ public partial class Cursor : Node3D
 		ScaleEdgeSet(xEdges, new Vector3(scale.X, 0.1, 0.1), new Vector3(0, scale.Y, scale.Z));
 		ScaleEdgeSet(yEdges, new Vector3(0.1, scale.Y, 0.1), new Vector3(scale.X, 0, scale.Z));
 		ScaleEdgeSet(zEdges, new Vector3(0.1, 0.1, scale.Z), new Vector3(scale.X, scale.Y, 0));
+	}
+
+	public void SetCornerPosition(Vector3 position)
+	{
+		_startCorner.Position = Position - position;
+		_endCorner.Position = position - Position;
+	}
+
+	public void SetLabelVisible(bool visible)
+	{
+		_label.Visible = visible;
 	}
 
 	private void ScaleEdgeSet(List<MeshInstance3D> edges, Vector3 scale, Vector3 pos)

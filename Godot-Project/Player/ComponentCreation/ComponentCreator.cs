@@ -1,3 +1,4 @@
+using System;
 using ArchitectsInVoid.VesselComponent;
 using Godot;
 
@@ -12,8 +13,12 @@ internal enum ComponentPlacerState
 
 public partial class ComponentCreator : Node
 {
+    [Export] private double _placementDistanceSensitivity = 1.0;
+    [Export] private double _minPlacementDistance = 1;
+    [Export] private double _maxPlacementDistance = 30;
     [Export] private RigidBody3D _body;
     private Node3D _cursorPosition;
+    private double _placementDistance = 10.0;
     private Vector3 _cursorEnd;
     private Cursor _cursor;
 
@@ -68,7 +73,21 @@ public partial class ComponentCreator : Node
     {
         bool placeActionPressed = Input.IsActionJustPressed("place_component" );
         bool placeActionReleased = Input.IsActionJustReleased("place_component" );
+        bool increaseDistance = Input.IsActionJustPressed("increase_placement_distance");
+        bool decreaseDistance = Input.IsActionJustPressed("decrease_placement_distance");
 
+        if (SelectedComponent is not null)
+        {
+            _cursor.Visible = true;
+            SetPlaceDistance(increaseDistance, decreaseDistance);
+        }
+        else
+        {
+            _cursor.Visible = false;
+        }
+        
+        
+        
         switch (_state)
         {
             case ComponentPlacerState.Idle:
@@ -77,18 +96,30 @@ public partial class ComponentCreator : Node
                     _state = ComponentPlacerState.Placing;
                     DebugLog($"state changed to { _state }");
                     DebugLog($"placing component { SelectedComponent.ResourcePath }");
-                    _cursorStart = _cursorPosition.Position * _head.Transform.Basis.Inverse() + _head.Position;
+                    _cursorStart = _cursorPosition.Position * _head.Transform.Basis.Inverse() + _head.Position - _head.Transform.Basis.Z * _placementDistance;
                     
                 }
+                else
+                {
+                    Vector3 position = _cursorPosition.Position * _head.Transform.Basis.Inverse() + _head.Position -
+                                       _head.Transform.Basis.Z * _placementDistance;
+                    _cursor.Position = position;
+                    _cursor.SetScale(Vector3.Zero);
+                    _cursor.SetCornerPosition(position);
+                }
+
+                
                 break;
             
             case ComponentPlacerState.Placing:
-                PlacingVisuals();
+                CursorVisuals();
+                
                 if (placeActionReleased) FinishPlace();
                 break;
             
             case ComponentPlacerState.PlacingAfterHotbarChange:
-                PlacingVisuals();
+                
+                CursorVisuals();
                 if (placeActionReleased)
                 {
                     FinishPlace();
@@ -98,21 +129,36 @@ public partial class ComponentCreator : Node
         }
     }
 
-    private void PlacingVisuals()
+    private void SetPlaceDistance(bool increase, bool decrease)
     {
-        _cursorEnd = _cursorPosition.Position * _head.Transform.Basis.Inverse() + _head.Position;
+        
+        if (increase)
+        {
+            _placementDistance = Math.Min(_placementDistance + _placementDistanceSensitivity, _maxPlacementDistance);
+        }
+
+        if (decrease)
+        {
+            _placementDistance = Math.Max(_placementDistance - _placementDistanceSensitivity, _minPlacementDistance);
+        }
+    }
+    
+    private void CursorVisuals()
+    {
+        _cursorEnd = _cursorPosition.Position * _head.Transform.Basis.Inverse() + _head.Position - _head.Transform.Basis.Z * _placementDistance;
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursorStart - _cursorEnd;
         _cursor.Position = position;
+        _cursor.SetCornerPosition(_cursorEnd);
         _cursor.SetScale(scale);
-        _cursor.Visible = true;
+        _cursor.SetLabelVisible(true);
     }
 
     private void FinishPlace()
     {
        
         _state = ComponentPlacerState.Idle;
-        _cursor.Visible = false;
+        _cursor.SetLabelVisible(false);
         DebugLog($"state changed to { _state }");
         if (_selectedComponent is null) return;
         

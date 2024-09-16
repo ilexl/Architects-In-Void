@@ -11,4 +11,3 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022219, -0.0483966, 0.036
 mesh = SubResource("SphereMesh_1nc7u")
 
 [node name="Cursor" type="Node3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.006, -0.018, -10)
