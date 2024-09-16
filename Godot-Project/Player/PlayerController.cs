@@ -57,6 +57,11 @@ public partial class PlayerController : Node
 
     public override void _PhysicsProcess(double delta)
     {
+        if (Input.IsKeyPressed(Key.Escape))
+        {
+            Input.MouseMode = Input.MouseModeEnum.Visible;
+        }
+        
         // Multiply vectors in head space by this to convert to "PlayerOrigin" space
         var headTransform = _head.Transform.Basis.Inverse();
         var bodyTransform = _body.Transform.Basis.Inverse();
