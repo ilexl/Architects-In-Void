@@ -5,45 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a5dbbe52-74e6-41dc-914a-66917a18add1" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.Architects-in-void/.idea/indexLayout.xml" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.Architects-in-void/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.Architects-in-void/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Building/Block.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Building/Block.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Building/Building.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Building/Building.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Building/Ship.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Building/Ship.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interactables/InteractableObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interactables/InteractableObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Interactables/ItemObject.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Interactables/ItemObject.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Inventory/Item.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Inventory/Item.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Logging/Logger.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Logging/Logger.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Modding/ModManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Modding/ModManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPCS/Dialouge.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NPCS/Dialouge.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/NPCS/NPC.cs" beforeDir="false" afterPath="$PROJECT_DIR$/NPCS/NPC.cs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Player/ComponentCreator.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/ComponentCreator.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerBody.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerBody.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Player/PlayerController.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerController.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/PlayerBody.tscn" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Player/PlayerHead.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Player/PlayerHead.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/Game.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Game.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Scenes/Test.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/Test.tscn" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Scenes/UI.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Scenes/UI.tscn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings/InputCode.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/InputCode.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings/KeyBind.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/KeyBind.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings/KeyBinds.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/KeyBinds.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Settings/Settings.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Settings/Settings.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Testing/WindowsTest/WindowsTest.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Testing/WindowsTest/WindowsTest.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/HUD.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/HUD.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/LoadingScreen.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/LoadingScreen.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/MainMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/MainMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Pause.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/Pause.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/SettingsMenu.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/SettingsMenu.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/UIElements/WorldSaveTitle.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/UIElements/WorldSaveTitle.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/Window.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/Window.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/WindowManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/WindowManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/UI/WorldManager.cs" beforeDir="false" afterPath="$PROJECT_DIR$/UI/WorldManager.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Vessel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/Vessel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VesselComponent/Armour.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VesselComponent/Armour.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VesselComponent/PlaceableComponent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VesselComponent/PlaceableComponent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/VesselComponent/Thruster.cs" beforeDir="false" afterPath="$PROJECT_DIR$/VesselComponent/Thruster.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorldData/Data.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorldData/Data.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorldData/Game.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorldData/Game.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/WorldData/World.cs" beforeDir="false" afterPath="$PROJECT_DIR$/WorldData/World.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/inspectorbutton/TestButton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/inspectorbutton/TestButton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/inspectorbutton/inspectorbutton.cs" beforeDir="false" afterPath="$PROJECT_DIR$/addons/inspectorbutton/inspectorbutton.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/addons/inspectorbutton/plugin.cfg" beforeDir="false" afterPath="$PROJECT_DIR$/addons/inspectorbutton/plugin.cfg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Vessel.tscn" beforeDir="false" afterPath="$PROJECT_DIR$/Vessel.tscn" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/project.godot" beforeDir="false" afterPath="$PROJECT_DIR$/project.godot" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -54,10 +25,16 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/435ff86b64f544f997cccd9e643b2cae18800/5c/fa1da35f/0200001Epdb14.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/435ff86b64f544f997cccd9e643b2cae18800/b6/cea5ad02/0200001Dpdb13.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/435ff86b64f544f997cccd9e643b2cae18800/e0/ac064982/02000006pdb30.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/43c0be864de2409384b0fe13efc32cf715e00/7e/d7a0dff0/0200000Dpdb20.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/43c0be864de2409384b0fe13efc32cf715e00/c2/25e7ba81/02000011pdb25.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/7a2262e4503e4c83a57a72673a90cd0215e00/cc/5da38434/0200000Bpdb18.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/7a2262e4503e4c83a57a72673a90cd0215e00/dc/6be925d0/02000011pdb25.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/8c3eb216a609424c98aa603fef7cdd7918800/88/2f58f845/02000006pdb30.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/8c3eb216a609424c98aa603fef7cdd7918800/e3/51d9627b/0200001Dpdb13.il" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/8d476cc6ecc648b5825c6e14f06bb7ac18800/47/40c878e5/02000006pdb30.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/90bfb808d7e445e6a619db0482b3f41c17400/1f/482370a6/02000020pdb8.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/90bfb808d7e445e6a619db0482b3f41c17400/3f/bfea15ab/0200001Dpdb12.il" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/ILViewer/90bfb808d7e445e6a619db0482b3f41c17400/44/e8c6d717/0200001Epdb10.il" root0="FORCE_HIGHLIGHTING" />
@@ -83,22 +60,22 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "git-widget-placeholder": "dev-b",
-    "last_opened_file_path": "/home/deltawing/Programs/Architects-In-Void/Godot-Project/addons",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "CodeInspectionSettingsId",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;ASKED_SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;dev-b&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/deltawing/Programs/Architects-In-Void/Godot-Project/addons&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;CodeInspectionSettingsId&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected=".NET Executable.Player">
     <configuration name="Player GDScript" type="GDSCRIPT_DEBUG_RUN_CONFIGURATION" factoryName="GdScriptRunFactory" show_console_on_std_err="false" show_console_on_std_out="false" port="6006">
       <option name="address" value="127.0.0.1" />
@@ -111,7 +88,7 @@
       <method v="2" />
     </configuration>
     <configuration name="Editor" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="/usr/local/bin/GodotEngine" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../not mine/godot/bin/godot.linuxbsd.editor.double.x86_64.mono" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot; --editor" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -124,7 +101,7 @@
       </method>
     </configuration>
     <configuration name="Player" type="RunExe" factoryName=".NET Executable">
-      <option name="EXE_PATH" value="/usr/local/bin/GodotEngine" />
+      <option name="EXE_PATH" value="$PROJECT_DIR$/../../../not mine/godot/bin/godot.linuxbsd.editor.double.x86_64.mono" />
       <option name="PROGRAM_PARAMETERS" value="--path &quot;./&quot;" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="PASS_PARENT_ENVS" value="1" />
@@ -149,6 +126,7 @@
       <workItem from="1725000890706" duration="18000" />
       <workItem from="1726295574089" duration="11000" />
       <workItem from="1726295603911" duration="941000" />
+      <workItem from="1726457597411" duration="904000" />
     </task>
     <servers />
   </component>

@@ -31,7 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
 
-[node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_windowManager")]
+[node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_worldMenu", "_loadingMenu", "_hudMenu", "_pauseMenu", "_windowManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +41,10 @@ grow_vertical = 2
 script = ExtResource("1_ae7ch")
 _mainMenu = NodePath("WindowManager/MainMenu/MainMenuScript")
 _settingsMenu = NodePath("WindowManager/Settings/SettingsManager")
+_worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
+_loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
+_hudMenu = NodePath("WindowManager/HUD/HUDButtons")
+_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
 _windowManager = NodePath("WindowManager")
 
 [node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
@@ -67,7 +71,7 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="MainMenuScript" type="VBoxContainer" parent="WindowManager/MainMenu"]
+[node name="MainMenuScript" type="VBoxContainer" parent="WindowManager/MainMenu" node_paths=PackedStringArray("_resumeBtn", "_newBtn", "_loadBtn", "_optionsBtn", "_exitBtn", "_winSettings", "_winWorldManager", "_wm")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -77,6 +81,14 @@ offset_top = 45.0
 offset_bottom = -70.0
 theme_override_constants/separation = 25
 script = ExtResource("4_xc8gb")
+_resumeBtn = NodePath("Resume")
+_newBtn = NodePath("New")
+_loadBtn = NodePath("Load")
+_optionsBtn = NodePath("Options")
+_exitBtn = NodePath("Exit")
+_winSettings = NodePath("../../Settings")
+_winWorldManager = NodePath("../../WorldManager")
+_wm = NodePath("../..")
 
 [node name="Title" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript"]
 layout_mode = 2

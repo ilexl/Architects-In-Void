@@ -4,8 +4,6 @@
 
 [node name="Game" type="Node"]
 
-[node name="UI" parent="." node_paths=PackedStringArray("_worldMenu", "_loadingMenu") instance=ExtResource("1_18pnr")]
-_worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
-_loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
+[node name="UI" parent="." instance=ExtResource("1_18pnr")]
 
 [node name="World" type="Node3D" parent="."]
