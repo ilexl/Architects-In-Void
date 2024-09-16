@@ -25,9 +25,20 @@ public partial class HotbarManager : Node
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
 				GD.Print("Pressed");
+				_selectedScene = Hotbar[i];
 				_hotbarIndex = i;
 				
 				if (_selectedScene == null) // Hotbar slot is empty
+				{
+					GD.Print("Hotbar slot is empty");
+					return;
+				}
+
+				var instance = _selectedScene.Instantiate();
+				_componentCreator.SelectedComponentScene = instance is PlaceableComponent ? _selectedScene : null;
+				instance.Free(); // Immediately delete instance from memory as it is no longer required
+				// Because of this, it is important that hotbar scenes have nothing in their constructor
+				
 			}
 	}
 }
