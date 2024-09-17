@@ -152,7 +152,13 @@ public partial class Data : Node
             GD.PushWarning($"Data: valid checked failed but only because there is no such file name as {fileName}.dat");
             return false;
         }
-        var file = FileAccess.Open($"{GetSavePath()}{_name}.dat", FileAccess.ModeFlags.Read);
+        var file = FileAccess.Open($"{GetSavePath()}{fileName}.dat", FileAccess.ModeFlags.Read);
+        GD.Print($"File {GetSavePath()}{fileName}.dat exists == {FileAccess.FileExists($"{GetSavePath()}{fileName}.dat")}");
+        if (file == null)
+        {
+            GD.PushWarning($"Data: tried loading a file that no exist>>> {fileName}.dat");
+            return false;
+        }
         _ = file.GetVar().AsString();
         
         if(file.GetVar().AsString() == VALID_FILE_STRING)
