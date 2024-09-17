@@ -1,6 +1,8 @@
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using ArchitectsInVoid.UI.UIElements;
+using ArchitectsInVoid.WorldData;
 using Godot;
 using Godot.Collections;
 
@@ -18,6 +20,8 @@ public partial class WorldManager : Node
     [Export] private WindowManager _wmMain;
     [Export] private Node _worldListHolder;
     [Export] private PackedScene _worldSaveListScene;
+    [Export] UIManager _UIManager;
+    [Export] Data data;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -81,6 +85,9 @@ public partial class WorldManager : Node
 
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
+
+        _UIManager = ((UIManager)_wmMain.GetParent());
+        data = (Data)_UIManager.GetParent().FindChild("Data");
     }
 
     private void Cancel()
@@ -92,15 +99,31 @@ public partial class WorldManager : Node
     public void CallLoad()
     {
         GD.Print("WorldManager: load called");
-        foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
 
         if (_testWorldList) Test();
+        else RefreshSaves();
+    }
+
+    private void RefreshSaves()
+    {
+        foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
+        foreach (string worldName in data.RetrieveAllValidSavesAsList())
+        {
+            var inst = _worldSaveListScene.Instantiate();
+            _worldListHolder.AddChild(inst);
+            var wst = (WorldSaveTitle)inst;
+            var title = worldName;
+            var date = data.GetLastSavedFromFile(worldName);
+            wst.UpdateWorldSaveTitle(title, date);
+            wst.BindButtonToManager(this);
+        }
     }
 
     private void Test()
     {
+        foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
         for (var i = 0; i < _testAmount; i++)
         {
             var inst = _worldSaveListScene.Instantiate();
@@ -108,8 +131,7 @@ public partial class WorldManager : Node
             var wst = (WorldSaveTitle)inst;
             var title = "Lorem ipsum dolar " + i;
             var r = new Random();
-            var date =
-                $"{r.Next(0, 10)}{r.Next(0, 10)}-{r.Next(0, 10)}{r.Next(0, 10)}-{r.Next(0, 10)}{r.Next(0, 10)}{r.Next(0, 10)}{r.Next(0, 10)} {r.Next(0, 10)}{r.Next(0, 10)}:{r.Next(0, 10)}{r.Next(0, 10)}:{r.Next(0, 10)}{r.Next(0, 10)}";
+            var date = $"{r.Next(0, 10)}{r.Next(0, 10)}-{r.Next(0, 10)}{r.Next(0, 10)}-{r.Next(0, 10)}{r.Next(0, 10)}{r.Next(0, 10)}{r.Next(0, 10)} {r.Next(0, 10)}{r.Next(0, 10)}:{r.Next(0, 10)}{r.Next(0, 10)}:{r.Next(0, 10)}{r.Next(0, 10)}";
             wst.UpdateWorldSaveTitle(title, date);
             wst.BindButtonToManager(this);
         }
@@ -118,6 +140,24 @@ public partial class WorldManager : Node
     public void CallNew()
     {
         GD.Print("WorldManager: new called");
+        _currentlySelected = new List<WorldSaveTitle>();
+        _loadBtn.Disabled = true;
+
+        _UIManager._popup.DisplayInputPopUp("Enter new world name:", Callable.From(NewWorldConfirmed));
+        RefreshSaves();
+    }
+
+    public void NewWorldConfirmed()
+    {
+        string input = _UIManager._popup.LastInput;
+        if (input.Length == 0)
+        {
+            _UIManager._popup.DisplayError("Error: input", "Input cannot be blank... Try filling out the input :)");
+            return;
+        }
+
+        data.NewGame(input);
+        RefreshSaves();
     }
 
     private void LoadSelectedWorld()

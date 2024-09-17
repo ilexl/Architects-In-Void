@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=36 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -30,8 +30,13 @@
 [ext_resource type="Texture2D" uid="uid://brf6bpw7ab6m6" path="res://UI/UIElements/IconReset.png" id="22_lxoad"]
 [ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
+[ext_resource type="Script" path="res://UI/PopUp.cs" id="31_85m2s"]
+[ext_resource type="PackedScene" uid="uid://b5k86ny5x2sv" path="res://UI/UIElements/error_pop_up.tscn" id="32_2yato"]
+[ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/UIElements/confirm_pop_up.tscn" id="33_76cnx"]
+[ext_resource type="PackedScene" uid="uid://ouv2jnth0qh8" path="res://UI/UIElements/info_pop_up.tscn" id="34_fl41a"]
+[ext_resource type="PackedScene" uid="uid://dha0e60iuanfl" path="res://UI/UIElements/input_pop_up.tscn" id="35_2h4aw"]
 
-[node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_windowManager")]
+[node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_worldMenu", "_loadingMenu", "_hudMenu", "_pauseMenu", "_popup", "_windowManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -41,6 +46,11 @@ grow_vertical = 2
 script = ExtResource("1_ae7ch")
 _mainMenu = NodePath("WindowManager/MainMenu/MainMenuScript")
 _settingsMenu = NodePath("WindowManager/Settings/SettingsManager")
+_worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
+_loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
+_hudMenu = NodePath("WindowManager/HUD/HUDButtons")
+_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
+_popup = NodePath("WindowManager/PopUp")
 _windowManager = NodePath("WindowManager")
 
 [node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
@@ -67,7 +77,7 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
-[node name="MainMenuScript" type="VBoxContainer" parent="WindowManager/MainMenu"]
+[node name="MainMenuScript" type="VBoxContainer" parent="WindowManager/MainMenu" node_paths=PackedStringArray("_resumeBtn", "_newBtn", "_loadBtn", "_optionsBtn", "_exitBtn", "_winSettings", "_winWorldManager", "_wm")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -77,6 +87,14 @@ offset_top = 45.0
 offset_bottom = -70.0
 theme_override_constants/separation = 25
 script = ExtResource("4_xc8gb")
+_resumeBtn = NodePath("Resume")
+_newBtn = NodePath("New")
+_loadBtn = NodePath("Load")
+_optionsBtn = NodePath("Options")
+_exitBtn = NodePath("Exit")
+_winSettings = NodePath("../../Settings")
+_winWorldManager = NodePath("../../WorldManager")
+_wm = NodePath("../..")
 
 [node name="Title" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript"]
 layout_mode = 2
@@ -399,7 +417,7 @@ offset_top = 60.0
 offset_right = 1076.0
 offset_bottom = 516.0
 script = ExtResource("1_st6gj")
-_windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
+_windows = [null, null, null, null]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 layout_mode = 3
@@ -664,15 +682,17 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder")]
+[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder", "_UIManager")]
 script = ExtResource("5_v3f2b")
 _cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 _loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
+_testAmount = 5
 _winMainMenu = NodePath("../../MainMenu")
 _winHud = NodePath("../../HUD")
 _wmMain = NodePath("../..")
 _worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
 _worldSaveListScene = ExtResource("24_6fqay")
+_UIManager = NodePath("../../..")
 
 [node name="Background" type="TextureRect" parent="WindowManager/WorldManager"]
 layout_mode = 1
@@ -891,3 +911,27 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("6_pcm66")
 expand_mode = 1
+
+[node name="PopUp" type="Control" parent="WindowManager" node_paths=PackedStringArray("holder")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("31_85m2s")
+holder = NodePath("Holder")
+errorPopUp = ExtResource("32_2yato")
+confirmPopUp = ExtResource("33_76cnx")
+infoPopUp = ExtResource("34_fl41a")
+inputPopUp = ExtResource("35_2h4aw")
+
+[node name="Holder" type="Control" parent="WindowManager/PopUp"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
