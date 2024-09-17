@@ -9,8 +9,6 @@ size = Vector3(50, 1, 50)
 
 [node name="Node3D" type="Node3D"]
 
-[node name="PlayerOrigin" parent="." instance=ExtResource("1_jwtbg")]
-
 [node name="Node3D" type="Node3D" parent="."]
 
 [node name="StaticBody3D" type="StaticBody3D" parent="."]
@@ -25,3 +23,9 @@ shape = SubResource("BoxShape3D_7glkd")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.664137, 0.474088, -0.578068, 0.3381, 0.49917, 0.797821, 0.666791, -0.725307, 0.171228, 0, 13.2743, 0)
+
+[node name="Vessels" type="Node" parent="."]
+
+[node name="Players" type="Node" parent="."]
+
+[node name="PlayerOrigin" parent="Players" instance=ExtResource("1_jwtbg")]
