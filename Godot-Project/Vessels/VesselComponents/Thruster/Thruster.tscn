@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://qtuqp5vywd8v"]
 
-[ext_resource type="Script" path="res://VesselComponent/Thruster.cs" id="1_d8u15"]
+[ext_resource type="Script" path="res://Vessels/VesselComponents/Thruster/Thruster.cs" id="1_d8u15"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_b5t1o"]
 

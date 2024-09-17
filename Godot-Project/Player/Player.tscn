@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://Player/PlayerHead.tscn" id="2_ti0ub"]
 [ext_resource type="Script" path="res://Player/ComponentCreation/ComponentCreator.cs" id="3_btxcd"]
 [ext_resource type="Script" path="res://Player/HotBar/HotBarManager.cs" id="4_rodfu"]
-[ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://VesselComponent/Armour.tscn" id="6_xtdry"]
-[ext_resource type="PackedScene" uid="uid://qtuqp5vywd8v" path="res://VesselComponent/Thruster.tscn" id="7_gucnc"]
+[ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://Vessels/VesselComponents/Armour/Armour.tscn" id="6_xtdry"]
+[ext_resource type="PackedScene" uid="uid://qtuqp5vywd8v" path="res://Vessels/VesselComponents/Thruster/Thruster.tscn" id="7_gucnc"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10an4"]
 

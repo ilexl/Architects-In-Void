@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://jk854i5562q4"]
+
+[ext_resource type="Script" path="res://Vessels/VesselComponents/Armour/Armour.cs" id="1_ut5e1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6dp60"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ka1ks"]
+
+[node name="Armour" type="Node3D" node_paths=PackedStringArray("_mesh", "Shape")]
+script = ExtResource("1_ut5e1")
+_mesh = NodePath("MeshInstance3D")
+Shape = NodePath("CollisionShape3D")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("BoxShape3D_6dp60")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+mesh = SubResource("BoxMesh_ka1ks")

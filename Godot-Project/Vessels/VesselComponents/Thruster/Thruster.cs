@@ -1,7 +1,7 @@
 using System;
 using Godot;
 
-namespace ArchitectsInVoid.VesselComponent;
+namespace ArchitectsInVoid.VesselComponent.Thruster;
 
 /// <summary>
 /// A component that can be scaled and has stats determined by its size and width to length to height ratio.
@@ -35,9 +35,6 @@ public partial class Thruster : PlaceableComponent
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
 
     public override void Place(Vector3 position, Vector3 scale)
     {
