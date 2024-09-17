@@ -65,7 +65,7 @@ public partial class ComponentCreator : Node
 
     
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         // Store if player inputs have been taken this frame
         // This should probably be in PhysicsProcess
