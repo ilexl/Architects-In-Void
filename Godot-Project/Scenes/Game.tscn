@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://WorldData/WorldDataManager.cs" id="2_1n58s"]
 [ext_resource type="Script" path="res://WorldData/Data.cs" id="2_c4xwi"]
 [ext_resource type="Script" path="res://WorldData/PlayerData.cs" id="3_gf60n"]
-[ext_resource type="Script" path="res://WorldData/ShipData.cs" id="4_5yenj"]
 [ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://Player/Player.tscn" id="6_rj8ss"]
-[ext_resource type="PackedScene" uid="uid://b6423yb2velep" path="res://Scenes/BlankShip.tscn" id="7_l4hqx"]
+[ext_resource type="Script" path="res://WorldData/VesselData.cs" id="6_s8e62"]
+[ext_resource type="PackedScene" uid="uid://hjmtbffy8j1q" path="res://Vessels/Vessel.tscn" id="7_nonp3"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3yxs1"]
 
@@ -21,18 +21,18 @@ _gameVersion = "0.0.1"
 _lastSaved = "17-09-2024 17:50:36"
 wmData = NodePath("../World")
 
-[node name="World" type="Node" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataShip")]
+[node name="World" type="Node" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataVessel")]
 script = ExtResource("2_1n58s")
 _dataPlayer = NodePath("Players")
-_dataShip = NodePath("Ships")
+_dataVessel = NodePath("Vessels")
 
 [node name="Players" type="Node" parent="World"]
 script = ExtResource("3_gf60n")
 _playerPrefab = ExtResource("6_rj8ss")
 
-[node name="Ships" type="Node" parent="World"]
-script = ExtResource("4_5yenj")
-_shipBlank = ExtResource("7_l4hqx")
+[node name="Vessels" type="Node" parent="World"]
+script = ExtResource("6_s8e62")
+_vesselBlank = ExtResource("7_nonp3")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 0.996857, 0.0792247, 0, -0.0792247, 0.996857, 0, 3.89614, 0)

@@ -8,7 +8,7 @@ namespace ArchitectsInVoid.WorldData;
 public partial class WorldDataManager : Node
 {
 	[Export] PlayerData _dataPlayer;
-	[Export] ShipData _dataShip;
+	[Export] VesselData _dataVessel;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -16,7 +16,7 @@ public partial class WorldDataManager : Node
         if (_dataPlayer == null)
         {
             _dataPlayer = (PlayerData)FindChild("Players", recursive: false);
-            _dataShip = (ShipData)FindChild("Ships", recursive: false);
+            _dataVessel = (VesselData)FindChild("Ships", recursive: false);
             if (_dataPlayer == null)
             {
                 GD.PushError("WorldDataManager: missing instances of data...");
@@ -53,18 +53,18 @@ public partial class WorldDataManager : Node
         // load directly from file ---------------------------------------------
 
         _dataPlayer._Load(file);
-        _dataShip._Load(file);
+        _dataVessel._Load(file);
     }
 	public void _Save(FileAccess file)
 	{
         _dataPlayer._Save(file);
-        _dataShip._Save(file);
+        _dataVessel._Save(file);
     }
 
     public void _DiscardLoadPast(FileAccess file)
     {
         _dataPlayer._DiscardLoadPast(file);
-        _dataShip._DiscardLoadPast(file);
+        _dataVessel._DiscardLoadPast(file);
     }
 
     // WARNING - CALLING THIS WILL UNLOAD ALL THE DATA IN GAME. DO NOT CALL THIS :)
@@ -75,9 +75,9 @@ public partial class WorldDataManager : Node
         {
             _dataPlayer.RemoveChild(child);
         }
-        foreach (var child in _dataShip.GetChildren())
+        foreach (var child in _dataVessel.GetChildren())
         {
-            _dataShip.RemoveChild(child);
+            _dataVessel.RemoveChild(child);
         }
     }
 }

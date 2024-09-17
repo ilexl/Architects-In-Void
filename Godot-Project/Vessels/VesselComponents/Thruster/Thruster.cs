@@ -1,4 +1,5 @@
 using System;
+using ArchitectsInVoid.WorldData;
 using Godot;
 
 namespace ArchitectsInVoid.VesselComponent.Thruster;
@@ -36,7 +37,7 @@ public partial class Thruster : PlaceableComponent
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
 
-    /*public override void Place(Vector3 position, Vector3 scale)
+    public override PlaceableComponentResult Place(Vector3 position, Vector3 scale, Vessel vessel)
     {
         _width = Math.Abs(scale.X);
         _height = Math.Abs(scale.Y);
@@ -53,7 +54,7 @@ public partial class Thruster : PlaceableComponent
         ThrustPerVolume = Thrust / Volume;
 
 
-        GenerateThruster(position);
+        GenerateThruster();
 
 
         GD.Print("Surface area: " + SurfaceArea + " m^2");
@@ -64,21 +65,34 @@ public partial class Thruster : PlaceableComponent
         GD.Print("Thrust per resource: " + Thrust / MaterialUse);
 
         GD.Print("Full thrust time: " + ThrustSpoolTime);
-    }*/
 
-    private void GenerateThruster(Vector3 position)
+        if (vessel == null)
+        {
+            vessel = VesselData._VesselData.CreateVessel(position);
+            vessel.RigidBody.AddChild(this);
+        }
+        else
+        {
+            vessel.RigidBody.AddChild(this);
+            Position = position - vessel.RigidBody.Position;
+        }
+        
+        return PlaceableComponentResult.Success;
+    }
+
+    private void GenerateThruster()
     {
         AddRoundedBox(new Vector3(_width - 0.1, _height - 0.1, _length - _nozzleLength),
-            new Vector3(0, 0, -_nozzleLength / 2) + position, _engineCornerRadius);
+            new Vector3(0, 0, -_nozzleLength / 2), _engineCornerRadius);
 
         AddBox(new Vector3(_width, 0.1, _nozzleLength),
-            new Vector3(0, _height / 2, (_length - _nozzleLength) / 2) + position);
+            new Vector3(0, _height / 2, (_length - _nozzleLength) / 2));
         AddBox(new Vector3(_width, 0.1, _nozzleLength),
-            new Vector3(0, -_height / 2, (_length - _nozzleLength) / 2) + position);
+            new Vector3(0, -_height / 2, (_length - _nozzleLength) / 2));
         AddBox(new Vector3(0.1, _height, _nozzleLength),
-            new Vector3(_width / 2, 0, (_length - _nozzleLength) / 2) + position);
+            new Vector3(_width / 2, 0, (_length - _nozzleLength) / 2));
         AddBox(new Vector3(0.1, _height, _nozzleLength),
-            new Vector3(-_width / 2, 0, (_length - _nozzleLength) / 2) + position);
+            new Vector3(-_width / 2, 0, (_length - _nozzleLength) / 2));
 
         var startPos = -_height / 2;
         var finCount = (int)(_height / _finSpacing);
@@ -87,7 +101,7 @@ public partial class Thruster : PlaceableComponent
         {
             var pos = startPos + _finSpacing * i + _finSpacing;
             AddBox(new Vector3(_width, _finWidth, _nozzleLength),
-                new Vector3(0, pos, (_length - _nozzleLength) / 2) + position);
+                new Vector3(0, pos, (_length - _nozzleLength) / 2));
         }
     }
 

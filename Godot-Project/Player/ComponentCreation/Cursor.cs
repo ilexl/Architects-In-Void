@@ -16,6 +16,8 @@ public partial class Cursor : Node3D
 	
 	// Text
 	private Label3D _label;
+
+	private bool _loaded = false;
 	public override void _Ready()
 	{
 		// Initialize edge meshes
@@ -49,6 +51,7 @@ public partial class Cursor : Node3D
 		// assign label
 		_label = GetNode<Label3D>("Object Text");
 		_label.Visible = false;
+		_loaded = true;
 	}
 
 	/// <summary>
@@ -72,7 +75,6 @@ public partial class Cursor : Node3D
 	/// <param name="scale"></param>
 	public new void SetScale(Vector3 scale)
 	{
-		
 		var xEdges = _edges['X'];
 		var yEdges = _edges['Y'];
 		var zEdges = _edges['Z'];

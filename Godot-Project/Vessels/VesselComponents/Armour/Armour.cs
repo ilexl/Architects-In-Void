@@ -12,7 +12,6 @@ public partial class Armour : PlaceableComponent
     [Export] private MeshInstance3D _mesh;
     public override void _Ready()
     {
-        Density = 7850; // Density of hot rolled steel
         ComponentType = PlaceableComponentType.DynamicScale;
     }
     

@@ -2,11 +2,12 @@
 
 [ext_resource type="Script" path="res://Vessels/Vessel.cs" id="1_5i8yc"]
 
-[node name="Vessel" type="Node3D" node_paths=PackedStringArray("RigidBody", "VesselComponentRoot")]
+[node name="Node" type="Node" node_paths=PackedStringArray("RigidBody", "ComponentData")]
 script = ExtResource("1_5i8yc")
 RigidBody = NodePath("VesselRigidBody")
-VesselComponentRoot = NodePath("VesselComponentRoot")
+ComponentData = NodePath("VesselRigidBody/ComponentData")
 
 [node name="VesselRigidBody" type="RigidBody3D" parent="."]
+collision_layer = 3
 
-[node name="VesselComponentRoot" type="Node" parent="."]
+[node name="ComponentData" type="Node" parent="VesselRigidBody"]

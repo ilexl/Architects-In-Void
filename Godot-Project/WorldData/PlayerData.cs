@@ -1,7 +1,11 @@
 using Godot;
 using System;
+using ArchitectsInVoid.Player;
 
 [Tool]
+
+
+
 public partial class PlayerData : Node
 {
     [Export] private PackedScene _playerPrefab;
@@ -31,6 +35,25 @@ public partial class PlayerData : Node
         int playerAmount = file.GetVar().AsInt32();
         for (int i = 0; i < playerAmount; i++)
         {
+            PlayerController player = (PlayerController)_playerPrefab.Instantiate();
+            AddChild(player);
+            
+            Vector3 position = file.GetVar().AsVector3();
+            Vector3 rotation = file.GetVar().AsVector3();
+            Vector3 linearVelocity = file.GetVar().AsVector3();
+            Vector3 angularVelocity = file.GetVar().AsVector3();
+            Vector3 headRotation = file.GetVar().AsVector3();
+            bool dampeners = file.GetVar().AsBool();
+            bool jetpack = file.GetVar().AsBool();
+            
+            player.Body.Position = position;
+            player.Body.Rotation = rotation;
+            player.Body.LinearVelocity = linearVelocity;
+            player.Body.AngularVelocity = angularVelocity;
+            player.Head.Rotation = headRotation;
+            player.Dampeners = dampeners;
+            player.Jetpack = jetpack;
+            
             
         }
         if (playerAmount == 0)
@@ -46,13 +69,42 @@ public partial class PlayerData : Node
         int playerAmount = file.GetVar().AsInt32();
         for (int i = 0; i < playerAmount; i++)
         {
-            // load the players data
+            _ = file.GetVar().AsVector3();
+            _ = file.GetVar().AsVector3();
+            _ = file.GetVar().AsVector3();
+            _ = file.GetVar().AsVector3();
+            _ = file.GetVar().AsVector3();
+            _ = file.GetVar().AsBool();
+            _ = file.GetVar().AsBool();
+            
         }
     }
 
     public void _Save(FileAccess file)
     {
+        var players = GetChildren();
+
+        file.StoreVar(players.Count);
         
-        file.StoreVar(1);
+        foreach (var player in players)
+        {
+            PlayerController playerController = player as PlayerController;
+            Vector3 position = playerController.Body.Position;
+            Vector3 rotation = playerController.Body.Rotation;
+            Vector3 linearVelocity = playerController.Body.LinearVelocity;
+            Vector3 angularVelocity = playerController.Body.AngularVelocity;
+            Vector3 headRotation = playerController.Head.Rotation;
+            bool dampeners = playerController.Dampeners;
+            bool jetpack = playerController.Jetpack;
+            
+            file.StoreVar(position);
+            file.StoreVar(rotation);
+            file.StoreVar(linearVelocity);
+            file.StoreVar(angularVelocity);
+            file.StoreVar(headRotation);
+            file.StoreVar(dampeners);
+            file.StoreVar(jetpack);
+        }
+        
     }
 }

@@ -3,29 +3,26 @@ using Godot;
 namespace ArchitectsInVoid.WorldData;
 
 [Tool]
-public partial class ShipData : Node
+public partial class VesselData : Node
 {
-    [Export] PackedScene _shipBlank;
-    public static PackedScene ShipBlank;
+    [Export] PackedScene _vesselBlank;
 
+    public static VesselData _VesselData;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        if (_shipBlank == null)
+        if (_vesselBlank == null)
         {
-            _shipBlank = (PackedScene)GD.Load("res://Scenes/BlankShip.tscn");
-            if (_shipBlank == null)
+            _vesselBlank = (PackedScene)GD.Load("res://Scenes/BlankShip.tscn");
+            if (_vesselBlank == null)
             {
                 GD.PushError("PlayerData: No Packed Scene found for shipBlank...");
                 return;
             }
         }
 
-        if (ShipBlank == null)
-        {
-            ShipBlank = _shipBlank;
-        }
-        
+        if (_VesselData == null) _VesselData = this;
+
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -56,5 +53,14 @@ public partial class ShipData : Node
     public void _Save(FileAccess file)
     {
         file.StoreVar(0);
+    }
+
+    public Vessel CreateVessel(Vector3 position)
+    {
+        Vessel newVessel = (Vessel)_vesselBlank.Instantiate();
+        newVessel.RigidBody.Position = position;
+        AddChild(newVessel);
+        return newVessel;
+        
     }
 }
