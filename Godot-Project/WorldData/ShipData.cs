@@ -1,32 +1,40 @@
 using Godot;
-using System;
+
+namespace ArchitectsInVoid.WorldData;
 
 [Tool]
 public partial class ShipData : Node
 {
-    [Export] PackedScene shipBlank;
+    [Export] PackedScene _shipBlank;
+    public static PackedScene ShipBlank;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
-	{
-        if (shipBlank == null)
+    {
+        if (_shipBlank == null)
         {
-            shipBlank = (PackedScene)GD.Load("res://Scenes/BlankShip.tscn");
-            if (shipBlank == null)
+            _shipBlank = (PackedScene)GD.Load("res://Scenes/BlankShip.tscn");
+            if (_shipBlank == null)
             {
                 GD.PushError("PlayerData: No Packed Scene found for shipBlank...");
                 return;
             }
         }
+
+        if (ShipBlank == null)
+        {
+            ShipBlank = _shipBlank;
+        }
+        
     }
 
-	// Called every frame. 'delta' is the elapsed time since the previous frame.
-	public override void _Process(double delta)
-	{
-	}
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
+    {
+    }
 
-	public void _Load(FileAccess file)
-	{
+    public void _Load(FileAccess file)
+    {
         // get amount of ships
         int shipsAmount = file.GetVar().AsInt32();
         for (int i = 0; i < shipsAmount; i++)

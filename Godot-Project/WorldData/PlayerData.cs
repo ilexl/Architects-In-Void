@@ -4,15 +4,15 @@ using System;
 [Tool]
 public partial class PlayerData : Node
 {
-    [Export] PackedScene playerBlank;
+    [Export] private PackedScene _playerPrefab;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        if(playerBlank == null)
+        if(_playerPrefab == null)
         {
-            playerBlank = (PackedScene)GD.Load("res://Scenes/BlankPlayer.tscn");
-            if (playerBlank == null)
+            _playerPrefab = (PackedScene)GD.Load("res://Scenes/BlankPlayer.tscn");
+            if (_playerPrefab == null)
             {
                 GD.PushError("PlayerData: No Packed Scene found for playerBlank...");
                 return;
@@ -31,7 +31,12 @@ public partial class PlayerData : Node
         int playerAmount = file.GetVar().AsInt32();
         for (int i = 0; i < playerAmount; i++)
         {
-            // load the players data
+            
+        }
+        if (playerAmount == 0)
+        {
+            var player = _playerPrefab.Instantiate();
+            AddChild(player);
         }
     }
 
@@ -47,6 +52,7 @@ public partial class PlayerData : Node
 
     public void _Save(FileAccess file)
     {
-        file.StoreVar(0);
+        
+        file.StoreVar(1);
     }
 }

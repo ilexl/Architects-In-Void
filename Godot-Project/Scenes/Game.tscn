@@ -1,12 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0seddgp21d6n"]
+[gd_scene load_steps=9 format=3 uid="uid://d0seddgp21d6n"]
 
 [ext_resource type="PackedScene" uid="uid://bt33b5k48ip62" path="res://Scenes/UI.tscn" id="1_18pnr"]
 [ext_resource type="Script" path="res://WorldData/WorldDataManager.cs" id="2_1n58s"]
 [ext_resource type="Script" path="res://WorldData/Data.cs" id="2_c4xwi"]
 [ext_resource type="Script" path="res://WorldData/PlayerData.cs" id="3_gf60n"]
 [ext_resource type="Script" path="res://WorldData/ShipData.cs" id="4_5yenj"]
-[ext_resource type="PackedScene" uid="uid://ct2lcrtnb5t1c" path="res://Scenes/BlankPlayer.tscn" id="5_b4khj"]
-[ext_resource type="PackedScene" uid="uid://b6423yb2velep" path="res://Scenes/BlankShip.tscn" id="7_5sp14"]
+[ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://Player/Player.tscn" id="6_rj8ss"]
+[ext_resource type="PackedScene" uid="uid://b6423yb2velep" path="res://Scenes/BlankShip.tscn" id="7_l4hqx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3yxs1"]
 
 [node name="Game" type="Node"]
 
@@ -14,20 +16,27 @@
 
 [node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
 script = ExtResource("2_c4xwi")
-_name = "New"
+_name = "DeltaWing"
 _gameVersion = "0.0.1"
-_lastSaved = "16-09-2024 19:47:07"
+_lastSaved = "17-09-2024 17:50:36"
 wmData = NodePath("../World")
 
-[node name="World" type="Node3D" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataShip")]
+[node name="World" type="Node" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataShip")]
 script = ExtResource("2_1n58s")
 _dataPlayer = NodePath("Players")
 _dataShip = NodePath("Ships")
 
-[node name="Players" type="Node3D" parent="World"]
+[node name="Players" type="Node" parent="World"]
 script = ExtResource("3_gf60n")
-playerBlank = ExtResource("5_b4khj")
+_playerPrefab = ExtResource("6_rj8ss")
 
-[node name="Ships" type="Node3D" parent="World"]
+[node name="Ships" type="Node" parent="World"]
 script = ExtResource("4_5yenj")
-shipBlank = ExtResource("7_5sp14")
+_shipBlank = ExtResource("7_l4hqx")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.996857, 0.0792247, 0, -0.0792247, 0.996857, 0, 3.89614, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(45.965, 0, 0, 0, 1, 0, 0, 0, 19.8536, 0, 0, 0)
+mesh = SubResource("BoxMesh_3yxs1")

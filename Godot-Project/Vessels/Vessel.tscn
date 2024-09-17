@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://hjmtbffy8j1q"]
 
-[ext_resource type="Script" path="res://Vessel.cs" id="1_5i8yc"]
+[ext_resource type="Script" path="res://Vessels/Vessel.cs" id="1_5i8yc"]
 
 [node name="Vessel" type="Node3D" node_paths=PackedStringArray("RigidBody", "VesselComponentRoot")]
 script = ExtResource("1_5i8yc")

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using ArchitectsInVoid.UI.UIElements;
 using ArchitectsInVoid.WorldData;
@@ -164,6 +165,7 @@ public partial class WorldManager : Node
     {
         GD.Print("WorldManager: loading selected world");
         _wmMain.ShowWindow(_winHud);
+        data.Load(_currentlySelected.First().Title);
     }
 
     public void ListedWorldClicked(WorldSaveTitle wst)
