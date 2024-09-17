@@ -1,4 +1,5 @@
 using Godot;
+using Godot.Collections;
 
 namespace ArchitectsInVoid.UI;
 
@@ -46,11 +47,11 @@ public partial class MainMenu : Node
             }
         }
 
-        if(!_resumeBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame)))
+        if (!_resumeBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame)))
         {
             _resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
         }
-        if (_newBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(NewGame)))
+        if (!_newBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(NewGame)))
         {
             _newBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGame));
         }
@@ -118,5 +119,23 @@ public partial class MainMenu : Node
     {
         GD.Print("INFO: Exit");
         GetTree().Quit();
+    }
+
+    public Godot.Collections.Array AddInspectorButtons()
+    {
+        var buttons = new Godot.Collections.Array();
+
+        var reload = new Dictionary
+        {
+            { "name", "Reload" },
+            { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
+            {
+                "pressed", Callable.From(_Ready)
+            }
+        };
+        buttons.Add(reload);
+
+
+        return buttons;
     }
 }

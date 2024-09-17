@@ -12,6 +12,7 @@ public partial class UIManager : Node
 	[Export] LoadingScreen _loadingMenu;
 	[Export] HUD _hudMenu;
 	[Export] Pause _pauseMenu;
+    [Export] public PopUp _popup;
 
 	[Export] WindowManager _windowManager;
     // Called when the node enters the scene tree for the first time.
@@ -91,6 +92,16 @@ public partial class UIManager : Node
             if (_pauseMenu == null)
             {
                 GD.PushError("UIManager: pause menu not found...");
+                return false;
+            }
+        }
+        if (_popup == null)
+        {
+            _popup = (PopUp)_windowManager.FindChild("PopUp");
+
+            if (_popup == null)
+            {
+                GD.PushError("UIManager: popup not found...");
                 return false;
             }
         }
