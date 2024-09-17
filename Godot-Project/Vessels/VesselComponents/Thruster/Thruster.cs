@@ -36,7 +36,7 @@ public partial class Thruster : PlaceableComponent
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
 
-    public override void Place(Vector3 position, Vector3 scale)
+    /*public override void Place(Vector3 position, Vector3 scale)
     {
         _width = Math.Abs(scale.X);
         _height = Math.Abs(scale.Y);
@@ -64,7 +64,7 @@ public partial class Thruster : PlaceableComponent
         GD.Print("Thrust per resource: " + Thrust / MaterialUse);
 
         GD.Print("Full thrust time: " + ThrustSpoolTime);
-    }
+    }*/
 
     private void GenerateThruster(Vector3 position)
     {

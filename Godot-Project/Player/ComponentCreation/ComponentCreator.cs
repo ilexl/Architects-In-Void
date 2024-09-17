@@ -153,7 +153,7 @@ public partial class ComponentCreator : Node
         
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursorStart - _cursorEnd;
-        placeableComponent.Place(position, scale);
+        /*placeableComponent.Place(position, scale);*/
         
     }
 

@@ -38,7 +38,7 @@ public partial class PlaceableComponent : Node3D
     {
         Position = position;
         Scale = scale;
-        AddToNewVessel(position, vesselPrefab);
+        return AddToNewVessel(position, vesselPrefab);
     }
     
     // Not scaled
@@ -47,7 +47,12 @@ public partial class PlaceableComponent : Node3D
         Position = position;
         return AddToNewVessel(position, vesselPrefab);
     }
-    
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="position"></param>
+    /// <param name="vesselPrefab"></param>
+    /// <returns></returns>
     protected PlaceableComponentResult AddToNewVessel(Vector3 position, PackedScene vesselPrefab)
     {
         var vessel = vesselPrefab.Instantiate() as Vessel;
