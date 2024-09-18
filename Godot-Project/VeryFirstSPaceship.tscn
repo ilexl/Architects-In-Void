@@ -1,7 +1,7 @@
-[gd_scene load_steps=179 format=3]
+[gd_scene load_steps=179 format=3 uid="uid://c01nyv636we2r"]
 
-[ext_resource type="PackedScene" path="res://Vessels/VesselComponents/Armour/Armour.tscn" id="1_jluor"]
-[ext_resource type="PackedScene" path="res://Vessels/VesselComponents/Thruster/Thruster.tscn" id="2_56ipy"]
+[ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://Vessels/VesselComponents/Armour/Armour.tscn" id="1_jluor"]
+[ext_resource type="PackedScene" uid="uid://qtuqp5vywd8v" path="res://Vessels/VesselComponents/Thruster/Thruster.tscn" id="2_56ipy"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6dp60"]
 

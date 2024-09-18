@@ -135,8 +135,8 @@ public partial class ComponentCreator : Node
             _truncatedPlacementPosition = (Vector3)result["position"];
             _truncatedPlacementDistance = (_truncatedPlacementPosition - _head.Position).Length();
             if (_state == ComponentPlacerState.Idle) _targetedVessel = (Vessel)((RigidBody3D)result["collider"]).GetParent();
-            
-            
+            _cursor.Rotation = _targetedVessel.RigidBody.Rotation;
+
         }
         else
         {
