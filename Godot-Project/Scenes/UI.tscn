@@ -256,7 +256,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Settings" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -417,7 +416,7 @@ offset_top = 60.0
 offset_right = 1076.0
 offset_bottom = 516.0
 script = ExtResource("1_st6gj")
-_windows = [null, null, null, null]
+_windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 layout_mode = 3
@@ -429,11 +428,15 @@ ShowOnStart = true
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
 layout_mode = 0
-offset_left = 368.0
-offset_top = 191.551
-offset_right = 408.0
-offset_bottom = 231.551
-text = "G"
+offset_left = 371.0
+offset_top = 18.5506
+offset_right = 549.0
+offset_bottom = 51.5506
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Game Settings"
+fit_content = true
+autowrap_mode = 0
 
 [node name="ControlSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
@@ -444,11 +447,15 @@ script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
 layout_mode = 0
-offset_left = 368.0
-offset_top = 191.551
-offset_right = 408.0
-offset_bottom = 231.551
-text = "C"
+offset_left = 362.0
+offset_top = 18.5506
+offset_right = 558.0
+offset_bottom = 51.5506
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Control Settings"
+fit_content = true
+autowrap_mode = 0
 
 [node name="AudioSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
@@ -460,11 +467,15 @@ script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
 layout_mode = 0
-offset_left = 368.0
-offset_top = 191.551
-offset_right = 408.0
-offset_bottom = 231.551
-text = "A"
+offset_left = 371.0
+offset_top = 18.5506
+offset_right = 549.0
+offset_bottom = 51.5506
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Audio Settings"
+fit_content = true
+autowrap_mode = 0
 
 [node name="DisplaySettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
@@ -476,11 +487,15 @@ script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
 layout_mode = 0
-offset_left = 368.0
-offset_top = 191.551
-offset_right = 408.0
-offset_bottom = 231.551
-text = "D"
+offset_left = 362.0
+offset_top = 18.5506
+offset_right = 557.0
+offset_bottom = 51.5506
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 25
+text = "Display Settings"
+fit_content = true
+autowrap_mode = 0
 
 [node name="GameSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
@@ -488,11 +503,14 @@ offset_left = 48.0
 offset_top = 99.5506
 offset_right = 113.0
 offset_bottom = 164.551
+disabled = true
 toggle_mode = true
 button_pressed = true
+action_mode = 0
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
+texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -531,6 +549,7 @@ toggle_mode = true
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
+texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -569,6 +588,7 @@ toggle_mode = true
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
+texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -607,6 +627,7 @@ toggle_mode = true
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
+texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -644,6 +665,7 @@ offset_bottom = 493.551
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
+texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
 stretch_mode = 0
 
@@ -913,6 +935,7 @@ texture = ExtResource("6_pcm66")
 expand_mode = 1
 
 [node name="PopUp" type="Control" parent="WindowManager" node_paths=PackedStringArray("holder")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

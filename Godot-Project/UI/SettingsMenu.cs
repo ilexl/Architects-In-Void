@@ -94,6 +94,7 @@ public partial class SettingsMenu : Node
         }
 
         _gameSBtn.ButtonPressed = true;
+        SubGame();
     }
 
     private void Apply()
@@ -109,37 +110,57 @@ public partial class SettingsMenu : Node
 
     private void SubGame()
     {
+        _gameSBtn.Disabled = true;
+
         GD.Print("Settings: Game Settings Button Pressed");
         _controlsSBtn.ButtonPressed = false;
         _audioSBtn.ButtonPressed = false;
         _displaySBtn.ButtonPressed = false;
+        _controlsSBtn.Disabled = false;
+        _audioSBtn.Disabled = false;
+        _displaySBtn.Disabled = false;
         _wmSettingSub.ShowWindow(_winSubGame);
     }
 
     private void SubControls()
     {
+        _controlsSBtn.Disabled = true;
+
         GD.Print("Settings: Controls Settings Button Pressed");
         _gameSBtn.ButtonPressed = false;
         _audioSBtn.ButtonPressed = false;
         _displaySBtn.ButtonPressed = false;
+        _gameSBtn.Disabled = false;
+        _audioSBtn.Disabled = false;
+        _displaySBtn.Disabled = false;
         _wmSettingSub.ShowWindow(_winSubControls);
     }
 
     private void SubAudio()
     {
+        _audioSBtn.Disabled = true;
+
         GD.Print("Settings: Audio Settings Button Pressed");
         _gameSBtn.ButtonPressed = false;
         _controlsSBtn.ButtonPressed = false;
         _displaySBtn.ButtonPressed = false;
+        _gameSBtn.Disabled = false;
+        _controlsSBtn.Disabled = false;
+        _displaySBtn.Disabled = false;
         _wmSettingSub.ShowWindow(_winSubAudio);
     }
 
     private void SubDisplay()
     {
+        _displaySBtn.Disabled = true;
+
         GD.Print("Settings: Display Settings Button Pressed");
         _gameSBtn.ButtonPressed = false;
         _controlsSBtn.ButtonPressed = false;
         _audioSBtn.ButtonPressed = false;
+        _gameSBtn.Disabled = false;
+        _controlsSBtn.Disabled = false;
+        _audioSBtn.Disabled = false;
         _wmSettingSub.ShowWindow(_winSubDisplay);
     }
 

@@ -59,10 +59,16 @@ public partial class WindowManager : Node
     {
         if (window == null) GD.PushError("Rebuild is needed for windows to work...");
         foreach (var _window in _windows)
+        {
+            if (_window == null)
+            {
+                return;
+            }
             if (_window == window)
                 _window.Show(); // Shows the required window
             else
                 _window.Hide(); // Hides all others
+        }
     }
 
     /// <summary>
