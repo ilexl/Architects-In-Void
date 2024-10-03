@@ -151,20 +151,20 @@ public sealed partial class DebugDraw : Node
     #endregion
         
     #region DebugCircle
-    // public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultThickness, DebugMesh.Type type = DebugMesh.Type.Auto )
-    // {
-    //     Vector3 a = start ?? DefaultPos;
-    //     Vector3 b = end ?? DefaultPos;
-    //     Color finalColor = color ?? DefaultColor;
-    //
-    //
-    //
-    //     Meshes.DebugLine line = new Meshes.DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
-    //     
-    //
-    //     InstantiateDebugMesh(line);
-    //     
-    // }
+    public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultThickness, DebugMesh.Type type = DebugMesh.Type.Auto )
+    {
+        Vector3 a = start ?? DefaultPos;
+        Vector3 b = end ?? DefaultPos;
+        Color finalColor = color ?? DefaultColor;
+    
+    
+    
+        Meshes.DebugLine line = new Meshes.DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
+        
+    
+        InstantiateDebugMesh(line);
+        
+    }
     #endregion
     
 }
