@@ -19,7 +19,7 @@ public partial class DebugCircle : DebugMesh
     {
     }
 
-    public DebugCircle(Vector3 position, Color color, double duration, double radius, double precision, Type type, DebugDraw instance) : base(color, duration, type, instance)
+    public DebugCircle(Vector3 position, Color color, double duration, double radius, double precision, bool drawOnTop, Type type, DebugDraw instance) : base(color, duration, drawOnTop, type, instance)
     {
         Position = position;
         _position = position;

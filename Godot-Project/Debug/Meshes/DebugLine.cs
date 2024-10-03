@@ -15,7 +15,7 @@ public partial class DebugLine : DebugMesh
     {
     }
 
-    public DebugLine(Vector3 start, Vector3 end, Color color, double duration, double thickness,  Type type, DebugDraw instance) : base(color, duration, type, instance)
+    public DebugLine(Vector3 start, Vector3 end, Color color, double duration, double thickness, bool drawOnTop, Type type, DebugDraw instance) : base(color, duration, drawOnTop, type, instance)
     {
         _start = start;
         _end = end;

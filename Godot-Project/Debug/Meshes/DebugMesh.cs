@@ -18,6 +18,14 @@ public partial class DebugMesh : MeshInstance3D
         Transparency = BaseMaterial3D.TransparencyEnum.Alpha,
         CullMode = BaseMaterial3D.CullModeEnum.Disabled,
     };
+    private static readonly StandardMaterial3D OnTopMaterial = new()
+    {
+        ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
+        NoDepthTest = true,
+        VertexColorUseAsAlbedo = true,
+        Transparency = BaseMaterial3D.TransparencyEnum.Alpha,
+        CullMode = BaseMaterial3D.CullModeEnum.Disabled,
+    };
     
     protected Color Color;
     public double TimeToLive = 0;
@@ -30,14 +38,14 @@ public partial class DebugMesh : MeshInstance3D
     {
         
     }
-    public DebugMesh(Color color, double duration, Type type, DebugDraw instance)
+    public DebugMesh(Color color, double duration, bool drawOnTop, Type type, DebugDraw instance)
     {
         Color = color;
         TimeToLive = duration;
         this.type = type;
         Instance = instance;
         IM = new ImmediateMesh();
-        MaterialOverride = DefaultMaterial;
+        MaterialOverride = drawOnTop ? OnTopMaterial : DefaultMaterial;
         Mesh = IM;
     }
     

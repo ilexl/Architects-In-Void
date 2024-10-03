@@ -113,18 +113,12 @@ public sealed partial class DebugDraw : Node
         // Cheaper to reuse both lists than to instantiate a new one
     }
     #endregion
-        
-    #region Mesh management
-        
 
     private static void InstantiateDebugMesh(Meshes.DebugMesh mesh)
     {
-
-        
         Root.AddChild(mesh);
         Instance._debugObjects.Add(mesh);
     }
-    #endregion
         
     #region DebugDefaults
             
@@ -138,17 +132,17 @@ public sealed partial class DebugDraw : Node
     #endregion
         
     #region DebugLine
-        
     /// <summary>
-    /// Draws a line between two points with optional parameters.
+    /// Draws a line between two points with optional arguments.
     /// </summary>
     /// <param name="start">Start position of line. Defaults to Vector3.Zero.</param>
     /// <param name="end">End position of line. Defaults to Vector3.Zero.</param>
     /// <param name="color">Color of line. Defaults to White.</param>
     /// <param name="duration">Time until the line gets destroyed. Defaults to 1 frame.</param>
     /// <param name="thickness">Apparent "radius" of the line. Defaults to 0.</param>
+    /// <param name="drawOnTop">Controls whether the object draws on top of everything else.</param>
     /// <param name="type">Auto, Tangible, or Wireframe. Tangible produces a line with a radius, wireframe produces an infinitely small yet visible line. Auto is Wireframe if 0, otherwise tangible. Defaults to Auto.</param>
-    public static void Line([Optional]Vector3? start, [Optional]Vector3? end, [Optional]Color? color, double duration = DefaultDuration, double thickness = DefaultThickness, DebugMesh.Type type = DebugMesh.Type.Auto )
+    public static void Line([Optional]Vector3? start, [Optional]Vector3? end, [Optional]Color? color, double duration = DefaultDuration, double thickness = DefaultThickness, bool drawOnTop = false, DebugMesh.Type type = DebugMesh.Type.Auto )
     {
         Vector3 a = start ?? DefaultPos;
         Vector3 b = end ?? DefaultPos;
@@ -156,27 +150,28 @@ public sealed partial class DebugDraw : Node
 
 
 
-        DebugLine line = new DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
+        DebugLine mesh = new DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, drawOnTop, type, Instance);
         
 
-        InstantiateDebugMesh(line);
+        InstantiateDebugMesh(mesh);
         
     }
     
     #endregion
         
     #region DebugCircle
-    public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultRadius, int precision = DefaultPrecision, DebugMesh.Type type = DebugMesh.Type.Auto )
+        
+    public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultRadius, int precision = DefaultPrecision, bool drawOnTop = false, DebugMesh.Type type = DebugMesh.Type.Auto )
     {
         Vector3 pos = position ?? DefaultPos;
         Color finalColor = color ?? DefaultColor;
     
     
     
-        DebugCircle line = new DebugCircle(pos, finalColor, duration, radius, precision, type, Instance);
+        DebugCircle mesh = new DebugCircle(pos, finalColor, duration, radius, precision, drawOnTop, type, Instance);
         
     
-        InstantiateDebugMesh(line);
+        InstantiateDebugMesh(mesh);
         
     }
     #endregion

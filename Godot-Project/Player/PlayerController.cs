@@ -33,8 +33,8 @@ public partial class PlayerController : Node
 
     public override void _Ready()
     {
-        DebugDraw.Line(Vector3.Zero, Vector3.Up * 100, Colors.Aqua, 10, 10);
-        DebugDraw.Circle(Vector3.Zero, Colors.Green, 10, 10, type:DebugMesh.Type.Wireframe);
+        DebugDraw.Line(Vector3.Zero, Vector3.Up * 100, Colors.Aqua, 10, 2, type:DebugMesh.Type.Wireframe);
+        DebugDraw.Circle(Vector3.Right * 100, Colors.Green, 10, 10, type:DebugMesh.Type.Solid);
         // Assign our components
         Body = GetNode<RigidBody3D>("Body");
         Head = GetNode<Node3D>("Head");
