@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=53 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -23,18 +23,56 @@
 [ext_resource type="Texture2D" uid="uid://bbtjl8a5pj1uo" path="res://UI/UIElements/Button-Primary-Pressed.svg" id="9_wbehq"]
 [ext_resource type="Texture2D" uid="uid://cto7segvlqt1" path="res://UI/UIElements/Button-Primary-Highlighted.svg" id="10_4g464"]
 [ext_resource type="Texture2D" uid="uid://dm8edayoimiwy" path="res://UI/UIElements/SettingsIconHolderHighlighted.svg" id="10_meldx"]
+[ext_resource type="Texture2D" uid="uid://b81er1dmljkhm" path="res://UI/UIElements/Left-Arrow.png" id="16_kl4ad"]
+[ext_resource type="Texture2D" uid="uid://c8peudbr7m120" path="res://UI/UIElements/Left-Arrow-Disabled.png" id="17_0g42x"]
+[ext_resource type="Texture2D" uid="uid://dh287s5t6mhng" path="res://UI/UIElements/Left-Arrow-Hover.png" id="18_5uouw"]
 [ext_resource type="Texture2D" uid="uid://csajhdj7xhv78" path="res://UI/UIElements/IconGameSettings.png" id="18_54gxq"]
 [ext_resource type="Texture2D" uid="uid://ccacsbwywn0ff" path="res://UI/UIElements/IconControls.png" id="18_gt1ff"]
+[ext_resource type="Texture2D" uid="uid://dlslnpe4i0bs2" path="res://UI/UIElements/Right-Arrow.png" id="19_snjcc"]
+[ext_resource type="Texture2D" uid="uid://c2y8ni8pfpgqb" path="res://UI/UIElements/Right-Arrow-Disabled.png" id="20_28led"]
 [ext_resource type="Texture2D" uid="uid://bb2re1ccvs366" path="res://UI/UIElements/IconAudio.png" id="20_x7oi2"]
+[ext_resource type="Texture2D" uid="uid://bukxdxnf32rut" path="res://UI/UIElements/Right-Arrow-Hover.png" id="21_2rvca"]
 [ext_resource type="Texture2D" uid="uid://c54is2cerp4ni" path="res://UI/UIElements/IconVideo.png" id="21_4wk1p"]
 [ext_resource type="Texture2D" uid="uid://brf6bpw7ab6m6" path="res://UI/UIElements/IconReset.png" id="22_lxoad"]
+[ext_resource type="Texture2D" uid="uid://bxoeqqfmrbjsf" path="res://UI/UIElements/SettingsSliderBackground.png" id="22_ptns7"]
+[ext_resource type="Texture2D" uid="uid://bxsav3qhhqo5f" path="res://UI/UIElements/SettingsSliderFill.png" id="23_ypy8f"]
 [ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
+[ext_resource type="Texture2D" uid="uid://4yoend52a3q8" path="res://UI/UIElements/SettingsButtonToggleOff.png" id="24_glvgh"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
+[ext_resource type="Texture2D" uid="uid://bdp6imbpnsa81" path="res://UI/UIElements/SettingsButtonToggleOffDisabled.png" id="25_7nypd"]
+[ext_resource type="Texture2D" uid="uid://cetmumbipt5ub" path="res://UI/UIElements/SettingsButtonToggleOn.png" id="25_hftmr"]
+[ext_resource type="Texture2D" uid="uid://cj4sv1xn1nsmd" path="res://UI/UIElements/SettingsButtonToggleOnDisabled.png" id="27_wigru"]
 [ext_resource type="Script" path="res://UI/PopUp.cs" id="31_85m2s"]
 [ext_resource type="PackedScene" uid="uid://b5k86ny5x2sv" path="res://UI/UIElements/error_pop_up.tscn" id="32_2yato"]
 [ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/UIElements/confirm_pop_up.tscn" id="33_76cnx"]
 [ext_resource type="PackedScene" uid="uid://ouv2jnth0qh8" path="res://UI/UIElements/info_pop_up.tscn" id="34_fl41a"]
 [ext_resource type="PackedScene" uid="uid://dha0e60iuanfl" path="res://UI/UIElements/input_pop_up.tscn" id="35_2h4aw"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_pqm2y"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_l2plq"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_pn5ry"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ipbx"]
+content_margin_left = 1.0
+content_margin_top = 1.0
+content_margin_right = 1.0
+content_margin_bottom = 1.0
+texture = ExtResource("22_ptns7")
+texture_margin_left = 1.0
+texture_margin_top = 1.0
+texture_margin_right = 1.0
+texture_margin_bottom = 1.0
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
+region_rect = Rect2(0, 0, 1, 1)
+draw_center = false
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
+texture = ExtResource("23_ypy8f")
+expand_margin_top = 10.0
+expand_margin_bottom = 10.0
 
 [node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_worldMenu", "_loadingMenu", "_hudMenu", "_pauseMenu", "_popup", "_windowManager")]
 layout_mode = 3
@@ -58,6 +96,7 @@ script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -264,7 +303,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="SettingsManager" type="Node" parent="WindowManager/Settings" node_paths=PackedStringArray("_cancelBtn", "_applyBtn", "_resetBtn", "_gameSBtn", "_controlsSBtn", "_audioSBtn", "_displaySBtn", "_winMainMenu", "_winSubGame", "_winSubControls", "_winSubAudio", "_winSubDisplay", "_wmMain", "_wmSettingSub")]
+[node name="SettingsManager" type="Node" parent="WindowManager/Settings" node_paths=PackedStringArray("_cancelBtn", "_applyBtn", "_resetBtn", "_gameSBtn", "_controlsSBtn", "_audioSBtn", "_displaySBtn", "_winMainMenu", "_winSubGame", "_winSubControls", "_winSubAudio", "_winSubDisplay", "_wmMain", "_wmSettingSub", "_langaugeLeftBtn", "_langaugeRightBtn", "_languageDisplay", "_masterVolumeSlider", "_soundeffectsVolumeSlider", "_musicVolumeSlider", "_dialougeVolumeSlider", "_spokenLangaugeLeftBtn", "_spokenLangaugeRightBtn", "_subtitlesOffBtn", "_subtitlesOnBtn", "_subtitlesLangaugeLeftBtn", "_subtitlesLangaugeRightBtn", "_spokenLanguageDisplay", "_subtitlesLanguageDisplay", "_resolutionLeftBtn", "_resolutionRightBtn", "_refreshRateLeftBtn", "_refreshRateRightBtn", "_fullscreenLeftBtn", "_fullscreenRightBtn", "_vsyncOffBtn", "_vsyncOnBtn", "_resolutionDisplay", "_refreshRateDisplay", "_fullscreenDisplay")]
 script = ExtResource("4_oc5pt")
 _cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 _applyBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn")
@@ -280,6 +319,32 @@ _winSubAudio = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackgro
 _winSubDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings")
 _wmMain = NodePath("../..")
 _wmSettingSub = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus")
+_langaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageLeftBtn")
+_langaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn")
+_languageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageDisplayText")
+_masterVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume/ControlHolder/MasterVolumeSlider")
+_soundeffectsVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume/ControlHolder/SoundEffectsVolumeSlider")
+_musicVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume/ControlHolder/MusicVolumeSlider")
+_dialougeVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume/ControlHolder/DialougeVolumeSlider")
+_spokenLangaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn")
+_spokenLangaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn")
+_subtitlesOffBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder/SubtitlesOffBtn")
+_subtitlesOnBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder/SubtitlesOnBtn")
+_subtitlesLangaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn")
+_subtitlesLangaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn")
+_spokenLanguageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder/SpokenLanguageDisplayText")
+_subtitlesLanguageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder/SubtitlesLanguageDisplayText")
+_resolutionLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder/ResolutionLeftBtn")
+_resolutionRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder/ResolutionRightBtn")
+_refreshRateLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder/RefreshRateLeftBtn")
+_refreshRateRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder/RefreshRateRightBtn")
+_fullscreenLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder/FullScreenLeftBtn")
+_fullscreenRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder/FullScreenRightBtn")
+_vsyncOffBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder/VSyncOffBtn")
+_vsyncOnBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder/VSyncOnBtn")
+_resolutionDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder/ResolutionDisplayText")
+_refreshRateDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder/RefreshRateDisplayText")
+_fullscreenDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder/FullScreenDisplayText")
 
 [node name="Background" type="TextureRect" parent="WindowManager/Settings"]
 layout_mode = 1
@@ -409,24 +474,25 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SettingsSubMenus" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
-anchors_preset = 0
+[node name="SettingsSubMenus" type="ScrollContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
+layout_mode = 0
 offset_left = 132.0
 offset_top = 60.0
 offset_right = 1076.0
 offset_bottom = 516.0
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 2
 script = ExtResource("1_st6gj")
 _windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 944.0
-offset_bottom = 456.0
+visible = false
+custom_minimum_size = Vector2(944, 456)
+layout_mode = 2
 script = ExtResource("2_5w2l0")
 ShowOnStart = true
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
+[node name="SubTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
 layout_mode = 0
 offset_left = 371.0
 offset_top = 18.5506
@@ -438,11 +504,116 @@ text = "Game Settings"
 fit_content = true
 autowrap_mode = 0
 
+[node name="General" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
+custom_minimum_size = Vector2(848, 0)
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 50.0
+offset_right = 871.0
+offset_bottom = 142.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "General"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Language" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+
+[node name="Title-Language" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Language"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="LanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -10.5
+offset_right = 33.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "English
+"
+scroll_active = false
+autowrap_mode = 0
+
 [node name="ControlSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
-anchors_preset = 0
-offset_right = 944.0
-offset_bottom = 456.0
+custom_minimum_size = Vector2(944, 456)
+layout_mode = 2
 script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
@@ -457,12 +628,117 @@ text = "Control Settings"
 fit_content = true
 autowrap_mode = 0
 
-[node name="AudioSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
-visible = false
+[node name="Movement" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
+custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 944.0
-offset_bottom = 456.0
+offset_left = 23.0
+offset_top = 50.0
+offset_right = 871.0
+offset_bottom = 142.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Movement"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Language" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+
+[node name="Title-Language" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement/Language"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Language"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement/Language"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="LanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement/Language/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement/Language/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="LanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement/Language/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -10.5
+offset_right = 33.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "English
+"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="AudioSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+visible = false
+custom_minimum_size = Vector2(944, 456)
+layout_mode = 2
 script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
@@ -477,12 +753,478 @@ text = "Audio Settings"
 fit_content = true
 autowrap_mode = 0
 
-[node name="DisplaySettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
-visible = false
+[node name="Sound" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
+custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 944.0
-offset_bottom = 456.0
+offset_left = 23.0
+offset_top = 50.0
+offset_right = 871.0
+offset_bottom = 217.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Sound"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="MasterVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+
+[node name="Title-MasterVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Master Volume"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="MasterVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume/ControlHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
+theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
+value = 20.0
+rounded = true
+scrollable = false
+
+[node name="SoundEffectsVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 71.0
+offset_right = 838.0
+offset_bottom = 101.0
+
+[node name="Title-SoundEffectsVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Sound Effects"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="SoundEffectsVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume/ControlHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
+theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
+value = 20.0
+rounded = true
+scrollable = false
+
+[node name="MusicVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 109.0
+offset_right = 838.0
+offset_bottom = 139.0
+
+[node name="Title-MusicVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Music"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="MusicVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume/ControlHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
+theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
+value = 20.0
+rounded = true
+scrollable = false
+
+[node name="DialougeVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 147.0
+offset_right = 838.0
+offset_bottom = 177.0
+
+[node name="Title-DialougeVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Dialouge"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="DialougeVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume/ControlHolder"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
+theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
+theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
+theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
+theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
+value = 20.0
+rounded = true
+scrollable = false
+
+[node name="Dialouge" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 240.551
+offset_right = 871.0
+offset_bottom = 376.551
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Dialouge"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="SpokenLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+
+[node name="Title-SpokenLanguage" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Spoken Language"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="SpokenLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="SpokenLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="SpokenLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -10.5
+offset_right = 74.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Default (English)"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SubTitles" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 71.0
+offset_right = 838.0
+offset_bottom = 101.0
+
+[node name="Title-Subtitles" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Subtitles"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="SubtitlesOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder"]
+layout_mode = 1
+offset_right = 145.0
+offset_bottom = 30.0
+toggle_mode = true
+texture_normal = ExtResource("25_7nypd")
+texture_pressed = ExtResource("25_7nypd")
+texture_hover = ExtResource("24_glvgh")
+texture_disabled = ExtResource("24_glvgh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SubtitlesOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -145.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+toggle_mode = true
+texture_normal = ExtResource("27_wigru")
+texture_pressed = ExtResource("25_hftmr")
+texture_hover = ExtResource("25_hftmr")
+texture_disabled = ExtResource("25_hftmr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SubtitlesLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 109.0
+offset_right = 838.0
+offset_bottom = 139.0
+
+[node name="Title-SubtitlesLanguage" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Subtitles Language"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="SubtitlesLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="SubtitlesLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="SubtitlesLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -74.0
+offset_top = -10.5
+offset_right = 74.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Default (English)"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="DisplaySettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+custom_minimum_size = Vector2(944, 456)
+layout_mode = 2
 script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
@@ -495,6 +1237,382 @@ theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 25
 text = "Display Settings"
 fit_content = true
+autowrap_mode = 0
+
+[node name="Screen" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 50.0
+offset_right = 871.0
+offset_bottom = 235.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Screen"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Resolution" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+
+[node name="Title-Resolution" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Resolution"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="ResolutionLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="ResolutionRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="ResolutionDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -50.0
+offset_top = -10.5
+offset_right = 50.0
+offset_bottom = 10.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "1920x1080"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RefreshRate" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 71.0
+offset_right = 838.0
+offset_bottom = 101.0
+
+[node name="Title-RefreshRate" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Refresh Rate"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="RefreshRateLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="RefreshRateRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="RefreshRateDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -11.4494
+offset_right = 20.0
+offset_bottom = 9.55057
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "60hz"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="FullScreen" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 109.0
+offset_right = 838.0
+offset_bottom = 139.0
+
+[node name="Title-FullScreen" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Display Mode"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="FullScreenLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder"]
+layout_mode = 1
+offset_right = 15.0
+offset_bottom = 30.0
+disabled = true
+texture_normal = ExtResource("16_kl4ad")
+texture_pressed = ExtResource("17_0g42x")
+texture_hover = ExtResource("18_5uouw")
+texture_disabled = ExtResource("17_0g42x")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="FullScreenRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -15.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+texture_normal = ExtResource("19_snjcc")
+texture_pressed = ExtResource("20_28led")
+texture_hover = ExtResource("21_2rvca")
+texture_disabled = ExtResource("20_28led")
+ignore_texture_size = true
+stretch_mode = 4
+
+[node name="FullScreenDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = -11.4494
+offset_right = 94.0
+offset_bottom = 13.5506
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Fullscreen (Exclusive)"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VSync" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 147.0
+offset_right = 838.0
+offset_bottom = 177.0
+
+[node name="Title-VSync" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "V-Sync"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="VSyncOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder"]
+layout_mode = 1
+offset_right = 145.0
+offset_bottom = 30.0
+toggle_mode = true
+texture_normal = ExtResource("25_7nypd")
+texture_pressed = ExtResource("25_7nypd")
+texture_hover = ExtResource("24_glvgh")
+texture_disabled = ExtResource("24_glvgh")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="VSyncOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -145.0
+offset_bottom = 30.0
+grow_horizontal = 0
+disabled = true
+toggle_mode = true
+texture_normal = ExtResource("27_wigru")
+texture_pressed = ExtResource("25_hftmr")
+texture_hover = ExtResource("25_hftmr")
+texture_disabled = ExtResource("25_hftmr")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="Graphics" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 237.551
+offset_right = 871.0
+offset_bottom = 422.551
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Graphics"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Notice" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics"]
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+
+[node name="Title-Notice" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics/Notice"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "To be implemented..."
+scroll_active = false
 autowrap_mode = 0
 
 [node name="GameSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
