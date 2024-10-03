@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Runtime.InteropServices;
+using ArchitectsInVoid.Debug.Meshes;
 using Godot;
 
 namespace ArchitectsInVoid.Debug;
@@ -7,6 +8,8 @@ namespace ArchitectsInVoid.Debug;
 public sealed partial class DebugDraw : Node
 {
 
+
+    
     public static SceneTree SceneTree = (SceneTree)Engine.GetMainLoop();
     public static Window Root = SceneTree.GetRoot();
     
@@ -20,7 +23,7 @@ public sealed partial class DebugDraw : Node
     private static DebugDraw _instance = null;
     private static readonly object Padlock = new object();
 
-    public static DebugDraw Instance
+    private static DebugDraw Instance
     {
         get
         {
@@ -38,10 +41,11 @@ public sealed partial class DebugDraw : Node
     #endregion
     #region Instanced
 
-    
+    #region TODO: This shouldn't be here
     private bool _cameraNormalThisFrame = false;
     private Vector3 _cameraNormal;
-    private Vector3 CameraNormal
+
+    internal Vector3 CameraNormal
     {
         get
         {
@@ -54,84 +58,72 @@ public sealed partial class DebugDraw : Node
         }
     }
 
-    private Dictionary<MeshInstance3D, double> _debugObjects = new();
-        private Dictionary<MeshInstance3D, double> _backList = new();
-        public override void _Process(double delta)
-        {
-            _cameraNormalThisFrame = false;
-            
-            _backList.Clear();
-            
-            foreach (var kvp in _debugObjects)
-            {
-                MeshInstance3D mesh = kvp.Key;
-                bool yourTimeIsNow = kvp.Value < delta;
+    private bool _cameraPositionThisFrame = false;
+    private Vector3 _cameraPosition;
 
-                if (yourTimeIsNow)
-                {
-                    GD.Print("Your time is now");
-                    mesh.QueueFree();
-                }
-                else
-                {
-                    _backList.Add(kvp.Key, kvp.Value - delta);
-                }
+    internal Vector3 CameraPosition
+    {
+        get
+        {
+            if (!_cameraPositionThisFrame)
+            {
+                _cameraPosition = Root.GetCamera3D().GlobalPosition;
+                _cameraPositionThisFrame = true;
             }
 
-            // Cheaper to reuse both lists than to instantiate a new one
-            (_backList, _debugObjects) = (_debugObjects, _backList);
+            return _cameraPosition;
         }
+    }
+    
     #endregion
 
+    private double _lastDelta = 0;
+    private List<Meshes.DebugMesh> _debugObjects = new();
+    public override void _Process(double delta)
+    {
+        _lastDelta = delta;
+        _cameraNormalThisFrame = false;
+        _cameraPositionThisFrame = false;
 
-    
-    
+        for (var index = _debugObjects.Count - 1; index >= 0; index--)
+        {
+            var mesh = _debugObjects[index];
+            bool shouldRemove = mesh.Update(delta);
+            if (shouldRemove)
+            {
+                mesh.QueueFree();
+                _debugObjects.RemoveAt(index);
+            }
+        }
 
-
-    
-
-    
-    
+        // Cheaper to reuse both lists than to instantiate a new one
+    }
+    #endregion
+        
     #region Mesh management
         
-    private static readonly StandardMaterial3D DefaultMaterial = new()
-    {
-        ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
-        VertexColorUseAsAlbedo = true,
-        Transparency = BaseMaterial3D.TransparencyEnum.Alpha,
-        CullMode = BaseMaterial3D.CullModeEnum.Disabled,
-    };
-    private static void InstantiateMesh(Mesh mesh, double duration)
+
+    private static void InstantiateDebugMesh(Meshes.DebugMesh mesh)
     {
 
-        MeshInstance3D meshInstance = new MeshInstance3D
-        {
-            Mesh = mesh,
-            MaterialOverride = DefaultMaterial,
-        };
-        Root.AddChild(meshInstance);
-        Instance._debugObjects.Add(meshInstance, duration);
+        
+        Root.AddChild(mesh);
+        Instance._debugObjects.Add(mesh);
     }
     #endregion
-    #region DebugLine
         
-    
-    public enum DLineType
-    {
-        Auto,
-        Wireframe,
-        Tangible
-    }
-
+    #region DebugDefaults
+            
     private const double DefaultDuration = 1.0 / 60; // TODO: Replace this with update rate from project settings
     private const double DefaultThickness = 0;
+    private const int CirclePrecision = 20;
     
-    // Cannot make consts for structs I don't think
-    
-    
-
-    private static readonly Color DefaultColor = new Color(1.0f, 1.0f, 1.0f);
+    private static readonly Color DefaultColor = new Color(255f, 255f, 255f);
     private static readonly Vector3 DefaultPos = Vector3.Zero;
+    #endregion
+        
+    #region DebugLine
+        
     /// <summary>
     /// Draws a line between two points with optional parameters.
     /// </summary>
@@ -141,38 +133,38 @@ public sealed partial class DebugDraw : Node
     /// <param name="duration">Time until the line gets destroyed. Defaults to 1 frame.</param>
     /// <param name="thickness">Apparent "radius" of the line. Defaults to 0.</param>
     /// <param name="type">Auto, Tangible, or Wireframe. Tangible produces a line with a radius, wireframe produces an infinitely small yet visible line. Auto is Wireframe if 0, otherwise tangible. Defaults to Auto.</param>
-    public static void Line([Optional]Vector3? start, [Optional]Vector3? end, [Optional]Color? color, double duration = DefaultDuration, double thickness = DefaultThickness, DLineType type = DLineType.Auto )
+    public static void Line([Optional]Vector3? start, [Optional]Vector3? end, [Optional]Color? color, double duration = DefaultDuration, double thickness = DefaultThickness, DebugMesh.Type type = DebugMesh.Type.Auto )
     {
         Vector3 a = start ?? DefaultPos;
         Vector3 b = end ?? DefaultPos;
         Color finalColor = color ?? DefaultColor;
 
-        type = (type == DLineType.Auto) ? (thickness == 0 ? DLineType.Wireframe : DLineType.Tangible) : type;
 
 
-        ImmediateMesh mesh = new ImmediateMesh();
+        Meshes.DebugLine line = new Meshes.DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
+        
 
-
-        switch (type)
-        {
-            case DLineType.Tangible:
-                UpdateLineWidth(mesh, a, b, thickness, finalColor, Instance.CameraNormal);
-                break;
-            case DLineType.Wireframe:
-                mesh.SurfaceBegin(Mesh.PrimitiveType.Lines);
-                mesh.SurfaceSetColor(finalColor);
-                mesh.SurfaceAddVertex(a);
-                mesh.SurfaceAddVertex(b);
-                mesh.SurfaceEnd();
-                break;
-        }
-
-        InstantiateMesh(mesh, duration);
+        InstantiateDebugMesh(line);
         
     }
-
     
-    
+    #endregion
+        
+    #region DebugCircle
+    // public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultThickness, DebugMesh.Type type = DebugMesh.Type.Auto )
+    // {
+    //     Vector3 a = start ?? DefaultPos;
+    //     Vector3 b = end ?? DefaultPos;
+    //     Color finalColor = color ?? DefaultColor;
+    //
+    //
+    //
+    //     Meshes.DebugLine line = new Meshes.DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
+    //     
+    //
+    //     InstantiateDebugMesh(line);
+    //     
+    // }
     #endregion
     
 }

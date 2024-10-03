@@ -1,10 +1,15 @@
 using Godot;
 
-namespace ArchitectsInVoid.Debug;
+namespace ArchitectsInVoid.Debug.Meshes;
 
 public partial class DebugMesh : MeshInstance3D
 {
-    
+    public enum Type
+    {
+        Auto,
+        Wireframe,
+        Tangible
+    }
     #region Stuff
     private static readonly StandardMaterial3D DefaultMaterial = new()
     {

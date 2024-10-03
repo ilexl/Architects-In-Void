@@ -1,6 +1,6 @@
 using Godot;
 
-namespace ArchitectsInVoid.Debug;
+namespace ArchitectsInVoid.Debug.Meshes;
 
 public partial class DebugLine : DebugMesh
 {
@@ -10,7 +10,7 @@ public partial class DebugLine : DebugMesh
     private double _thickness = 0;
     private Vector3 _start;
     private Vector3 _end;
-    private DebugDraw.Type _type;
+    private Type _type;
     
     // Prevents IDE from getting angry, should never use parameterless constructor for this class
     public DebugLine()
