@@ -1,5 +1,6 @@
 using Godot;
 using System.Collections.Generic;
+using ArchitectsInVoid.Debug;
 
 namespace ArchitectsInVoid.Player.ComponentCreation;
 
@@ -119,6 +120,7 @@ public partial class Cursor : Node3D
 	{
 		_startCorner.Position = Position - position;
 		_endCorner.Position = position - Position;
+		DebugDraw.Line(Position + _startCorner.Position, Position + _endCorner.Position, color:Colors.Red, thickness:0.1);
 	}
 	/// <summary>
 	/// Sets the label visibility

@@ -32,6 +32,7 @@ public partial class PlayerController : Node
 
     public override void _Ready()
     {
+        DebugDraw.Line(Vector3.Zero, Vector3.Up * 100, Colors.Aqua, 10, 10);
         // Assign our components
         Body = GetNode<RigidBody3D>("Body");
         Head = GetNode<Node3D>("Head");
@@ -59,7 +60,6 @@ public partial class PlayerController : Node
     public override void _PhysicsProcess(double delta)
     {
         
-        AiVDebug.Line(Body.Position, color:Colors.Red, duration:5);
         if (Input.IsKeyPressed(Key.Escape))
         {
             Input.MouseMode = Input.MouseModeEnum.Visible;
