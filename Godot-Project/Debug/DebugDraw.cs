@@ -70,12 +70,26 @@ public sealed partial class DebugDraw : Node
                 _cameraPosition = Root.GetCamera3D().GlobalPosition;
                 _cameraPositionThisFrame = true;
             }
-
             return _cameraPosition;
         }
     }
-    
-    #endregion
+
+    private bool _cameraRotationThisFrame = false;
+    private Vector3 _cameraRotation;
+    public Vector3 CameraWorldRotation
+    {
+        get
+        {
+            if (!_cameraRotationThisFrame)
+            {
+                _cameraRotation = Root.GetCamera3D(). GlobalTransform.Basis.GetEuler();;
+                _cameraRotationThisFrame = true;
+            }
+           
+            return _cameraRotation;
+        }
+    }
+#endregion
 
     private double _lastDelta = 0;
     private List<Meshes.DebugMesh> _debugObjects = new();
@@ -84,7 +98,7 @@ public sealed partial class DebugDraw : Node
         _lastDelta = delta;
         _cameraNormalThisFrame = false;
         _cameraPositionThisFrame = false;
-
+        _cameraRotationThisFrame = false;
         for (var index = _debugObjects.Count - 1; index >= 0; index--)
         {
             var mesh = _debugObjects[index];
