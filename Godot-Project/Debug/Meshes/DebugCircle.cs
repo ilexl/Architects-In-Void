@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using Godot;
 
 namespace ArchitectsInVoid.Debug.Meshes;
@@ -6,81 +8,101 @@ public partial class DebugCircle : DebugMesh
 {
 
     
-    
-    private double _thickness = 0;
-    private Vector3 _start;
-    private Vector3 _end;
-    private Type _type;
+    private Vector3 _position;
+    private double _radius = 0;
+    private double _precision = 0;
+
+    private List<Vector3> _points;
     
     // Prevents IDE from getting angry, should never use parameterless constructor for this class
     public DebugCircle()
     {
     }
 
-    public DebugCircle(Vector3 start, Vector3 end, Color color, double duration, double thickness,  Type type, DebugDraw instance) : base(color, duration, instance)
+    public DebugCircle(Vector3 position, Color color, double duration, double radius, double precision, Type type, DebugDraw instance) : base(color, duration, type, instance)
     {
-        _start = start;
-        _end = end;
-        _thickness = thickness;
+        Position = position;
+        _position = position;
+        _radius = radius;
+        _precision = precision;
         
-        type = (type == Type.Auto) ? (thickness == 0 ?Type.Wireframe : Type.Tangible) : type;
-        _type = type;
-        
-        
+        type = type == Type.Auto ? Type.Solid : type;
+        this.type = type;
+
+        _points = GetCirclePoints();
         switch (type)
         {
-            case Type.Tangible:
-                GenerateTangibleLine();
+            case Type.Solid:
+                GenerateFilledCircle();
                 break;
             case Type.Wireframe:
-                GenerateWireframeLine();
+                GenerateWireframeCircle();
                 break;
         }
     }
     public override bool Update(double delta)
     {
-        
-        switch (_type)
-        {
-            case Type.Tangible:
-                GenerateTangibleLine();
-                break;
-            case Type.Wireframe:
-                break;
-        }
+        Rotation = Instance.CameraWorldRotation;
+        // switch (type)
+        // {
+        //     case Type.Solid:
+        //         GenerateFilledCircle();
+        //         break;
+        //     case Type.Wireframe:
+        //         GenerateWireframeCircle();
+        //         break;
+        // }
 
         return base.Update(delta);
     }
-    
-    private void GenerateWireframeLine()
+
+    private void GenerateWireframeCircle()
     {
+        IM.ClearSurfaces();
+        
         IM.SurfaceBegin(Mesh.PrimitiveType.Lines);
         IM.SurfaceSetColor(Color);
-        IM.SurfaceAddVertex(_start);
-        IM.SurfaceAddVertex(_end);
+        
+        foreach (var point in _points)
+        {
+            IM.SurfaceAddVertex(point);
+        }
         IM.SurfaceEnd();
     }
-    
-    private void GenerateTangibleLine()
-    {
-        
-        IM.ClearSurfaces();
 
-        Vector3 cameraPos = Instance.CameraPosition;
-        Vector3 upFacingDirection = (_start - cameraPos);
-        Vector3 lineVec = (_end - _start);
-        Vector3 lineSide = lineVec.Cross(upFacingDirection).Normalized();
-                
-        Vector3 cornerA = _start + lineSide * _thickness;
-        Vector3 cornerB = _end + lineSide * _thickness;
-        Vector3 cornerC = _start - lineSide * _thickness;
-        Vector3 cornerD = _end - lineSide * _thickness;
-        IM.SurfaceBegin(Mesh.PrimitiveType.TriangleStrip);
+    private void GenerateFilledCircle()
+    {
+        IM.ClearSurfaces();
+        
+        IM.SurfaceBegin(Mesh.PrimitiveType.Triangles);
         IM.SurfaceSetColor(Color);
-        IM.SurfaceAddVertex(cornerA);
-        IM.SurfaceAddVertex(cornerB);
-        IM.SurfaceAddVertex(cornerC);
-        IM.SurfaceAddVertex(cornerD);
+
+        for (var index = 0; index < _points.Count; index++)
+        {
+            var point = _points[index];
+            var pointNext = _points[(index + 1) % _points.Count ];
+            IM.SurfaceAddVertex(point);
+            IM.SurfaceAddVertex(pointNext);
+            IM.SurfaceAddVertex(Vector3.Zero);
+        }
+
         IM.SurfaceEnd();
+    }
+
+    private List<Vector3> GetCirclePoints()
+    {
+        double step = Math.PI * 2 / _precision;
+
+        List<Vector3> points = new();
+        for (double i = 0; i < Math.PI * 2; i += step)
+        {
+            double y = Math.Sin(i);
+            double x = Math.Cos(i);
+            Vector3 point = new Vector3(x * _radius, y * _radius, 0);
+            points.Add(point);
+        }
+
+        return points;
+
     }
 }
