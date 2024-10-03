@@ -8,7 +8,7 @@ public partial class DebugMesh : MeshInstance3D
     {
         Auto,
         Wireframe,
-        Tangible
+        Solid
     }
     #region Stuff
     private static readonly StandardMaterial3D DefaultMaterial = new()
@@ -21,6 +21,7 @@ public partial class DebugMesh : MeshInstance3D
     
     protected Color Color;
     public double TimeToLive = 0;
+    protected Type type;
     protected DebugDraw Instance;
     protected ImmediateMesh IM;
     #endregion
@@ -29,10 +30,11 @@ public partial class DebugMesh : MeshInstance3D
     {
         
     }
-    public DebugMesh(Color color, double duration, DebugDraw instance)
+    public DebugMesh(Color color, double duration, Type type, DebugDraw instance)
     {
         Color = color;
         TimeToLive = duration;
+        this.type = type;
         Instance = instance;
         IM = new ImmediateMesh();
         MaterialOverride = DefaultMaterial;

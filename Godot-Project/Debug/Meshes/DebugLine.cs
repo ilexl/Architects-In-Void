@@ -6,30 +6,28 @@ public partial class DebugLine : DebugMesh
 {
 
     
-    
-    private double _thickness = 0;
     private Vector3 _start;
     private Vector3 _end;
-    private Type _type;
+    private double _thickness = 0;
     
     // Prevents IDE from getting angry, should never use parameterless constructor for this class
     public DebugLine()
     {
     }
 
-    public DebugLine(Vector3 start, Vector3 end, Color color, double duration, double thickness,  Type type, DebugDraw instance) : base(color, duration, instance)
+    public DebugLine(Vector3 start, Vector3 end, Color color, double duration, double thickness,  Type type, DebugDraw instance) : base(color, duration, type, instance)
     {
         _start = start;
         _end = end;
         _thickness = thickness;
         
-        type = (type == Type.Auto) ? (thickness == 0 ?Type.Wireframe : Type.Tangible) : type;
-        _type = type;
+        type = (type == Type.Auto) ? (thickness == 0 ?Type.Wireframe : Type.Solid) : type;
+        this.type = type;
         
         
         switch (type)
         {
-            case Type.Tangible:
+            case Type.Solid:
                 GenerateTangibleLine();
                 break;
             case Type.Wireframe:
@@ -40,9 +38,9 @@ public partial class DebugLine : DebugMesh
     public override bool Update(double delta)
     {
         
-        switch (_type)
+        switch (type)
         {
-            case Type.Tangible:
+            case Type.Solid:
                 GenerateTangibleLine();
                 break;
             case Type.Wireframe:
