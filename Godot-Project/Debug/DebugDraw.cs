@@ -130,7 +130,8 @@ public sealed partial class DebugDraw : Node
             
     private const double DefaultDuration = 1.0 / 60; // TODO: Replace this with update rate from project settings
     private const double DefaultThickness = 0;
-    private const int CirclePrecision = 20;
+    private const double DefaultRadius = 1;
+    private const int DefaultPrecision = 20;
     
     private static readonly Color DefaultColor = new Color(255f, 255f, 255f);
     private static readonly Vector3 DefaultPos = Vector3.Zero;
@@ -165,15 +166,14 @@ public sealed partial class DebugDraw : Node
     #endregion
         
     #region DebugCircle
-    public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultThickness, DebugMesh.Type type = DebugMesh.Type.Auto )
+    public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultRadius, int precision = DefaultPrecision, DebugMesh.Type type = DebugMesh.Type.Auto )
     {
-        Vector3 a = start ?? DefaultPos;
-        Vector3 b = end ?? DefaultPos;
+        Vector3 pos = position ?? DefaultPos;
         Color finalColor = color ?? DefaultColor;
     
     
     
-        Meshes.DebugLine line = new Meshes.DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
+        DebugCircle line = new DebugCircle(pos, finalColor, duration, radius, precision, type, Instance);
         
     
         InstantiateDebugMesh(line);
