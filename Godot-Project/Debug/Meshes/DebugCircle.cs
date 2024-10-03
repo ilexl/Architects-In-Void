@@ -63,9 +63,12 @@ public partial class DebugCircle : DebugMesh
         IM.SurfaceBegin(Mesh.PrimitiveType.Lines);
         IM.SurfaceSetColor(Color);
         
-        foreach (var point in _points)
+        for (var index = 0; index < _points.Count; index++)
         {
+            var point = _points[index];
+            var pointNext = _points[(index + 1) % _points.Count ];
             IM.SurfaceAddVertex(point);
+            IM.SurfaceAddVertex(pointNext);
         }
         IM.SurfaceEnd();
     }
