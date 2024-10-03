@@ -155,7 +155,7 @@ public sealed partial class DebugDraw : Node
 
 
 
-        Meshes.DebugLine line = new Meshes.DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
+        DebugLine line = new DebugLine(a, b, finalColor, duration + Instance._lastDelta / 2, thickness, type, Instance);
         
 
         InstantiateDebugMesh(line);
