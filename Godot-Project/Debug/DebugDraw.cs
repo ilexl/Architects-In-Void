@@ -161,6 +161,16 @@ public sealed partial class DebugDraw : Node
         
     #region DebugCircle
         
+        /// <summary>
+        /// Draws a circle at a position with optional arguments.
+        /// </summary>
+        /// <param name="position">The position to draw the circle. Defaults to Vector3.Zero.</param>
+        /// <param name="color">The color of the circle. Defaults to white.</param>
+        /// <param name="duration">The time after which the circle will be destroyed. Defaults to one frame.</param>
+        /// <param name="radius">The radius of the circle. Defaults to 1.</param>
+        /// <param name="precision">The amount of points to construct the circle with. Defaults to 20.</param>
+        /// <param name="drawOnTop">Controls whether the object draws on top of everything else.</param>
+        /// <param name="type">The type of the circle, being solid or wireframe. Defaults to solid.</param>
     public static void Circle([Optional]Vector3? position, [Optional]Color? color, double duration = DefaultDuration, double radius = DefaultRadius, int precision = DefaultPrecision, bool drawOnTop = false, DebugMesh.Type type = DebugMesh.Type.Auto )
     {
         Vector3 pos = position ?? DefaultPos;
