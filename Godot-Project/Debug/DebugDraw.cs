@@ -185,5 +185,22 @@ public sealed partial class DebugDraw : Node
         
     }
     #endregion
-    
+    #region DebugRaycast
+    public static void Ray(PhysicsRayQueryParameters3D query, Godot.Collections.Dictionary result, double duration = DefaultDuration)
+    {
+        Vector3 start = query.From;
+        Vector3 end = query.To;
+        
+
+        if (result.Count > 0)
+        {
+            Vector3 hit = (Vector3)result["position"];
+            Line(start, hit, Colors.Red, duration, drawOnTop:true);
+            Line(hit, end, Colors.Green, duration, drawOnTop:true);
+            return;
+        }
+        Line(start, end, Colors.Red, duration, drawOnTop:true);
+    }    
+        
+    #endregion
 }
