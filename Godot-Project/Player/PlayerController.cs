@@ -1,3 +1,4 @@
+using ArchitectsInVoid.Debug;
 using Godot;
 
 namespace ArchitectsInVoid.Player;
@@ -57,6 +58,8 @@ public partial class PlayerController : Node
 
     public override void _PhysicsProcess(double delta)
     {
+        
+        AiVDebug.Line(Body.Position, color:Colors.Red, duration:5);
         if (Input.IsKeyPressed(Key.Escape))
         {
             Input.MouseMode = Input.MouseModeEnum.Visible;
