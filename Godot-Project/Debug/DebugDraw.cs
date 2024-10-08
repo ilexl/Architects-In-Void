@@ -158,7 +158,6 @@ public sealed partial class DebugDraw : Node
     }
     
     #endregion
-        
     #region DebugCircle
         
         /// <summary>

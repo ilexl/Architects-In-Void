@@ -10,7 +10,7 @@ public partial class DebugMesh : MeshInstance3D
         Wireframe,
         Solid
     }
-    #region Stuff
+    #region Materials
     private static readonly StandardMaterial3D DefaultMaterial = new()
     {
         ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
@@ -26,7 +26,8 @@ public partial class DebugMesh : MeshInstance3D
         Transparency = BaseMaterial3D.TransparencyEnum.Alpha,
         CullMode = BaseMaterial3D.CullModeEnum.Disabled,
     };
-    
+    #endregion
+    #region Stuff
     protected Color Color;
     public double TimeToLive = 0;
     protected Type type;
@@ -34,11 +35,12 @@ public partial class DebugMesh : MeshInstance3D
     protected ImmediateMesh IM;
     #endregion
     // Prevents IDE from getting angry, should never use parameterless constructor for this and derived classes
-    public DebugMesh()
+    protected DebugMesh()
     {
         
     }
-    public DebugMesh(Color color, double duration, bool drawOnTop, Type type, DebugDraw instance)
+
+    protected DebugMesh(Color color, double duration, bool drawOnTop, Type type, DebugDraw instance)
     {
         Color = color;
         TimeToLive = duration;
