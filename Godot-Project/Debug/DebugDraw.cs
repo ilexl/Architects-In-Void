@@ -210,4 +210,84 @@ public sealed partial class DebugDraw : Node
         // TODO: Implement
     #region DebugLabel
     #endregion
+    #region DebugBox
+        
+    // DebugDraw.Line(new Vector3(start.X, start.Y, start.Z), new Vector3(end.X, start.Y, start.Z));
+    // DebugDraw.Line(new Vector3(start.X, start.Y, start.Z), new Vector3(start.X, end.Y, start.Z));
+    // DebugDraw.Line(new Vector3(start.X, start.Y, start.Z), new Vector3(start.X, start.Y, end.Z));
+		  //
+    // DebugDraw.Line(new Vector3(end.X, start.Y, start.Z), new Vector3(end.X, end.Y, start.Z));
+    // DebugDraw.Line(new Vector3(end.X, start.Y, start.Z), new Vector3(end.X, start.Y, end.Z));
+		  //
+    // DebugDraw.Line(new Vector3(start.X, end.Y, start.Z), new Vector3(start.X, end.Y, end.Z));
+    // DebugDraw.Line(new Vector3(start.X, end.Y, start.Z), new Vector3(start.X, end.Y, end.Z));
+        
+    public static void Box([Optional]Vector3? cornerA, [Optional]Vector3? cornerB, [Optional] Basis? rotation, [Optional]Color? color, double duration = DefaultDuration, double thickness = DefaultThickness, bool drawOnTop = false, DebugMesh.Type type = DebugMesh.Type.Auto )
+    {
+        Vector3 start = cornerA ?? DefaultPos;
+        Vector3 end = cornerB ?? DefaultPos;
+        Vector3 center = start.Lerp(end, 0.5);
+        start -= center;
+        end -= center;
+
+        ;
+        Color finalColor = color ?? DefaultColor;
+        Basis finalRotation = rotation ?? Basis.Identity;
+
+        start *= finalRotation;
+        end *= finalRotation;
+        // In practice, these values will almost never evaluate to their human given names here but it makes it easier to visualize
+        double bottom = start.X;
+        double front = start.Y;
+        double left = start.Z;
+        
+        double top = end.X;
+        double rear = end.Y;
+        double right = end.Z;
+        
+        // Define a position for each corner of the box
+        Vector3 bottomFrontLeft = finalRotation * new Vector3(bottom, front, left) + center;
+        Vector3 bottomFrontRight = finalRotation * new Vector3(bottom, front, right) + center;
+        Vector3 bottomRearLeft = finalRotation * new Vector3(bottom, rear, left) + center;
+        Vector3 bottomRearRight = finalRotation * new Vector3(bottom, rear, right) + center;
+        Vector3 topFrontLeft = finalRotation * new Vector3(top, front, left) + center;
+        Vector3 topFrontRight = finalRotation * new Vector3(top, front, right) + center;
+        Vector3 topRearLeft = finalRotation * new Vector3(top, rear, left) + center;
+        Vector3 topRearRight = finalRotation * new Vector3(top, rear, right) + center;
+        
+        
+        // Draw lines for each edge of the box, most sensible way to do this is to use 4 non adjacent corners as roots and then draw lines to their adjacent corners
+        /*
+         *             |
+         *             |
+         *             |
+         *     ------- x
+         *               x    
+         *                 x
+         * Essentially we construct the box out of 4 of these */
+        
+        
+        
+        // Bottom front left corner
+        Line(bottomFrontLeft, topFrontLeft, finalColor, duration, thickness, drawOnTop, type);
+        Line(bottomFrontLeft, bottomRearLeft, finalColor, duration, thickness, drawOnTop, type);
+        Line(bottomFrontLeft, bottomFrontRight, finalColor, duration, thickness, drawOnTop, type);
+
+        // top front right corner
+        Line(topFrontRight, bottomFrontRight, finalColor, duration, thickness, drawOnTop, type);
+        Line(topFrontRight, topRearRight, finalColor, duration, thickness, drawOnTop, type);
+        Line(topFrontRight, topFrontLeft, finalColor, duration, thickness, drawOnTop, type);
+        
+        // top rear left
+        Line(topRearLeft, bottomRearLeft, finalColor, duration, thickness, drawOnTop, type);
+        Line(topRearLeft, topFrontLeft, finalColor, duration, thickness, drawOnTop, type);
+        Line(topRearLeft, topRearRight, finalColor, duration, thickness, drawOnTop, type);
+        
+        // bottom rear right
+        Line(bottomRearRight, topRearRight, finalColor, duration, thickness, drawOnTop, type);
+        Line(bottomRearRight, bottomFrontRight, finalColor, duration, thickness, drawOnTop, type);
+        Line(bottomRearRight, bottomRearLeft, finalColor, duration, thickness, drawOnTop, type);
+
+    }
+    #endregion
 }
