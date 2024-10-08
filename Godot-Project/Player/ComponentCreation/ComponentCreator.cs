@@ -135,7 +135,6 @@ public partial class ComponentCreator : Node
         
         var query = PhysicsRayQueryParameters3D.Create(_head.Position, CalculateCursorPosition(), 2);
         var result = spaceState.IntersectRay(query);
-        DebugDraw.Ray(query, result, 5);
         if (result.Count > 0)
         {
             _truncatedPlacementPosition = (Vector3)result["position"];
@@ -183,9 +182,8 @@ public partial class ComponentCreator : Node
         _cursorEnd = CalculateCursorPosition();
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursorStart - _cursorEnd;
-        _cursor.Position = position;
-        _cursor.SetCornerPosition(_cursorEnd);
-        _cursor.SetScale(scale);
+        _cursor.SetCornerPositions(_cursorStart, _cursorEnd);
+        // _cursor.SetScale(scale);
         _cursor.SetLabelVisible(true);
     }
 
@@ -206,7 +204,7 @@ public partial class ComponentCreator : Node
         Vector3 position = _truncatedPlacementPosition == Vector3.Zero ? CalculateCursorPosition() : _truncatedPlacementPosition;
         _cursor.Position = position;
         _cursor.SetScale(Vector3.Zero);
-        _cursor.SetCornerPosition(position);
+        _cursor.SetCornerPositions(position, position);
     }
     
 

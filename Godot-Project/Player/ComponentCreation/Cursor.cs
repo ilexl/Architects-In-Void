@@ -110,17 +110,21 @@ public partial class Cursor : Node3D
 		edges[2].Position = new Vector3(max.X, min.Y, min.Z);
 		edges[3].Position = new Vector3(min.X, min.Y, max.Z);
 	}
-
 	/// <summary>
-	/// Directly sets the start and end corner position
-	/// Expects a world co ordinate
+	/// Takes the rotation of the cursor and sets the position and scale accordingly to meet the desired position
 	/// </summary>
-	/// <param name="position"></param>
-	public void SetCornerPosition(Vector3 position)
+	/// <param name="start"></param>
+	/// <param name="end"></param>
+	public void SetCornerPositions(Vector3 start, Vector3 end)
 	{
-		_startCorner.Position = Position - position;
-		_endCorner.Position = position - Position;
-		DebugDraw.Line(Position + _startCorner.Position, Position + _endCorner.Position, color:Colors.Red, thickness:0.1);
+		// WORLD coords
+		Position = start.Lerp(end, 0.5);;
+
+		Vector3 localStart = start * Transform; // Note to self: Vector * Transform converts to local space while Transform * Vector converts to world space
+		Vector3 localEnd = end * Transform;
+		_startCorner.Position = localStart;
+		_endCorner.Position = localEnd;
+		SetScale(localStart - localEnd);
 	}
 	/// <summary>
 	/// Sets the label visibility
