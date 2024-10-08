@@ -48,7 +48,7 @@ public partial class ComponentCreator : Node
     private Cursor _cursor;
 
     private Vessel _targetedVessel;
-    
+    private RigidBody3D _targetedCollider;
     private Window _root;
     
     
@@ -139,9 +139,15 @@ public partial class ComponentCreator : Node
         {
             _truncatedPlacementPosition = (Vector3)result["position"];
             _truncatedPlacementDistance = (_truncatedPlacementPosition - _head.Position).Length();
-            if (_state == ComponentPlacerState.Idle) _targetedVessel = (Vessel)((RigidBody3D)result["collider"]).GetParent();
-            _cursor.Rotation = _targetedVessel.RigidBody.Rotation;
-            
+
+            if (_state == ComponentPlacerState.Idle)
+            {
+                _targetedCollider = (RigidBody3D)result["collider"];
+                _targetedVessel = (Vessel)_targetedCollider.GetParent();
+            }
+
+            _cursor.Basis = _targetedCollider.Transform.Basis * ((CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"])).Transform.Basis;
+            _cursor.Scale = Vector3.One; // Reset the scale since the basis also includes it
             double colorVal = (_desiredPlacementDistance - _truncatedPlacementDistance - _minTruncationThreshold) / (_maxTruncationThreshold - _minTruncationThreshold);
             _cursor.SetColor(_minTruncationColor.Lerp(_maxTruncationColor, Math.Clamp(colorVal, 0, 1)));
         }
@@ -222,10 +228,10 @@ public partial class ComponentCreator : Node
         var placeableComponent = _selectedComponent.Instantiate() as PlaceableComponent;
         
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
-        var scale = _cursorStart - _cursorEnd;
+        var scale = _cursor.GetComponentScale();
+        var rotation = _cursor.Transform.Basis;
         
-        
-        placeableComponent.Place(position, scale, _targetedVessel);
+        placeableComponent.Place(position, scale, rotation, _targetedVessel);
         
         
 

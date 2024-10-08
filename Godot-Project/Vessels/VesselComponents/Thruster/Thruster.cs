@@ -37,7 +37,7 @@ public partial class Thruster : PlaceableComponent
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
 
-    public override PlaceableComponentResult Place(Vector3 position, Vector3 scale, Vessel vessel)
+    public override PlaceableComponentResult Place(Vector3 position, Vector3 scale, Basis rotation, Vessel vessel) // TODO: Implement rotation
     {
         _width = Math.Abs(scale.X);
         _height = Math.Abs(scale.Y);

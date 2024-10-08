@@ -9,7 +9,6 @@ public partial class Armour : PlaceableComponent
 {
     
     
-    [Export] private MeshInstance3D _mesh;
     public override void _Ready()
     {
         ComponentType = PlaceableComponentType.DynamicScale;

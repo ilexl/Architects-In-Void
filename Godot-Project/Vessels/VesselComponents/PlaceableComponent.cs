@@ -19,12 +19,11 @@ public enum PlaceableComponentResult
 /// <summary>
 /// Base class for all objects that can be attached to vessels.
 /// </summary>
-public partial class PlaceableComponent : Node3D
+public partial class PlaceableComponent : CollisionShape3D
 {
     protected virtual PlaceableComponentType ComponentType { get; set; }
     
     [Export] protected double Density;
-    [Export] protected CollisionShape3D Shape;
     
 
     
@@ -36,31 +35,29 @@ public partial class PlaceableComponent : Node3D
     /***************NEW VESSEL***************/
     #region NewVessel
     // Scaled
-    public virtual PlaceableComponentResult Place(Vector3 position, Vector3 scale)
+    public virtual PlaceableComponentResult Place(Vector3 position, Vector3 scale, Basis rotation)
     {
         Scale = scale;
-        return AddToNewVessel(position);
+        return AddToNewVessel(position, rotation);
     }
     
     // Not scaled
-    public virtual PlaceableComponentResult Place(Vector3 position)
+    public virtual PlaceableComponentResult Place(Vector3 position, Basis rotation)
     {
-        return AddToNewVessel(position);
+        return AddToNewVessel(position, rotation);
     }
 
-    protected PlaceableComponentResult AddToNewVessel(Vector3 position)
+    protected PlaceableComponentResult AddToNewVessel(Vector3 position, Basis rotation)
     {
         var vessel = VesselData._VesselData.CreateVessel(position);
         if (vessel == null) return PlaceableComponentResult.ErrorCreateNewVessel;
         
         
-        var rigidBody = vessel.RigidBody;
+        var vesselRB = vessel.RigidBody;
         var componentData = vessel.ComponentData;
-        rigidBody.AddChild(this);
-        Shape.Reparent(rigidBody, false);
-        Shape.Scale = Scale;
-        rigidBody.Mass += Density * Scale.LengthSquared();
-        
+        vesselRB.AddChild(this);
+        vesselRB.Mass += Density * Scale.LengthSquared();
+        vesselRB.Transform = vesselRB.Transform with { Basis = rotation };
         return PlaceableComponentResult.Success;
         
     }
@@ -68,37 +65,34 @@ public partial class PlaceableComponent : Node3D
     /*************EXISTING VESSEL*************/
     #region ExistingVessel
     // Scaled
-    public virtual PlaceableComponentResult Place(Vector3 position, Vector3 scale, Vessel vessel)
+    public virtual PlaceableComponentResult Place(Vector3 position, Vector3 scale, Basis rotation, Vessel vessel)
     {
         if (vessel == null)
         {
             GD.Print("Making new vessel");
-            return Place(position, scale);
+            return Place(position, scale, rotation);
         }
-        Scale = scale;
-
         GD.Print("Adding to existing vessel");
-        return AddToVessel(vessel, position);
+        return AddToVessel(vessel, position, scale, rotation);
     }
 
     // Not scaled
-    public virtual PlaceableComponentResult Place(Vector3 position, Vessel vessel)
+    public virtual PlaceableComponentResult Place(Vector3 position, Vessel vessel, Basis rotation)
     {
-        Position = position;
-        
-        return AddToVessel(vessel, position);
+        return AddToVessel(vessel, position, Vector3.One, rotation);
     }
 
-    protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position)
+    protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position, Vector3 scale, Basis rotation)
     {
-        var rigidBody = vessel.RigidBody;
+        
+        var vesselRb = vessel.RigidBody;
         var componentData = vessel.ComponentData;
-        rigidBody.AddChild(this);
-        Shape.Reparent(rigidBody, false);
-        Position = position - rigidBody.Position;
-        Shape.Position = Position;
-        Shape.Scale = Scale;
-        rigidBody.Mass += Density * Scale.LengthSquared();
+        Transform = Transform with { Basis =  vesselRb.Transform.Basis.Inverse() * rotation };
+        vesselRb.AddChild(this);
+        Position = position * vesselRb.Transform;
+        
+        Scale = scale;
+        vesselRb.Mass += Density * Scale.LengthSquared();
         
         return PlaceableComponentResult.Success;
     }

@@ -126,6 +126,11 @@ public partial class Cursor : Node3D
 		_endCorner.Position = localEnd;
 		SetScale(localStart - localEnd);
 	}
+
+	public Vector3 GetComponentScale()
+	{
+		return _startCorner.Position - _endCorner.Position;
+	}
 	/// <summary>
 	/// Sets the label visibility
 	/// </summary>
