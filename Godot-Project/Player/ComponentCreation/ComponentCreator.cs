@@ -15,19 +15,31 @@ internal enum ComponentPlacerState
 
 public partial class ComponentCreator : Node
 {
-    // Configuration
-    [Export] private double _placementDistanceSensitivity = 1.0;
-    [Export] private double _minPlacementDistance = 1;
-    [Export] private double _maxPlacementDistance = 30;
+    #region Config
+        
+    [ExportCategory("Placement")]
+        [ExportGroup("Sensitivity")]
+            [Export] private double _placementDistanceSensitivity = 1.0;
+            [Export] private double _placementRotationSensitivity = 1.0;
+        [ExportGroup("Distance")]
+            [Export] private double _minPlacementDistance = 1;
+            [Export] private double _maxPlacementDistance = 30;
+            [Export] private double _maxTruncationThreshold = 5.0;
+            [Export] private double _minTruncationThreshold = 1.5;
+        [ExportGroup("Color")]
+            [Export] private Color _maxTruncationColor = Colors.Crimson;
+            [Export] private Color _minTruncationColor = Colors.DarkGreen;
+            [Export] private Color _noTruncationColor = Colors.CornflowerBlue;
+    [ExportCategory("Assigned objects")]
+        [Export] private Node3D _head;
+        [Export] private RigidBody3D _body;
     
-    [Export] private Node3D _head;
-    [Export] private RigidBody3D _body;
-    
+    #endregion
     
     // Placement cursor
-    private double _desiredPlacementDistance = 10.0;
-    private double _truncatedPlacementDistance;
-    private double _storedPlacementDistance;
+    private double _desiredPlacementDistance = 10.0; // The distance the player has selected
+    private double _truncatedPlacementDistance; // The distance after truncation (raycast into existing component)
+    private double _storedPlacementDistance; // The stored distance after initiating a placement to be returned to after ending the placement
     
     private Vector3 _truncatedPlacementPosition;
     
