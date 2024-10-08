@@ -103,6 +103,7 @@ public partial class PlayerController : Node
 
     private void NoJetpackProcess(double delta, Basis headTransform, Basis bodyTransform)
     {
+        // TODO: Refactor this to not use the rotation property
         Head.Rotation = Body.Rotation + _headRelativeRotation;
     }
 
