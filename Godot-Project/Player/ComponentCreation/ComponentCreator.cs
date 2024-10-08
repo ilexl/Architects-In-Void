@@ -151,12 +151,10 @@ public partial class ComponentCreator : Node
             CollisionShape3D targetedShape = (CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"]);
             _cursor.Basis = _targetedCollider.Transform.Basis * targetedShape.Transform.Basis;
             _cursor.Scale = Vector3.One; // Reset the scale since the basis also includes it
-            double colorVal = (_desiredPlacementDistance - _truncatedPlacementDistance - _minTruncationThreshold) / (_maxTruncationThreshold - _minTruncationThreshold);
-            _cursor.SetColor(_minTruncationColor.Lerp(_maxTruncationColor, Math.Clamp(colorVal, 0, 1)));
-            if (_gridSnap)
-            {
-                _truncatedPlacementPosition = (_truncatedPlacementPosition - (targetedShape.GlobalPosition + targetedShape.Scale)).Snapped(_gridSize) + (targetedShape.GlobalPosition + targetedShape.Scale);
-            }
+
+            SetPlaceColor();
+            SnapPlacementToGrid(targetedShape, result);
+            
         }
         else
         {
@@ -168,6 +166,26 @@ public partial class ComponentCreator : Node
         }
     }
 
+
+    private void SetPlaceColor()
+    {
+        double colorVal = (_desiredPlacementDistance - _truncatedPlacementDistance - _minTruncationThreshold) / (_maxTruncationThreshold - _minTruncationThreshold);
+        _cursor.SetColor(_minTruncationColor.Lerp(_maxTruncationColor, Math.Clamp(colorVal, 0, 1)));
+    }
+
+    private void SnapPlacementToGrid(CollisionShape3D targetedShape, Godot.Collections.Dictionary result)
+    {
+        if (_gridSnap)
+        {
+            _truncatedPlacementPosition = (_truncatedPlacementPosition - (targetedShape.GlobalPosition + targetedShape.Scale)).Snapped(_gridSize) + (targetedShape.GlobalPosition + targetedShape.Scale);
+        }
+        (Vector3 widthV, Vector3 heightV, Vector3 depthV) = GetFaceVectors(_targetedCollider.Transform * targetedShape.Transform, (Vector3)result["normal"] );
+        double widthLength = widthV.Length();
+        double heightLength = heightV.Length();
+        Vector3 faceCenter = targetedShape.GlobalPosition + depthV / 2;
+        DebugDraw.Grid(faceCenter,  widthV / widthLength, heightV / heightLength, countUp: widthLength / 0.2, countRight: heightLength / 0.2);
+    }
+    
     /// <summary>
     /// Handles the rotation of the cursor and any mid placement components based on head orientation.
     /// </summary>
@@ -244,7 +262,7 @@ public partial class ComponentCreator : Node
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var rotation = _cursor.Transform.Basis;
         var placeableComponent = _selectedComponent.Instantiate() as PlaceableComponent;
-        placeableComponent.Place(position, scale, rotation, _targetedVessel);
+        placeableComponent.Place(position, scale, rotation.Orthonormalized(), _targetedVessel);
         
         
 
@@ -256,6 +274,41 @@ public partial class ComponentCreator : Node
     }
 
 
-    
+    // TODO: Put this somewhere more useful
+    public (Vector3 widthVector, Vector3 heightVector, Vector3 depthVector) GetFaceVectors(Transform3D colliderTransform, Vector3 collisionNormal)
+    {
+        // Get the basis (local axes) of the collider's transform
+        Basis basis = colliderTransform.Basis;
+
+        // Find the axis in the basis that is closest to the normal (the one aligned with the face normal)
+        Vector3 axisX = basis * Vector3.Right;
+        Vector3 axisY = basis * Vector3.Up;
+        Vector3 axisZ = basis * Vector3.Forward;
+
+        // Determine which axis is closest to the collision normal
+        double dotX = collisionNormal.Dot(axisX);
+        double dotY = collisionNormal.Dot(axisY);
+        double dotZ = collisionNormal.Dot(axisZ);
+        
+        double dotAX = Mathf.Abs(dotX);
+        double dotAY = Mathf.Abs(dotY);
+        double dotAZ = Mathf.Abs(dotZ);
+
+        // Based on the largest dot product, the normal is aligned with that axis, and the others are width and height
+        if (dotAX > dotAY && dotAX > dotAZ)
+        {
+            // The normal is aligned with the local X axis, so Y and Z are width and height
+            return (axisY, axisZ, axisX * Math.Sign(dotX));
+        }
+        if (dotAY > dotAX && dotAY > dotAZ)
+        {
+            // The normal is aligned with the local Y axis, so X and Z are width and height
+            return (axisX, axisZ, axisY * Math.Sign(dotY));
+        }
+        
+        // The normal is aligned with the local Z axis, so X and Y are width and height
+        return (axisX, axisY, axisZ * Math.Sign(dotZ));
+        
+    }
 
 }
