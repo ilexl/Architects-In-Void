@@ -131,7 +131,19 @@ public partial class Cursor : Node3D
 		_label.Visible = visible;
 	}
 
-	
+	StandardMaterial3D _material = new()
+	{
+		ShadingMode = BaseMaterial3D.ShadingModeEnum.Unshaded,
+		VertexColorUseAsAlbedo = true,
+		Transparency = BaseMaterial3D.TransparencyEnum.Alpha,
+		CullMode = BaseMaterial3D.CullModeEnum.Disabled,
+	};
+	public void SetColor(Color color)
+	{
+		_material.AlbedoColor = color;
+		_startCorner.MaterialOverride = _material;
+		_endCorner.MaterialOverride = _material;
+	}
 
 
 }

@@ -117,7 +117,7 @@ public partial class ComponentCreator : Node
                 }
                 
                 break;
-            // The player has started placing something
+            // The player has started placing something TODO: cancellation
             case ComponentPlacerState.Placing:
                 PlacingVisuals();
                 if (placeAction == 0.0) FinishPlace();
@@ -127,39 +127,32 @@ public partial class ComponentCreator : Node
     
     private void SetPlaceDistance(float value)
     {
-        
-        
         double change = _placementDistanceSensitivity * value;
-
-
-       
-        
         var spaceState = _head.GetWorld3D().DirectSpaceState;
-        
-        
-        // This overrides the stored distance only if the player changes their distance while placing
+
         _desiredPlacementDistance = Math.Clamp(_desiredPlacementDistance + change, _minPlacementDistance, _maxPlacementDistance);
         
-        if (value != 0) _storedPlacementDistance = _desiredPlacementDistance;
         var query = PhysicsRayQueryParameters3D.Create(_head.Position, CalculateCursorPosition(), 2);
         var result = spaceState.IntersectRay(query);
-        DebugDraw.Ray(query, result, 5);
         if (result.Count > 0)
         {
             _truncatedPlacementPosition = (Vector3)result["position"];
             _truncatedPlacementDistance = (_truncatedPlacementPosition - _head.Position).Length();
             if (_state == ComponentPlacerState.Idle) _targetedVessel = (Vessel)((RigidBody3D)result["collider"]).GetParent();
             _cursor.Rotation = _targetedVessel.RigidBody.Rotation;
-
+            
+            double colorVal = (_desiredPlacementDistance - _truncatedPlacementDistance - _minTruncationThreshold) / (_maxTruncationThreshold - _minTruncationThreshold);
+            _cursor.SetColor(_minTruncationColor.Lerp(_maxTruncationColor, Math.Clamp(colorVal, 0, 1)));
         }
         else
         {
+            
             _truncatedPlacementPosition = Vector3.Zero;
             _truncatedPlacementDistance = _desiredPlacementDistance;
             if (_state == ComponentPlacerState.Idle) _targetedVessel = null;
+            _cursor.SetColor(_noTruncationColor);
         }
-        
-        
+    }
     }
     /// <summary>
     /// Handles the visuals of placing
