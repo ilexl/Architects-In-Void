@@ -294,20 +294,25 @@ public sealed partial class DebugDraw : Node
     #endregion
         // TODO: Make use grid object in future
     #region DebugGrid
-    public static void Grid(Vector3 center, Vector3 up, Vector3 right, [Optional] Color? color, double spacing = DefaultSpacing, double count = DefaultCount,
+    public static void Grid(Vector3 center, Vector3 up, Vector3 right, [Optional] Color? color, double spacing = DefaultSpacing, double countUp = DefaultCount, double countRight = DefaultCount,
         double duration = DefaultDuration, double thickness = DefaultThickness, bool drawOnTop = false,
         DebugMesh.Type type = DebugMesh.Type.Auto)
     {
-        double totalSize = spacing * count * 2;
+        double totalSizeUp = spacing * countUp * 2;
+        double totalSizeRight = spacing * countRight * 2;
 
-        Vector3 start = center - up * totalSize / 2 - right * totalSize / 2;
-        for (double i = 0; i < totalSize + spacing; i+= spacing)
+        Vector3 start = center - up * totalSizeUp / 2 - right * totalSizeRight / 2;
+        for (double i = 0; i < totalSizeUp; i+= spacing)
         {
             Vector3 upPos = start + up * i;
+            
+            Line(upPos, upPos + right * totalSizeRight, color, duration, thickness, drawOnTop, type);
+        }
+        for (double i = 0; i < totalSizeRight; i+= spacing)
+        {
             Vector3 rightPos = start + right * i;
             
-            Line(upPos, upPos + right * totalSize, color, duration, thickness, drawOnTop, type);
-            Line(rightPos, rightPos + up * totalSize, color, duration, thickness, drawOnTop, type);
+            Line(rightPos, rightPos + up * totalSizeUp, color, duration, thickness, drawOnTop, type);
         }
     }
 #endregion
