@@ -122,13 +122,17 @@ public sealed partial class DebugDraw : Node
         
     #region DebugDefaults
             
-    private const double DefaultDuration = 1.0 / 60; // TODO: Replace this with update rate from project settings
-    private const double DefaultThickness = 0;
-    private const double DefaultRadius = 1;
-    private const int DefaultPrecision = 20;
+    internal const double DefaultDuration = 1.0 / 60; // TODO: Replace this with update rate from project settings
+    internal const double DefaultThickness = 0;
+    internal const double DefaultRadius = 1;
+    internal const double DefaultScale = 1;
+    internal const double DefaultSpacing = 0.1;
+    internal const double DefaultCount = 10;
+    internal const int DefaultPrecision = 20;
+
     
-    private static readonly Color DefaultColor = new Color(255f, 255f, 255f);
-    private static readonly Vector3 DefaultPos = Vector3.Zero;
+    internal static readonly Color DefaultColor = new Color(255f, 255f, 255f);
+    internal static readonly Vector3 DefaultPos = Vector3.Zero;
     #endregion
         
     #region DebugLine
@@ -204,23 +208,21 @@ public sealed partial class DebugDraw : Node
     }    
         
     #endregion
-        // TODO: implement
+        // TODO: Implement DebugSphere
     #region DebugSphere
     #endregion
-        // TODO: Implement
+        // TODO: Implement DebugLabel
     #region DebugLabel
-    #endregion
+    public static void Label(Vector3 position, [Optional] Basis? rotation, [Optional] Color? color, bool alwaysFaceCamera = false, double scale = DefaultScale, 
+        double duration = DefaultDuration, bool drawOnTop = false)
+    {
+        throw new System.NotImplementedException();
+    }
+
+
+    
+#endregion
     #region DebugBox
-        
-    // DebugDraw.Line(new Vector3(start.X, start.Y, start.Z), new Vector3(end.X, start.Y, start.Z));
-    // DebugDraw.Line(new Vector3(start.X, start.Y, start.Z), new Vector3(start.X, end.Y, start.Z));
-    // DebugDraw.Line(new Vector3(start.X, start.Y, start.Z), new Vector3(start.X, start.Y, end.Z));
-		  //
-    // DebugDraw.Line(new Vector3(end.X, start.Y, start.Z), new Vector3(end.X, end.Y, start.Z));
-    // DebugDraw.Line(new Vector3(end.X, start.Y, start.Z), new Vector3(end.X, start.Y, end.Z));
-		  //
-    // DebugDraw.Line(new Vector3(start.X, end.Y, start.Z), new Vector3(start.X, end.Y, end.Z));
-    // DebugDraw.Line(new Vector3(start.X, end.Y, start.Z), new Vector3(start.X, end.Y, end.Z));
         
     public static void Box([Optional]Vector3? cornerA, [Optional]Vector3? cornerB, [Optional] Basis? rotation, [Optional]Color? color, double duration = DefaultDuration, double thickness = DefaultThickness, bool drawOnTop = false, DebugMesh.Type type = DebugMesh.Type.Auto )
     {
@@ -290,4 +292,23 @@ public sealed partial class DebugDraw : Node
 
     }
     #endregion
+        // TODO: Make use grid object in future
+    #region DebugGrid
+    public static void Grid(Vector3 center, Vector3 up, Vector3 right, [Optional] Color? color, double spacing = DefaultSpacing, double count = DefaultCount,
+        double duration = DefaultDuration, double thickness = DefaultThickness, bool drawOnTop = false,
+        DebugMesh.Type type = DebugMesh.Type.Auto)
+    {
+        double totalSize = spacing * count * 2;
+
+        Vector3 start = center - up * totalSize / 2 - right * totalSize / 2;
+        for (double i = 0; i < totalSize + spacing; i+= spacing)
+        {
+            Vector3 upPos = start + up * i;
+            Vector3 rightPos = start + right * i;
+            
+            Line(upPos, upPos + right * totalSize, color, duration, thickness, drawOnTop, type);
+            Line(rightPos, rightPos + up * totalSize, color, duration, thickness, drawOnTop, type);
+        }
+    }
+#endregion
 }
