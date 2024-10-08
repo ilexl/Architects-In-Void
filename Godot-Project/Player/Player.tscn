@@ -40,7 +40,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="ComponentCreator" type="Node" parent="." node_paths=PackedStringArray("_head", "_body")]
 script = ExtResource("3_btxcd")
-_placementRotationSensitivity = 5.0
+_placementRotationSensitivity = 2.0
 _maxTruncationThreshold = 8.0
 _minTruncationThreshold = 0.5
 _maxTruncationColor = Color(0.614057, 0.102782, 1, 1)
