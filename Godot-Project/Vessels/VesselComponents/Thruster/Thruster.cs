@@ -30,6 +30,8 @@ public partial class Thruster : PlaceableComponent
     public double ThrustSpoolTime;
     public double Volume;
 
+    private Node3D _thrusterContainerNode;
+
     public override void _Ready()
     {
         ComponentType = PlaceableComponentType.DynamicScale;
@@ -54,8 +56,13 @@ public partial class Thruster : PlaceableComponent
         ThrustPerVolume = Thrust / Volume;
 
 
+        Scale = scale;
+        _thrusterContainerNode = new Node3D();
+        Vector3 scaleInverse = new Vector3(1 / scale.X, 1 / scale.Y, 1 / scale.Z);
+        _thrusterContainerNode.Scale = scaleInverse;
+        AddChild(_thrusterContainerNode);
+        
         GenerateThruster();
-
 
         GD.Print("Surface area: " + SurfaceArea + " m^2");
         GD.Print("Volume: " + Volume + " m^3");
@@ -68,20 +75,19 @@ public partial class Thruster : PlaceableComponent
 
         if (vessel == null)
         {
-            vessel = VesselData._VesselData.CreateVessel(position);
-            vessel.RigidBody.AddChild(this);
+            GD.Print("Making new vessel");
+            return Place(position, scale, rotation);
         }
-        else
-        {
-            vessel.RigidBody.AddChild(this);
-            Position = position - vessel.RigidBody.Position;
-        }
+        GD.Print("Adding to existing vessel");
+        return AddToVessel(vessel, position, scale, rotation);
         
-        return PlaceableComponentResult.Success;
     }
 
     private void GenerateThruster()
     {
+        
+        
+        
         AddRoundedBox(new Vector3(_width - 0.1, _height - 0.1, _length - _nozzleLength),
             new Vector3(0, 0, -_nozzleLength / 2), _engineCornerRadius);
 
@@ -112,7 +118,7 @@ public partial class Thruster : PlaceableComponent
         boxMesh.Mesh = new BoxMesh();
         boxMesh.Scale = scale;
         boxMesh.Position = position;
-        AddChild(boxMesh);
+        _thrusterContainerNode.AddChild(boxMesh);
     }
 
     private void AddCylinder(Vector3 scale, Vector3 position, Vector3 rotation)
@@ -122,7 +128,7 @@ public partial class Thruster : PlaceableComponent
         cylinderMesh.Scale = scale;
         cylinderMesh.Position = position;
         cylinderMesh.Rotation = rotation;
-        AddChild(cylinderMesh);
+        _thrusterContainerNode.AddChild(cylinderMesh);
     }
 
     private void AddSphere(double scale, Vector3 position)
@@ -131,7 +137,7 @@ public partial class Thruster : PlaceableComponent
         sphereMesh.Mesh = new SphereMesh();
         sphereMesh.Scale = new Vector3(scale, scale, scale);
         sphereMesh.Position = position;
-        AddChild(sphereMesh);
+        _thrusterContainerNode.AddChild(sphereMesh);
     }
 
     private void AddRoundedBox(Vector3 scale, Vector3 position, double radius)

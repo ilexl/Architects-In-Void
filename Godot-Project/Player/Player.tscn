@@ -44,7 +44,8 @@ _placementRotationSensitivity = 2.0
 _maxTruncationThreshold = 8.0
 _minTruncationThreshold = 0.5
 _maxTruncationColor = Color(0.614057, 0.102782, 1, 1)
-_minTruncationColor = Color(0.0304728, 0.312885, 0.608724, 1)
+_minTruncationColor = Color(0.00909067, 0.172699, 0.356308, 1)
+_noTruncationColor = Color(0.681615, 0.788438, 0.97352, 1)
 _head = NodePath("../Head")
 _body = NodePath("../Body")
 

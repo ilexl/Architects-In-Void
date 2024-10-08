@@ -2,10 +2,8 @@
 
 [ext_resource type="Script" path="res://Vessels/VesselComponents/Thruster/Thruster.cs" id="1_d8u15"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_b5t1o"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_1s8d4"]
 
-[node name="Thruster" type="Node3D"]
+[node name="Thruster" type="CollisionShape3D"]
+shape = SubResource("BoxShape3D_1s8d4")
 script = ExtResource("1_d8u15")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-mesh = SubResource("BoxMesh_b5t1o")
