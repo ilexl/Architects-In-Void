@@ -99,6 +99,9 @@ public partial class PlayerController : Node
 
         Body.LinearVelocity +=
             GetAcceleration(moveVector.Normalized(), headTransform) * delta; // Our moveVector in PlayerOrigin space
+        
+        // For my sanity as a game dev
+        Body.LinearVelocity /= 1.1;
     }
 
     private void NoJetpackProcess(double delta, Basis headTransform, Basis bodyTransform)

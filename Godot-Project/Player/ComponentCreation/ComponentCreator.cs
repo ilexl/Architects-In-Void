@@ -16,8 +16,10 @@ internal enum ComponentPlacerState
 public partial class ComponentCreator : Node
 {
     #region Config
-        
-    [ExportCategory("Placement")]
+
+    [ExportCategory("Placement")] 
+    [Export] private bool _gridSnap = true;
+    [Export] private double _gridSize = 0.1; // 10 centimeters
         [ExportGroup("Sensitivity")]
             [Export] private double _placementDistanceSensitivity = 1.0;
             [Export] private double _placementRotationSensitivity = 1.0;
@@ -146,10 +148,15 @@ public partial class ComponentCreator : Node
                 _targetedVessel = (Vessel)_targetedCollider.GetParent();
             }
 
-            _cursor.Basis = _targetedCollider.Transform.Basis * ((CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"])).Transform.Basis;
+            CollisionShape3D targetedShape = (CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"]);
+            _cursor.Basis = _targetedCollider.Transform.Basis * targetedShape.Transform.Basis;
             _cursor.Scale = Vector3.One; // Reset the scale since the basis also includes it
             double colorVal = (_desiredPlacementDistance - _truncatedPlacementDistance - _minTruncationThreshold) / (_maxTruncationThreshold - _minTruncationThreshold);
             _cursor.SetColor(_minTruncationColor.Lerp(_maxTruncationColor, Math.Clamp(colorVal, 0, 1)));
+            if (_gridSnap)
+            {
+                _truncatedPlacementPosition = (_truncatedPlacementPosition - (targetedShape.GlobalPosition + targetedShape.Scale)).Snapped(_gridSize) + (targetedShape.GlobalPosition + targetedShape.Scale);
+            }
         }
         else
         {
@@ -186,6 +193,11 @@ public partial class ComponentCreator : Node
     private void PlacingVisuals()
     {
         _cursorEnd = CalculateCursorPosition();
+        if (_gridSnap)
+        {
+            _cursorEnd = (_cursorEnd - _cursorStart).Snapped(_gridSize) + _cursorStart;
+        }
+        GD.Print(_cursorEnd - _cursorStart);
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursorStart - _cursorEnd;
         _cursor.SetCornerPositions(_cursorStart, _cursorEnd);
@@ -197,6 +209,7 @@ public partial class ComponentCreator : Node
     {
         _state = ComponentPlacerState.Placing;
         _cursorStart = _truncatedPlacementPosition == Vector3.Zero ? CalculateCursorPosition() : _truncatedPlacementPosition;
+
         
         // Store the placement distance to stop the node from getting constantly closer to the player
         _storedPlacementDistance = _desiredPlacementDistance;
@@ -225,12 +238,12 @@ public partial class ComponentCreator : Node
         _cursor.SetLabelVisible(false);
         if (_selectedComponent is null) return;
         
-        var placeableComponent = _selectedComponent.Instantiate() as PlaceableComponent;
         
-        var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var scale = _cursor.GetComponentScale();
+        if (scale.X * scale.Y * scale.Z == 0) return;
+        var position = _cursorStart.Lerp(_cursorEnd, 0.5);
         var rotation = _cursor.Transform.Basis;
-        
+        var placeableComponent = _selectedComponent.Instantiate() as PlaceableComponent;
         placeableComponent.Place(position, scale, rotation, _targetedVessel);
         
         

@@ -204,4 +204,10 @@ public sealed partial class DebugDraw : Node
     }    
         
     #endregion
+        // TODO: implement
+    #region DebugSphere
+    #endregion
+        // TODO: Implement
+    #region DebugLabel
+    #endregion
 }
