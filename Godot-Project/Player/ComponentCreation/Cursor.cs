@@ -42,11 +42,11 @@ public partial class Cursor : Node3D
 		// Initialize corner meshes
 		_startCorner = new MeshInstance3D();
 		_startCorner.Mesh = new SphereMesh();
-		_startCorner.Scale = new Vector3(0.5f, 0.5f, 0.5f);
+		_startCorner.Scale = new Vector3(0.1f, 0.1f, 0.1f);
 		AddChild(_startCorner);
 		_endCorner = new MeshInstance3D();
 		_endCorner.Mesh = new SphereMesh();
-		_endCorner.Scale = new Vector3(0.5f, 0.5f, 0.5f);
+		_endCorner.Scale = new Vector3(0.1f, 0.1f, 0.1f);
 		AddChild(_endCorner);
 		
 		// assign label
@@ -124,7 +124,8 @@ public partial class Cursor : Node3D
 		Vector3 localEnd = end * Transform;
 		_startCorner.Position = localStart;
 		_endCorner.Position = localEnd;
-		SetScale(localStart - localEnd);
+		//SetScale(localStart - localEnd);
+		DebugDraw.Box(start, end, Transform.Basis);
 	}
 
 	public Vector3 GetComponentScale()
