@@ -89,6 +89,7 @@ public partial class ComponentCreator : Node
         float placementDistanceControl = (Input.IsActionJustPressed("increase_placement_distance") ? 1 : 0) + (Input.IsActionJustPressed("decrease_placement_distance") ? -1 : 0);
         
         // Show the cursor and handle placement distance if the player has a component selected on their hotbar
+        SetPlaceRotation(delta);
         if (SelectedComponent is not null)
         {
             _cursor.Visible = true; 
@@ -153,7 +154,26 @@ public partial class ComponentCreator : Node
             _cursor.SetColor(_noTruncationColor);
         }
     }
+
+    /// <summary>
+    /// Handles the rotation of the cursor and any mid placement components based on head orientation.
+    /// </summary>
+    /// <param name="delta">Time since last frame</param>
+    private void SetPlaceRotation(double delta)
+    {
+        double pitch = Input.GetAxis("component_rotate_pitch_down", "component_rotate_pitch_up") * _placementRotationSensitivity * delta;
+        double yaw = Input.GetAxis("component_rotate_yaw_left", "component_rotate_yaw_right") * _placementRotationSensitivity * delta;
+        double roll = Input.GetAxis("component_rotate_roll_right", "component_rotate_roll_left") * _placementRotationSensitivity * delta;
+        Basis headBasis = _head.Transform.Basis;
+        Basis xBasis = new Basis(headBasis.X, pitch);
+        Basis yBasis = new Basis(headBasis.Y, yaw);
+        Basis zBasis = new Basis(headBasis.Z, roll);
+        Basis combined = xBasis * yBasis * zBasis * _cursor.Transform.Basis;
+        combined = combined.Orthonormalized();
+        _cursor.Transform = _cursor.Transform with { Basis = combined };
     }
+
+
     /// <summary>
     /// Handles the visuals of placing
     /// </summary>
