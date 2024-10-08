@@ -135,6 +135,7 @@ public partial class ComponentCreator : Node
         
         var query = PhysicsRayQueryParameters3D.Create(_head.Position, CalculateCursorPosition(), 2);
         var result = spaceState.IntersectRay(query);
+        DebugDraw.Ray(query, result, 5);
         if (result.Count > 0)
         {
             _truncatedPlacementPosition = (Vector3)result["position"];
