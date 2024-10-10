@@ -108,6 +108,7 @@ public partial class MainMenu : Node
     {
         GD.Print("MainMenu: Options");
         _wm.ShowWindow(_winSettings);
+        ((UIManager)_wm.GetParent())._settings.LoadSettings();
     }
 
     public override void _Notification(int what)
