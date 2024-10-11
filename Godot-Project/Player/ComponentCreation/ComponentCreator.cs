@@ -177,6 +177,9 @@ public partial class ComponentCreator : Node
     {
         if (_gridSnap)
         {
+            //TODO: transform position to local of the cube and snap to the face, then transform back to world
+            //PROBLEM: Floating point errors
+            //Tomorrow me can deal with this
             _truncatedPlacementPosition = (_truncatedPlacementPosition - (targetedShape.GlobalPosition + targetedShape.Scale)).Snapped(_gridSize) + (targetedShape.GlobalPosition + targetedShape.Scale);
         }
         (Vector3 widthV, Vector3 heightV, Vector3 depthV) = GetFaceVectors(_targetedCollider.Transform * targetedShape.Transform, (Vector3)result["normal"] );
