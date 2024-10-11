@@ -8,14 +8,17 @@ public partial class InfoPopUp : Node
     [Export] TextureButton _buttonClose;
     public void Setup(string message)
     {
-        if (!_buttonClose.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Close)))
+        if(_buttonClose != null)
         {
-            _buttonClose.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Close));
+            if (!_buttonClose.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Close)))
+            {
+                _buttonClose.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Close));
+            }
         }
         _title.Text = message;
     }
 
-    void Close()
+    public void Close()
     {
         GetParent().RemoveChild(this);
     }

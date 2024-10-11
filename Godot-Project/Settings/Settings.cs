@@ -1,4 +1,6 @@
 using Godot;
+using Godot.Collections;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -10,8 +12,8 @@ public partial class Settings : Node
     [ExportGroup("General", "")]
     [Export] public Language _gameLanguage;
 
-    [ExportGroup("Controls", "")]
-    [Export] bool temp2;
+    // controls
+    public List<Control> savedControls;
 
     [ExportGroup("Audio", "")]
     [Export] public double _masterVolume;
@@ -52,6 +54,13 @@ public partial class Settings : Node
         German = 8,
         Italian = 9
     };
+
+    public struct Control
+    {
+        public string InputMapName;
+        public InputEvent inputEventPrimary;
+        public InputEvent inputEventSecondary;
+    }
 
     public override void _Ready()
     {
@@ -132,13 +141,101 @@ public partial class Settings : Node
         file.StoreVar("General");
         file.StoreVar((int)_gameLanguage);
 
-        // Controls
-        file.StoreVar("Controls");
-
         // TODO: add controls here
 
         file.Close(); // must be called or else creates a bunch of .tmp files
+
+        SaveControls();
     }
+
+    public void SaveControls()
+    {
+        GD.Print("Settings: saving controls to file...");
+        DirAccess.MakeDirRecursiveAbsolute(GetSavePath());
+        string _name = "controls";
+        var file = FileAccess.Open($"{GetSavePath()}{_name}.dat", FileAccess.ModeFlags.Write);
+        int amount = savedControls.Count;
+        file.StoreVar(amount);
+        foreach(var control in savedControls)
+        {
+            file.StoreVar(control.InputMapName);
+            SaveKey(file, control.inputEventPrimary);
+            SaveKey(file, control.inputEventSecondary);
+        }
+        file.Close();
+    }
+
+    void SaveKey(FileAccess file, InputEvent ie)
+    {
+        if(ie == null)
+        {
+            file.StoreVar(-1);
+        }
+        else if (ie is InputEventMouseButton iemb)
+        {
+            file.StoreVar(0);
+            file.StoreVar(ie.Device);
+            file.StoreVar((long)iemb.ButtonIndex);
+        }
+        else if (ie is InputEventJoypadButton iejb)
+        {
+            file.StoreVar(1);
+            file.StoreVar(ie.Device);
+            file.StoreVar((long)iejb.ButtonIndex);
+
+        }
+        else if (ie is InputEventKey iek)
+        {
+            file.StoreVar(2);
+            file.StoreVar(ie.Device);
+            file.StoreVar((long)iek.Keycode);
+            file.StoreVar((long)iek.PhysicalKeycode);
+            file.StoreVar((long)iek.Unicode);
+        }
+        else
+        {
+            file.StoreVar(-1);
+            GD.PushError("Settings: invalid InputEvent type...");
+        }
+    }
+
+    InputEvent LoadKey(FileAccess file)
+    {
+        int type = file.GetVar().AsInt32();
+        InputEvent output = null;
+        if(type == -1)
+        {
+            return output;
+        }
+        if (type == 0) // InputEventMouseButton
+        {
+            var o = new InputEventMouseButton();
+            o.Device = file.GetVar().AsInt32();
+            o.ButtonIndex = (MouseButton)file.GetVar().AsInt64();
+            output = o;
+        }
+        if (type == 1) // InputEventJoypadButton
+        {
+            var o = new InputEventJoypadButton();
+            o.Device = file.GetVar().AsInt32();
+            o.ButtonIndex = (JoyButton)file.GetVar().AsInt64();
+            output = o;
+
+        }
+        if (type == 2) // InputEventKey
+        {
+            var o = new InputEventKey();
+            o.Device = file.GetVar().AsInt32();
+            o.Keycode = (Key)file.GetVar().AsInt64();
+            o.PhysicalKeycode = (Key)file.GetVar().AsInt64();
+            o.Unicode = file.GetVar().AsInt64();
+            output = o;
+
+        }
+        return output;
+    }
+    
+
     public void DefaultSettings()
     {
         GD.Print("Settings: setting default settings");
@@ -155,11 +252,26 @@ public partial class Settings : Node
         _displayMode = DisplayMode.Windowed;
         _vsync = false;
         GD.Print("Settings: default settings set");
+
+        DefaultControls();
         SaveSettings();
     }
+
+    private void DefaultControls()
+    {
+        GD.Print("Settings: default controls to file...");
+        DirAccess.MakeDirRecursiveAbsolute(GetSavePath());
+        savedControls = new();
+        string _name = "controls";
+        var file = FileAccess.Open($"{GetSavePath()}{_name}.dat", FileAccess.ModeFlags.Write);
+        int zero = 0;
+        file.StoreVar(zero); // store 0 to show there are no saved controls only default set in godot
+        file.Close();
+    }
+
     public void LoadSettings()
     {
-        GD.Print("Settings: loading from file...");
+        GD.Print("Settings: loading settings from file...");
         DirAccess.MakeDirRecursiveAbsolute(GetSavePath());
         string _name = "settings";
         if (!FileAccess.FileExists($"{GetSavePath()}{_name}.dat"))
@@ -209,14 +321,41 @@ public partial class Settings : Node
         }
         _gameLanguage = (Language)file.GetVar().AsInt32();
 
-        // Controls
-        if (file.GetVar().AsString() != "Controls")
+        file.Close(); // must be called or else creates a bunch of .tmp files
+
+        LoadControls();
+    }
+
+    private void LoadControls()
+    {
+        GD.Print("Settings: loading controls from file...");
+        DirAccess.MakeDirRecursiveAbsolute(GetSavePath());
+        string _name = "controls";
+        if (!FileAccess.FileExists($"{GetSavePath()}{_name}.dat"))
         {
-            file.Close();
-            GD.PushError("Settings: loaded settings failed... file incorrect...");
-            return;
+            GD.Print("Settings: no file exists... creating one with default settings");
+            DefaultControls(); // load default settings and save to file
+            return; // no need to continue loading as default will load
         }
-        // TODO: add controls here
+        var file = FileAccess.Open($"{GetSavePath()}{_name}.dat", FileAccess.ModeFlags.Read);
+
+        savedControls = new List<Control>();
+
+        // file .GetVar() .AsSomething()
+        // load file stuff here
+
+        // get amount as int
+        int amount = file.GetVar().AsInt32();
+
+        // loop amount
+        for (; amount > 0; amount--)
+        {
+            Control c = new Control();
+            c.InputMapName = file.GetVar().AsString();
+            c.inputEventPrimary = LoadKey(file);
+            c.inputEventSecondary = LoadKey(file);
+            savedControls.Add(c);
+        }
 
         file.Close(); // must be called or else creates a bunch of .tmp files
     }

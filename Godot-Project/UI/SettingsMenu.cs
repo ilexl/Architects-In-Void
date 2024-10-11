@@ -18,7 +18,7 @@ public partial class SettingsMenu : Node
     [Export] private RichTextLabel _languageDisplay;
     private ArchitectsInVoid.Settings.Settings.Language _currentGameLanguage;
     [ExportGroup("Settings-Controls", "")]
-    [Export] private bool tempBool;
+    [Export] private Node _controlsParent;
     [ExportGroup("Settings-Audio", "")]
     [Export] private HSlider _masterVolumeSlider, _soundeffectsVolumeSlider, _musicVolumeSlider, _dialougeVolumeSlider;
     [Export] private TextureButton _spokenLangaugeLeftBtn, _spokenLangaugeRightBtn, _subtitlesOffBtn, _subtitlesOnBtn, 
@@ -642,7 +642,19 @@ public partial class SettingsMenu : Node
 
     void DisplayCurrentControlsSettings()
     {
-
+        if(_controlsParent == null)
+        {
+            GD.PushError("SettingsMenu: controls parent is null...");
+            return;
+        }
+        foreach(var child in _controlsParent.GetChildren())
+        {
+            var rc = child as RemapControl;
+            if (rc == null) { continue; }
+            rc.Reset();
+            rc.LoadControlData();
+            rc.DisplayCurrent(); 
+        }
     }
 
     void DisplayCurrentAudioSettings()

@@ -10,7 +10,8 @@ public partial class PopUp : Node
 	[Export] PackedScene confirmPopUp;
 	[Export] PackedScene confirmPopUpCD;
     [Export] PackedScene infoPopUp;
-	[Export] PackedScene inputPopUp;
+    [Export] PackedScene infoPopUpNC;
+    [Export] PackedScene inputPopUp;
 
     public string LastInput;
 
@@ -50,6 +51,15 @@ public partial class PopUp : Node
         holder.AddChild(inst);
         InfoPopUp ipu = (InfoPopUp)inst;
         ipu.Setup(message);
+    }
+
+    public InfoPopUp DisplayInfoPopUpNC(string message)
+    {
+        var inst = infoPopUpNC.Instantiate();
+        holder.AddChild(inst);
+        InfoPopUp ipu = (InfoPopUp)inst;
+        ipu.Setup(message);
+        return ipu;
     }
 
     public void DisplayInputPopUp(string message, Callable confirmBind)
