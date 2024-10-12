@@ -18,7 +18,7 @@ public partial class SettingsMenu : Node
     [Export] private RichTextLabel _languageDisplay;
     private ArchitectsInVoid.Settings.Settings.Language _currentGameLanguage;
     [ExportGroup("Settings-Controls", "")]
-    [Export] private Node _controlsParent;
+    [Export] private Node[] _controlsParent;
     [ExportGroup("Settings-Audio", "")]
     [Export] private HSlider _masterVolumeSlider, _soundeffectsVolumeSlider, _musicVolumeSlider, _dialougeVolumeSlider;
     [Export] private TextureButton _spokenLangaugeLeftBtn, _spokenLangaugeRightBtn, _subtitlesOffBtn, _subtitlesOnBtn, 
@@ -647,14 +647,19 @@ public partial class SettingsMenu : Node
             GD.PushError("SettingsMenu: controls parent is null...");
             return;
         }
-        foreach(var child in _controlsParent.GetChildren())
+        GD.Print("SettingsMenu: refreshing all remappable controls");
+        foreach(Node n in _controlsParent)
         {
-            var rc = child as RemapControl;
-            if (rc == null) { continue; }
-            rc.Reset();
-            rc.LoadControlData();
-            rc.DisplayCurrent(); 
+            foreach (var child in n.GetChildren())
+            {
+                var rc = child as RemapControl;
+                if (rc == null) { continue; }
+                rc.Reset();
+                rc.LoadControlData();
+                rc.DisplayCurrent();
+            }
         }
+        GD.Print("SettingsMenu: refresh of all remappable controls complete!");
     }
 
     void DisplayCurrentAudioSettings()

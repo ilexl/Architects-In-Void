@@ -185,7 +185,7 @@ public partial class RemapControl : Node
         int isValid = InputMap.GetActions().IndexOf(InputMapName);
         if (isValid == -1)
         {
-            GD.Print(InputMap.GetActions());
+            //GD.Print(InputMap.GetActions());
             GD.PushError($"RemapControl: {InputMapName} is not a valid Action in the InputMap...");
             return;
         }
@@ -354,7 +354,7 @@ public partial class RemapControl : Node
     bool TryGetSettings()
     {
         // seriously dont ask.......
-        var target = GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent();
+        var target = GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent();
         var uim = (UIManager)target;
         if(uim != null)
         {
@@ -366,10 +366,10 @@ public partial class RemapControl : Node
 
     internal void Reset()
     {
-        GD.Print("RemapControl: reset called");
+        //GD.Print("RemapControl: reset called");
         InputMap.ActionEraseEvents(InputMapName);
         var test = ProjectSettings.GetSetting($"input/{InputMapName}");
-        GD.Print(test);
+        //GD.Print(test);
         Array<InputEvent> e = (Array<InputEvent>)test.AsGodotDictionary().GetValueOrDefault("events");
 
         _primaryIE = null;

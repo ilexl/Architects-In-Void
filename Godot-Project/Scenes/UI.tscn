@@ -99,6 +99,7 @@ script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -297,7 +298,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Settings" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -325,7 +325,7 @@ _wmSettingSub = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackgr
 _langaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageLeftBtn")
 _langaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn")
 _languageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageDisplayText")
-_controlsParent = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement")
+_controlsParent = [NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous")]
 _masterVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume/ControlHolder/MasterVolumeSlider")
 _soundeffectsVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume/ControlHolder/SoundEffectsVolumeSlider")
 _musicVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume/ControlHolder/MusicVolumeSlider")
@@ -478,20 +478,22 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SettingsSubMenus" type="ScrollContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
-layout_mode = 0
+[node name="SettingsSubMenus" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
+anchors_preset = 0
 offset_left = 132.0
 offset_top = 60.0
-offset_right = 1076.0
+offset_right = 1084.0
 offset_bottom = 516.0
-horizontal_scroll_mode = 0
-vertical_scroll_mode = 2
 script = ExtResource("1_st6gj")
 _windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
+visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
+anchors_preset = 0
+offset_right = 944.0
+offset_bottom = 456.0
 script = ExtResource("2_5w2l0")
 ShowOnStart = true
 
@@ -613,12 +615,25 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="ControlSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
-visible = false
-custom_minimum_size = Vector2(944, 456)
-layout_mode = 2
+layout_mode = 1
+anchors_preset = 0
+offset_right = 952.0
+offset_bottom = 456.0
 script = ExtResource("2_5w2l0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
+custom_minimum_size = Vector2(944, 456)
+layout_mode = 2
+offset_right = 944.0
+offset_bottom = 456.0
+
+[node name="Holder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer"]
+custom_minimum_size = Vector2(0, 2010)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
 layout_mode = 0
 offset_left = 362.0
 offset_top = 18.5506
@@ -630,16 +645,16 @@ text = "Control Settings"
 fit_content = true
 autowrap_mode = 0
 
-[node name="Movement" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
+[node name="Movement" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
 custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 23.0
 offset_top = 50.0
 offset_right = 871.0
-offset_bottom = 142.0
+offset_bottom = 528.0
 
-[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement"]
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"]
 layout_mode = 0
 offset_left = 12.0
 offset_top = 3.0
@@ -651,26 +666,429 @@ text = "Movement"
 fit_content = true
 autowrap_mode = 0
 
-[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement"]
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"]
 layout_mode = 0
 offset_left = 13.0
 offset_top = 27.0
 offset_right = 848.0
 offset_bottom = 28.0
 
-[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 35.0
+offset_bottom = 65.0
+InputMapName = "movement_move_forward"
+DisplayName = "Move Forward"
 
-[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/Movement" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-offset_top = 66.0
-offset_bottom = 96.0
-InputMapName = "testing_2"
-DisplayName = "Testing 2"
+offset_top = 70.0
+offset_bottom = 100.0
+InputMapName = "movement_move_backward"
+DisplayName = "Move Backward"
+
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 105.0
+offset_bottom = 135.0
+InputMapName = "movement_move_left"
+DisplayName = "Move Left"
+
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 140.0
+offset_bottom = 170.0
+InputMapName = "movement_move_right"
+DisplayName = "Move Right"
+
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 175.0
+offset_bottom = 205.0
+InputMapName = "movement_roll_left"
+DisplayName = "Roll Left"
+
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 210.0
+offset_bottom = 240.0
+InputMapName = "movement_roll_right"
+DisplayName = "Roll Right"
+
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 245.0
+offset_bottom = 275.0
+InputMapName = "movement_move_up"
+DisplayName = "Move Up / Jump"
+
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 280.0
+offset_bottom = 310.0
+InputMapName = "movement_move_down"
+DisplayName = "Move Down / Crouch"
+
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 315.0
+offset_bottom = 345.0
+InputMapName = "movement_toggle_dampeners"
+DisplayName = "Toggle Inertia Dampeners"
+
+[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 350.0
+offset_bottom = 380.0
+InputMapName = "movement_toggle_jetpack"
+DisplayName = "Toggle Jetpack / Thrust"
+
+[node name="Remap-Control11" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 385.0
+offset_bottom = 415.0
+InputMapName = "movement_sprint_hold"
+DisplayName = "Sprint (Hold)"
+
+[node name="Remap-Control12" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+offset_top = 420.0
+offset_bottom = 450.0
+InputMapName = "movement_sprint_toggle"
+DisplayName = "Sprint (Toggle)"
+
+[node name="Interactions" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 520.0
+offset_right = 871.0
+offset_bottom = 878.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Systems / Interactions"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 35.0
+offset_bottom = 65.0
+InputMapName = "interactions_use_primary"
+DisplayName = "Use (Primary)"
+
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
+offset_top = 70.0
+offset_bottom = 100.0
+InputMapName = "interactions_use_secondary"
+DisplayName = "Use (Secondary)"
+
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 105.0
+offset_bottom = 135.0
+InputMapName = "interactions_reload"
+DisplayName = "Reload"
+
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 140.0
+offset_bottom = 170.0
+InputMapName = "interactions_use_or_interact"
+DisplayName = "Use / Interact"
+
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 175.0
+offset_bottom = 205.0
+InputMapName = "interactions_helmet"
+DisplayName = "Helmet On / Off"
+
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 210.0
+offset_bottom = 240.0
+InputMapName = "interactions_power_switch"
+DisplayName = "Power On / Off"
+
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 245.0
+offset_bottom = 275.0
+InputMapName = "interactions_chat_screen"
+DisplayName = "Chat Screen"
+
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 280.0
+offset_bottom = 310.0
+InputMapName = "interactions_inventory"
+DisplayName = "Inventory"
+
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+offset_top = 315.0
+offset_bottom = 345.0
+InputMapName = "interactions_respawn"
+DisplayName = "Respawn"
+
+[node name="Block Placement" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 880.0
+offset_right = 871.0
+offset_bottom = 1273.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Block Placement"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 35.0
+offset_bottom = 65.0
+InputMapName = "blockplacement_config_menu"
+DisplayName = "Block / Toolbar Config Menu"
+
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
+offset_top = 70.0
+offset_bottom = 100.0
+InputMapName = "blockplacement_rotate_horizontal_left"
+DisplayName = "Rotate Block Horizontal Left"
+
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 105.0
+offset_bottom = 135.0
+InputMapName = "blockplacement_rotate_horizontal_right"
+DisplayName = "Rotate Block Horizontal Right"
+
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 140.0
+offset_bottom = 170.0
+InputMapName = "blockplacement_rotate_vertical_up"
+DisplayName = "Rotate Block Vertical Up"
+
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 175.0
+offset_bottom = 205.0
+InputMapName = "blockplacement_rotate_vertical_down"
+DisplayName = "Rotate Block Vertical Down"
+
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 210.0
+offset_bottom = 240.0
+InputMapName = "blockplacement_rotate_roll_left"
+DisplayName = "Rotate Block Roll Left"
+
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 245.0
+offset_bottom = 275.0
+InputMapName = "blockplacement_rotate_roll_right"
+DisplayName = "Rotate Block Roll Right"
+
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 280.0
+offset_bottom = 310.0
+InputMapName = "blockplacement_symmetry_toggle"
+DisplayName = "Symmetry Mode Toggle"
+
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 315.0
+offset_bottom = 345.0
+InputMapName = "blockplacement_symmetry_setup"
+DisplayName = "Symmetry Mode Setup"
+
+[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+offset_top = 350.0
+offset_bottom = 380.0
+InputMapName = "blockplacement_build_planner"
+DisplayName = "Build Planner"
+
+[node name="Toolbars" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 1280.0
+offset_right = 871.0
+offset_bottom = 1758.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Toolbars"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 35.0
+offset_bottom = 65.0
+InputMapName = "toolbar_equip_slot_1"
+DisplayName = "Toolbar Equip Slot 1"
+
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
+offset_top = 70.0
+offset_bottom = 100.0
+InputMapName = "toolbar_equip_slot_2"
+DisplayName = "Toolbar Equip Slot 2"
+
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 105.0
+offset_bottom = 135.0
+InputMapName = "toolbar_equip_slot_3"
+DisplayName = "Toolbar Equip Slot 3"
+
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 140.0
+offset_bottom = 170.0
+InputMapName = "toolbar_equip_slot_4"
+DisplayName = "Toolbar Equip Slot 4"
+
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 175.0
+offset_bottom = 205.0
+InputMapName = "toolbar_equip_slot_5"
+DisplayName = "Toolbar Equip Slot 5"
+
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 210.0
+offset_bottom = 240.0
+InputMapName = "toolbar_equip_slot_6"
+DisplayName = "Toolbar Equip Slot 6"
+
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 245.0
+offset_bottom = 275.0
+InputMapName = "toolbar_equip_slot_7"
+DisplayName = "Toolbar Equip Slot 7"
+
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 280.0
+offset_bottom = 310.0
+InputMapName = "toolbar_equip_slot_8"
+DisplayName = "Toolbar Equip Slot 8"
+
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 315.0
+offset_bottom = 345.0
+InputMapName = "toolbar_equip_slot_9"
+DisplayName = "Toolbar Equip Slot 9"
+
+[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 350.0
+offset_bottom = 380.0
+InputMapName = "toolbar_unequip"
+DisplayName = "Toolbar Unequip "
+
+[node name="Remap-Control11" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 385.0
+offset_bottom = 415.0
+InputMapName = "toolbar_previous_toolbar"
+DisplayName = "Previous Toolbar"
+
+[node name="Remap-Control12" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+offset_top = 420.0
+offset_bottom = 450.0
+InputMapName = "toolbar_next_toolbar"
+DisplayName = "Next Toolbar"
+
+[node name="Miscellaneous" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
+custom_minimum_size = Vector2(848, 0)
+layout_mode = 3
+anchors_preset = 0
+offset_left = 23.0
+offset_top = 1750.0
+offset_right = 871.0
+offset_bottom = 2000.0
+
+[node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous"]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 3.0
+offset_right = 190.0
+offset_bottom = 31.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 21
+text = "Miscellaneous"
+fit_content = true
+autowrap_mode = 0
+
+[node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 27.0
+offset_right = 848.0
+offset_bottom = 28.0
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+offset_top = 35.0
+offset_bottom = 65.0
+InputMapName = "miscellaneous_park"
+DisplayName = "Park Ship"
+
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
+offset_top = 70.0
+offset_bottom = 100.0
+InputMapName = "miscellaneous_pause"
+DisplayName = "Pause"
+
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+offset_top = 105.0
+offset_bottom = 135.0
+InputMapName = "miscellaneous_dev_console"
+DisplayName = "Dev Console"
+
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+offset_top = 140.0
+offset_bottom = 170.0
+InputMapName = "miscellaneous_help"
+DisplayName = "Help"
+
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+offset_top = 175.0
+offset_bottom = 205.0
+InputMapName = "miscellaneous_first_third_person"
+DisplayName = "First Person / Third Person"
+
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+offset_top = 210.0
+offset_bottom = 240.0
+InputMapName = "miscellaneous_hud_toggle"
+DisplayName = "HUD Toggle"
 
 [node name="AudioSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
+anchors_preset = 0
 script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
@@ -1158,6 +1576,7 @@ autowrap_mode = 0
 visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
+anchors_preset = 0
 script = ExtResource("2_5w2l0")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
