@@ -1,6 +1,7 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0seddgp21d6n"]
+[gd_scene load_steps=10 format=3 uid="uid://d0seddgp21d6n"]
 
 [ext_resource type="PackedScene" uid="uid://bt33b5k48ip62" path="res://Scenes/UI.tscn" id="1_18pnr"]
+[ext_resource type="Script" path="res://Other/GameManager.cs" id="1_co5c1"]
 [ext_resource type="Script" path="res://WorldData/WorldDataManager.cs" id="2_1n58s"]
 [ext_resource type="Script" path="res://WorldData/Data.cs" id="2_c4xwi"]
 [ext_resource type="Script" path="res://Settings/Settings.cs" id="3_2sonm"]
@@ -10,9 +11,11 @@
 [ext_resource type="PackedScene" uid="uid://b6423yb2velep" path="res://Scenes/BlankShip.tscn" id="7_5sp14"]
 
 [node name="Game" type="Node"]
+script = ExtResource("1_co5c1")
 
-[node name="UI" parent="." node_paths=PackedStringArray("_settings") instance=ExtResource("1_18pnr")]
+[node name="UI" parent="." node_paths=PackedStringArray("_settings", "_pauseMenu") instance=ExtResource("1_18pnr")]
 _settings = NodePath("../Settings")
+_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
 
 [node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
 script = ExtResource("2_c4xwi")
@@ -28,7 +31,7 @@ _effectsVolume = 100.0
 _musicVolume = 100.0
 _dialougeVolume = 100.0
 _subtitles = true
-_resolution = Vector2i(1024, 768)
+_resolution = Vector2i(1920, 1080)
 _refreshRate = 60.0
 _displayMode = 2
 

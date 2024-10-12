@@ -67,6 +67,7 @@ public partial class MainMenu : Node
         {
             _exitBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Exit));
         }
+        
     }
 
     private void ResumeGame()

@@ -100,7 +100,6 @@ script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -2384,6 +2383,7 @@ script = ExtResource("2_5w2l0")
 script = ExtResource("7_knsfs")
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -2391,9 +2391,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
-
-[node name="PauseMenuButtons" type="Node" parent="WindowManager/PauseMenu"]
-script = ExtResource("4_17pyg")
 
 [node name="Blur" type="TextureRect" parent="WindowManager/PauseMenu"]
 layout_mode = 1
@@ -2405,7 +2402,7 @@ grow_vertical = 2
 texture = ExtResource("6_pcm66")
 expand_mode = 1
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="WindowManager/PauseMenu"]
+[node name="PauseMenuButtons" type="AspectRatioContainer" parent="WindowManager/PauseMenu"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -2413,21 +2410,22 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
+script = ExtResource("4_17pyg")
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/PauseMenu/AspectRatioContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 layout_mode = 2
 theme_override_constants/margin_left = 100
 theme_override_constants/margin_top = 100
 theme_override_constants/margin_right = 100
 theme_override_constants/margin_bottom = 100
 
-[node name="SettingsBackground" type="TextureRect" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer"]
+[node name="SettingsBackground" type="TextureRect" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("44_f54pe")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Title" type="RichTextLabel" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="Title" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -2448,7 +2446,7 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="PauseBtns" type="VBoxContainer" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="PauseBtns" type="VBoxContainer" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -2463,7 +2461,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 15
 
-[node name="Resume" type="TextureButton" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Resume" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
 custom_minimum_size = Vector2(10, 55)
 layout_mode = 2
 mouse_filter = 2
@@ -2475,7 +2473,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns/Resume"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Resume"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -2496,7 +2494,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="New" type="TextureButton" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="New" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
 custom_minimum_size = Vector2(10, 55)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -2507,7 +2505,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns/New"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/New"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -2528,7 +2526,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Load" type="TextureButton" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Load" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
 custom_minimum_size = Vector2(10, 55)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -2539,7 +2537,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns/Load"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Load"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -2560,7 +2558,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Options" type="TextureButton" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Options" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
 custom_minimum_size = Vector2(10, 55)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -2571,7 +2569,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns/Options"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Options"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -2592,7 +2590,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Exit" type="TextureButton" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Exit" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
 custom_minimum_size = Vector2(10, 55)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
@@ -2603,7 +2601,7 @@ texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/AspectRatioContainer/MarginContainer/SettingsBackground/PauseBtns/Exit"]
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Exit"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -2625,7 +2623,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="PopUp" type="Control" parent="WindowManager" node_paths=PackedStringArray("holder")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

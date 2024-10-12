@@ -353,8 +353,7 @@ public partial class RemapControl : Node
 
     bool TryGetSettings()
     {
-        // seriously dont ask.......
-        var target = GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent().GetParent();
+        var target = GameManager.Singleton.FindChild("UI");
         var uim = (UIManager)target;
         if(uim != null)
         {

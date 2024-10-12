@@ -16,7 +16,7 @@ public partial class UIManager : Node
 	[Export] Pause _pauseMenu;
     [Export] public PopUp _popup;
 
-	[Export] WindowManager _windowManager;
+	[Export] public WindowManager _windowManager;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{

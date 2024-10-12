@@ -163,6 +163,7 @@ public partial class WorldManager : Node
     private void LoadSelectedWorld()
     {
         GD.Print("WorldManager: loading selected world");
+        GameManager.Singleton.SetGameState(GameManager.GameState.InGame);
         _wmMain.ShowWindow(_winHud);
     }
 
