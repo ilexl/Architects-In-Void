@@ -25,9 +25,6 @@ public partial class PlaceableComponent : CollisionShape3D
     
     [Export] protected double Density;
     
-
-    
-    
     
     
     

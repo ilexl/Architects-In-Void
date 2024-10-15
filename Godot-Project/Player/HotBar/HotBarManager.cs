@@ -11,7 +11,7 @@ public partial class HotBarManager : Node
 	// Reference to the component creator for use with any scenes that inherit from PlaceableComponent
 	private ComponentCreation.ComponentCreator _componentCreator;
 	private PackedScene _selectedScene;
-	private int _hotBarIndex;
+	public int HotBarIndex;
 	
 	
 	public override void _Ready()
@@ -25,7 +25,7 @@ public partial class HotBarManager : Node
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
 				_selectedScene = HotBar[i];
-				_hotBarIndex = i;
+				HotBarIndex = i;
 				
 				if (_selectedScene == null) // Hotbar slot is empty
 				{
