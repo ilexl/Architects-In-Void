@@ -180,7 +180,12 @@ public partial class ComponentCreator : Node
             //TODO: transform position to local of the cube and snap to the face, then transform back to world
             //PROBLEM: Floating point errors
             //Tomorrow me can deal with this
-            _truncatedPlacementPosition = (_truncatedPlacementPosition - (targetedShape.GlobalPosition + targetedShape.Scale)).Snapped(_gridSize) + (targetedShape.GlobalPosition + targetedShape.Scale);
+            Transform3D transformOrtho =  targetedShape.Transform.Orthonormalized() * _targetedCollider.Transform.Orthonormalized();
+
+            Vector3 targetRelativeHitPosition = _truncatedPlacementPosition * transformOrtho;
+            
+            targetRelativeHitPosition = targetRelativeHitPosition.Snapped(_gridSize);
+            _truncatedPlacementPosition = transformOrtho * targetRelativeHitPosition;
         }
         (Vector3 widthV, Vector3 heightV, Vector3 depthV) = GetFaceVectors(_targetedCollider.Transform * targetedShape.Transform, (Vector3)result["normal"] );
         double widthLength = widthV.Length();
