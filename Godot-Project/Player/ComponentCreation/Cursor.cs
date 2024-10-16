@@ -130,6 +130,7 @@ public partial class Cursor : Node3D
 
 	public Vector3 GetComponentScale()
 	{
+		GD.Print(_startCorner.Position - _endCorner.Position);
 		return _startCorner.Position - _endCorner.Position;
 	}
 	/// <summary>
