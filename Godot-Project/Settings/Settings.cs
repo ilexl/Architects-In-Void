@@ -442,6 +442,11 @@ public partial class Settings : Node
         DisplayServer.WindowSetSize(_resolution);
         Engine.Singleton.MaxFps = (int)System.Math.Round(_refreshRate, 0, System.MidpointRounding.AwayFromZero);
         Engine.Singleton.PhysicsJitterFix = 0;
+        if (_displayMode == DisplayMode.Windowed)
+        {
+            var centered = new Vector2I((DisplayServer.WindowGetSize().X / 2) - (_resolution.X / 4), (DisplayServer.WindowGetSize().Y / 2) - (_resolution.Y / 4));
+            DisplayServer.WindowSetPosition(centered);
+        }
     }
     #endregion
 }
