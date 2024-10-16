@@ -175,6 +175,7 @@ public partial class ComponentCreator : Node
 
     private void SnapPlacementToGrid(CollisionShape3D targetedShape, Godot.Collections.Dictionary result)
     {
+        (Vector3 widthV, Vector3 heightV, Vector3 depthV) = GetFaceVectors(_targetedCollider.Transform * targetedShape.Transform, (Vector3)result["normal"] );
         if (_gridSnap)
         {
             //TODO: transform position to local of the cube and snap to the face, then transform back to world
@@ -184,10 +185,10 @@ public partial class ComponentCreator : Node
 
             Vector3 targetRelativeHitPosition = _truncatedPlacementPosition * transformOrtho;
             
-            targetRelativeHitPosition = targetRelativeHitPosition.Snapped(_gridSize);
+            targetRelativeHitPosition = (targetRelativeHitPosition + targetedShape.Scale).Snapped(_gridSize) - targetedShape.Scale;
             _truncatedPlacementPosition = transformOrtho * targetRelativeHitPosition;
         }
-        (Vector3 widthV, Vector3 heightV, Vector3 depthV) = GetFaceVectors(_targetedCollider.Transform * targetedShape.Transform, (Vector3)result["normal"] );
+        
         double widthLength = widthV.Length();
         double heightLength = heightV.Length();
         Vector3 faceCenter = targetedShape.GlobalPosition + depthV / 2;
@@ -221,11 +222,14 @@ public partial class ComponentCreator : Node
         _cursorEnd = CalculateCursorPosition();
         if (_gridSnap)
         {
-            _cursorEnd = (_cursorEnd - _cursorStart).Snapped(_gridSize) + _cursorStart;
+            // Transform3D transformOrtho =  _cursor.Transform.Orthonormalized();
+            //
+            // Vector3 targetRelativeStartPosition = _cursorStart * transformOrtho;
+            // Vector3 targetRelativeEndPosition = _cursorEnd * transformOrtho;
+            // targetRelativeEndPosition = targetRelativeEndPosition.Snapped(_gridSize);
+            // _cursorEnd = transformOrtho * targetRelativeEndPosition;
+            //
         }
-        GD.Print(_cursorEnd - _cursorStart);
-        var position = _cursorStart.Lerp(_cursorEnd, 0.5);
-        var scale = _cursorStart - _cursorEnd;
         _cursor.SetCornerPositions(_cursorStart, _cursorEnd);
         // _cursor.SetScale(scale);
         _cursor.SetLabelVisible(true);
