@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=62 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -48,8 +48,13 @@
 [ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/UIElements/confirm_pop_up.tscn" id="33_76cnx"]
 [ext_resource type="PackedScene" uid="uid://ouv2jnth0qh8" path="res://UI/UIElements/info_pop_up.tscn" id="34_fl41a"]
 [ext_resource type="PackedScene" uid="uid://dha0e60iuanfl" path="res://UI/UIElements/input_pop_up.tscn" id="35_2h4aw"]
+[ext_resource type="Texture2D" uid="uid://bg5cg8qg2ifif" path="res://UI/UIElements/HUD-Slots-Background.svg" id="43_tv4vx"]
 [ext_resource type="Texture2D" uid="uid://bh2e6lg0q50y6" path="res://UI/UIElements/Pause Background.svg" id="44_f54pe"]
+[ext_resource type="Texture2D" uid="uid://ckjchv3deb0xo" path="res://UI/UIElements/HUD-Hotbar-Selector-Off.svg" id="44_sdh17"]
+[ext_resource type="Texture2D" uid="uid://bw66xarvj210h" path="res://UI/UIElements/HUD-Hotbar-Selector-On.svg" id="45_bdjj6"]
+[ext_resource type="Texture2D" uid="uid://dbr8m1y4pptbr" path="res://UI/Item-Icons/Blank-Icon.png" id="46_bc6vl"]
 [ext_resource type="PackedScene" uid="uid://cfe0elqorxoi" path="res://UI/UIElements/confirm_pop_up_cd.tscn" id="46_tu8o7"]
+[ext_resource type="Texture2D" uid="uid://b8qxec0ae8j85" path="res://UI/UIElements/HUD-Slot-Selector.svg" id="47_243r5"]
 [ext_resource type="PackedScene" uid="uid://bdycwnu3c81th" path="res://UI/UIElements/info_pop_up_mc.tscn" id="52_8l8i6"]
 
 [sub_resource type="ImageTexture" id="ImageTexture_pqm2y"]
@@ -2379,8 +2384,671 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="HUDButtons" type="Node" parent="WindowManager/HUD"]
+[node name="HUDButtons" type="Node" parent="WindowManager/HUD" node_paths=PackedStringArray("_itemSlots", "_itemSlotSelections", "_itemSlotIcons", "_hotbarSelections", "_hotbarSelectionEnabled")]
 script = ExtResource("7_knsfs")
+_itemSlots = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9")]
+_itemSlotSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/Hotbar-Slot-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/Hotbar-Slot-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/Hotbar-Slot-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/Hotbar-Slot-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/Hotbar-Slot-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/Hotbar-Slot-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/Hotbar-Slot-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/Hotbar-Slot-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/Hotbar-Slot-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/Hotbar-Slot-9-ON")]
+_itemSlotIcons = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer/Hotbar-Slot-0-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer/Hotbar-Slot-1-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer/Hotbar-Slot-2-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer/Hotbar-Slot-3-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer/Hotbar-Slot-4-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer/Hotbar-Slot-5-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer/Hotbar-Slot-6-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer/Hotbar-Slot-7-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer/Hotbar-Slot-8-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer/Hotbar-Slot-9-Item")]
+_hotbarSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-0"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-1"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-2"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-3"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-4"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-5"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-6"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-7"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-8"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-9")]
+_hotbarSelectionEnabled = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-0/Hotbar-Selection-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-1/Hotbar-Selection-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-2/Hotbar-Selection-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-3/Hotbar-Selection-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-4/Hotbar-Selection-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-5/Hotbar-Selection-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-6/Hotbar-Selection-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-7/Hotbar-Selection-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-8/Hotbar-Selection-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-9/Hotbar-Selection-9-ON")]
+
+[node name="Holder" type="AspectRatioContainer" parent="WindowManager/HUD"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.78
+script = ExtResource("4_17pyg")
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder"]
+layout_mode = 2
+
+[node name="No-Background" type="ColorRect" parent="WindowManager/HUD/Holder/MarginContainer"]
+layout_mode = 2
+color = Color(0.560784, 0.541176, 0.545098, 0)
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background"]
+layout_mode = 1
+offset_top = 592.0
+offset_right = 1280.0
+offset_bottom = 719.0
+theme_override_constants/margin_left = 0
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 25
+
+[node name="Bottom-Area" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer"]
+layout_mode = 2
+
+[node name="Background-Hotbar" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -469.0
+offset_top = 21.0
+offset_right = 468.473
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("43_tv4vx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selections" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Hotbar-Selection-1" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 1
+offset_left = 104.0
+offset_top = 77.0
+offset_right = 169.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-2" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 77.0
+offset_right = 243.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-3" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 251.0
+offset_top = 77.0
+offset_right = 316.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-4" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 325.0
+offset_top = 77.0
+offset_right = 390.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-5" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 399.0
+offset_top = 77.0
+offset_right = 464.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-5"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-6" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 472.0
+offset_top = 77.0
+offset_right = 537.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-6"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-7" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 546.0
+offset_top = 77.0
+offset_right = 611.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-7"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-8" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 619.0
+offset_top = 77.0
+offset_right = 684.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-8"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-9" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 693.0
+offset_top = 77.0
+offset_right = 758.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-9"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-0" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+layout_mode = 0
+offset_left = 767.0
+offset_top = 77.0
+offset_right = 832.625
+offset_bottom = 83.0
+texture = ExtResource("44_sdh17")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Selection-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-0"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("45_bdjj6")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Hotbar-Slots" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Slot-1" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+anchors_preset = 0
+offset_left = 99.0
+offset_top = 6.0
+offset_right = 171.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-1-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-2" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 173.0
+offset_top = 6.0
+offset_right = 245.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-2-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-3" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 247.0
+offset_top = 6.0
+offset_right = 319.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-3-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-4" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 321.0
+offset_top = 6.0
+offset_right = 393.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-4-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-5" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 395.0
+offset_top = 6.0
+offset_right = 467.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-5-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-6" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 469.0
+offset_top = 6.0
+offset_right = 541.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-6-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-7" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 543.0
+offset_top = 6.0
+offset_right = 615.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-7-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-8" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 617.0
+offset_top = 6.0
+offset_right = 689.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-8-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-9" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 691.0
+offset_top = 6.0
+offset_right = 763.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-9-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Slot-0" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 765.0
+offset_top = 6.0
+offset_right = 837.0
+offset_bottom = 75.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="Hotbar-Slot-0-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("46_bc6vl")
+expand_mode = 1
+stretch_mode = 5
+
+[node name="Hotbar-Slot-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("47_243r5")
+expand_mode = 3
+stretch_mode = 5
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
 visible = false

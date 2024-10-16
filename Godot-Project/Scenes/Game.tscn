@@ -13,9 +13,8 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_co5c1")
 
-[node name="UI" parent="." node_paths=PackedStringArray("_settings", "_pauseMenu") instance=ExtResource("1_18pnr")]
+[node name="UI" parent="." node_paths=PackedStringArray("_settings") instance=ExtResource("1_18pnr")]
 _settings = NodePath("../Settings")
-_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
 
 [node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
 script = ExtResource("2_c4xwi")
@@ -32,7 +31,7 @@ _musicVolume = 100.0
 _dialougeVolume = 100.0
 _subtitles = true
 _resolution = Vector2i(1920, 1080)
-_refreshRate = 60.0
+_refreshRate = 144.0
 _displayMode = 2
 
 [node name="World" type="Node3D" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataShip")]

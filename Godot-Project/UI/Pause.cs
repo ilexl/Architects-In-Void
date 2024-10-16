@@ -15,7 +15,7 @@ public partial class Pause : Node
     {
         if(_singleton != null)
         {
-            GD.PushError("Pause: singleton already exists.");
+            GD.PushWarning("Pause: singleton already exists.");
         }
         _singleton = this;
     }
