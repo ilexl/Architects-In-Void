@@ -1,0 +1,120 @@
+[gd_scene load_steps=6 format=3 uid="uid://cao7hsumnxbtq"]
+
+[ext_resource type="Script" path="res://UI/RemapControl.cs" id="1_b6ywi"]
+[ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="2_wpbc3"]
+[ext_resource type="Texture2D" uid="uid://cti34qw83fwby" path="res://UI/UIElements/Rectangle-Normal.png" id="3_ic2tu"]
+[ext_resource type="Texture2D" uid="uid://nv4w6sm0a86n" path="res://UI/UIElements/Rectangle-Pressed.png" id="4_ti38p"]
+[ext_resource type="Texture2D" uid="uid://5rvua6d7gfqc" path="res://UI/UIElements/Rectangle-Disabled.png" id="5_802w8"]
+
+[node name="Remap-Control" type="Control" node_paths=PackedStringArray("_primaryRemapBtn", "_secondaryRemapBtn", "_title", "_primaryRemapTxt", "_secondaryRemapTxt")]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 13.0
+offset_top = 33.0
+offset_right = 838.0
+offset_bottom = 63.0
+script = ExtResource("1_b6ywi")
+InputMapName = "testing_testing"
+DisplayName = "Testing"
+_primaryRemapBtn = NodePath("ControlHolderPrimary/TextureButton")
+_secondaryRemapBtn = NodePath("ControlHolderSecondary/TextureButton")
+_title = NodePath("Title-Control")
+_primaryRemapTxt = NodePath("ControlHolderPrimary/RichTextLabel")
+_secondaryRemapTxt = NodePath("ControlHolderSecondary/RichTextLabel")
+
+[node name="Title-Control" type="RichTextLabel" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -10.5
+offset_right = 228.0
+offset_bottom = 10.5
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("2_wpbc3")
+theme_override_font_sizes/normal_font_size = 18
+text = "Title"
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolderPrimary" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -310.0
+offset_right = -160.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="TextureButton" type="TextureButton" parent="ControlHolderPrimary"]
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 30.0
+tooltip_text = "Click to remap this control to a new input/keybind"
+button_mask = 3
+texture_normal = ExtResource("3_ic2tu")
+texture_pressed = ExtResource("4_ti38p")
+texture_hover = ExtResource("5_802w8")
+texture_disabled = ExtResource("5_802w8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ControlHolderPrimary"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = 4.0
+offset_right = 0.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_wpbc3")
+theme_override_font_sizes/normal_font_size = 20
+fit_content = true
+autowrap_mode = 0
+
+[node name="ControlHolderSecondary" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -151.0
+offset_right = -1.0
+offset_bottom = 30.0
+grow_horizontal = 0
+
+[node name="TextureButton" type="TextureButton" parent="ControlHolderSecondary"]
+layout_mode = 1
+offset_right = 150.0
+offset_bottom = 30.0
+tooltip_text = "Click to remap this control to a new input/keybind"
+button_mask = 3
+texture_normal = ExtResource("3_ic2tu")
+texture_pressed = ExtResource("4_ti38p")
+texture_hover = ExtResource("5_802w8")
+texture_disabled = ExtResource("5_802w8")
+ignore_texture_size = true
+stretch_mode = 0
+
+[node name="RichTextLabel" type="RichTextLabel" parent="ControlHolderSecondary"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -0.5
+offset_top = 4.0
+offset_right = 0.5
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("2_wpbc3")
+theme_override_font_sizes/normal_font_size = 20
+fit_content = true
+autowrap_mode = 0

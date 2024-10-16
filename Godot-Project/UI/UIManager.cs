@@ -1,3 +1,4 @@
+using ArchitectsInVoid.Settings;
 using ArchitectsInVoid.UI;
 using Godot;
 using Godot.Collections;
@@ -8,13 +9,14 @@ public partial class UIManager : Node
 {
 	[Export] MainMenu _mainMenu;
 	[Export] SettingsMenu _settingsMenu;
+    [Export] public Settings _settings;
 	[Export] WorldManager _worldMenu;
 	[Export] LoadingScreen _loadingMenu;
 	[Export] HUD _hudMenu;
 	[Export] Pause _pauseMenu;
     [Export] public PopUp _popup;
 
-	[Export] WindowManager _windowManager;
+	[Export] public WindowManager _windowManager;
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
@@ -48,6 +50,15 @@ public partial class UIManager : Node
             _settingsMenu = (SettingsMenu)_windowManager.FindChild("SettingsManager");
 
             if (_settingsMenu == null)
+            {
+                GD.PushError("UIManager: settings menu not found...");
+                return false;
+            }
+        }
+        if (_settings == null)
+        {
+            _settings = (Settings)this.GetParent().FindChild("Settings", false);
+            if (_settings == null)
             {
                 GD.PushError("UIManager: settings not found...");
                 return false;

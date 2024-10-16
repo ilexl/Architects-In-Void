@@ -67,6 +67,7 @@ public partial class MainMenu : Node
         {
             _exitBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Exit));
         }
+        
     }
 
     private void ResumeGame()
@@ -108,6 +109,7 @@ public partial class MainMenu : Node
     {
         GD.Print("MainMenu: Options");
         _wm.ShowWindow(_winSettings);
+        ((UIManager)_wm.GetParent())._settings.LoadSettings();
     }
 
     public override void _Notification(int what)

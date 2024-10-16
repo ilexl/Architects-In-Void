@@ -8,8 +8,10 @@ public partial class PopUp : Node
     [Export] Node holder;
 	[Export] PackedScene errorPopUp;
 	[Export] PackedScene confirmPopUp;
-	[Export] PackedScene infoPopUp;
-	[Export] PackedScene inputPopUp;
+	[Export] PackedScene confirmPopUpCD;
+    [Export] PackedScene infoPopUp;
+    [Export] PackedScene infoPopUpNC;
+    [Export] PackedScene inputPopUp;
 
     public string LastInput;
 
@@ -35,12 +37,29 @@ public partial class PopUp : Node
         cpu.Setup(message, confirmBind);
     }
 
+    public void DisplayConfirmPopUpCD(string message, double timerStart, Callable confirmBind, Callable cancelBind)
+    {
+        var inst = confirmPopUpCD.Instantiate();
+        holder.AddChild(inst);
+        ConfirmPopUpCD cpu = (ConfirmPopUpCD)inst;
+        cpu.Setup(message, timerStart, confirmBind, cancelBind);
+    }
+
     public void DisplayInfoPopUp(string message)
     {
         var inst = infoPopUp.Instantiate();
         holder.AddChild(inst);
         InfoPopUp ipu = (InfoPopUp)inst;
         ipu.Setup(message);
+    }
+
+    public InfoPopUp DisplayInfoPopUpNC(string message)
+    {
+        var inst = infoPopUpNC.Instantiate();
+        holder.AddChild(inst);
+        InfoPopUp ipu = (InfoPopUp)inst;
+        ipu.Setup(message);
+        return ipu;
     }
 
     public void DisplayInputPopUp(string message, Callable confirmBind)
