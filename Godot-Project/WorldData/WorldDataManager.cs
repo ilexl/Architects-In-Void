@@ -16,8 +16,15 @@ public partial class WorldDataManager : Node
         if (_dataPlayer == null)
         {
             _dataPlayer = (PlayerData)FindChild("Players", recursive: false);
-            _dataVessel = (VesselData)FindChild("Ships", recursive: false);
             if (_dataPlayer == null)
+            {
+                GD.PushError("WorldDataManager: missing instances of data...");
+            }
+        }
+        if(_dataVessel == null)
+        {
+            _dataVessel = (VesselData)FindChild("Ships", recursive: false);
+            if (_dataVessel == null)
             {
                 GD.PushError("WorldDataManager: missing instances of data...");
             }
