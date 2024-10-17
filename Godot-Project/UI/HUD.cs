@@ -1,5 +1,6 @@
 using Godot;
 using System.Reflection.Metadata;
+using ArchitectsInVoid.Player.HotBar;
 
 namespace ArchitectsInVoid.UI;
 
@@ -28,6 +29,7 @@ public partial class HUD : Node
         }
         SelectItemSlot(0);
         SelectHotbar(1);
+        HotBarManager.HotbarSlotChangedEvent += HotbarSlotChanged;
     }
 
     public int GetHotbar()
@@ -91,6 +93,11 @@ public partial class HUD : Node
         }
     }
 
+    private void HotbarSlotChanged(int index)
+    {
+        SelectItemSlot(index);
+    }
+    
     public override void _Input(InputEvent @event)
     {
         if(GameManager.Singleton == null)

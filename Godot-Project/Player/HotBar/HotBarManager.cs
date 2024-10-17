@@ -13,6 +13,8 @@ public partial class HotBarManager : Node
 	private PackedScene _selectedScene;
 	public int HotBarIndex;
 	
+	public delegate void HotbarSlotChanged(int index);
+	public static HotbarSlotChanged HotbarSlotChangedEvent;
 	
 	public override void _Ready()
 	{
@@ -24,6 +26,7 @@ public partial class HotBarManager : Node
 		for (var i = 0; i < 10; i++) // Assuming "hotbar_0" to "hotbar_9"
 			if (Input.IsActionJustPressed($"hotbar_{i}"))
 			{
+				HotbarSlotChangedEvent(i);
 				_selectedScene = HotBar[i];
 				HotBarIndex = i;
 				
@@ -41,4 +44,7 @@ public partial class HotBarManager : Node
 				
 			}
 	}
+	
+	
+	
 }
