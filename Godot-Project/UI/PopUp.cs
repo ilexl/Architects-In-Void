@@ -3,10 +3,10 @@ using Godot.Collections;
 using System;
 
 [Tool]
-public partial class PopUp : Node
+public partial class PopUp : Control
 {
     [Export] Node holder;
-	[Export] PackedScene errorPopUp;
+    [Export] PackedScene errorPopUp;
 	[Export] PackedScene confirmPopUp;
 	[Export] PackedScene confirmPopUpCD;
     [Export] PackedScene infoPopUp;
@@ -14,6 +14,12 @@ public partial class PopUp : Node
     [Export] PackedScene inputPopUp;
 
     public string LastInput;
+
+    public override void _Ready()
+    {
+        Control c = (Control)GetNode(this.GetPath());
+        c.Show();
+    }
 
     void TestCall()
     {
