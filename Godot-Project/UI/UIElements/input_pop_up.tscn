@@ -20,10 +20,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_iuapw")
-_title = NodePath("AspectRatioContainer/TextureRect/message")
-input = NodePath("AspectRatioContainer/TextureRect/TextEdit")
-_buttonClose = NodePath("AspectRatioContainer/TextureRect/Cancel Button")
-_buttonConfirm = NodePath("AspectRatioContainer/TextureRect/Confirm Button")
+_title = NodePath("AspectRatioContainer2/TextureRect/message")
+input = NodePath("AspectRatioContainer2/TextureRect/TextEdit")
+_buttonClose = NodePath("AspectRatioContainer2/TextureRect/Cancel Button")
+_buttonConfirm = NodePath("AspectRatioContainer2/TextureRect/Confirm Button")
 
 [node name="Blur" type="TextureRect" parent="."]
 layout_mode = 1
@@ -36,46 +36,53 @@ mouse_filter = 0
 texture = ExtResource("2_2432a")
 expand_mode = 1
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 320.0
-offset_top = 180.0
-offset_right = -320.0
-offset_bottom = -180.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -195.0
+offset_right = 500.0
+offset_bottom = 195.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 2.641
 stretch_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer2"]
 layout_mode = 2
 texture = ExtResource("3_868q3")
 expand_mode = 1
 
-[node name="message" type="RichTextLabel" parent="AspectRatioContainer/TextureRect"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 38.0
-offset_right = 578.0
-offset_bottom = 135.0
+[node name="message" type="RichTextLabel" parent="AspectRatioContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.388
+offset_left = -5.0
+offset_top = 45.4578
+offset_right = 4.0
+offset_bottom = -37.5919
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_ay3q4")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "Confirm"
 fit_content = true
 scroll_active = false
-autowrap_mode = 2
+autowrap_mode = 0
 
-[node name="TextEdit" type="TextEdit" parent="AspectRatioContainer/TextureRect"]
-layout_mode = 0
-offset_left = 39.0
-offset_top = 91.1662
-offset_right = 591.0
-offset_bottom = 132.166
+[node name="TextEdit" type="TextEdit" parent="AspectRatioContainer2/TextureRect"]
+offset_left = 76.0
+offset_top = 142.0
+offset_right = 929.0
+offset_bottom = 208.0
 theme_override_colors/word_highlighted_color = Color(0.310617, 0.310617, 0.310617, 1)
 theme_override_colors/current_line_color = Color(0, 0, 0, 0)
 theme_override_colors/background_color = Color(0, 0, 0, 1)
@@ -87,17 +94,17 @@ theme_override_colors/font_selected_color = Color(0.111197, 0.111197, 0.111197, 
 theme_override_colors/caret_background_color = Color(0, 0, 0, 0)
 theme_override_colors/caret_color = Color(0, 0, 0, 0)
 theme_override_fonts/font = ExtResource("4_ay3q4")
-theme_override_font_sizes/font_size = 25
+theme_override_font_sizes/font_size = 50
 placeholder_text = "Enter text here"
 scroll_past_end_of_file = true
 
-[node name="Cancel Button" type="TextureButton" parent="AspectRatioContainer/TextureRect"]
+[node name="Cancel Button" type="TextureButton" parent="AspectRatioContainer2/TextureRect"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 0
-offset_left = 40.0
-offset_top = 153.166
-offset_right = 312.0
-offset_bottom = 218.166
+offset_left = 76.0
+offset_top = 229.322
+offset_right = 476.0
+offset_bottom = 329.322
 texture_normal = ExtResource("5_1v830")
 texture_pressed = ExtResource("6_aedp1")
 texture_hover = ExtResource("7_ypkpc")
@@ -106,28 +113,35 @@ texture_focused = ExtResource("7_ypkpc")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="AspectRatioContainer/TextureRect/Cancel Button"]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 17.0
-offset_right = 252.0
-offset_bottom = 65.0
+[node name="txt" type="RichTextLabel" parent="AspectRatioContainer2/TextureRect/Cancel Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -26.0
+offset_right = 88.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_ay3q4")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Cancel"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Confirm Button" type="TextureButton" parent="AspectRatioContainer/TextureRect"]
+[node name="Confirm Button" type="TextureButton" parent="AspectRatioContainer2/TextureRect"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 0
-offset_left = 336.0
-offset_top = 153.166
-offset_right = 608.0
-offset_bottom = 218.166
+offset_left = 536.0
+offset_top = 229.322
+offset_right = 936.0
+offset_bottom = 329.322
 texture_normal = ExtResource("9_8fonp")
 texture_pressed = ExtResource("10_erv70")
 texture_hover = ExtResource("11_e7ruo")
@@ -135,15 +149,22 @@ ignore_texture_size = true
 stretch_mode = 4
 flip_v = true
 
-[node name="txt" type="RichTextLabel" parent="AspectRatioContainer/TextureRect/Confirm Button"]
-layout_mode = 0
-offset_left = 63.0
-offset_top = 18.0
-offset_right = 239.0
-offset_bottom = 66.0
+[node name="txt" type="RichTextLabel" parent="AspectRatioContainer2/TextureRect/Confirm Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -26.0
+offset_right = 92.5
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_ay3q4")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Confirm"
 fit_content = true

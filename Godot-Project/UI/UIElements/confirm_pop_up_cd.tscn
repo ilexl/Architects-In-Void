@@ -20,9 +20,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0yg5d")
-_title = NodePath("AspectRatioContainer/TextureRect/message")
-_buttonClose = NodePath("AspectRatioContainer/TextureRect/Cancel Button")
-_buttonConfirm = NodePath("AspectRatioContainer/TextureRect/Confirm Button")
+_title = NodePath("AspectRatioContainer2/TextureRect/message")
+_buttonClose = NodePath("AspectRatioContainer2/TextureRect/Cancel Button")
+_buttonConfirm = NodePath("AspectRatioContainer2/TextureRect/Confirm Button")
+timeLeft = 99924.5
 
 [node name="Blur" type="TextureRect" parent="."]
 layout_mode = 1
@@ -35,47 +36,56 @@ mouse_filter = 0
 texture = ExtResource("2_pwsgc")
 expand_mode = 1
 
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="."]
+[node name="AspectRatioContainer2" type="AspectRatioContainer" parent="."]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 320.0
-offset_top = 180.0
-offset_right = -320.0
-offset_bottom = -180.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -195.0
+offset_right = 500.0
+offset_bottom = 195.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 2.641
 stretch_mode = 0
 
-[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer"]
+[node name="TextureRect" type="TextureRect" parent="AspectRatioContainer2"]
 layout_mode = 2
 texture = ExtResource("3_m6gbw")
 expand_mode = 1
 
-[node name="message" type="RichTextLabel" parent="AspectRatioContainer/TextureRect"]
-layout_mode = 0
-offset_left = 43.0
-offset_top = 38.0
-offset_right = 578.0
-offset_bottom = 135.0
+[node name="message" type="RichTextLabel" parent="AspectRatioContainer2/TextureRect"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.1
+anchor_right = 0.5
+anchor_bottom = 0.526
+offset_left = -7.99999
+offset_top = 63.1356
+offset_right = 1.00001
+offset_bottom = -72.167
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_57gmn")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
-text = "Confirm"
+text = " 99924.47"
 fit_content = true
 scroll_active = false
-autowrap_mode = 2
+autowrap_mode = 0
 
-[node name="Cancel Button" type="TextureButton" parent="AspectRatioContainer/TextureRect"]
+[node name="Cancel Button" type="TextureButton" parent="AspectRatioContainer2/TextureRect"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 0
-offset_left = 40.0
-offset_top = 153.166
-offset_right = 312.0
-offset_bottom = 218.166
+offset_left = 76.0
+offset_top = 229.322
+offset_right = 476.0
+offset_bottom = 329.322
 texture_normal = ExtResource("5_4fuy5")
 texture_pressed = ExtResource("6_ls7kh")
 texture_hover = ExtResource("7_68led")
@@ -84,28 +94,35 @@ texture_focused = ExtResource("7_68led")
 ignore_texture_size = true
 stretch_mode = 4
 
-[node name="txt" type="RichTextLabel" parent="AspectRatioContainer/TextureRect/Cancel Button"]
-layout_mode = 0
-offset_left = 76.0
-offset_top = 17.0
-offset_right = 252.0
-offset_bottom = 65.0
+[node name="txt" type="RichTextLabel" parent="AspectRatioContainer2/TextureRect/Cancel Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.0
+offset_top = -26.0
+offset_right = 88.0
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_57gmn")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Cancel"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Confirm Button" type="TextureButton" parent="AspectRatioContainer/TextureRect"]
+[node name="Confirm Button" type="TextureButton" parent="AspectRatioContainer2/TextureRect"]
 custom_minimum_size = Vector2(10, 65)
 layout_mode = 0
-offset_left = 336.0
-offset_top = 153.166
-offset_right = 608.0
-offset_bottom = 218.166
+offset_left = 536.0
+offset_top = 229.322
+offset_right = 936.0
+offset_bottom = 329.322
 texture_normal = ExtResource("9_dy4c5")
 texture_pressed = ExtResource("10_4e0d5")
 texture_hover = ExtResource("11_g7iod")
@@ -113,15 +130,22 @@ ignore_texture_size = true
 stretch_mode = 4
 flip_v = true
 
-[node name="txt" type="RichTextLabel" parent="AspectRatioContainer/TextureRect/Confirm Button"]
-layout_mode = 0
-offset_left = 63.0
-offset_top = 18.0
-offset_right = 239.0
-offset_bottom = 66.0
+[node name="txt" type="RichTextLabel" parent="AspectRatioContainer2/TextureRect/Confirm Button"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -92.5
+offset_top = -26.0
+offset_right = 92.5
+offset_bottom = 38.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_57gmn")
-theme_override_font_sizes/normal_font_size = 30
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Confirm"
 fit_content = true

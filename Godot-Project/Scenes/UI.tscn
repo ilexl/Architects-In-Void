@@ -1,4 +1,4 @@
-[gd_scene load_steps=62 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=60 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -38,11 +38,9 @@
 [ext_resource type="Texture2D" uid="uid://bxoeqqfmrbjsf" path="res://UI/UIElements/SettingsSliderBackground.png" id="22_ptns7"]
 [ext_resource type="Texture2D" uid="uid://bxsav3qhhqo5f" path="res://UI/UIElements/SettingsSliderFill.png" id="23_ypy8f"]
 [ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
-[ext_resource type="Texture2D" uid="uid://4yoend52a3q8" path="res://UI/UIElements/SettingsButtonToggleOff.png" id="24_glvgh"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
-[ext_resource type="Texture2D" uid="uid://bdp6imbpnsa81" path="res://UI/UIElements/SettingsButtonToggleOffDisabled.png" id="25_7nypd"]
-[ext_resource type="Texture2D" uid="uid://cetmumbipt5ub" path="res://UI/UIElements/SettingsButtonToggleOn.png" id="25_hftmr"]
-[ext_resource type="Texture2D" uid="uid://cj4sv1xn1nsmd" path="res://UI/UIElements/SettingsButtonToggleOnDisabled.png" id="27_wigru"]
+[ext_resource type="Texture2D" uid="uid://ddjixns0xid0r" path="res://UI/UIElements/Rectangle-Button-Disabled.svg" id="25_ogcwk"]
+[ext_resource type="Texture2D" uid="uid://qhg40h18kl4k" path="res://UI/UIElements/Rectangle-Button-Normal.svg" id="26_vltm2"]
 [ext_resource type="Script" path="res://UI/PopUp.cs" id="31_85m2s"]
 [ext_resource type="PackedScene" uid="uid://b5k86ny5x2sv" path="res://UI/UIElements/error_pop_up.tscn" id="32_2yato"]
 [ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/UIElements/confirm_pop_up.tscn" id="33_76cnx"]
@@ -73,15 +71,15 @@ texture_margin_left = 1.0
 texture_margin_top = 1.0
 texture_margin_right = 1.0
 texture_margin_bottom = 1.0
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
 region_rect = Rect2(0, 0, 1, 1)
 draw_center = false
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
 texture = ExtResource("23_ypy8f")
-expand_margin_top = 10.0
-expand_margin_bottom = 10.0
+expand_margin_top = 20.0
+expand_margin_bottom = 20.0
 
 [node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_worldMenu", "_loadingMenu", "_hudMenu", "_pauseMenu", "_popup", "_windowManager")]
 layout_mode = 3
@@ -105,6 +103,7 @@ script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -124,15 +123,52 @@ grow_vertical = 2
 texture = ExtResource("4_g56cw")
 expand_mode = 1
 
+[node name="Title" type="RichTextLabel" parent="WindowManager/MainMenu"]
+layout_mode = 2
+offset_left = 117.0
+offset_top = 141.0
+offset_right = 2178.0
+offset_bottom = 440.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 210
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
+[node name="Title2" type="RichTextLabel" parent="WindowManager/MainMenu/Title"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 10.0
+offset_top = -5.0
+offset_right = 10.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 210
+bbcode_enabled = true
+text = "Architect In Void"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+text_direction = 1
+
 [node name="MainMenuScript" type="VBoxContainer" parent="WindowManager/MainMenu" node_paths=PackedStringArray("_resumeBtn", "_newBtn", "_loadBtn", "_optionsBtn", "_exitBtn", "_winSettings", "_winWorldManager", "_wm")]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 64.0
-offset_top = 45.0
-offset_bottom = -70.0
-theme_override_constants/separation = 25
+offset_left = 117.0
+offset_top = 440.0
+offset_right = -1906.0
+offset_bottom = -165.0
+theme_override_constants/separation = 40
 script = ExtResource("4_xc8gb")
 _resumeBtn = NodePath("Resume")
 _newBtn = NodePath("New")
@@ -143,34 +179,8 @@ _winSettings = NodePath("../../Settings")
 _winWorldManager = NodePath("../../WorldManager")
 _wm = NodePath("../..")
 
-[node name="Title" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript"]
-layout_mode = 2
-theme_override_colors/default_color = Color(0, 0, 0, 0)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "Architect In Void"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-text_direction = 1
-
-[node name="Title2" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Title"]
-layout_mode = 2
-offset_top = 25.0
-offset_right = 1216.0
-offset_bottom = 155.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 100
-bbcode_enabled = true
-text = "Architect In Void"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-text_direction = 1
-
 [node name="Resume" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
-custom_minimum_size = Vector2(10, 65)
+custom_minimum_size = Vector2(10, 135)
 layout_mode = 2
 mouse_filter = 2
 disabled = true
@@ -183,15 +193,22 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Resume"]
-layout_mode = 0
-offset_left = 24.0
-offset_top = 16.0
-offset_right = 256.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -101.5
+offset_top = -18.0
+offset_right = 101.5
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.556863, 0.556863, 0.556863, 1)
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Continue Game"
 fit_content = true
@@ -199,7 +216,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="New" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
-custom_minimum_size = Vector2(10, 65)
+custom_minimum_size = Vector2(10, 135)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -210,14 +227,21 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/New"]
-layout_mode = 0
-offset_left = 56.0
-offset_top = 16.0
-offset_right = 256.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -70.0
+offset_top = -24.0
+offset_right = 70.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "New Game"
 fit_content = true
@@ -225,7 +249,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Load" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
-custom_minimum_size = Vector2(10, 65)
+custom_minimum_size = Vector2(10, 135)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -236,14 +260,21 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Load"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 16.0
-offset_right = 200.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -73.5
+offset_top = -24.0
+offset_right = 73.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Load Game"
 fit_content = true
@@ -251,7 +282,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Options" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
-custom_minimum_size = Vector2(10, 65)
+custom_minimum_size = Vector2(10, 135)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -262,14 +293,21 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Options"]
-layout_mode = 0
-offset_left = 72.0
-offset_top = 16.0
-offset_right = 176.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -51.5
+offset_top = -24.0
+offset_right = 51.5
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Options"
 fit_content = true
@@ -277,7 +315,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Exit" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript"]
-custom_minimum_size = Vector2(10, 65)
+custom_minimum_size = Vector2(10, 135)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -288,14 +326,21 @@ ignore_texture_size = true
 stretch_mode = 4
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Exit"]
-layout_mode = 0
-offset_left = 96.0
-offset_top = 16.0
-offset_right = 256.0
-offset_bottom = 64.0
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -25.0
+offset_top = -24.0
+offset_right = 25.0
+offset_bottom = 24.0
+grow_horizontal = 2
+grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 48
 bbcode_enabled = true
 text = "Exit"
 fit_content = true
@@ -316,11 +361,11 @@ script = ExtResource("2_5w2l0")
 script = ExtResource("4_oc5pt")
 _cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 _applyBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ApplyBtn")
-_resetBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn")
-_gameSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn")
-_controlsSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn")
-_audioSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn")
-_displaySBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn")
+_resetBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/ResetSettingsBtn")
+_gameSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/GameSettingsBtn")
+_controlsSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/ControlsSettingsBtn")
+_audioSBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/AudioSettingsBtn")
+_displaySBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/DisplaySettingsBtn")
 _winMainMenu = NodePath("../../MainMenu")
 _winSubGame = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings")
 _winSubControls = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings")
@@ -332,29 +377,29 @@ _langaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBac
 _langaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn")
 _languageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageDisplayText")
 _controlsParent = [NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"), NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous")]
-_masterVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume/ControlHolder/MasterVolumeSlider")
-_soundeffectsVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume/ControlHolder/SoundEffectsVolumeSlider")
-_musicVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume/ControlHolder/MusicVolumeSlider")
-_dialougeVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume/ControlHolder/DialougeVolumeSlider")
-_spokenLangaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn")
-_spokenLangaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn")
-_subtitlesOffBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder/SubtitlesOffBtn")
-_subtitlesOnBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder/SubtitlesOnBtn")
-_subtitlesLangaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn")
-_subtitlesLangaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn")
-_spokenLanguageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder/SpokenLanguageDisplayText")
-_subtitlesLanguageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder/SubtitlesLanguageDisplayText")
-_resolutionLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder/ResolutionLeftBtn")
-_resolutionRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder/ResolutionRightBtn")
-_refreshRateLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder/RefreshRateLeftBtn")
-_refreshRateRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder/RefreshRateRightBtn")
-_fullscreenLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder/FullScreenLeftBtn")
-_fullscreenRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder/FullScreenRightBtn")
-_vsyncOffBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder/VSyncOffBtn")
-_vsyncOnBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder/VSyncOnBtn")
-_resolutionDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder/ResolutionDisplayText")
-_refreshRateDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder/RefreshRateDisplayText")
-_fullscreenDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder/FullScreenDisplayText")
+_masterVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MasterVolume/ControlHolder/MasterVolumeSlider")
+_soundeffectsVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SoundEffectsVolume/ControlHolder/SoundEffectsVolumeSlider")
+_musicVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MusicVolume/ControlHolder/MusicVolumeSlider")
+_dialougeVolumeSlider = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/DialougeVolume/ControlHolder/DialougeVolumeSlider")
+_spokenLangaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn")
+_spokenLangaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn")
+_subtitlesOffBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn")
+_subtitlesOnBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn")
+_subtitlesLangaugeLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn")
+_subtitlesLangaugeRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn")
+_spokenLanguageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageDisplayText")
+_subtitlesLanguageDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageDisplayText")
+_resolutionLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionLeftBtn")
+_resolutionRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionRightBtn")
+_refreshRateLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateLeftBtn")
+_refreshRateRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateRightBtn")
+_fullscreenLeftBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenLeftBtn")
+_fullscreenRightBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenRightBtn")
+_vsyncOffBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn")
+_vsyncOnBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn")
+_resolutionDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionDisplayText")
+_refreshRateDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateDisplayText")
+_fullscreenDisplay = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenDisplayText")
 
 [node name="Background" type="TextureRect" parent="WindowManager/Settings"]
 layout_mode = 1
@@ -386,10 +431,10 @@ ratio = 1.78
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 300
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 300
+theme_override_constants/margin_bottom = 200
 
 [node name="SettingsBackground" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer"]
 layout_mode = 2
@@ -402,16 +447,16 @@ anchors_preset = -1
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 108.0
-offset_top = 3.55057
+offset_top = 13.0
 offset_right = -2.0
-offset_bottom = -450.449
+offset_bottom = -904.0
 grow_horizontal = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
 clip_contents = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 42
+theme_override_font_sizes/normal_font_size = 86
 text = "Settings"
 fit_content = true
 scroll_active = false
@@ -419,10 +464,10 @@ autowrap_mode = 0
 
 [node name="CancelBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
-offset_left = 924.0
-offset_top = 531.551
-offset_right = 1064.0
-offset_bottom = 573.551
+offset_left = 1698.0
+offset_top = 1051.1
+offset_right = 1948.0
+offset_bottom = 1114.1
 texture_normal = ExtResource("8_lf3yh")
 texture_pressed = ExtResource("9_wbehq")
 texture_hover = ExtResource("10_4g464")
@@ -443,7 +488,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 36
 text = "Cancel"
 fit_content = true
 scroll_active = false
@@ -451,10 +496,10 @@ autowrap_mode = 0
 
 [node name="ApplyBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
-offset_left = 756.0
-offset_top = 531.551
-offset_right = 896.0
-offset_bottom = 573.551
+offset_left = 1419.0
+offset_top = 1051.1
+offset_right = 1669.0
+offset_bottom = 1114.1
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
@@ -478,7 +523,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 36
 text = "Apply"
 fit_content = true
 scroll_active = false
@@ -486,30 +531,32 @@ autowrap_mode = 0
 
 [node name="SettingsSubMenus" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_windows")]
 anchors_preset = 0
-offset_left = 132.0
-offset_top = 60.0
-offset_right = 1084.0
-offset_bottom = 516.0
+offset_left = 181.0
+offset_top = 126.0
+offset_right = 1955.0
+offset_bottom = 1030.0
 script = ExtResource("1_st6gj")
 _windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 custom_minimum_size = Vector2(944, 456)
-layout_mode = 2
-anchors_preset = 0
-offset_right = 944.0
-offset_bottom = 456.0
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 script = ExtResource("2_5w2l0")
 ShowOnStart = true
 
 [node name="SubTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
 layout_mode = 0
-offset_left = 371.0
-offset_top = 18.5506
-offset_right = 549.0
-offset_bottom = 51.5506
+offset_left = 640.0
+offset_top = 15.1011
+offset_right = 1053.0
+offset_bottom = 92.1011
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 58
 text = "Game Settings"
 fit_content = true
 autowrap_mode = 0
@@ -517,10 +564,10 @@ autowrap_mode = 0
 [node name="General" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings"]
 custom_minimum_size = Vector2(848, 0)
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 50.0
-offset_right = 871.0
-offset_bottom = 142.0
+offset_left = 65.0
+offset_top = 94.0
+offset_right = 1715.0
+offset_bottom = 186.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General"]
 layout_mode = 0
@@ -529,53 +576,61 @@ offset_top = 3.0
 offset_right = 190.0
 offset_bottom = 31.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "General"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.467
+anchor_right = 1.0
+anchor_bottom = 0.467
+offset_left = 12.0
+offset_top = 0.036
+offset_bottom = 2.036
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Language" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General"]
 anchors_preset = 0
 offset_left = 13.0
-offset_top = 33.0
-offset_right = 838.0
-offset_bottom = 63.0
+offset_top = 52.0
+offset_right = 1636.0
+offset_bottom = 97.0
 
 [node name="Title-Language" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 5.10114
+offset_right = 154.0
+offset_bottom = 5.10114
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Language"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
 [node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
+offset_left = -615.0
 grow_horizontal = 0
+grow_vertical = 2
 
 [node name="LanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
 layout_mode = 1
-offset_right = 15.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 30.0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("16_kl4ad")
 texture_pressed = ExtResource("17_0g42x")
@@ -586,12 +641,13 @@ stretch_mode = 4
 
 [node name="LanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -15.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
+offset_left = -30.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("19_snjcc")
 texture_pressed = ExtResource("20_28led")
@@ -606,13 +662,14 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -32.0
-offset_top = 4.0
-offset_right = 33.0
+offset_left = -57.0
+offset_top = 3.5
+offset_right = 58.0
+offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "English
 "
 fit_content = true
@@ -623,30 +680,31 @@ autowrap_mode = 0
 visible = false
 layout_mode = 1
 anchors_preset = 0
-offset_right = 952.0
-offset_bottom = 456.0
+offset_right = 1716.0
+offset_bottom = 907.0
 script = ExtResource("2_5w2l0")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings"]
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
-offset_right = 944.0
-offset_bottom = 456.0
+offset_left = 42.0
+offset_right = 1716.0
+offset_bottom = 906.0
 
 [node name="Holder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer"]
-custom_minimum_size = Vector2(0, 2010)
+custom_minimum_size = Vector2(0, 3100)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
 layout_mode = 0
-offset_left = 362.0
-offset_top = 18.5506
-offset_right = 558.0
-offset_bottom = 51.5506
+offset_left = 577.0
+offset_top = 14.5506
+offset_right = 1031.0
+offset_bottom = 91.5506
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 58
 text = "Control Settings"
 fit_content = true
 autowrap_mode = 0
@@ -657,98 +715,95 @@ layout_mode = 3
 anchors_preset = 0
 offset_left = 23.0
 offset_top = 50.0
-offset_right = 871.0
-offset_bottom = 528.0
+offset_right = 1663.0
+offset_bottom = 751.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"]
 layout_mode = 0
-offset_left = 12.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+offset_right = 184.0
+offset_bottom = 48.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Movement"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
 
-[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 35.0
-offset_bottom = 65.0
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -650.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_move_forward"
 DisplayName = "Move Forward"
 
-[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-offset_top = 70.0
-offset_bottom = 100.0
 InputMapName = "movement_move_backward"
 DisplayName = "Move Backward"
 
-[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 105.0
-offset_bottom = 135.0
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_move_left"
 DisplayName = "Move Left"
 
-[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 140.0
-offset_bottom = 170.0
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_move_right"
 DisplayName = "Move Right"
 
-[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 175.0
-offset_bottom = 205.0
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_roll_left"
 DisplayName = "Roll Left"
 
-[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 210.0
-offset_bottom = 240.0
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_roll_right"
 DisplayName = "Roll Right"
 
-[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 245.0
-offset_bottom = 275.0
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_move_up"
 DisplayName = "Move Up / Jump"
 
-[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 280.0
-offset_bottom = 310.0
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_move_down"
 DisplayName = "Move Down / Crouch"
 
-[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 315.0
-offset_bottom = 345.0
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_toggle_dampeners"
 DisplayName = "Toggle Inertia Dampeners"
 
-[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 350.0
-offset_bottom = 380.0
+[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_toggle_jetpack"
 DisplayName = "Toggle Jetpack / Thrust"
 
-[node name="Remap-Control11" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 385.0
-offset_bottom = 415.0
+[node name="Remap-Control11" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_sprint_hold"
 DisplayName = "Sprint (Hold)"
 
-[node name="Remap-Control12" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement" instance=ExtResource("22_fcsi1")]
-offset_top = 420.0
-offset_bottom = 450.0
+[node name="Remap-Control12" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Movement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "movement_sprint_toggle"
 DisplayName = "Sprint (Toggle)"
 
@@ -757,81 +812,82 @@ custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 23.0
-offset_top = 520.0
-offset_right = 871.0
-offset_bottom = 878.0
+offset_top = 777.0
+offset_right = 1663.0
+offset_bottom = 1318.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"]
 layout_mode = 0
-offset_left = 12.0
 offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+offset_right = 393.0
+offset_bottom = 51.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Systems / Interactions"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
 
-[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 35.0
-offset_bottom = 65.0
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -440.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_use_primary"
 DisplayName = "Use (Primary)"
 
-[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-offset_top = 70.0
-offset_bottom = 100.0
 InputMapName = "interactions_use_secondary"
 DisplayName = "Use (Secondary)"
 
-[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 105.0
-offset_bottom = 135.0
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_reload"
 DisplayName = "Reload"
 
-[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 140.0
-offset_bottom = 170.0
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_use_or_interact"
 DisplayName = "Use / Interact"
 
-[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 175.0
-offset_bottom = 205.0
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_helmet"
 DisplayName = "Helmet On / Off"
 
-[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 210.0
-offset_bottom = 240.0
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_power_switch"
 DisplayName = "Power On / Off"
 
-[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 245.0
-offset_bottom = 275.0
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_chat_screen"
 DisplayName = "Chat Screen"
 
-[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 280.0
-offset_bottom = 310.0
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_inventory"
 DisplayName = "Inventory"
 
-[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions" instance=ExtResource("22_fcsi1")]
-offset_top = 315.0
-offset_bottom = 345.0
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Interactions/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "interactions_respawn"
 DisplayName = "Respawn"
 
@@ -840,87 +896,90 @@ custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 23.0
-offset_top = 880.0
-offset_right = 871.0
-offset_bottom = 1273.0
+offset_top = 1331.0
+offset_right = 1663.0
+offset_bottom = 1930.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"]
 layout_mode = 0
-offset_left = 12.0
 offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+offset_right = 288.0
+offset_bottom = 51.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Block Placement"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
 
-[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 35.0
-offset_bottom = 65.0
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = -499.0
+offset_right = 6.0
+offset_bottom = -4.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_config_menu"
 DisplayName = "Block / Toolbar Config Menu"
 
-[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-offset_top = 70.0
-offset_bottom = 100.0
 InputMapName = "blockplacement_rotate_horizontal_left"
 DisplayName = "Rotate Block Horizontal Left"
 
-[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 105.0
-offset_bottom = 135.0
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_rotate_horizontal_right"
 DisplayName = "Rotate Block Horizontal Right"
 
-[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 140.0
-offset_bottom = 170.0
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_rotate_vertical_up"
 DisplayName = "Rotate Block Vertical Up"
 
-[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 175.0
-offset_bottom = 205.0
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_rotate_vertical_down"
 DisplayName = "Rotate Block Vertical Down"
 
-[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 210.0
-offset_bottom = 240.0
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_rotate_roll_left"
 DisplayName = "Rotate Block Roll Left"
 
-[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 245.0
-offset_bottom = 275.0
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_rotate_roll_right"
 DisplayName = "Rotate Block Roll Right"
 
-[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 280.0
-offset_bottom = 310.0
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_symmetry_toggle"
 DisplayName = "Symmetry Mode Toggle"
 
-[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 315.0
-offset_bottom = 345.0
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_symmetry_setup"
 DisplayName = "Symmetry Mode Setup"
 
-[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement" instance=ExtResource("22_fcsi1")]
-offset_top = 350.0
-offset_bottom = 380.0
+[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "blockplacement_build_planner"
 DisplayName = "Build Planner"
 
@@ -929,99 +988,97 @@ custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 23.0
-offset_top = 1280.0
-offset_right = 871.0
-offset_bottom = 1758.0
+offset_top = 1953.0
+offset_right = 1663.0
+offset_bottom = 2660.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"]
 layout_mode = 0
-offset_left = 12.0
 offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+offset_right = 178.0
+offset_bottom = 51.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Toolbars"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
 
-[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 35.0
-offset_bottom = 65.0
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -605.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_1"
 DisplayName = "Toolbar Equip Slot 1"
 
-[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-offset_top = 70.0
-offset_bottom = 100.0
 InputMapName = "toolbar_equip_slot_2"
 DisplayName = "Toolbar Equip Slot 2"
 
-[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 105.0
-offset_bottom = 135.0
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_3"
 DisplayName = "Toolbar Equip Slot 3"
 
-[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 140.0
-offset_bottom = 170.0
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_4"
 DisplayName = "Toolbar Equip Slot 4"
 
-[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 175.0
-offset_bottom = 205.0
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_5"
 DisplayName = "Toolbar Equip Slot 5"
 
-[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 210.0
-offset_bottom = 240.0
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_6"
 DisplayName = "Toolbar Equip Slot 6"
 
-[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 245.0
-offset_bottom = 275.0
+[node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_7"
 DisplayName = "Toolbar Equip Slot 7"
 
-[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 280.0
-offset_bottom = 310.0
+[node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_8"
 DisplayName = "Toolbar Equip Slot 8"
 
-[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 315.0
-offset_bottom = 345.0
+[node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_equip_slot_9"
 DisplayName = "Toolbar Equip Slot 9"
 
-[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 350.0
-offset_bottom = 380.0
-InputMapName = "toolbar_unequip"
+[node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
+InputMapName = "toolbar_equip_slot_0"
 DisplayName = "Toolbar Unequip "
 
-[node name="Remap-Control11" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 385.0
-offset_bottom = 415.0
+[node name="Remap-Control11" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_previous_toolbar"
 DisplayName = "Previous Toolbar"
 
-[node name="Remap-Control12" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars" instance=ExtResource("22_fcsi1")]
-offset_top = 420.0
-offset_bottom = 450.0
+[node name="Remap-Control12" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Toolbars/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "toolbar_next_toolbar"
 DisplayName = "Next Toolbar"
 
@@ -1030,63 +1087,67 @@ custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
 offset_left = 23.0
-offset_top = 1750.0
-offset_right = 871.0
-offset_bottom = 2000.0
+offset_top = 2679.0
+offset_right = 1663.0
+offset_bottom = 3057.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous"]
 layout_mode = 0
-offset_left = 12.0
 offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+offset_right = 246.0
+offset_bottom = 51.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Miscellaneous"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
 
-[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
-offset_top = 35.0
-offset_bottom = 65.0
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -275.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "miscellaneous_park"
 DisplayName = "Park Ship"
 
-[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
+[node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-offset_top = 70.0
-offset_bottom = 100.0
 InputMapName = "miscellaneous_pause"
 DisplayName = "Pause"
 
-[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
-offset_top = 105.0
-offset_bottom = 135.0
+[node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "miscellaneous_dev_console"
 DisplayName = "Dev Console"
 
-[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
-offset_top = 140.0
-offset_bottom = 170.0
+[node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "miscellaneous_help"
 DisplayName = "Help"
 
-[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
-offset_top = 175.0
-offset_bottom = 205.0
+[node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "miscellaneous_first_third_person"
 DisplayName = "First Person / Third Person"
 
-[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous" instance=ExtResource("22_fcsi1")]
-offset_top = 210.0
-offset_bottom = 240.0
+[node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Miscellaneous/VBoxContainer" instance=ExtResource("22_fcsi1")]
+layout_mode = 2
 InputMapName = "miscellaneous_hud_toggle"
 DisplayName = "HUD Toggle"
 
@@ -1095,16 +1156,18 @@ visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
 anchors_preset = 0
+offset_right = 1717.0
+offset_bottom = 906.0
 script = ExtResource("2_5w2l0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
+[node name="SubTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings"]
 layout_mode = 0
-offset_left = 371.0
-offset_top = 18.5506
-offset_right = 549.0
-offset_bottom = 51.5506
+offset_left = 640.0
+offset_top = 15.1011
+offset_right = 1053.0
+offset_bottom = 92.1011
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 58
 text = "Audio Settings"
 fit_content = true
 autowrap_mode = 0
@@ -1113,62 +1176,70 @@ autowrap_mode = 0
 custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 50.0
-offset_right = 871.0
-offset_bottom = 217.0
+offset_left = 65.0
+offset_top = 64.0
+offset_right = 1711.0
+offset_bottom = 329.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+layout_mode = 1
+offset_right = 111.0
+offset_bottom = 48.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Sound"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
-
-[node name="MasterVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 33.0
-offset_right = 838.0
-offset_bottom = 63.0
-
-[node name="Title-MasterVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="MasterVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="Title-MasterVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MasterVolume"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_top = 0.101135
+offset_right = 232.0
+offset_bottom = 0.101135
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Master Volume"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MasterVolume"]
+custom_minimum_size = Vector2(600, 45)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="MasterVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MasterVolume/ControlHolder"]
+[node name="MasterVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MasterVolume/ControlHolder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1185,39 +1256,34 @@ value = 20.0
 rounded = true
 scrollable = false
 
-[node name="SoundEffectsVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 71.0
-offset_right = 838.0
-offset_bottom = 101.0
+[node name="SoundEffectsVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-SoundEffectsVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume"]
+[node name="Title-SoundEffectsVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SoundEffectsVolume"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Sound Effects"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SoundEffectsVolume"]
+custom_minimum_size = Vector2(600, 45)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="SoundEffectsVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/SoundEffectsVolume/ControlHolder"]
+[node name="SoundEffectsVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SoundEffectsVolume/ControlHolder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1234,39 +1300,34 @@ value = 20.0
 rounded = true
 scrollable = false
 
-[node name="MusicVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 109.0
-offset_right = 838.0
-offset_bottom = 139.0
+[node name="MusicVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-MusicVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume"]
+[node name="Title-MusicVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MusicVolume"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Music"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MusicVolume"]
+custom_minimum_size = Vector2(600, 45)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="MusicVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/MusicVolume/ControlHolder"]
+[node name="MusicVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MusicVolume/ControlHolder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1283,39 +1344,34 @@ value = 20.0
 rounded = true
 scrollable = false
 
-[node name="DialougeVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 147.0
-offset_right = 838.0
-offset_bottom = 177.0
+[node name="DialougeVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-DialougeVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume"]
+[node name="Title-DialougeVolume" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/DialougeVolume"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Dialouge"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/DialougeVolume"]
+custom_minimum_size = Vector2(600, 45)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="DialougeVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/DialougeVolume/ControlHolder"]
+[node name="DialougeVolumeSlider" type="HSlider" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/DialougeVolume/ControlHolder"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1336,244 +1392,289 @@ scrollable = false
 custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 240.551
-offset_right = 871.0
-offset_bottom = 376.551
+offset_left = 65.0
+offset_top = 345.0
+offset_right = 1711.0
+offset_bottom = 559.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+layout_mode = 1
+offset_right = 178.0
+offset_bottom = 48.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Dialouge"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
-
-[node name="SpokenLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 33.0
-offset_right = 838.0
-offset_bottom = 63.0
-
-[node name="Title-SpokenLanguage" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -155.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="SpokenLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="Title-SpokenLanguage" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Spoken Language"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="SpokenLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder"]
+[node name="SpokenLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-offset_right = 15.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("16_kl4ad")
 texture_pressed = ExtResource("17_0g42x")
 texture_hover = ExtResource("18_5uouw")
 texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="SpokenLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder"]
+[node name="SpokenLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -15.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("19_snjcc")
 texture_pressed = ExtResource("20_28led")
 texture_hover = ExtResource("21_2rvca")
 texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="SpokenLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SpokenLanguage/ControlHolder"]
+[node name="SpokenLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -0.5
-offset_top = 4.0
+offset_top = 6.0
 offset_right = 0.5
-offset_bottom = 4.0
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Default (English)"
+theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SubTitles" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 71.0
-offset_right = 838.0
-offset_bottom = 101.0
+[node name="SubTitles" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-Subtitles" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles"]
+[node name="Title-Subtitles" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Subtitles"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="SubtitlesOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder"]
+[node name="SubtitlesOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder"]
+custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
-offset_right = 145.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 toggle_mode = true
-texture_normal = ExtResource("25_7nypd")
-texture_pressed = ExtResource("25_7nypd")
-texture_hover = ExtResource("24_glvgh")
-texture_disabled = ExtResource("24_glvgh")
+texture_normal = ExtResource("25_ogcwk")
+texture_pressed = ExtResource("25_ogcwk")
+texture_hover = ExtResource("26_vltm2")
+texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SubtitlesOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubTitles/ControlHolder"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.5
+offset_top = 6.0
+offset_right = 21.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 30
+text = "Off"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SubtitlesOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder"]
+custom_minimum_size = Vector2(260, 0)
+layout_mode = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -145.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 toggle_mode = true
-texture_normal = ExtResource("27_wigru")
-texture_pressed = ExtResource("25_hftmr")
-texture_hover = ExtResource("25_hftmr")
-texture_disabled = ExtResource("25_hftmr")
+texture_normal = ExtResource("25_ogcwk")
+texture_pressed = ExtResource("25_ogcwk")
+texture_hover = ExtResource("26_vltm2")
+texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="SubtitlesLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 109.0
-offset_right = 838.0
-offset_bottom = 139.0
-
-[node name="Title-SubtitlesLanguage" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.5
+offset_top = 6.0
+offset_right = 21.5
+offset_bottom = 6.0
+grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Subtitles Language"
+theme_override_font_sizes/normal_font_size = 30
+text = "On"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage"]
+[node name="SubtitlesLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="Title-SubtitlesLanguage" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_vertical = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 32
+text = "Subtitles Language"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage"]
+custom_minimum_size = Vector2(600, 0)
+layout_mode = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="SubtitlesLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder"]
+[node name="SubtitlesLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-offset_right = 15.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("16_kl4ad")
 texture_pressed = ExtResource("17_0g42x")
 texture_hover = ExtResource("18_5uouw")
 texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="SubtitlesLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder"]
+[node name="SubtitlesLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -15.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("19_snjcc")
 texture_pressed = ExtResource("20_28led")
 texture_hover = ExtResource("21_2rvca")
 texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="SubtitlesLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/SubtitlesLanguage/ControlHolder"]
+[node name="SubtitlesLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -73.5
-offset_top = 4.0
-offset_right = 73.5
-offset_bottom = 4.0
+offset_left = -0.5
+offset_top = 6.0
+offset_right = 0.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Default (English)"
+theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -1583,16 +1684,18 @@ visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
 anchors_preset = 0
+offset_right = 1713.0
+offset_bottom = 906.0
 script = ExtResource("2_5w2l0")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
+[node name="SubTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
 layout_mode = 0
-offset_left = 362.0
-offset_top = 18.5506
-offset_right = 557.0
-offset_bottom = 51.5506
+offset_left = 613.0
+offset_top = 15.1011
+offset_right = 1066.0
+offset_bottom = 92.1011
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 58
 text = "Display Settings"
 fit_content = true
 autowrap_mode = 0
@@ -1601,384 +1704,426 @@ autowrap_mode = 0
 custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 50.0
-offset_right = 871.0
-offset_bottom = 235.0
+offset_left = 65.0
+offset_top = 64.0
+offset_right = 1711.0
+offset_bottom = 328.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+layout_mode = 1
+offset_right = 178.0
+offset_bottom = 48.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Screen"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
-
-[node name="Resolution" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 33.0
-offset_right = 838.0
-offset_bottom = 63.0
-
-[node name="Title-Resolution" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -12.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_constants/separation = 10
+
+[node name="Resolution" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
+
+[node name="Title-Resolution" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Resolution"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="ResolutionLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder"]
+[node name="ResolutionLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-offset_right = 15.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("16_kl4ad")
 texture_pressed = ExtResource("17_0g42x")
 texture_hover = ExtResource("18_5uouw")
 texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="ResolutionRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder"]
+[node name="ResolutionRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -15.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("19_snjcc")
 texture_pressed = ExtResource("20_28led")
 texture_hover = ExtResource("21_2rvca")
 texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="ResolutionDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/Resolution/ControlHolder"]
+[node name="ResolutionDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -49.5
-offset_top = 4.0
-offset_right = 49.5
-offset_bottom = 4.0
+offset_left = -0.5
+offset_top = 6.0
+offset_right = 0.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "1920x1080"
+theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="RefreshRate" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 71.0
-offset_right = 838.0
-offset_bottom = 101.0
+[node name="RefreshRate" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-RefreshRate" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate"]
+[node name="Title-RefreshRate" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 198.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Refresh Rate"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="RefreshRateLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder"]
+[node name="RefreshRateLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-offset_right = 15.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("16_kl4ad")
 texture_pressed = ExtResource("17_0g42x")
 texture_hover = ExtResource("18_5uouw")
 texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="RefreshRateRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder"]
+[node name="RefreshRateRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -15.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("19_snjcc")
 texture_pressed = ExtResource("20_28led")
 texture_hover = ExtResource("21_2rvca")
 texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="RefreshRateDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/RefreshRate/ControlHolder"]
+[node name="RefreshRateDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -22.0
-offset_top = 4.0
-offset_right = 22.0
-offset_bottom = 4.0
+offset_left = -0.5
+offset_top = 6.0
+offset_right = 0.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "60hz"
+theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="FullScreen" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 109.0
-offset_right = 838.0
-offset_bottom = 139.0
+[node name="FullScreen" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-FullScreen" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen"]
+[node name="Title-FullScreen" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "Display Mode"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="FullScreenLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder"]
+[node name="FullScreenLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-offset_right = 15.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("16_kl4ad")
 texture_pressed = ExtResource("17_0g42x")
 texture_hover = ExtResource("18_5uouw")
 texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="FullScreenRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder"]
+[node name="FullScreenRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder"]
+custom_minimum_size = Vector2(30, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -15.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 texture_normal = ExtResource("19_snjcc")
 texture_pressed = ExtResource("20_28led")
 texture_hover = ExtResource("21_2rvca")
 texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 4
+stretch_mode = 5
 
-[node name="FullScreenDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/FullScreen/ControlHolder"]
+[node name="FullScreenDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -94.0
-offset_top = 4.0
-offset_right = 94.0
-offset_bottom = 4.0
+offset_left = -0.5
+offset_top = 6.0
+offset_right = 0.5
+offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Fullscreen (Exclusive)"
+theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VSync" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen"]
-layout_mode = 3
-anchors_preset = 0
-offset_left = 13.0
-offset_top = 147.0
-offset_right = 838.0
-offset_bottom = 177.0
+[node name="VSync" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
+custom_minimum_size = Vector2(0, 45)
+layout_mode = 2
 
-[node name="Title-VSync" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync"]
+[node name="Title-VSync" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "V-Sync"
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync"]
+[node name="ControlHolder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync"]
+custom_minimum_size = Vector2(600, 0)
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -310.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 
-[node name="VSyncOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder"]
+[node name="VSyncOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder"]
+custom_minimum_size = Vector2(270, 0)
 layout_mode = 1
-offset_right = 145.0
-offset_bottom = 30.0
+anchors_preset = 9
+anchor_bottom = 1.0
+grow_vertical = 2
 toggle_mode = true
-texture_normal = ExtResource("25_7nypd")
-texture_pressed = ExtResource("25_7nypd")
-texture_hover = ExtResource("24_glvgh")
-texture_disabled = ExtResource("24_glvgh")
+texture_normal = ExtResource("25_ogcwk")
+texture_pressed = ExtResource("25_ogcwk")
+texture_hover = ExtResource("26_vltm2")
+texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
 
-[node name="VSyncOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VSync/ControlHolder"]
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn"]
 layout_mode = 1
-anchors_preset = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.5
+offset_top = 6.0
+offset_right = 21.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 30
+text = "Off"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="VSyncOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder"]
+custom_minimum_size = Vector2(270, 0)
+layout_mode = 1
+anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -145.0
-offset_bottom = 30.0
+anchor_bottom = 1.0
 grow_horizontal = 0
+grow_vertical = 2
 disabled = true
 toggle_mode = true
-texture_normal = ExtResource("27_wigru")
-texture_pressed = ExtResource("25_hftmr")
-texture_hover = ExtResource("25_hftmr")
-texture_disabled = ExtResource("25_hftmr")
+texture_normal = ExtResource("25_ogcwk")
+texture_pressed = ExtResource("25_ogcwk")
+texture_hover = ExtResource("26_vltm2")
+texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn"]
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -21.5
+offset_top = 6.0
+offset_right = 21.5
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+mouse_force_pass_scroll_events = false
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 30
+text = "On"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="Graphics" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings"]
 custom_minimum_size = Vector2(848, 0)
 layout_mode = 3
 anchors_preset = 0
-offset_left = 23.0
-offset_top = 237.551
-offset_right = 871.0
-offset_bottom = 422.551
+offset_left = 65.0
+offset_top = 345.0
+offset_right = 1711.0
+offset_bottom = 438.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics"]
-layout_mode = 0
-offset_left = 12.0
-offset_top = 3.0
-offset_right = 190.0
-offset_bottom = 31.0
+layout_mode = 1
+offset_right = 178.0
+offset_bottom = 28.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 21
+theme_override_font_sizes/normal_font_size = 36
 text = "Graphics"
 fit_content = true
 autowrap_mode = 0
 
 [node name="HorizontalLineSeperator" type="ColorRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics"]
-layout_mode = 0
-offset_left = 13.0
-offset_top = 27.0
-offset_right = 848.0
-offset_bottom = 28.0
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 40.0
+offset_bottom = 42.0
+grow_horizontal = 2
 
 [node name="Notice" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics"]
 anchors_preset = 0
-offset_left = 13.0
-offset_top = 33.0
-offset_right = 838.0
-offset_bottom = 63.0
+offset_top = 59.0
+offset_right = 825.0
+offset_bottom = 89.0
 
 [node name="Title-Notice" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/DisplaySettings/Graphics/Notice"]
 layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_top = -10.5
-offset_right = 228.0
-offset_bottom = 10.5
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
 grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 32
 text = "To be implemented..."
+fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="GameSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
-offset_left = 48.0
-offset_top = 99.5506
-offset_right = 113.0
-offset_bottom = 164.551
+offset_left = 87.0
+offset_top = 250.0
+offset_right = 187.0
+offset_bottom = 949.0
+theme_override_constants/separation = 50
+
+[node name="GameSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 disabled = true
 toggle_mode = true
 button_pressed = true
@@ -1988,182 +2133,140 @@ texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
 texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/GameSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/GameSettingsBtn/CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(65, 65)
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/GameSettingsBtn/CenterContainer"]
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("18_54gxq")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ControlsSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 187.551
-offset_right = 113.0
-offset_bottom = 252.551
+[node name="ControlsSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
 texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/ControlsSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ControlsSettingsBtn/CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/ControlsSettingsBtn/CenterContainer"]
+custom_minimum_size = Vector2(73, 73)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("18_gt1ff")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="AudioSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 275.551
-offset_right = 113.0
-offset_bottom = 340.551
+[node name="AudioSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
 texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/AudioSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/AudioSettingsBtn/CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(45, 45)
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/AudioSettingsBtn/CenterContainer"]
+custom_minimum_size = Vector2(66, 66)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("20_x7oi2")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="DisplaySettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 361.551
-offset_right = 113.0
-offset_bottom = 426.551
+[node name="DisplaySettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
 toggle_mode = true
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
 texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/DisplaySettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/DisplaySettingsBtn/CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(45, 45)
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/DisplaySettingsBtn/CenterContainer"]
+custom_minimum_size = Vector2(71, 71)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("21_4wk1p")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="ResetSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 0
-offset_left = 48.0
-offset_top = 443.551
-offset_right = 98.0
-offset_bottom = 493.551
+[node name="ResetSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer"]
+custom_minimum_size = Vector2(90, 90)
+layout_mode = 2
 texture_normal = ExtResource("8_g5u0w")
 texture_pressed = ExtResource("9_nubwi")
 texture_hover = ExtResource("10_meldx")
 texture_disabled = ExtResource("9_nubwi")
 ignore_texture_size = true
-stretch_mode = 0
+stretch_mode = 5
 
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn"]
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/ResetSettingsBtn"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_constants/margin_left = 15
-theme_override_constants/margin_top = 15
-theme_override_constants/margin_right = 15
-theme_override_constants/margin_bottom = 15
-
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/ResetSettingsBtn/CenterContainer/MarginContainer"]
-custom_minimum_size = Vector2(40, 40)
+[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/VBoxContainer/ResetSettingsBtn/CenterContainer"]
+custom_minimum_size = Vector2(77, 77)
 layout_mode = 2
 mouse_filter = 2
 texture = ExtResource("22_lxoad")
@@ -2222,10 +2325,10 @@ ratio = 1.78
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/WorldManager/AspectRatioContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
 
 [node name="SettingsBackground" type="TextureRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer"]
 layout_mode = 2
@@ -2235,12 +2338,12 @@ expand_mode = 1
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 clip_contents = false
 layout_mode = 0
-offset_left = 84.0
-offset_top = 74.5506
-offset_right = 206.0
-offset_bottom = 100.551
+offset_left = 210.0
+offset_top = 151.101
+offset_right = 355.0
+offset_bottom = 183.101
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 24
 text = "World Name"
 fit_content = true
 scroll_active = false
@@ -2249,12 +2352,12 @@ autowrap_mode = 0
 [node name="RichTextLabel2" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 clip_contents = false
 layout_mode = 0
-offset_left = 436.0
-offset_top = 74.5506
-offset_right = 558.0
-offset_bottom = 100.551
+offset_left = 1007.0
+offset_top = 151.101
+offset_right = 1132.0
+offset_bottom = 183.101
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 20
+theme_override_font_sizes/normal_font_size = 24
 text = "Last Saved"
 fit_content = true
 scroll_active = false
@@ -2267,15 +2370,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 108.0
 offset_top = 4.0
-offset_right = -412.0
-offset_bottom = -450.0
+offset_right = -823.0
+offset_bottom = -898.0
 grow_horizontal = 2
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
 clip_contents = false
 layout_mode = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 42
+theme_override_font_sizes/normal_font_size = 86
 text = "Load Game"
 fit_content = true
 scroll_active = false
@@ -2283,10 +2386,10 @@ autowrap_mode = 0
 
 [node name="CancelBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
-offset_left = 924.0
-offset_top = 531.551
-offset_right = 1064.0
-offset_bottom = 573.551
+offset_left = 1835.0
+offset_top = 1065.1
+offset_right = 2085.0
+offset_bottom = 1128.1
 texture_normal = ExtResource("8_lf3yh")
 texture_pressed = ExtResource("9_wbehq")
 texture_hover = ExtResource("10_4g464")
@@ -2307,7 +2410,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 36
 text = "Cancel"
 fit_content = true
 scroll_active = false
@@ -2315,10 +2418,10 @@ autowrap_mode = 0
 
 [node name="LoadBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
-offset_left = 756.0
-offset_top = 531.551
-offset_right = 896.0
-offset_bottom = 573.551
+offset_left = 1547.0
+offset_top = 1065.1
+offset_right = 1797.0
+offset_bottom = 1128.1
 disabled = true
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -2343,7 +2446,7 @@ mouse_filter = 2
 layout_mode = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 25
+theme_override_font_sizes/normal_font_size = 36
 text = "Load"
 fit_content = true
 scroll_active = false
@@ -2351,15 +2454,20 @@ autowrap_mode = 0
 
 [node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
 layout_mode = 0
-offset_left = 44.0
-offset_top = 108.0
-offset_right = 612.0
-offset_bottom = 496.0
+offset_left = 85.0
+offset_top = 195.0
+offset_right = 1231.0
+offset_bottom = 1023.0
 
 [node name="WorldListHolder" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer"]
 clip_contents = true
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/separation = 0
+
+[node name="WorldSave" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("24_6fqay")]
+layout_mode = 2
 
 [node name="LoadingScreen" type="Control" parent="WindowManager"]
 visible = false
@@ -2382,13 +2490,14 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("2_5w2l0")
 
 [node name="HUDButtons" type="Node" parent="WindowManager/HUD" node_paths=PackedStringArray("_itemSlots", "_itemSlotSelections", "_itemSlotIcons", "_hotbarSelections", "_hotbarSelectionEnabled")]
 script = ExtResource("7_knsfs")
 _itemSlots = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9")]
-_itemSlotSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/Hotbar-Slot-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/Hotbar-Slot-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/Hotbar-Slot-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/Hotbar-Slot-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/Hotbar-Slot-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/Hotbar-Slot-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/Hotbar-Slot-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/Hotbar-Slot-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/Hotbar-Slot-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/Hotbar-Slot-9-ON")]
-_itemSlotIcons = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer/Hotbar-Slot-0-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer/Hotbar-Slot-1-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer/Hotbar-Slot-2-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer/Hotbar-Slot-3-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer/Hotbar-Slot-4-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer/Hotbar-Slot-5-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer/Hotbar-Slot-6-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer/Hotbar-Slot-7-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer/Hotbar-Slot-8-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer/Hotbar-Slot-9-Item")]
+_itemSlotSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer/Hotbar-Slot-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer/Hotbar-Slot-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer/Hotbar-Slot-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer/Hotbar-Slot-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer/Hotbar-Slot-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer/Hotbar-Slot-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer/Hotbar-Slot-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer/Hotbar-Slot-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer/Hotbar-Slot-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer/Hotbar-Slot-9-ON")]
+_itemSlotIcons = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer/MarginContainer/Hotbar-Slot-0-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer/MarginContainer/Hotbar-Slot-1-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer/MarginContainer/Hotbar-Slot-2-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer/MarginContainer/Hotbar-Slot-3-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer/MarginContainer/Hotbar-Slot-4-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer/MarginContainer/Hotbar-Slot-5-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer/MarginContainer/Hotbar-Slot-6-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer/MarginContainer/Hotbar-Slot-7-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer/MarginContainer/Hotbar-Slot-8-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer/MarginContainer/Hotbar-Slot-9-Item")]
 _hotbarSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-0"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-1"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-2"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-3"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-4"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-5"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-6"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-7"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-8"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-9")]
 _hotbarSelectionEnabled = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-0/Hotbar-Selection-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-1/Hotbar-Selection-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-2/Hotbar-Selection-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-3/Hotbar-Selection-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-4/Hotbar-Selection-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-5/Hotbar-Selection-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-6/Hotbar-Selection-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-7/Hotbar-Selection-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-8/Hotbar-Selection-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-9/Hotbar-Selection-9-ON")]
 
@@ -2407,13 +2516,21 @@ layout_mode = 2
 
 [node name="No-Background" type="ColorRect" parent="WindowManager/HUD/Holder/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 color = Color(0.560784, 0.541176, 0.545098, 0)
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background"]
 layout_mode = 1
-offset_top = 592.0
-offset_right = 1280.0
-offset_bottom = 719.0
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -556.0
+offset_top = -137.0
+offset_right = 556.0
+grow_horizontal = 2
+grow_vertical = 0
 theme_override_constants/margin_left = 0
 theme_override_constants/margin_top = 0
 theme_override_constants/margin_right = 0
@@ -2428,29 +2545,29 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -469.0
-offset_top = 21.0
-offset_right = 468.473
+offset_left = -550.909
+offset_right = 550.909
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("43_tv4vx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selections" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar"]
+[node name="Hotbar-Selections" type="HBoxContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 55.0
+offset_top = 104.0
+offset_right = -53.8182
 grow_horizontal = 2
 grow_vertical = 2
+theme_override_constants/separation = 27
 
 [node name="Hotbar-Selection-1" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 1
-offset_left = 104.0
-offset_top = 77.0
-offset_right = 169.625
-offset_bottom = 83.0
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2467,11 +2584,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-2" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 178.0
-offset_top = 77.0
-offset_right = 243.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2489,11 +2602,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-3" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 251.0
-offset_top = 77.0
-offset_right = 316.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2511,11 +2620,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-4" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 325.0
-offset_top = 77.0
-offset_right = 390.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2533,11 +2638,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-5" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 399.0
-offset_top = 77.0
-offset_right = 464.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2555,11 +2656,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-6" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 472.0
-offset_top = 77.0
-offset_right = 537.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2577,11 +2674,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-7" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 546.0
-offset_top = 77.0
-offset_right = 611.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2599,11 +2692,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-8" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 619.0
-offset_top = 77.0
-offset_right = 684.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2621,11 +2710,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-9" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 693.0
-offset_top = 77.0
-offset_right = 758.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2643,11 +2728,7 @@ expand_mode = 3
 stretch_mode = 5
 
 [node name="Hotbar-Selection-0" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
-layout_mode = 0
-offset_left = 767.0
-offset_top = 77.0
-offset_right = 832.625
-offset_bottom = 83.0
+layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
@@ -2666,18 +2747,25 @@ stretch_mode = 5
 
 [node name="Hotbar-Slots" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar"]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -512.909
+offset_top = -51.0
+offset_right = 514.091
+offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Slot-1" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 99.0
-offset_top = 6.0
-offset_right = 171.0
-offset_bottom = 75.0
+offset_left = 1.0
+offset_right = 101.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"]
 layout_mode = 1
@@ -2689,33 +2777,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-1-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer"]
+[node name="Hotbar-Slot-1-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"]
+[node name="Hotbar-Slot-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-2" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 173.0
-offset_top = 6.0
-offset_right = 245.0
-offset_bottom = 75.0
+offset_left = 103.0
+offset_right = 205.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"]
 layout_mode = 1
@@ -2727,33 +2817,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-2-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer"]
+[node name="Hotbar-Slot-2-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"]
+[node name="Hotbar-Slot-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-3" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 247.0
-offset_top = 6.0
-offset_right = 319.0
-offset_bottom = 75.0
+offset_left = 206.0
+offset_right = 308.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"]
 layout_mode = 1
@@ -2765,33 +2857,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-3-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer"]
+[node name="Hotbar-Slot-3-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"]
+[node name="Hotbar-Slot-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-4" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 321.0
-offset_top = 6.0
-offset_right = 393.0
-offset_bottom = 75.0
+offset_left = 308.0
+offset_right = 410.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"]
 layout_mode = 1
@@ -2803,33 +2897,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-4-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer"]
+[node name="Hotbar-Slot-4-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"]
+[node name="Hotbar-Slot-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-5" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 395.0
-offset_top = 6.0
-offset_right = 467.0
-offset_bottom = 75.0
+offset_left = 410.0
+offset_right = 512.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"]
 layout_mode = 1
@@ -2841,33 +2937,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-5-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer"]
+[node name="Hotbar-Slot-5-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"]
+[node name="Hotbar-Slot-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-6" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 469.0
-offset_top = 6.0
-offset_right = 541.0
-offset_bottom = 75.0
+offset_left = 513.0
+offset_right = 615.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"]
 layout_mode = 1
@@ -2879,33 +2977,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-6-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer"]
+[node name="Hotbar-Slot-6-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"]
+[node name="Hotbar-Slot-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-7" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 543.0
-offset_top = 6.0
-offset_right = 615.0
-offset_bottom = 75.0
+offset_left = 615.0
+offset_right = 717.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"]
 layout_mode = 1
@@ -2917,33 +3017,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-7-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer"]
+[node name="Hotbar-Slot-7-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"]
+[node name="Hotbar-Slot-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-8" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 617.0
-offset_top = 6.0
-offset_right = 689.0
-offset_bottom = 75.0
+offset_left = 717.0
+offset_right = 819.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"]
 layout_mode = 1
@@ -2955,33 +3057,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-8-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer"]
+[node name="Hotbar-Slot-8-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"]
+[node name="Hotbar-Slot-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-9" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 691.0
-offset_top = 6.0
-offset_right = 763.0
-offset_bottom = 75.0
+offset_left = 819.0
+offset_right = 921.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9"]
 layout_mode = 1
@@ -2993,33 +3097,35 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-9-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer"]
+[node name="Hotbar-Slot-9-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9"]
+[node name="Hotbar-Slot-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer"]
 visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
 [node name="Slot-0" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
-layout_mode = 3
+custom_minimum_size = Vector2(102, 0)
+layout_mode = 2
 anchors_preset = 0
-offset_left = 765.0
-offset_top = 6.0
-offset_right = 837.0
-offset_bottom = 75.0
+offset_left = 922.0
+offset_right = 1024.0
+offset_bottom = 92.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"]
 layout_mode = 1
@@ -3031,21 +3137,23 @@ grow_vertical = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-0-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer"]
+[node name="Hotbar-Slot-0-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="Hotbar-Slot-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer"]
+layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
@@ -3082,10 +3190,10 @@ script = ExtResource("4_17pyg")
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 layout_mode = 2
-theme_override_constants/margin_left = 100
-theme_override_constants/margin_top = 100
-theme_override_constants/margin_right = 100
-theme_override_constants/margin_bottom = 100
+theme_override_constants/margin_left = 200
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 200
+theme_override_constants/margin_bottom = 200
 
 [node name="SettingsBackground" type="TextureRect" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer"]
 layout_mode = 2
@@ -3095,18 +3203,16 @@ stretch_mode = 5
 
 [node name="Title" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground"]
 layout_mode = 1
-anchors_preset = 13
+anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-anchor_bottom = 1.0
-offset_left = -134.0
-offset_top = 24.5506
-offset_right = 134.0
-offset_bottom = -383.449
+offset_left = -236.0
+offset_top = 56.0
+offset_right = 236.0
+offset_bottom = 251.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 85
+theme_override_font_sizes/normal_font_size = 150
 bbcode_enabled = true
 text = "PAUSE"
 fit_content = true
@@ -3121,16 +3227,16 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -175.5
-offset_top = -126.949
-offset_right = 175.5
-offset_bottom = 208.051
+offset_left = -322.0
+offset_top = -255.0
+offset_right = 322.0
+offset_bottom = 415.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 15
+theme_override_constants/separation = 45
 
 [node name="Resume" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
-custom_minimum_size = Vector2(10, 55)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
 mouse_filter = 2
 texture_normal = ExtResource("5_eegk4")
@@ -3147,15 +3253,15 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -53.0
-offset_top = 12.0
-offset_right = 53.0
-offset_bottom = 12.0
+offset_left = -118.5
+offset_top = 19.0
+offset_right = 118.5
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "Resume"
 fit_content = true
@@ -3163,7 +3269,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="New" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
-custom_minimum_size = Vector2(10, 55)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -3179,15 +3285,15 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -72.5
-offset_top = 12.0
-offset_right = 72.5
-offset_bottom = 12.0
+offset_left = -161.5
+offset_top = 19.0
+offset_right = 161.5
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "Save Game"
 fit_content = true
@@ -3195,7 +3301,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Load" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
-custom_minimum_size = Vector2(10, 55)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -3211,15 +3317,15 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -73.5
-offset_top = 12.0
-offset_right = 73.5
-offset_bottom = 12.0
+offset_left = -163.5
+offset_top = 19.0
+offset_right = 163.5
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "Load Game"
 fit_content = true
@@ -3227,7 +3333,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Options" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
-custom_minimum_size = Vector2(10, 55)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -3243,15 +3349,15 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -118.0
-offset_top = 12.0
-offset_right = 118.0
-offset_bottom = 12.0
+offset_left = -262.0
+offset_top = 19.0
+offset_right = 262.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "Exit To Main Menu"
 fit_content = true
@@ -3259,7 +3365,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="Exit" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
-custom_minimum_size = Vector2(10, 55)
+custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
@@ -3275,15 +3381,15 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -101.0
-offset_top = 12.0
-offset_right = 101.0
-offset_bottom = 12.0
+offset_left = -224.0
+offset_top = 19.0
+offset_right = 224.0
+offset_bottom = 19.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 27
+theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
 text = "Exit To Desktop"
 fit_content = true
