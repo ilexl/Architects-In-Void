@@ -200,10 +200,16 @@ public partial class Data : Node
 
     void ClearInspector()
     {
+        Clear();
+    }
+
+    public void Clear()
+    {
         _name = "";
         _gameVersion = "";
         wmData._Clear();
     }
+
     void SaveFromInspector()
     {
         Save(_name);

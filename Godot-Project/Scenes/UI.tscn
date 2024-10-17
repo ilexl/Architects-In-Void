@@ -103,7 +103,6 @@ script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3178,7 +3177,7 @@ grow_vertical = 2
 texture = ExtResource("6_pcm66")
 expand_mode = 1
 
-[node name="PauseMenuButtons" type="AspectRatioContainer" parent="WindowManager/PauseMenu"]
+[node name="PauseMenuButtons" type="AspectRatioContainer" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn")]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -3187,6 +3186,11 @@ grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
 script = ExtResource("4_17pyg")
+_resumeBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Resume")
+_saveGameBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/New")
+_loadGameBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Load")
+_mainMenuBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Options")
+_desktopBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Exit")
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 layout_mode = 2
@@ -3238,7 +3242,6 @@ theme_override_constants/separation = 45
 [node name="Resume" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-mouse_filter = 2
 texture_normal = ExtResource("5_eegk4")
 texture_pressed = ExtResource("6_bw56o")
 texture_hover = ExtResource("7_vpu1a")
@@ -3397,6 +3400,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="PopUp" type="Control" parent="WindowManager" node_paths=PackedStringArray("holder")]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
