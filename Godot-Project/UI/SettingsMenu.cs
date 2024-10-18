@@ -439,6 +439,12 @@ public partial class SettingsMenu : Node
     void VSyncOn()
     {
         GD.Print("Settings: VSync Toggled On");
+        RichTextLabel rtlON = _vsyncOnBtn.GetChild(0) as RichTextLabel;
+        rtlON.RemoveThemeColorOverride("default_color");
+        rtlON.AddThemeColorOverride("default_color", Color.Color8(255, 255, 255, 255));
+        RichTextLabel rtlOff = _vsyncOffBtn.GetChild(0) as RichTextLabel;
+        rtlOff.RemoveThemeColorOverride("default_color");
+        rtlOff.AddThemeColorOverride("default_color", Color.Color8(108, 108, 108, 255));
         _vsyncOnBtn.Disabled = true;
         _vsyncOffBtn.ButtonPressed = false;
         _vsyncOffBtn.Disabled = false;
@@ -450,6 +456,12 @@ public partial class SettingsMenu : Node
     void VSyncOff()
     {
         GD.Print("Settings: VSync Toggled Off");
+        RichTextLabel rtlON = _vsyncOnBtn.GetChild(0) as RichTextLabel;
+        rtlON.RemoveThemeColorOverride("default_color");
+        rtlON.AddThemeColorOverride("default_color", Color.Color8(108, 108, 108, 255));
+        RichTextLabel rtlOff = _vsyncOffBtn.GetChild(0) as RichTextLabel;
+        rtlOff.RemoveThemeColorOverride("default_color");
+        rtlOff.AddThemeColorOverride("default_color", Color.Color8(255, 255, 255, 255));
         _vsyncOffBtn.Disabled = true;
         _vsyncOnBtn.ButtonPressed = false;
         _vsyncOnBtn.Disabled = false;
@@ -464,6 +476,12 @@ public partial class SettingsMenu : Node
     void SubtitlesOn()
     {
         GD.Print("Settings: Subtitles Toggled On");
+        RichTextLabel rtlON = _subtitlesOnBtn.GetChild(0) as RichTextLabel;
+        rtlON.RemoveThemeColorOverride("default_color");
+        rtlON.AddThemeColorOverride("default_color", Color.Color8(255, 255, 255, 255));
+        RichTextLabel rtlOff = _subtitlesOffBtn.GetChild(0) as RichTextLabel;
+        rtlOff.RemoveThemeColorOverride("default_color");
+        rtlOff.AddThemeColorOverride("default_color", Color.Color8(108, 108, 108, 255));
         _subtitlesOnBtn.Disabled = true;
         _subtitlesOffBtn.ButtonPressed = false;
         _subtitlesOffBtn.Disabled = false;
@@ -472,6 +490,12 @@ public partial class SettingsMenu : Node
     void SubtitlesOff()
     {
         GD.Print("Settings: Subtitles Toggled Off");
+        RichTextLabel rtlON = _subtitlesOnBtn.GetChild(0) as RichTextLabel;
+        rtlON.RemoveThemeColorOverride("default_color");
+        rtlON.AddThemeColorOverride("default_color", Color.Color8(108, 108, 108, 255));
+        RichTextLabel rtlOff = _subtitlesOffBtn.GetChild(0) as RichTextLabel;
+        rtlOff.RemoveThemeColorOverride("default_color");
+        rtlOff.AddThemeColorOverride("default_color", Color.Color8(255, 255, 255, 255));
         _subtitlesOffBtn.Disabled = true;
         _subtitlesOnBtn.ButtonPressed = false;
         _subtitlesOnBtn.Disabled = false;
@@ -648,9 +672,11 @@ public partial class SettingsMenu : Node
             return;
         }
         GD.Print("SettingsMenu: refreshing all remappable controls");
+        
         foreach(Node n in _controlsParent)
         {
-            foreach (var child in n.GetChildren())
+            Node holder = n.GetChild(2);
+            foreach (var child in holder.GetChildren())
             {
                 var rc = child as RemapControl;
                 if (rc == null) { continue; }
@@ -695,8 +721,14 @@ public partial class SettingsMenu : Node
         _refreshRateDisplay.Text = System.Math.Round(_settings._refreshRate, 1).ToString() + "hz";
         _refreshRateLeftBtn.Disabled = _settings._vsync;
         _refreshRateRightBtn.Disabled = _settings._vsync;
-        _vsyncOffBtn.Disabled = !_settings._vsync;
-        _vsyncOnBtn.Disabled = _settings._vsync;
+        if (_settings._vsync)
+        {
+            VSyncOn();
+        }
+        else
+        {
+            VSyncOff();
+        }
         _fullscreenDisplay.Text = _settings.DisplayModeToString(_settings._displayMode);
         _fullscreenLeftBtn.Disabled = false;
         _fullscreenRightBtn.Disabled = false;
