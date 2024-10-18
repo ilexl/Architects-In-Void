@@ -29,8 +29,9 @@ _effectsVolume = 100.0
 _musicVolume = 100.0
 _dialougeVolume = 100.0
 _subtitles = true
-_resolution = Vector2i(2560, 1440)
+_resolution = Vector2i(1920, 1080)
 _refreshRate = 144.0
+_displayMode = 2
 
 [node name="World" type="Node3D" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataVessel")]
 script = ExtResource("2_1n58s")
