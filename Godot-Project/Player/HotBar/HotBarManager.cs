@@ -6,6 +6,7 @@ namespace ArchitectsInVoid.Player.HotBar;
 public partial class HotBarManager : Node
 {
 	// Hotbar array made accessible to everything
+	public PackedScene[][] HotBars;
 	[Export] public PackedScene[] HotBar;
 	
 	// Reference to the component creator for use with any scenes that inherit from PlaceableComponent
