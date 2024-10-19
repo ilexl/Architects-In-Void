@@ -25,7 +25,13 @@ public partial class Pause : Node
         }
         _singleton = this;
 
-        if (_resumeBtn != null && !_resumeBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame)))
+        if(_resumeBtn == null || _saveGameBtn == null || _loadGameBtn == null || _mainMenuBtn == null || _desktopBtn == null)
+        {
+            GD.Print("Pause: missing texture buttons...");
+            return;
+        }
+
+        if (!_resumeBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame)))
         {
             _resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
         }
