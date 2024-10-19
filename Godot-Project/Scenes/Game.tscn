@@ -7,8 +7,8 @@
 [ext_resource type="Script" path="res://Settings/Settings.cs" id="3_2sonm"]
 [ext_resource type="Script" path="res://WorldData/PlayerData.cs" id="3_gf60n"]
 [ext_resource type="Script" path="res://WorldData/VesselData.cs" id="6_s8e62"]
+[ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://Player/Player.tscn" id="7_202vu"]
 [ext_resource type="PackedScene" uid="uid://hjmtbffy8j1q" path="res://Vessels/Vessel.tscn" id="7_nonp3"]
-[ext_resource type="PackedScene" uid="uid://ct2lcrtnb5t1c" path="res://Scenes/BlankPlayer.tscn" id="7_ooddx"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3yxs1"]
 
@@ -30,7 +30,7 @@ _musicVolume = 100.0
 _dialougeVolume = 100.0
 _subtitles = true
 _resolution = Vector2i(2560, 1440)
-_refreshRate = 144.0
+_refreshRate = 170.0
 
 [node name="World" type="Node3D" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataVessel")]
 script = ExtResource("2_1n58s")
@@ -39,7 +39,7 @@ _dataVessel = NodePath("Vessels")
 
 [node name="Players" type="Node" parent="World"]
 script = ExtResource("3_gf60n")
-_playerPrefab = ExtResource("7_ooddx")
+_playerPrefab = ExtResource("7_202vu")
 
 [node name="Vessels" type="Node" parent="World"]
 script = ExtResource("6_s8e62")

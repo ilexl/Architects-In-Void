@@ -76,6 +76,7 @@ public partial class Cursor : Node3D
 	/// <param name="scale"></param>
 	public new void SetScale(Vector3 scale)
 	{
+		if (!IsNodeReady()) return;
 		var xEdges = _edges['X'];
 		var yEdges = _edges['Y'];
 		var zEdges = _edges['Z'];
@@ -117,6 +118,7 @@ public partial class Cursor : Node3D
 	/// <param name="end"></param>
 	public void SetCornerPositions(Vector3 start, Vector3 end)
 	{
+		if (!IsNodeReady()) return;
 		// WORLD coords
 		Position = start.Lerp(end, 0.5);;
 

@@ -113,7 +113,7 @@ public partial class PlayerController : Node
     // This does not function as intended and needs to be rewritten
     private Vector3 GetAcceleration(Vector3 moveVector, Basis headTransform)
     {
-        if (Dampeners)
+        if (Dampeners && _gravity.LengthSquared() > 0.0f)
         {
             var transformedMoveVector = moveVector * headTransform;
             var gravityLength = _gravity.Length();
