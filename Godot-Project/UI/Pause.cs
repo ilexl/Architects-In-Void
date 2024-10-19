@@ -35,19 +35,19 @@ public partial class Pause : Node
         {
             _resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
         }
-        if (_saveGameBtn != null && !_saveGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SaveGame)))
+        if (!_saveGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SaveGame)))
         {
             _saveGameBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SaveGame));
         }
-        if (_loadGameBtn != null && !_loadGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(LoadGame)))
+        if (!_loadGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(LoadGame)))
         {
             _loadGameBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadGame));
         }
-        if (_mainMenuBtn != null && !_mainMenuBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(MainMenu)))
+        if (!_mainMenuBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(MainMenu)))
         {
             _mainMenuBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(MainMenu));
         }
-        if (_desktopBtn != null && !_desktopBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Desktop)))
+        if (!_desktopBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Desktop)))
         {
             _desktopBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Desktop));
         }
