@@ -437,6 +437,7 @@ public partial class Settings : Node
 
     void ApplyScreenSettings()
     {
+        if (Engine.IsEditorHint()) { return; }
         SetDisplayMode(_displayMode);
         SetVSync(_vsync);
         DisplayServer.WindowSetSize(_resolution);
