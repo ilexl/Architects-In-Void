@@ -105,10 +105,9 @@ _windowManager = NodePath("WindowManager")
 
 [node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
 script = ExtResource("1_st6gj")
-_windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
+_windows = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -541,7 +540,7 @@ offset_top = 126.0
 offset_right = 1955.0
 offset_bottom = 1030.0
 script = ExtResource("1_st6gj")
-_windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
+_windows = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 custom_minimum_size = Vector2(944, 456)
@@ -940,52 +939,52 @@ theme_override_constants/separation = 10
 
 [node name="Remap-Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_config_menu"
+InputMapName = "component_config_menu"
 DisplayName = "Block / Toolbar Config Menu"
 
 [node name="Remap-Control2" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_rotate_horizontal_left"
-DisplayName = "Rotate Block Horizontal Left"
+InputMapName = "component_rotate_yaw_left"
+DisplayName = "Rotate Block Yaw Left"
 
 [node name="Remap-Control3" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_rotate_horizontal_right"
-DisplayName = "Rotate Block Horizontal Right"
+InputMapName = "component_rotate_yaw_right"
+DisplayName = "Rotate Block Yaw Right"
 
 [node name="Remap-Control4" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_rotate_vertical_up"
-DisplayName = "Rotate Block Vertical Up"
+InputMapName = "component_rotate_pitch_up"
+DisplayName = "Rotate Block Pitch Up"
 
 [node name="Remap-Control5" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_rotate_vertical_down"
-DisplayName = "Rotate Block Vertical Down"
+InputMapName = "component_rotate_pitch_down"
+DisplayName = "Rotate Block Pitch Down"
 
 [node name="Remap-Control6" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_rotate_roll_left"
+InputMapName = "component_rotate_roll_left"
 DisplayName = "Rotate Block Roll Left"
 
 [node name="Remap-Control7" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_rotate_roll_right"
+InputMapName = "component_rotate_roll_right"
 DisplayName = "Rotate Block Roll Right"
 
 [node name="Remap-Control8" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_symmetry_toggle"
+InputMapName = "component_symmetry_toggle"
 DisplayName = "Symmetry Mode Toggle"
 
 [node name="Remap-Control9" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_symmetry_setup"
+InputMapName = "component_symmetry_setup"
 DisplayName = "Symmetry Mode Setup"
 
 [node name="Remap-Control10" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/Block Placement/VBoxContainer" instance=ExtResource("22_fcsi1")]
 layout_mode = 2
-InputMapName = "blockplacement_build_planner"
+InputMapName = "component_build_planner"
 DisplayName = "Build Planner"
 
 [node name="Toolbars" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus/ControlSettings/ScrollContainer/Holder"]
@@ -2473,6 +2472,8 @@ theme_override_constants/separation = 0
 
 [node name="WorldSave" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("24_6fqay")]
 layout_mode = 2
+Date = null
+Title = null
 
 [node name="LoadingScreen" type="Control" parent="WindowManager"]
 visible = false
@@ -2488,6 +2489,7 @@ script = ExtResource("2_5w2l0")
 script = ExtResource("6_unkds")
 
 [node name="HUD" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3226,6 +3228,7 @@ texture_progress = ExtResource("47_m5iam")
 tint_progress = Color(0.541176, 1, 0.976471, 1)
 
 [node name="TextureProgressBar-Energy" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
+layout_mode = 0
 offset_left = 140.0
 offset_top = 51.0
 offset_right = 220.0
@@ -3240,6 +3243,7 @@ texture_progress = ExtResource("47_m5iam")
 tint_progress = Color(0.611765, 1, 0.541176, 1)
 
 [node name="TextureProgressBar-Fuel" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
+layout_mode = 0
 offset_left = 238.0
 offset_top = 49.1011
 offset_right = 318.0
@@ -3254,6 +3258,7 @@ texture_progress = ExtResource("47_m5iam")
 tint_progress = Color(1, 0.882353, 0, 1)
 
 [node name="TextureProgressBar-Health" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
+layout_mode = 0
 offset_left = 335.0
 offset_top = 50.1011
 offset_right = 415.0
@@ -3443,7 +3448,7 @@ offset_bottom = -112.0
 grow_vertical = 2
 mouse_filter = 2
 toggle_mode = true
-texture_normal = ExtResource("25_ogcwk")
+texture_normal = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
 
@@ -3461,7 +3466,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
-theme_override_colors/default_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 18
 text = "Dampeners"
@@ -3480,7 +3485,7 @@ offset_bottom = -80.0
 grow_vertical = 2
 mouse_filter = 2
 toggle_mode = true
-texture_normal = ExtResource("25_ogcwk")
+texture_normal = ExtResource("26_vltm2")
 texture_pressed = ExtResource("25_ogcwk")
 texture_hover = ExtResource("26_vltm2")
 texture_disabled = ExtResource("26_vltm2")
@@ -3501,7 +3506,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 mouse_force_pass_scroll_events = false
-theme_override_colors/default_color = Color(0.439216, 0.439216, 0.439216, 1)
+theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 18
 text = "Auto ref"
@@ -3762,7 +3767,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="PopUp" type="Control" parent="WindowManager" node_paths=PackedStringArray("holder")]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
