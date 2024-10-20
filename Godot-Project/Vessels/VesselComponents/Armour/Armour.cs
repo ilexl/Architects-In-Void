@@ -5,10 +5,10 @@ namespace ArchitectsInVoid.VesselComponent.Armour;
 /// <summary>
 /// Scalable basic box to represent armour. Should be replaced with voxels at a future time.
 /// </summary>
+[Tool]
 public partial class Armour : PlaceableComponent
 {
-    
-    
+
     public override void _Ready()
     {
         ComponentType = PlaceableComponentType.DynamicScale;

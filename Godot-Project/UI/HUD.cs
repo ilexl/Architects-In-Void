@@ -68,6 +68,7 @@ public partial class HUD : Node
         SelectItemSlot(0);
         SelectHotbar(1);
         HotBarManager.HotbarSlotChangedEvent += HotbarSlotChanged;
+        HotBarManager.HotbarTextureChangedEvent += SetItemSlotIcon;
         OpenLeftInfo();
         OpenRightInfo();
         AutorefOn();
@@ -265,11 +266,6 @@ public partial class HUD : Node
             }
         }
     }
-
-    private void HotbarSlotChanged(int index)
-    {
-        SelectItemSlot(index);
-    }
     
     public override void _Input(InputEvent @event)
     {
@@ -297,4 +293,21 @@ public partial class HUD : Node
             }
         }
     }
+    
+    /* William */
+    private void HotbarSlotChanged(int index)
+    {
+        SelectItemSlot(index);
+    }
+    
+    // Am I understanding this correctly?
+    public void SetItemSlotIcon(Texture2D texture, int slot)
+    {
+        GD.Print("Hotbar icon recieved");
+        if(_itemSlotIcons == null || _itemSlotIcons.Length != 10) { return; }
+
+        TextureRect icon = (TextureRect)_itemSlotIcons[slot];
+        icon.Texture = texture;
+    }
+    /* End william */
 }

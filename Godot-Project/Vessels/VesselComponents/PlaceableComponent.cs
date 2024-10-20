@@ -19,11 +19,26 @@ public enum PlaceableComponentResult
 /// <summary>
 /// Base class for all objects that can be attached to vessels.
 /// </summary>
+[Tool]
 public partial class PlaceableComponent : CollisionShape3D
 {
     protected virtual PlaceableComponentType ComponentType { get; set; }
     
     [Export] protected double Density;
+
+    [Export]
+    public bool GenerateThumb
+    {
+        get => false;
+        set
+        {
+            if (value)
+            {
+                GenerateThumbnail();
+            }
+        }
+    }
+    [Export] public Texture2D Thumbnail;
     
     
     
@@ -94,4 +109,33 @@ public partial class PlaceableComponent : CollisionShape3D
         return PlaceableComponentResult.Success;
     }
     #endregion
+
+    public override void _Process(double delta)
+    {
+        PackedScene scene = new PackedScene();
+        // scene
+
+    }
+
+    protected virtual void GenerateThumbnail()
+    {
+        if (Engine.IsEditorHint())
+        {
+            scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
+        }
+    }
+    public void RecieveThumbnail(string path, Texture2D preview, Texture2D thumb, Variant userData)
+    {
+        Thumbnail = preview;
+    }
+
+    public override void _EnterTree()
+    {
+        if (Engine.IsEditorHint())
+        {
+            GD.Print("Loaded");
+
+        }
+        
+    }
 }

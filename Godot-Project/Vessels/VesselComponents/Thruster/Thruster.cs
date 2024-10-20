@@ -9,8 +9,11 @@ namespace ArchitectsInVoid.VesselComponent.Thruster;
 /// Longer thrusters have better thrust to weight/thrust to volume and spool times but worse resource efficiency.
 /// Too extreme at the moment, it should be toned down.
 /// </summary>
+[Tool]
 public partial class Thruster : PlaceableComponent
 {
+
+    [Export] private double _previewDimensions = 1.0;
     [Export] private double _engineCornerRadius = 0.5;
     [Export] private double _finSpacing = 0.2;
     [Export] private double _finWidth = 0.05;
@@ -213,4 +216,6 @@ public partial class Thruster : PlaceableComponent
         AddSphere(diameter, cg);
         AddSphere(diameter, ch);
     }
+    
+    
 }
