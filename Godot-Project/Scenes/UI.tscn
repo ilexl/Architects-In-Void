@@ -105,7 +105,7 @@ _windowManager = NodePath("WindowManager")
 
 [node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
 script = ExtResource("1_st6gj")
-_windows = [NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+_windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
 layout_mode = 3
@@ -540,7 +540,7 @@ offset_top = 126.0
 offset_right = 1955.0
 offset_bottom = 1030.0
 script = ExtResource("1_st6gj")
-_windows = [NodePath(""), NodePath(""), NodePath(""), NodePath("")]
+_windows = [null, null, null, null]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/SettingsBackground/SettingsSubMenus"]
 custom_minimum_size = Vector2(944, 456)
@@ -2472,8 +2472,6 @@ theme_override_constants/separation = 0
 
 [node name="WorldSave" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("24_6fqay")]
 layout_mode = 2
-Date = null
-Title = null
 
 [node name="LoadingScreen" type="Control" parent="WindowManager"]
 visible = false
