@@ -30,7 +30,7 @@ project/assembly_name="Architects-In-Void"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/inspectorbutton/plugin.cfg")
+enabled=PackedStringArray("res://addons/inspectorbutton/plugin.cfg", "res://addons/merovi.svgtexture2d/plugin.cfg")
 
 [input]
 
@@ -419,3 +419,4 @@ jolt_3d/limits/max_linear_velocity=2.14748e+09
 textures/canvas_textures/default_texture_filter=0
 textures/lossless_compression/force_png=true
 environment/defaults/default_clear_color=Color(0, 0, 0, 1)
+anti_aliasing/quality/use_debanding=true
