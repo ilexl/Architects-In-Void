@@ -103,6 +103,8 @@ _pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
 _popup = NodePath("WindowManager/PopUp")
 _windowManager = NodePath("WindowManager")
 
+[node name="Camera2D" type="Camera2D" parent="."]
+
 [node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
 script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
