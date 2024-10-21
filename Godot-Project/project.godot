@@ -52,8 +52,7 @@ project/assembly_name="Architects-In-Void"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/inspectorbutton/plugin.cfg", "res://addons/scenepreviewextractor/plugin.cfg")
-enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/inspectorbutton/plugin.cfg", "res://addons/merovi.svgtexture2d/plugin.cfg")
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/inspectorbutton/plugin.cfg", "res://addons/merovi.svgtexture2d/plugin.cfg", "res://addons/scenepreviewextractor/plugin.cfg")
 
 [input]
 
