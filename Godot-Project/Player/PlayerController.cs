@@ -61,12 +61,11 @@ public partial class PlayerController : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        
+        Head.DebugDrawLine();
         if (Input.IsKeyPressed(Key.Escape))
         {
             Input.MouseMode = Input.MouseModeEnum.Visible;
         }
-        
         // Multiply vectors in head space by this to convert to "PlayerOrigin" space
         var headTransform = Head.Transform.Basis.Inverse();
         var bodyTransform = Body.Transform.Basis.Inverse();
@@ -100,8 +99,6 @@ public partial class PlayerController : Node
         Body.LinearVelocity +=
             GetAcceleration(moveVector.Normalized(), headTransform) * delta; // Our moveVector in PlayerOrigin space
         
-        // For my sanity as a game dev
-        Body.LinearVelocity /= 1.1;
     }
 
     private void NoJetpackProcess(double delta, Basis headTransform, Basis bodyTransform)
