@@ -35,6 +35,8 @@ mesh = SubResource("BoxMesh_vamg0")
 [node name="HeadPosition" type="Node3D" parent="Body"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
+[node name="FmodListener3D" type="FmodListener3D" parent="Body"]
+
 [node name="Head" parent="." instance=ExtResource("2_ti0ub")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
