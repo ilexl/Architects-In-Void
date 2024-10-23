@@ -532,7 +532,8 @@ public partial class Settings : Node
         Engine.Singleton.PhysicsJitterFix = 0;
         if (_displayMode == DisplayMode.Windowed)
         {
-            var centered = new Vector2I((DisplayServer.WindowGetSize().X / 2) - (_resolution.X / 4), (DisplayServer.WindowGetSize().Y / 2) - (_resolution.Y / 4));
+            var padding = new Vector2I((DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X - Resolution.X) / 2, (DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).Y - Resolution.Y) / 2);
+            var centered = new Vector2I(DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X + padding.X, padding.Y + DisplayServer.WindowGetTitleSize("").Y);
             DisplayServer.WindowSetPosition(centered);
         }
     }
