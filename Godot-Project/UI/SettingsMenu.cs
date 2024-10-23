@@ -24,13 +24,17 @@ public partial class SettingsMenu : Node
     [Export] private TextureButton _spokenLangaugeLeftBtn, _spokenLangaugeRightBtn, _subtitlesOffBtn, _subtitlesOnBtn, 
                                    _subtitlesLangaugeLeftBtn, _subtitlesLangaugeRightBtn;
     [Export] private RichTextLabel _spokenLanguageDisplay, _subtitlesLanguageDisplay;
+    [Export] private TextureButton _speakerModeLeftBtn, _speakerModeRightBtn;
+    [Export] private RichTextLabel _speakerModeDisplay;
     private ArchitectsInVoid.Settings.Settings.Language _currentSpokenLanguage, _currentSubtitlesLanguage;
+    private ArchitectsInVoid.Settings.Settings.SpeakerMode _currentSpeakerMode;
     [ExportGroup("Settings-Screen", "")]
     [Export] private TextureButton _resolutionLeftBtn, _resolutionRightBtn, _refreshRateLeftBtn, _refreshRateRightBtn,
                                    _fullscreenLeftBtn, _fullscreenRightBtn, _vsyncOffBtn, _vsyncOnBtn;
     [Export] private RichTextLabel _resolutionDisplay, _refreshRateDisplay, _fullscreenDisplay;
     private Vector2I _currentResolution;
 
+    
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
@@ -141,22 +145,25 @@ public partial class SettingsMenu : Node
         #endregion
 
         #region Sub-AudioSettings-Checks
-        if (_masterVolumeSlider == null || _soundeffectsVolumeSlider == null || _musicVolumeSlider == null || _dialougeVolumeSlider == null || _spokenLangaugeLeftBtn == null || _spokenLangaugeRightBtn == null || _subtitlesOffBtn == null || _subtitlesOnBtn == null || _subtitlesLangaugeLeftBtn == null || _subtitlesLangaugeRightBtn == null || _spokenLanguageDisplay == null || _subtitlesLanguageDisplay == null)
+        if (_masterVolumeSlider == null || _soundeffectsVolumeSlider == null || _musicVolumeSlider == null || _dialougeVolumeSlider == null || _spokenLangaugeLeftBtn == null || _spokenLangaugeRightBtn == null || _subtitlesOffBtn == null || _subtitlesOnBtn == null || _subtitlesLangaugeLeftBtn == null || _subtitlesLangaugeRightBtn == null || _spokenLanguageDisplay == null || _subtitlesLanguageDisplay == null || _speakerModeLeftBtn == null || _speakerModeRightBtn == null || _speakerModeDisplay == null)
         {
             _masterVolumeSlider = (HSlider)GetParent().FindChild("MasterVolumeSlider");
             _soundeffectsVolumeSlider = (HSlider)GetParent().FindChild("SoundEffectsVolumeSlider");
             _musicVolumeSlider = (HSlider)GetParent().FindChild("MusicVolumeSlider");
             _dialougeVolumeSlider = (HSlider)GetParent().FindChild("DialougeVolumeSlider");
-            _spokenLangaugeLeftBtn = (TextureButton)GetParent().FindChild("LanguageDisplayText");
-            _spokenLangaugeRightBtn = (TextureButton)GetParent().FindChild("LanguageDisplayText");
-            _subtitlesOffBtn = (TextureButton)GetParent().FindChild("LanguageDisplayText");
-            _subtitlesOnBtn = (TextureButton)GetParent().FindChild("LanguageDisplayText");
-            _subtitlesLangaugeLeftBtn = (TextureButton)GetParent().FindChild("LanguageDisplayText");
-            _subtitlesLangaugeRightBtn = (TextureButton)GetParent().FindChild("LanguageDisplayText");
-            _spokenLanguageDisplay = (RichTextLabel)GetParent().FindChild("LanguageDisplayText");
-            _subtitlesLanguageDisplay = (RichTextLabel)GetParent().FindChild("LanguageDisplayText");
-
-            if (_masterVolumeSlider == null || _soundeffectsVolumeSlider == null || _musicVolumeSlider == null || _dialougeVolumeSlider == null || _spokenLangaugeLeftBtn == null || _spokenLangaugeRightBtn == null || _subtitlesOffBtn == null || _subtitlesOnBtn == null || _subtitlesLangaugeLeftBtn == null || _subtitlesLangaugeRightBtn == null || _spokenLanguageDisplay == null || _subtitlesLanguageDisplay == null)
+            _spokenLangaugeLeftBtn = (TextureButton)GetParent().FindChild("SpokenLanguageLeftBtn");
+            _spokenLangaugeRightBtn = (TextureButton)GetParent().FindChild("SpokenLanguageRightBtn");
+            _subtitlesOffBtn = (TextureButton)GetParent().FindChild("SubtitlesOffBtn");
+            _subtitlesOnBtn = (TextureButton)GetParent().FindChild("SubtitlesOnBtn");
+            _subtitlesLangaugeLeftBtn = (TextureButton)GetParent().FindChild("SubtitlesLangaugeLeftBtn");
+            _subtitlesLangaugeRightBtn = (TextureButton)GetParent().FindChild("SubtitlesLangaugeRightBtn");
+            _spokenLanguageDisplay = (RichTextLabel)GetParent().FindChild("SpokenLanguageDisplayText");
+            _subtitlesLanguageDisplay = (RichTextLabel)GetParent().FindChild("SubtitlesLanguageDisplayText");
+            _speakerModeLeftBtn = (TextureButton)GetParent().FindChild("SpeakerModeLeftBtn");
+            _speakerModeRightBtn = (TextureButton)GetParent().FindChild("SpeakerModeRightBtn");
+            _speakerModeDisplay = (RichTextLabel)GetParent().FindChild("SpeakerModeDisplayText");
+            
+            if (_masterVolumeSlider == null || _soundeffectsVolumeSlider == null || _musicVolumeSlider == null || _dialougeVolumeSlider == null || _spokenLangaugeLeftBtn == null || _spokenLangaugeRightBtn == null || _subtitlesOffBtn == null || _subtitlesOnBtn == null || _subtitlesLangaugeLeftBtn == null || _subtitlesLangaugeRightBtn == null || _spokenLanguageDisplay == null || _subtitlesLanguageDisplay == null || _speakerModeLeftBtn == null || _speakerModeRightBtn == null || _speakerModeDisplay == null)
             {
                 GD.PushError("Settings: missing buttons...");
                 return;
@@ -205,6 +212,14 @@ public partial class SettingsMenu : Node
             _dialougeVolumeSlider.Connect(Slider.SignalName.DragEnded, Callable.From((Variant v) => { DialougeVolumeChanged(); }));
         }
 
+        if(!_speakerModeLeftBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SpeakerModePrev)))
+        {
+            _speakerModeLeftBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SpeakerModePrev));
+        }
+        if (!_speakerModeRightBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(SpeakerModeNext)))
+        {
+            _speakerModeRightBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(SpeakerModeNext));
+        }
 
         #endregion
 
@@ -473,6 +488,31 @@ public partial class SettingsMenu : Node
 
     #region Sub-AudioSettings
 
+    void SpeakerModeNext()
+    {
+        GD.Print("Settings: Next Speaker Mode Button Pressed");
+        _currentSpeakerMode += 1;
+        if (_currentSpeakerMode > System.Enum.GetValues(typeof(ArchitectsInVoid.Settings.Settings.SpeakerMode)).Cast<Settings.Settings.SpeakerMode>().Max())
+        {
+            _currentSpeakerMode = 0;
+        }
+
+        _speakerModeDisplay.Text = _settings.SpeakerModeToDisplayString(_currentSpeakerMode);
+        _settings._speakerMode = _currentSpeakerMode;
+    }
+    void SpeakerModePrev()
+    {
+        GD.Print("Settings: Previous Speaker Mode Button Pressed");
+        _currentSpeakerMode -= 1;
+        if (_currentSpeakerMode < 0)
+        {
+            _currentSpeakerMode = System.Enum.GetValues(typeof(ArchitectsInVoid.Settings.Settings.SpeakerMode)).Cast<Settings.Settings.SpeakerMode>().Max();
+        }
+
+        _speakerModeDisplay.Text = _settings.SpeakerModeToDisplayString(_currentSpeakerMode);
+        _settings._speakerMode = _currentSpeakerMode;
+    }
+
     void SubtitlesOn()
     {
         GD.Print("Settings: Subtitles Toggled On");
@@ -695,6 +735,7 @@ public partial class SettingsMenu : Node
         _musicVolumeSlider.Value = _settings._musicVolume;
         _dialougeVolumeSlider.Value = _settings._dialougeVolume;
         _currentSpokenLanguage = _settings._spokenLanguage;
+        _currentSpeakerMode = _settings._speakerMode;
         _spokenLanguageDisplay.Text = _settings.LanguageToString(_currentSpokenLanguage);
         if (_settings._subtitles)
         {
@@ -710,6 +751,9 @@ public partial class SettingsMenu : Node
         _spokenLangaugeRightBtn.Disabled = false;
         _subtitlesLangaugeLeftBtn.Disabled = false;
         _subtitlesLangaugeRightBtn.Disabled = false;
+        _speakerModeDisplay.Text = _settings.SpeakerModeToDisplayString(_currentSpeakerMode);
+        _speakerModeLeftBtn.Disabled = false;
+        _speakerModeRightBtn.Disabled = false;
     }
 
     void DisplayCurrentDisplaySettings()
