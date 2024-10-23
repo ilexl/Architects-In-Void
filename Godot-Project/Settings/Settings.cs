@@ -23,12 +23,16 @@ public partial class Settings : Node
     [Export] public Language _spokenLanguage;
     [Export] public bool _subtitles;
     [Export] public Language _subtitlesLanguage;
+    [Export] public SpeakerMode _speakerMode;
+    [Export] Node _fmodSpecificScript;
 
     [ExportGroup("Display", "")]
     [Export] public Vector2I _resolution;
     [Export] public double _refreshRate;
     [Export] public DisplayMode _displayMode;
     [Export] public bool _vsync;
+
+    #region TYPES
 
     public Vector2I[] SUPPORTED_RESOLUTIONS = { new Vector2I(1024, 768),
                                                 new Vector2I(1280, 720),
@@ -50,9 +54,22 @@ public partial class Settings : Node
         Russian = 4,
         Japanese = 5,
         Korean = 6,
-        French = 7, 
+        French = 7,
         German = 8,
         Italian = 9
+    };
+
+    public enum SpeakerMode
+    {
+        DEFAULT = 0,
+        RAW = 1,
+        MONO = 2,
+        STEREO = 3,
+        QUAD = 4,
+        SURROUND = 5,
+        FIVEPOINTONE = 6,
+        SEVENPOINTONE = 7,
+        SEVENPOINTONEPOINTFOUR = 8
     };
 
     public struct Control
@@ -62,6 +79,8 @@ public partial class Settings : Node
         public InputEvent inputEventSecondary;
     }
 
+    #endregion
+
     public override void _Ready()
     {
         base._Ready();
@@ -69,6 +88,7 @@ public partial class Settings : Node
         ApplyCurrentSettings();
     }
 
+    #region PUBLIC STRINGS
     public string LanguageToString(Language language)
     {
         switch (language)
@@ -99,10 +119,68 @@ public partial class Settings : Node
         }
     }
 
+    public string SpeakerModeToDisplayString(SpeakerMode speakerMode)
+    {
+        switch (speakerMode)
+        {
+            case SpeakerMode.DEFAULT:
+                return "Default";
+            case SpeakerMode.RAW:
+                return "Raw";
+            case SpeakerMode.MONO:
+                return "Mono";
+            case SpeakerMode.STEREO:
+                return "Stereo";
+            case SpeakerMode.QUAD:
+                return "Quad";
+            case SpeakerMode.SURROUND:
+                return "Surround";
+            case SpeakerMode.FIVEPOINTONE:
+                return "5.1";
+            case SpeakerMode.SEVENPOINTONE:
+                return "7.1";
+            case SpeakerMode.SEVENPOINTONEPOINTFOUR:
+                return "7.1.4";
+            default:
+                GD.PushError("Settings: Not a valid SpeakerMode");
+                return "ERROR";
+        }
+    }
+
+    public string SpeakerModeToSettingString(SpeakerMode speakerMode)
+    {
+        switch (speakerMode)
+        {
+            case SpeakerMode.DEFAULT:
+                return "DEFAULT";
+            case SpeakerMode.RAW:
+                return "RAW";
+            case SpeakerMode.MONO:
+                return "MONO";
+            case SpeakerMode.STEREO:
+                return "STEREO";
+            case SpeakerMode.QUAD:
+                return "QUAD";
+            case SpeakerMode.SURROUND:
+                return "SURROUND";
+            case SpeakerMode.FIVEPOINTONE:
+                return "5POINT1";
+            case SpeakerMode.SEVENPOINTONE:
+                return "7POINT1";
+            case SpeakerMode.SEVENPOINTONEPOINTFOUR:
+                return "7POINT1POINT4";
+            default:
+                GD.PushError("Settings: Not a valid SpeakerMode");
+                return "DEFAULT";
+        }
+    }
+
+    #endregion
+
     public void ApplyCurrentSettings()
     {
         ApplyScreenSettings();
-        // nothing else to "apply" yet
+        ApplySoundSettings();
     }
 
     #region FileStuff
@@ -129,6 +207,7 @@ public partial class Settings : Node
         file.StoreVar((int)_spokenLanguage);
         file.StoreVar(_subtitles);
         file.StoreVar((int)_subtitlesLanguage);
+        file.StoreVar((int)_speakerMode);
 
         // Display
         file.StoreVar("Display");
@@ -156,7 +235,7 @@ public partial class Settings : Node
         var file = FileAccess.Open($"{GetSavePath()}{_name}.dat", FileAccess.ModeFlags.Write);
         int amount = savedControls.Count;
         file.StoreVar(amount);
-        foreach(var control in savedControls)
+        foreach (var control in savedControls)
         {
             file.StoreVar(control.InputMapName);
             SaveKey(file, control.inputEventPrimary);
@@ -167,7 +246,7 @@ public partial class Settings : Node
 
     void SaveKey(FileAccess file, InputEvent ie)
     {
-        if(ie == null)
+        if (ie == null)
         {
             file.StoreVar(-1);
         }
@@ -203,7 +282,7 @@ public partial class Settings : Node
     {
         int type = file.GetVar().AsInt32();
         InputEvent output = null;
-        if(type == -1)
+        if (type == -1)
         {
             return output;
         }
@@ -234,12 +313,13 @@ public partial class Settings : Node
         }
         return output;
     }
-    
 
     public void DefaultSettings()
     {
         GD.Print("Settings: setting default settings");
+
         _gameLanguage = Language.English;
+
         _masterVolume = 100d;
         _effectsVolume = 100d;
         _musicVolume = 100d;
@@ -247,10 +327,13 @@ public partial class Settings : Node
         _spokenLanguage = Language.English;
         _subtitles = true;
         _subtitlesLanguage = Language.English;
+        _speakerMode = SpeakerMode.STEREO;
+
         _resolution = SUPPORTED_RESOLUTIONS[0];
         _refreshRate = 60;
         _displayMode = DisplayMode.Windowed;
         _vsync = false;
+
         GD.Print("Settings: default settings set");
 
         DefaultControls();
@@ -286,10 +369,11 @@ public partial class Settings : Node
         // load file stuff here
 
         // Audio
-        if(file.GetVar().AsString() != "Audio")
+        if (file.GetVar().AsString() != "Audio")
         {
             file.Close();
             GD.PushError("Settings: loaded settings failed... file incorrect...");
+            DefaultSettings();
             return;
         }
         _masterVolume = file.GetVar().AsDouble();
@@ -299,12 +383,14 @@ public partial class Settings : Node
         _spokenLanguage = (Language)file.GetVar().AsInt32();
         _subtitles = file.GetVar().AsBool();
         _subtitlesLanguage = (Language)file.GetVar().AsInt32();
+        _speakerMode = (SpeakerMode)file.GetVar().AsInt32();
 
         // Display
         if (file.GetVar().AsString() != "Display")
         {
             file.Close();
             GD.PushError("Settings: loaded settings failed... file incorrect...");
+            DefaultSettings();
             return;
         }
         _resolution = file.GetVar().AsVector2I();
@@ -317,6 +403,7 @@ public partial class Settings : Node
         {
             file.Close();
             GD.PushError("Settings: loaded settings failed... file incorrect...");
+            DefaultSettings();
             return;
         }
         _gameLanguage = (Language)file.GetVar().AsInt32();
@@ -396,31 +483,31 @@ public partial class Settings : Node
         switch (mode)
         {
             case DisplayMode.Fullscreen_Exclusive:
-            {
-                GD.Print("Settings: fullscreen exclusive applied");
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-                DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
-                break;
-            }
+                {
+                    GD.Print("Settings: fullscreen exclusive applied");
+                    DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+                    DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
+                    break;
+                }
             case DisplayMode.Fullscreen_Borderless:
-            {
-                GD.Print("Settings: fullscreen borderless applied");
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
-                DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
-                break;
-            }
+                {
+                    GD.Print("Settings: fullscreen borderless applied");
+                    DisplayServer.WindowSetMode(DisplayServer.WindowMode.Fullscreen);
+                    DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, true);
+                    break;
+                }
             case DisplayMode.Windowed:
-            {
-                GD.Print("Settings: windowed applied");
-                DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
-                DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
-                break;
-            }
+                {
+                    GD.Print("Settings: windowed applied");
+                    DisplayServer.WindowSetMode(DisplayServer.WindowMode.Windowed);
+                    DisplayServer.WindowSetFlag(DisplayServer.WindowFlags.Borderless, false);
+                    break;
+                }
             default:
-            {
-                GD.PushError("Settings: no such display mode | it could also be null?");
-                break;
-            }
+                {
+                    GD.PushError("Settings: no such display mode | it could also be null?");
+                    break;
+                }
         }
     }
     void SetVSync(bool sync)
@@ -448,6 +535,13 @@ public partial class Settings : Node
             var centered = new Vector2I((DisplayServer.WindowGetSize().X / 2) - (_resolution.X / 4), (DisplayServer.WindowGetSize().Y / 2) - (_resolution.Y / 4));
             DisplayServer.WindowSetPosition(centered);
         }
+    }
+    #endregion
+
+    #region AudioMode
+    void ApplySoundSettings()
+    {
+        _fmodSpecificScript.Call("SetSpeakerMode", (int)_speakerMode);
     }
     #endregion
 }
