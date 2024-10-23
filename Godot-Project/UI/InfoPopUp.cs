@@ -1,6 +1,10 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Pop up managed by the pop up manager
+/// <br/>No call back, just an "okay" button
+/// </summary>
 [Tool]
 public partial class InfoPopUp : Node
 {

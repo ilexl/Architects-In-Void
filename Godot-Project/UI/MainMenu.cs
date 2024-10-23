@@ -8,12 +8,15 @@ public partial class MainMenu : Node
 {
     [Export] private TextureButton _resumeBtn, _newBtn, _loadBtn, _optionsBtn, _exitBtn;
     [Export] private Window _winSettings, _winWorldManager;
-
     [Export] private WindowManager _wm;
 
-    // Called when the node enters the scene tree for the first time.
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
     {
+        #region Error OR Null Checks
+
         if (_wm == null)
         {
             _wm = (WindowManager)GetParent().GetParent();
@@ -47,6 +50,9 @@ public partial class MainMenu : Node
             }
         }
 
+        #endregion
+        #region Connect Buttons
+
         if (!_resumeBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame)))
         {
             _resumeBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame));
@@ -67,14 +73,23 @@ public partial class MainMenu : Node
         {
             _exitBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Exit));
         }
-        
+
+        #endregion
     }
 
+    /// <summary>
+    /// Button for resume game
+    /// <br/>Currently this button is disabled and needs TODO: implementation
+    /// </summary>
     private void ResumeGame()
     {
         GD.Print("MainMenu: Resume Game");
+        // TODO: implement resume game functionality
     }
 
+    /// <summary>
+    /// Button for new game
+    /// </summary>
     private void NewGame()
     {
         GD.Print("MainMenu: New Game");
@@ -90,6 +105,9 @@ public partial class MainMenu : Node
         }
     }
 
+    /// <summary>
+    /// Button for load game
+    /// </summary>
     private void LoadGame()
     {
         GD.Print("MainMenu: Load Game");
@@ -105,24 +123,36 @@ public partial class MainMenu : Node
         }
     }
 
+    /// <summary>
+    /// Button for options
+    /// </summary>
     private void Options()
     {
         GD.Print("MainMenu: Options");
         _wm.ShowWindow(_winSettings);
-        ((UIManager)_wm.GetParent())._settings.LoadSettings();
+        ((UIManager)_wm.GetParent()).SettingsManager.LoadSettings();
     }
 
+    /// <summary>
+    /// Manages the X / Close button the window has
+    /// </summary>
     public override void _Notification(int what)
     {
         if (what == NotificationWMCloseRequest) Exit();
     }
 
+    /// <summary>
+    /// Button for exit game
+    /// </summary>
     private void Exit()
     {
         GD.Print("INFO: Exit");
         GetTree().Quit();
     }
 
+    /// <summary>
+    /// Used for inspector buttons plugin
+    /// </summary>
     public Godot.Collections.Array AddInspectorButtons()
     {
         var buttons = new Godot.Collections.Array();

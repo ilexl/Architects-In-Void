@@ -4,32 +4,46 @@ using Godot;
 using Godot.Collections;
 using System;
 
+/// <summary>
+/// Manager for anything UI related
+/// <br/>Contains: MainMenu, SettingsMenu, Settings, WorldManager, LoadingScreen, HUD, Pause, PopUp, WindowManager
+/// </summary>
 [Tool]
 public partial class UIManager : Node
 {
-	[Export] MainMenu _mainMenu;
+    #region Variables
+
+    [Export] MainMenu _mainMenu;
 	[Export] SettingsMenu _settingsMenu;
-    [Export] public Settings _settings;
+    [Export] public Settings SettingsManager;
 	[Export] WorldManager _worldMenu;
 	[Export] LoadingScreen _loadingMenu;
 	[Export] HUD _hudMenu;
 	[Export] Pause _pauseMenu;
-    [Export] public PopUp _popup;
+    [Export] public PopUp PopUpManager;
+	[Export] public WindowManager UIWindowManager;
 
-	[Export] public WindowManager _windowManager;
-    // Called when the node enters the scene tree for the first time.
+    #endregion
+
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
 	{
-        _GetDependents();
+        _ = _GetDependents();
     }
 
+    /// <summary>
+    /// Ensures all managed nodes and scripts have been loaded and referenced
+    /// <br/>Errors if something is missing...
+    /// </summary>
     bool _GetDependents()
     {
-        if (_windowManager == null)
+        if (UIWindowManager == null)
         {
-            _windowManager = (WindowManager)FindChild("WindowManager", recursive: false);
+            UIWindowManager = (WindowManager)FindChild("WindowManager", recursive: false);
 
-            if (_windowManager == null)
+            if (UIWindowManager == null)
             {
                 GD.PushError("UIManager: window manager not found...");
                 return false;
@@ -37,7 +51,7 @@ public partial class UIManager : Node
         }
         if (_mainMenu == null)
         {
-            _mainMenu = (MainMenu)_windowManager.FindChild("MainMenuScript");
+            _mainMenu = (MainMenu)UIWindowManager.FindChild("MainMenuScript");
 
             if (_mainMenu == null)
             {
@@ -47,7 +61,7 @@ public partial class UIManager : Node
         }
         if (_settingsMenu == null)
         {
-            _settingsMenu = (SettingsMenu)_windowManager.FindChild("SettingsManager");
+            _settingsMenu = (SettingsMenu)UIWindowManager.FindChild("SettingsManager");
 
             if (_settingsMenu == null)
             {
@@ -55,10 +69,10 @@ public partial class UIManager : Node
                 return false;
             }
         }
-        if (_settings == null)
+        if (SettingsManager == null)
         {
-            _settings = (Settings)this.GetParent().FindChild("Settings", false);
-            if (_settings == null)
+            SettingsManager = (Settings)this.GetParent().FindChild("Settings", false);
+            if (SettingsManager == null)
             {
                 GD.PushError("UIManager: settings not found...");
                 return false;
@@ -66,7 +80,7 @@ public partial class UIManager : Node
         }
         if (_worldMenu == null)
         {
-            _worldMenu = (WorldManager)_windowManager.FindChild("WorldManagerButtons");
+            _worldMenu = (WorldManager)UIWindowManager.FindChild("WorldManagerButtons");
 
             if (_worldMenu == null)
             {
@@ -76,7 +90,7 @@ public partial class UIManager : Node
         }
         if (_loadingMenu == null)
         {
-            _loadingMenu = (LoadingScreen)_windowManager.FindChild("LoadingScreenLogic");
+            _loadingMenu = (LoadingScreen)UIWindowManager.FindChild("LoadingScreenLogic");
 
             if (_loadingMenu == null)
             {
@@ -86,7 +100,7 @@ public partial class UIManager : Node
         }
         if (_hudMenu == null)
         {
-            _hudMenu = (HUD)_windowManager.FindChild("HUDButtons");
+            _hudMenu = (HUD)UIWindowManager.FindChild("HUDButtons");
 
 
             if (_hudMenu == null)
@@ -97,7 +111,7 @@ public partial class UIManager : Node
         }
         if (_pauseMenu == null)
         {
-            _pauseMenu = (Pause)_windowManager.FindChild("PauseMenuButtons");
+            _pauseMenu = (Pause)UIWindowManager.FindChild("PauseMenuButtons");
 
 
             if (_pauseMenu == null)
@@ -106,11 +120,11 @@ public partial class UIManager : Node
                 return false;
             }
         }
-        if (_popup == null)
+        if (PopUpManager == null)
         {
-            _popup = (PopUp)_windowManager.FindChild("PopUp");
+            PopUpManager = (PopUp)UIWindowManager.FindChild("PopUp");
 
-            if (_popup == null)
+            if (PopUpManager == null)
             {
                 GD.PushError("UIManager: popup not found...");
                 return false;
@@ -120,6 +134,9 @@ public partial class UIManager : Node
         return true;
     }
 
+    /// <summary>
+    /// Calls _Ready to all scripts managed by this
+    /// </summary>
     void _RefreshAllUIElements()
     {
         bool success = _GetDependents();
@@ -134,6 +151,9 @@ public partial class UIManager : Node
         }
     }
 
+    /// <summary>
+    /// Used for the Inspector Buttons plugin
+    /// </summary>
     public Godot.Collections.Array AddInspectorButtons()
     {
         var buttons = new Godot.Collections.Array();

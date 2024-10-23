@@ -1,6 +1,8 @@
 @tool
 extends Node
 
+# i have no idea what this script does or if we need it
+
 func _ready():
 	var temp = _add_inspector_buttons()
 	for t in temp:

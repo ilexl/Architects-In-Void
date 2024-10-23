@@ -1,6 +1,11 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Pop up managed by the pop up manager
+/// <br/>displays an error on the side of the screen
+/// <br/>user must close it. No call back
+/// </summary>
 [Tool]
 public partial class ErrorPopUp : Node
 {

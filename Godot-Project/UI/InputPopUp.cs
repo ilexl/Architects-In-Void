@@ -2,6 +2,12 @@ using Godot;
 using GodotPlugins.Game;
 using System;
 
+/// <summary>
+/// Pop up managed by the pop up manager
+/// <br/>requires the user input text
+/// <br/>made specifically for new world input
+/// <br/>has callback for both confirm
+/// </summary>
 [Tool]
 public partial class InputPopUp : Node
 {

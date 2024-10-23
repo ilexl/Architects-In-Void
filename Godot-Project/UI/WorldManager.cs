@@ -1,18 +1,21 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using ArchitectsInVoid.UI.UIElements;
 using ArchitectsInVoid.WorldData;
 using Godot;
 using Godot.Collections;
 
-
 namespace ArchitectsInVoid.UI;
 
+/// <summary>
+/// Lists and manages the saved worlds
+/// </summary>
 [Tool]
 public partial class WorldManager : Node
 {
+    #region Variables
+
     [Export] private TextureButton _cancelBtn, _loadBtn;
     private List<WorldSaveTitle> _currentlySelected;
     [Export] private int _testAmount;
@@ -22,11 +25,17 @@ public partial class WorldManager : Node
     [Export] private Node _worldListHolder;
     [Export] private PackedScene _worldSaveListScene;
     [Export] UIManager _UIManager;
-    [Export] Data data;
+    [Export] Data _data;
 
-    // Called when the node enters the scene tree for the first time.
+    #endregion
+
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
     {
+        #region Error OR Null Checks
+
         if (_wmMain == null)
         {
             _wmMain = (WindowManager)GetParent().GetParent();
@@ -75,6 +84,9 @@ public partial class WorldManager : Node
             }
         }
 
+        #endregion
+        #region Connect buttons
+        
         if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Cancel)))
         {
             _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
@@ -84,19 +96,26 @@ public partial class WorldManager : Node
             _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld));
         }
 
+        #endregion
+
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
-
         _UIManager = ((UIManager)_wmMain.GetParent());
-        data = (Data)_UIManager.GetParent().FindChild("Data");
+        _data = (Data)_UIManager.GetParent().FindChild("Data");
     }
 
+    /// <summary>
+    /// Called when the button (cancel) is pressed
+    /// </summary>
     private void Cancel()
     {
         GD.Print("Settings: Cancel Button Pressed");
         _wmMain.ShowWindow(_winMainMenu);
     }
 
+    /// <summary>
+    /// load called and refreshes saves
+    /// </summary>
     public void CallLoad()
     {
         GD.Print("WorldManager: load called");
@@ -107,21 +126,27 @@ public partial class WorldManager : Node
         else RefreshSaves();
     }
 
+    /// <summary>
+    /// Removes all current worlds from list and replaces with with new ones that are current
+    /// </summary>
     private void RefreshSaves()
     {
         foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
-        foreach (string worldName in data.RetrieveAllValidSavesAsList())
+        foreach (string worldName in _data.RetrieveAllValidSavesAsList())
         {
             var inst = _worldSaveListScene.Instantiate();
             _worldListHolder.AddChild(inst);
             var wst = (WorldSaveTitle)inst;
             var title = worldName;
-            var date = data.GetLastSavedFromFile(worldName);
+            var date = _data.GetLastSavedFromFile(worldName);
             wst.UpdateWorldSaveTitle(title, date);
             wst.BindButtonToManager(this);
         }
     }
 
+    /// <summary>
+    /// If test is enabled - displayed a specified amounf of test worlds
+    /// </summary>
     private void Test()
     {
         foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
@@ -138,37 +163,45 @@ public partial class WorldManager : Node
         }
     }
 
+    /// <summary>
+    /// Main menu new called and refreshes saves
+    /// </summary>
     public void CallNew()
     {
-        GD.Print("WorldManager: new called");
-        _currentlySelected = new List<WorldSaveTitle>();
-        _loadBtn.Disabled = true;
-
-        _UIManager._popup.DisplayInputPopUp("Enter new world name:", Callable.From(NewWorldConfirmed));
-        RefreshSaves();
+        _UIManager.PopUpManager.DisplayInputPopUp("Enter new world name:", Callable.From(NewWorldConfirmed));
+        CallLoad();
     }
 
+    /// <summary>
+    /// Call back for when the input for a new world is confirmed
+    /// </summary>
     public void NewWorldConfirmed()
     {
-        string input = _UIManager._popup.LastInput;
+        string input = _UIManager.PopUpManager.LastInput;
         if (input.Length == 0)
         {
-            _UIManager._popup.DisplayError("Error: input", "Input cannot be blank... Try filling out the input :)");
+            _UIManager.PopUpManager.DisplayError("Error: input", "Input cannot be blank... Try filling out the input :)");
             return;
         }
 
-        data.NewGame(input);
+        _data.NewGame(input);
         RefreshSaves();
     }
 
+    /// <summary>
+    /// Loads the selected world from data and brings user to game
+    /// </summary>
     private void LoadSelectedWorld()
     {
         GD.Print("WorldManager: loading selected world");
         GameManager.Singleton.SetGameState(GameManager.GameState.InGame);
         _wmMain.ShowWindow(_winHud);
-        data.Load(_currentlySelected.First().Title);
+        _data.Load(_currentlySelected.First().Title);
     }
 
+    /// <summary>
+    /// Adds or removes a world from currently selected worlds
+    /// </summary>
     public void ListedWorldClicked(WorldSaveTitle wst)
     {
         var currentState = wst.GetButtonState();
@@ -184,6 +217,9 @@ public partial class WorldManager : Node
             GD.PushError("WorldManger: invalid amount in list...");
     }
 
+    /// <summary>
+    /// Used for inspector buttons plugin
+    /// </summary>
     public Godot.Collections.Array AddInspectorButtons()
     {
         var buttons = new Godot.Collections.Array();

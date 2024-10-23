@@ -3,33 +3,48 @@ using Godot;
 
 namespace ArchitectsInVoid.UI;
 
+/// <summary>
+/// Manages the pause menu and pause state of the game
+/// </summary>
 [Tool]
 public partial class Pause : Node
 {
+    #region Variables
+
     [Export] TextureButton _resumeBtn, _saveGameBtn, _loadGameBtn, _mainMenuBtn, _desktopBtn;
     public static Pause Singleton => _singleton;
     private static Pause _singleton;
     public bool IsPaused => _isPaused;
     private bool _isPaused;
-
     private bool _gameSavedWhilePaused;
     private bool _readyForPauseInput;
 
-    // Called when the node enters the scene tree for the first time.
+    #endregion
+
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
     {
-        _gameSavedWhilePaused = false;
+        #region Singleton Setter
+
         if (_singleton != null)
         {
             GD.Print("Pause: singleton already exists.");
         }
         _singleton = this;
 
-        if(_resumeBtn == null || _saveGameBtn == null || _loadGameBtn == null || _mainMenuBtn == null || _desktopBtn == null)
+        #endregion
+        #region Error or Null Checks
+
+        if (_resumeBtn == null || _saveGameBtn == null || _loadGameBtn == null || _mainMenuBtn == null || _desktopBtn == null)
         {
             GD.Print("Pause: missing texture buttons...");
             return;
         }
+
+        #endregion
+        #region Connect Buttons
 
         if (!_resumeBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(ResumeGame)))
         {
@@ -51,16 +66,26 @@ public partial class Pause : Node
         {
             _desktopBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Desktop));
         }
+
+        #endregion
+
+        _gameSavedWhilePaused = false;
         _readyForPauseInput = true;
     }
 
+    /// <summary>
+    /// Manages input for pausing and unpausing the game
+    /// </summary>
     public override void _Input(InputEvent @event)
     {
+        // get the game state and if in game check if pause button pressed
         if(GameManager.Singleton.CurrentGameState == GameManager.GameState.InGame)
         {
+            // readyForPauseInput is here because PAUSE BUTTON CAN RUN MULTIPLE FUCKING TIMES
+            //                                    Seriously... Dont ask......................
             if (@event.IsActionPressed("miscellaneous_pause") && _readyForPauseInput)
             {
-                _readyForPauseInput = false;
+                _readyForPauseInput = false; // stop duplicate call
                 GD.Print(@event as InputEventAction);
                 GD.Print("Pause: pause input received...");
 
@@ -74,86 +99,110 @@ public partial class Pause : Node
                     GD.Print("Pause: game is currently unpaused so pausing it now");
                     SetPause(true);
                 }
-                _readyForPauseInput = true;
+                _readyForPauseInput = true; // allow further calls now that we are done
             }
         }
         
     }
 
+    /// <summary>
+    /// Sets the pause state
+    /// </summary>
     public void SetPause(bool pause)
     {
         _gameSavedWhilePaused = false;
         _isPaused = pause;
         if(IsPaused)
         {
-            ((UIManager)GameManager.Singleton.FindChild("UI"))._windowManager.ShowWindow("PauseMenu");
+            ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("PauseMenu");
             GD.Print("Pause: game has been paused");
         }
         else
         {
-            ((UIManager)GameManager.Singleton.FindChild("UI"))._windowManager.ShowWindow("HUD");
+            ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("HUD");
             GD.Print("Pause: game has been unpaused");
         }
     }
 
+    /// <summary>
+    /// Button for resume game
+    /// </summary>
     private void ResumeGame()
     {
         GD.Print("Pause: resume btn pressed");
         SetPause(false);
     }
+
+    /// <summary>
+    /// Button for save game
+    /// </summary>
     private void SaveGame()
     {
         GD.Print("Pause: save btn pressed");
+        // TODO: implementation
     }
+
+    /// <summary>
+    /// Button for load game
+    /// </summary>
     private void LoadGame()
     {
         GD.Print("Pause: load btn pressed");
-
+        // TODO: implementation
     }
+
+    /// <summary>
+    /// Button for main menu
+    /// </summary>
     private void MainMenu()
     {
         GD.Print("Pause: main menu btn pressed");
         if (_gameSavedWhilePaused)
         {
-            MainMenuConfirmed();
+            MainMenuConfirmed(); // go straight to main menu
         }
         else
         {
-            ((UIManager)GameManager.Singleton.FindChild("UI"))._popup.DisplayConfirmPopUp("Are you sure you want to exit without saving?", Callable.From(MainMenuConfirmed));
+            // confirm with user is this what they want
+            // we dont need an unsaved game here :3
+            ((UIManager)GameManager.Singleton.FindChild("UI")).PopUpManager.DisplayConfirmPopUp("Are you sure you want to exit without saving?", Callable.From(MainMenuConfirmed));
         }
     }
 
+    /// <summary>
+    /// Goes straight to the main menu
+    /// </summary>
     public void MainMenuConfirmed()
     {
-        ((UIManager)GameManager.Singleton.FindChild("UI"))._windowManager.ShowWindow("MainMenu");
+        ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("MainMenu");
         GameManager.Singleton.SetGameState(GameManager.GameState.MainMenu);
         ((Data)GameManager.Singleton.FindChild("Data")).Clear();
     }
-    public override void _Notification(int what)
-    {
-        if (what == NotificationWMCloseRequest) Exit();
-    }
 
+    /// <summary>
+    /// Exits the game to desktop
+    /// </summary>
     private void Exit()
     {
         GD.Print("INFO: Exit");
         GetTree().Quit();
     }
+
+    /// <summary>
+    /// Button for quitting to desktop
+    /// </summary>
     private void Desktop()
     {
         GD.Print("Pause: desktop btn pressed");
         if (_gameSavedWhilePaused)
         {
-            DesktopConfirmed();
+            Exit(); // exit if there was a save
         }
         else
         {
-            ((UIManager)GameManager.Singleton.FindChild("UI"))._popup.DisplayConfirmPopUp("Are you sure you want to exit without saving?", Callable.From(DesktopConfirmed));
+            // if no save then make sure you confirm with user
+            // dont need a lost save here :3
+            ((UIManager)GameManager.Singleton.FindChild("UI")).PopUpManager.DisplayConfirmPopUp("Are you sure you want to exit without saving?", Callable.From(Exit));
         }
-    }
-
-    public void DesktopConfirmed()
-    {
-        Exit();
     }
 }

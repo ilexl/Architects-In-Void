@@ -3,25 +3,35 @@ using Godot.Collections;
 
 namespace ArchitectsInVoid.UI;
 
+/// <summary>
+/// Window managed by WindowManager
+/// <br/>shows and hides a UI layer or "window"
+/// </summary>
 [Tool]
 public partial class Window : Control
 {
     [Export] public bool ShowOnStart = false;
     private WindowManager _wm;
 
+    /// <summary>
+    /// Sets the window manager
+    /// </summary>
     public void SetWindowManager(WindowManager windowManager)
     {
         _wm = windowManager;
     }
 
     /// <summary>
-    ///     Shows the window
+    /// Shows the window
     /// </summary>
     public void WShow()
     {
         Visible = true;
     }
 
+    /// <summary>
+    /// Only shows this window - does nothing else
+    /// </summary>
     public void wShowOnly()
     {
         if (_wm == null)
@@ -34,7 +44,7 @@ public partial class Window : Control
     }
 
     /// <summary>
-    ///     Hides the window
+    /// Hides the window
     /// </summary>
     public void WHide()
     {
@@ -42,7 +52,7 @@ public partial class Window : Control
     }
 
     /// <summary>
-    ///     Shows or Hides window
+    /// Shows or Hides window
     /// </summary>
     /// <param name="active">determines if window shown</param>
     public void WSetActive(bool active)
@@ -51,7 +61,7 @@ public partial class Window : Control
     }
 
     /// <summary>
-    ///     Gets the transforms name from GODOT_EDITOR
+    /// Gets the transforms name from GODOT_EDITOR
     /// </summary>
     /// <returns>(string) transform name of window</returns>
     public string WGetName()
@@ -59,6 +69,9 @@ public partial class Window : Control
         return Name;
     }
 
+    /// <summary>
+    /// Used for inspector buttons plugin
+    /// </summary>
     public Array AddInspectorButtons()
     {
         var buttons = new Array();

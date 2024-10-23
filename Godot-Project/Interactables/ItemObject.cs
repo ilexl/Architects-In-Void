@@ -2,15 +2,11 @@ using Godot;
 
 namespace ArchitectsInVoid.Interactables;
 
+/// <summary>
+/// Script for managing an object which can be picked 
+/// up by the player and put in inventory. aka an object
+/// </summary>
 public partial class ItemObject : Node
 {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
+    // TODO: add implementation
 }

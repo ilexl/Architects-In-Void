@@ -3,13 +3,18 @@ using Godot.Collections;
 
 namespace ArchitectsInVoid.UI;
 
+/// <summary>
+/// Window Manager which manages the windows defined in the array _windows
+/// </summary>
 [Tool]
 public partial class WindowManager : Node
 {
-    [Export] private bool _startFeature = true;
+    [Export] private bool _startFeature = true; // if true - enables the start feature for managed windows
     [Export] private Window[] _windows;
 
-    // Called when the node enters the scene tree for the first time.
+    /// <summary>
+    /// Called when the node enters the scene tree for the first time.
+    /// </summary>
     public override void _Ready()
     {
         if (_startFeature)
@@ -24,29 +29,7 @@ public partial class WindowManager : Node
             }
         }
     }
-
-    public Array AddInspectorButtons()
-    {
-        var buttons = new Array();
-
-        if (_windows == null || _windows.Length == 0) return buttons;
-
-        foreach (var w in _windows)
-        {
-            if (w == null) continue;
-            w.SetWindowManager(this);
-            var windowButtonShowOnly = new Dictionary
-            {
-                { "name", $"Show Only {w.WGetName()}" },
-                { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
-                { "pressed", Callable.From(w.wShowOnly) }
-            };
-            buttons.Add(windowButtonShowOnly);
-        }
-
-        return buttons;
-    }
-
+    
     #region wmFunctions
 
     // Show window functions (hides all others)
@@ -213,4 +196,29 @@ public partial class WindowManager : Node
     }
 
     #endregion
+
+    /// <summary>
+    /// Used for inspector buttons plugin
+    /// </summary>
+    public Array AddInspectorButtons()
+    {
+        var buttons = new Array();
+
+        if (_windows == null || _windows.Length == 0) return buttons;
+
+        foreach (var w in _windows)
+        {
+            if (w == null) continue;
+            w.SetWindowManager(this);
+            var windowButtonShowOnly = new Dictionary
+            {
+                { "name", $"Show Only {w.WGetName()}" },
+                { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
+                { "pressed", Callable.From(w.wShowOnly) }
+            };
+            buttons.Add(windowButtonShowOnly);
+        }
+
+        return buttons;
+    }
 }

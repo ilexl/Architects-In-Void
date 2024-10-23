@@ -1,6 +1,10 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Pop up managed by the pop up manager
+/// <br/>requires the user to confirm with a callback if confirmed
+/// </summary>
 [Tool]
 public partial class ConfirmPopUp : Node
 {

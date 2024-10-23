@@ -2,15 +2,10 @@ using Godot;
 
 namespace ArchitectsInVoid.Modding;
 
+/// <summary>
+/// Mod manager is responsible for the loading / unloading / error management of all mods
+/// </summary>
 public partial class ModManager : Node
 {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
+    // TODO: modding implementation
 }

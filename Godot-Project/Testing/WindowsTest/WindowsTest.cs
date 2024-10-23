@@ -4,6 +4,9 @@ using Godot.Collections;
 
 namespace ArchitectsInVoid.Testing.WindowsTest;
 
+/// <summary>
+/// Tests the functionality of Window and WindowManager
+/// </summary>
 [Tool]
 public partial class WindowsTest : CanvasLayer
 {

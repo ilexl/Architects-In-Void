@@ -2,15 +2,10 @@ using Godot;
 
 namespace ArchitectsInVoid.Inventory;
 
+/// <summary>
+/// Items for use in an inventory as a data form
+/// </summary>
 public partial class Item : Node
 {
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready()
-    {
-    }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta)
-    {
-    }
+    // TODO: implementation
 }

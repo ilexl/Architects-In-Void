@@ -1,12 +1,11 @@
 extends FmodEventEmitter3D
 
-# Called when the node enters the scene tree for the first time.
+# plays the sound on load
 func _ready() -> void:
 	print("AutoSound: playing " + event_name)
 	play()
-	pass
 
-
+# deletes the sound when finished to prevent looping / memory leak
 func _on_stopped() -> void:
 	print("AutoSound: stopping " + event_name)
 	get_parent().queue_free()

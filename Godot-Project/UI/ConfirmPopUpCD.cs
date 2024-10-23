@@ -1,6 +1,12 @@
 using Godot;
 using System;
 
+/// <summary>
+/// Pop up managed by the pop up manager
+/// <br/>requires the user to confirm or cancel
+/// <br/>has a countdown DEFAULT is 99999
+/// <br/>has callbacks for both confirm and cancel
+/// </summary>
 [Tool]
 public partial class ConfirmPopUpCD : Node
 {
