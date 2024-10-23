@@ -20,6 +20,9 @@ _settings = NodePath("../Settings")
 
 [node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
 script = ExtResource("2_c4xwi")
+_name = "AMONG US"
+_gameVersion = "0.0.1"
+_lastSaved = "22-10-2024 12:31:38"
 wmData = NodePath("../World")
 
 [node name="Settings" type="Node" parent="."]
