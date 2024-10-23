@@ -1,6 +1,9 @@
 using Godot;
 using System;
 
+/// <summary>
+/// A mananger for keeping track of the games current state
+/// </summary>
 public partial class GameManager : Node
 {
     private static GameManager _singleton;
