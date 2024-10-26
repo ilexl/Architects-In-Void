@@ -603,8 +603,10 @@ public partial class Settings : Node
         {
             // gets the center of the MAIN screen and puts the window in the center
             var padding = new Vector2I((DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X - Resolution.X) / 2, (DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).Y - Resolution.Y) / 2);
-            var centered = new Vector2I(DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X + padding.X, padding.Y + DisplayServer.WindowGetTitleSize("").Y);
+            var centered = new Vector2I(DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X - (padding.X + Resolution.X), padding.Y + DisplayServer.WindowGetTitleSize("").Y);
             DisplayServer.WindowSetPosition(centered);
+            DisplayServer.WindowSetCurrentScreen(DisplayServer.GetPrimaryScreen());
+            GD.Print($"Settings: Centered window to PRIMARY DISPLAY");
         }
     }
 
