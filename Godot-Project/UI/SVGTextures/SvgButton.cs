@@ -13,6 +13,7 @@ public partial class SvgButton : TextureButton
     [Export] Node2D _pressed;
     [Export] Node2D _hover;
     [Export] Node2D _disabled;
+    [Export] RichTextLabel _optionalLabel;
 
     TextureButton tBtn;
     State _currentState;
@@ -66,6 +67,11 @@ public partial class SvgButton : TextureButton
         {
             case State.normal:
                 _normal.Visible = true;
+                if (_optionalLabel != null)
+                {
+                    _optionalLabel.RemoveThemeColorOverride("default_color");
+                    _optionalLabel.AddThemeColorOverride("default_color", new Color(1f, 1f, 1f));
+                }
                 break;
             case State.pressed:
                 _pressed.Visible = true;
@@ -75,6 +81,11 @@ public partial class SvgButton : TextureButton
                 break;
             case State.disabled:
                 _disabled.Visible = true;
+                if(_optionalLabel != null)
+                {
+                    _optionalLabel.RemoveThemeColorOverride("default_color");
+                    _optionalLabel.AddThemeColorOverride("default_color", new Color(0.75f, 0.75f, 0.75f));
+                }
                 break;
         }
 
