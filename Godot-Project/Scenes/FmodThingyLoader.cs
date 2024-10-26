@@ -4,6 +4,7 @@ using System;
 public partial class FmodThingyLoader : Node3D
 {
 	[Export] private PackedScene _sceneToSpawn;
+	[Export] bool on;
 	public override void _Ready()
 	{
 	}
@@ -11,6 +12,9 @@ public partial class FmodThingyLoader : Node3D
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
 	public override void _Process(double delta)
 	{
-		AddChild(_sceneToSpawn.Instantiate());
+		if(on)
+		{
+			AddChild(_sceneToSpawn.Instantiate());
+		}
 	}
 }
