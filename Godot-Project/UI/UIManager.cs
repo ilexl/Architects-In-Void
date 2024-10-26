@@ -30,6 +30,7 @@ public partial class UIManager : Node
     /// </summary>
     public override void _Ready()
 	{
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         _ = _GetDependents();
     }
 

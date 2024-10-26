@@ -118,6 +118,7 @@ public partial class Settings : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         LoadSettings(); // load from disk when loading for the first time
         ApplyCurrentSettings(); // apply settings loaded from disk
     }

@@ -26,7 +26,9 @@ public partial class PopUp : Control
     /// </summary>
     public override void _Ready()
     {
-        if (Engine.IsEditorHint()) { return; } // DO NOT RE SHOW THIS IN THE EDITOR :)
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
+
         Control c = (Control)GetNode(this.GetPath()); // always show this when running the game instead
         c.Show(); // shows it duhhh
     }

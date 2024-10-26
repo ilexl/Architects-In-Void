@@ -11,6 +11,7 @@ public partial class VesselData : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         if (_vesselBlank == null)
         {
             _vesselBlank = (PackedScene)GD.Load("res://Scenes/BlankShip.tscn");

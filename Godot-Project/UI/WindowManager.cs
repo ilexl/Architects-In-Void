@@ -17,6 +17,8 @@ public partial class WindowManager : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         if (_startFeature)
         {
             foreach (var window in _windows)

@@ -28,6 +28,8 @@ public partial class RemapControl : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         _remapPrimary = false;
         _remapSecondary = false;
         if (!_primaryRemapBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(RemapPrimary)))

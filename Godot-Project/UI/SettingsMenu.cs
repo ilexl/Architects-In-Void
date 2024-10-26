@@ -47,6 +47,8 @@ public partial class SettingsMenu : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         #region Sub-Windows-Checks
 
         if (_wmMain == null || _wmSettingSub == null)

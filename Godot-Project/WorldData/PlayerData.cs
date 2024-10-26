@@ -13,7 +13,8 @@ public partial class PlayerData : Node
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-        if(_playerPrefab == null)
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+        if (_playerPrefab == null)
         {
             _playerPrefab = (PackedScene)GD.Load("res://Scenes/BlankPlayer.tscn");
             if (_playerPrefab == null)

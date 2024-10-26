@@ -33,6 +33,7 @@ public partial class PlayerController : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         DebugDraw.Line(Vector3.Zero, Vector3.Up * 100, Colors.Aqua, 10, 2, type:DebugMesh.Type.Wireframe);
         DebugDraw.Circle(Vector3.Right * 100, Colors.Green, 10, 10, type:DebugMesh.Type.Solid);
         // Assign our components
