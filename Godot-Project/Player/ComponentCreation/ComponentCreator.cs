@@ -71,7 +71,7 @@ public partial class ComponentCreator : Node
     
     public override void _Ready()
     {
-        
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         // Cursor
         var cursorScene = (PackedScene)ResourceLoader.Load("res://Player/ComponentCreation/Cursor.tscn");
         var cursorObject = cursorScene.Instantiate();

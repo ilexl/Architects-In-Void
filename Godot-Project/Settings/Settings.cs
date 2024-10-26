@@ -118,6 +118,7 @@ public partial class Settings : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         LoadSettings(); // load from disk when loading for the first time
         ApplyCurrentSettings(); // apply settings loaded from disk
     }
@@ -594,6 +595,7 @@ public partial class Settings : Node
     void ApplyScreenSettings()
     {
         if (Engine.IsEditorHint()) { return; } // do NOT apply settings if run by editor (changes the actual editor window??)
+        DisplayServer.ScreenSetKeepOn(true);
         SetDisplayMode(DisplaySMode);
         SetVSync(VSync);
         DisplayServer.WindowSetSize(Resolution);
@@ -602,9 +604,9 @@ public partial class Settings : Node
         if (DisplaySMode == DisplayMode.Windowed)
         {
             // gets the center of the MAIN screen and puts the window in the center
-            var padding = new Vector2I((DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X - Resolution.X) / 2, (DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).Y - Resolution.Y) / 2);
-            var centered = new Vector2I(DisplayServer.ScreenGetSize((int)DisplayServer.ScreenPrimary).X + padding.X, padding.Y + DisplayServer.WindowGetTitleSize("").Y);
-            DisplayServer.WindowSetPosition(centered);
+            Window mainWindow = GetWindow();
+            mainWindow.MoveToCenter();
+            GD.Print($"Settings: Centered window to PRIMARY DISPLAY");
         }
     }
 

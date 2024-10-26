@@ -11,6 +11,9 @@ public partial class Vessel : Node
     [Export] public Node ComponentData;
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
+
     }
     
 }

@@ -35,8 +35,10 @@ public partial class HUD : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         #region Error OR Null Checks
-        
+
         if (_itemSlots.Length != 10 || _itemSlotSelections.Length != 10 || _itemSlotIcons.Length != 10)
         {
             GD.PushError("HUD: item slots not configured correctly in editor...");

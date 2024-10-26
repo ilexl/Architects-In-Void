@@ -1,5 +1,6 @@
 using Godot;
 using Godot.Collections;
+using System.Collections.Generic;
 
 namespace ArchitectsInVoid.UI;
 
@@ -17,6 +18,8 @@ public partial class WindowManager : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         if (_startFeature)
         {
             foreach (var window in _windows)
@@ -28,6 +31,25 @@ public partial class WindowManager : Node
                     window.Hide();
             }
         }
+
+        if(_windows == null || _windows.Length == 0 || _windows[0] == null)
+        {
+            ManualRefresh();
+        }
+
+    }
+
+    public void ManualRefresh()
+    {
+        List<Window> temp = new List<Window>();
+        foreach (var child in GetChildren())
+        {
+            if (child is Window w)
+            {
+                temp.Add(w);
+            }
+        }
+        _windows = temp.ToArray();
     }
     
     #region wmFunctions
@@ -203,6 +225,14 @@ public partial class WindowManager : Node
     public Array AddInspectorButtons()
     {
         var buttons = new Array();
+
+        var btnRefresh = new Dictionary
+            {
+                { "name", "Manual Refresh" },
+                { "icon", GD.Load("res://Testing/InspectorButtons/icon.svg") },
+                { "pressed", Callable.From(ManualRefresh) }
+            };
+        buttons.Add(btnRefresh);
 
         if (_windows == null || _windows.Length == 0) return buttons;
 

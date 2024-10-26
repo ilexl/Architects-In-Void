@@ -21,6 +21,7 @@ public partial class Cursor : Node3D
 	private bool _loaded = false;
 	public override void _Ready()
 	{
+		if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
 		// Initialize edge meshes
 		_edges = new Dictionary<char, List<MeshInstance3D>>()
 		{

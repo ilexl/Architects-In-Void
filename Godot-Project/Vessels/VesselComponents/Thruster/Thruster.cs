@@ -37,6 +37,7 @@ public partial class Thruster : PlaceableComponent
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         ComponentType = PlaceableComponentType.DynamicScale;
     }
 

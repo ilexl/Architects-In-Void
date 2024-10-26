@@ -16,7 +16,8 @@ public partial class Data : Node
     const string VALID_FILE_STRING = "THIS IS A VALID FILE :)";
     public override void _Ready()
     {
-        if(wmData == null)
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+        if (wmData == null)
         {
             wmData = (WorldDataManager)GetParent().FindChild("World", recursive: false);
             if (wmData == null)
