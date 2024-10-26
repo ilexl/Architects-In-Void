@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://27r5cfuywm27"]
 
-[ext_resource type="Script" path="res://UI/UIElements/WorldSaveTitle.cs" id="1_cf7er"]
+[ext_resource type="Script" path="res://UI/SVGTextures/WorldManager/WorldSaveTitle.cs" id="1_cf7er"]
 [ext_resource type="Texture2D" uid="uid://cwwqsmq2jk1r1" path="res://UI/UIElements/WorldSave-Normal.svg" id="1_t5uup"]
 [ext_resource type="Texture2D" uid="uid://ro1mqls0blla" path="res://UI/UIElements/WorldSave-Selected.svg" id="2_bfulf"]
 [ext_resource type="Texture2D" uid="uid://coqershkc7tvx" path="res://UI/UIElements/WorldSave-Highlight.svg" id="3_gyj78"]
