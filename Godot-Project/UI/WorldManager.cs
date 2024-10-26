@@ -34,6 +34,8 @@ public partial class WorldManager : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         #region Error OR Null Checks
 
         if (_wmMain == null)

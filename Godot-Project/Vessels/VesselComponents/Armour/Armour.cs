@@ -11,6 +11,7 @@ public partial class Armour : PlaceableComponent
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         ComponentType = PlaceableComponentType.DynamicScale;
     }
     

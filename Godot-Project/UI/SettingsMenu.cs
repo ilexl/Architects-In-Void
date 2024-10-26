@@ -47,6 +47,8 @@ public partial class SettingsMenu : Node
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+
         #region Sub-Windows-Checks
 
         if (_wmMain == null || _wmSettingSub == null)
@@ -299,6 +301,19 @@ public partial class SettingsMenu : Node
             {
                 GD.PushError("SettingsMenu: no settings found...");
             }
+        }
+
+        #endregion
+        #region Sub-Controls-Checks
+
+        if(_controlsParent == null || _controlsParent.Length != 5)
+        {
+            _controlsParent = new Control[5];
+            _controlsParent[0] = GetParent().FindChild("CONTROLS_Movement") as Control;
+            _controlsParent[1] = GetParent().FindChild("CONTROLS_Interactions") as Control;
+            _controlsParent[2] = GetParent().FindChild("CONTROLS_Block Placement") as Control;
+            _controlsParent[3] = GetParent().FindChild("CONTROLS_Toolbars") as Control;
+            _controlsParent[4] = GetParent().FindChild("CONTROLS_Miscellaneous") as Control;
         }
 
         #endregion

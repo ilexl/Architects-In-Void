@@ -21,6 +21,7 @@ public partial class GameManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         if (_singleton != null)
         {
             GD.PushError("GameManager: singleton already exists.");

@@ -18,6 +18,7 @@ public partial class WorldSaveTitle : AspectRatioContainer
     /// </summary>
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         // error checking
         if (_worldName == null || _saveDate == null)
         {

@@ -27,9 +27,8 @@ public partial class HotBarManager : Node
 	
 	public override void _Ready()
 	{
-		_componentCreator = GetNode<ComponentCreation.ComponentCreator>("../ComponentCreator");
-
-		
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
+        _componentCreator = GetNode<ComponentCreation.ComponentCreator>("../ComponentCreator");
 	}
 
 

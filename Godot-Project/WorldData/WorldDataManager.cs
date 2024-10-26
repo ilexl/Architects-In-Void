@@ -13,6 +13,7 @@ public partial class WorldDataManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         if (_dataPlayer == null)
         {
             _dataPlayer = (PlayerData)FindChild("Players", recursive: false);
