@@ -15,13 +15,13 @@ public partial class UIManager : Node
 
     [Export] MainMenu _mainMenu;
 	[Export] SettingsMenu _settingsMenu;
-    [Export] public Settings SettingsManager;
 	[Export] WorldManager _worldMenu;
 	[Export] LoadingScreen _loadingMenu;
 	[Export] HUD _hudMenu;
 	[Export] Pause _pauseMenu;
     [Export] public PopUp PopUpManager;
 	[Export] public WindowManager UIWindowManager;
+    [Export] public Settings SettingsManager;
 
     #endregion
 
@@ -141,6 +141,12 @@ public partial class UIManager : Node
     void _RefreshAllUIElements()
     {
         bool success = _GetDependents();
+
+        if(UIWindowManager !=  null)
+        {
+            UIWindowManager.ManualRefresh();
+        }
+
         if(success)
         {
             _mainMenu._Ready();

@@ -304,6 +304,19 @@ public partial class SettingsMenu : Node
         }
 
         #endregion
+        #region Sub-Controls-Checks
+
+        if(_controlsParent == null || _controlsParent.Length != 5)
+        {
+            _controlsParent = new Control[5];
+            _controlsParent[0] = GetParent().FindChild("CONTROLS_Movement") as Control;
+            _controlsParent[1] = GetParent().FindChild("CONTROLS_Interactions") as Control;
+            _controlsParent[2] = GetParent().FindChild("CONTROLS_Block Placement") as Control;
+            _controlsParent[3] = GetParent().FindChild("CONTROLS_Toolbars") as Control;
+            _controlsParent[4] = GetParent().FindChild("CONTROLS_Miscellaneous") as Control;
+        }
+
+        #endregion
 
         _gameSBtn.ButtonPressed = true; // sets the sub setting "game settings" to on (default)
         SubGame(); // sets the sub setting menu to game settings

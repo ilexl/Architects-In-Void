@@ -149,7 +149,7 @@ public partial class MainMenu : Node
     private void Exit()
     {
         GD.Print("INFO: Exit");
-        GetTree().Quit();
+        GetTree().Quit(0);
     }
 
     /// <summary>
