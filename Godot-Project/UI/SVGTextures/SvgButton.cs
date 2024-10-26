@@ -1,0 +1,78 @@
+using Godot;
+using System;
+using System.Threading.Tasks;
+
+public partial class SvgButton : TextureButton
+{
+    [Export] Node2D _normal;
+    [Export] Node2D _pressed;
+    [Export] Node2D _hover;
+    [Export] Node2D _disabled;
+
+    TextureButton tBtn;
+    State _currentState;
+
+    enum State
+    {
+        normal,
+        pressed,
+        hover,
+        disabled
+    }
+
+    // Called when the node enters the scene tree for the first time.
+    public override void _Ready()
+    {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game 
+        tBtn = this;
+        ShowCorrectImage(GetState());
+    }
+
+    public override void _Process(double delta)
+    {
+        if (!this.Visible) { return; }
+        RefreshState();
+    }
+
+    void RefreshState()
+    {
+        Task.Delay(1000);
+        ShowCorrectImage(GetState());
+    }
+
+    State GetState()
+    {
+        if (tBtn.Disabled) { return State.disabled; } // if disabled - do nothing else
+        if (tBtn.ButtonPressed) { return State.pressed; } // if pressed use this
+        if (tBtn.IsHovered()) { return State.hover; } // last check is hover
+        return State.normal; // if no other state - button is normal
+    }
+
+    void ShowCorrectImage(State state)
+    {
+        if(_currentState == state) { return; }
+
+        _normal.Visible = false;
+        _pressed.Visible = false;
+        _hover.Visible = false;
+        _disabled.Visible = false;
+
+        switch (state)
+        {
+            case State.normal:
+                _normal.Visible = true;
+                break;
+            case State.pressed:
+                _pressed.Visible = true;
+                break;
+            case State.hover:
+                _hover.Visible = true;
+                break;
+            case State.disabled:
+                _disabled.Visible = true;
+                break;
+        }
+
+        _currentState = state;
+    }
+}
