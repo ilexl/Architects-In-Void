@@ -31,6 +31,7 @@ public partial class SvgButton : TextureButton
         if (Engine.IsEditorHint()) { return; } // do NOT run when not in game 
         tBtn = this;
         ShowCorrectImage(GetState());
+        RefreshState();
     }
 
     public override void _Process(double delta)
@@ -41,7 +42,6 @@ public partial class SvgButton : TextureButton
 
     void RefreshState()
     {
-        Task.Delay(1000);
         ShowCorrectImage(GetState());
     }
 
