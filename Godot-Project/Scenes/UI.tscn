@@ -39,16 +39,16 @@
 [ext_resource type="Resource" uid="uid://bjvlk2n3xp8u6" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Normal.svg" id="30_jvfoh"]
 [ext_resource type="Script" path="res://UI/PopUp.cs" id="31_85m2s"]
 [ext_resource type="Resource" uid="uid://71qne3hfdkfs" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Pressed.svg" id="31_ug7fk"]
-[ext_resource type="PackedScene" uid="uid://b5k86ny5x2sv" path="res://UI/UIElements/error_pop_up.tscn" id="32_2yato"]
+[ext_resource type="PackedScene" uid="uid://b5k86ny5x2sv" path="res://UI/SVGTextures/PopUp/error_pop_up.tscn" id="32_2yato"]
 [ext_resource type="Resource" uid="uid://dh4226pw6w2wk" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Highlighted.svg" id="32_4nb47"]
 [ext_resource type="Texture2D" uid="uid://bf6qlmem3cga3" path="res://UI/SVGTextures/Settings/Slider-Fill.svg" id="32_7ge8g"]
 [ext_resource type="Texture2D" uid="uid://b7id4v8sfmqqi" path="res://UI/SVGTextures/Settings/Slider-Blank-Texture.png" id="32_f6bbk"]
-[ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/UIElements/confirm_pop_up.tscn" id="33_76cnx"]
+[ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/SVGTextures/PopUp/confirm_pop_up.tscn" id="33_76cnx"]
 [ext_resource type="Resource" uid="uid://bdeo7o4cm5wrg" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Disabled.svg" id="33_buqjp"]
 [ext_resource type="Resource" uid="uid://bj4og2k44xcn6" path="res://UI/SVGTextures/Settings/Slider-Background.svg" id="33_mah1y"]
-[ext_resource type="PackedScene" uid="uid://ouv2jnth0qh8" path="res://UI/UIElements/info_pop_up.tscn" id="34_fl41a"]
+[ext_resource type="PackedScene" uid="uid://ouv2jnth0qh8" path="res://UI/SVGTextures/PopUp/info_pop_up.tscn" id="34_fl41a"]
 [ext_resource type="Resource" uid="uid://cjumwf3nl30gd" path="res://UI/SVGTextures/Settings/Settings-IconHolderNormal.svg" id="34_lm1k5"]
-[ext_resource type="PackedScene" uid="uid://dha0e60iuanfl" path="res://UI/UIElements/input_pop_up.tscn" id="35_2h4aw"]
+[ext_resource type="PackedScene" uid="uid://dha0e60iuanfl" path="res://UI/SVGTextures/PopUp/input_pop_up.tscn" id="35_2h4aw"]
 [ext_resource type="Resource" uid="uid://kcmy82dbcl7g" path="res://UI/SVGTextures/Settings/Settings-IconHolderSelected.svg" id="35_yw4o0"]
 [ext_resource type="Resource" uid="uid://b2uus7avw372u" path="res://UI/SVGTextures/Settings/Settings-IconHolderHighlighted.svg" id="36_ghbhv"]
 [ext_resource type="Resource" uid="uid://cwarp3vww3wxk" path="res://UI/SVGTextures/Settings/RectangleBtn-Normal.svg" id="36_tb8op"]
@@ -67,14 +67,14 @@
 [ext_resource type="Texture2D" uid="uid://bw66xarvj210h" path="res://UI/UIElements/HUD-Hotbar-Selector-On.svg" id="45_bdjj6"]
 [ext_resource type="Texture2D" uid="uid://dbr8m1y4pptbr" path="res://UI/Item-Icons/Blank-Icon.png" id="46_bc6vl"]
 [ext_resource type="Texture2D" uid="uid://bt6soimb5e5fd" path="res://UI/UIElements/HUD Info Left.svg" id="46_f0ex7"]
-[ext_resource type="PackedScene" uid="uid://cfe0elqorxoi" path="res://UI/UIElements/confirm_pop_up_cd.tscn" id="46_tu8o7"]
+[ext_resource type="PackedScene" uid="uid://cfe0elqorxoi" path="res://UI/SVGTextures/PopUp/confirm_pop_up_cd.tscn" id="46_tu8o7"]
 [ext_resource type="Texture2D" uid="uid://b8qxec0ae8j85" path="res://UI/UIElements/HUD-Slot-Selector.svg" id="47_243r5"]
 [ext_resource type="Texture2D" uid="uid://b2t4ygm1cv47j" path="res://UI/UIElements/HUD-Info-Left-Closed.svg" id="47_bhg3r"]
 [ext_resource type="Texture2D" uid="uid://cle482ak4g2ta" path="res://UI/UIElements/HUD Info Right.svg" id="47_li815"]
 [ext_resource type="Texture2D" uid="uid://cdw3o24me4ddn" path="res://UI/UIElements/Radial_Progress.svg" id="47_m5iam"]
 [ext_resource type="Texture2D" uid="uid://bab5wt65gsu5c" path="res://UI/UIElements/HUD-Info-Right-Closed.svg" id="49_en26n"]
 [ext_resource type="Resource" uid="uid://c2b06fva4e1lv" path="res://UI/SVGTextures/WorldManager/WorldManager-Background.svg" id="50_wecmy"]
-[ext_resource type="PackedScene" uid="uid://bdycwnu3c81th" path="res://UI/UIElements/info_pop_up_mc.tscn" id="52_8l8i6"]
+[ext_resource type="PackedScene" uid="uid://bdycwnu3c81th" path="res://UI/SVGTextures/PopUp/info_pop_up_mc.tscn" id="52_8l8i6"]
 [ext_resource type="Resource" uid="uid://rl274jnbs8gx" path="res://UI/SVGTextures/WorldManager/CancelBtn-Normal.svg" id="54_snh0l"]
 [ext_resource type="Resource" uid="uid://nmyxin0fyae6" path="res://UI/SVGTextures/WorldManager/CancelBtn-Pressed.svg" id="55_um26p"]
 [ext_resource type="Resource" uid="uid://yfig4equ0n31" path="res://UI/SVGTextures/WorldManager/CancelBtn-Highlighted.svg" id="56_y80dm"]
@@ -3241,6 +3241,7 @@ SVGTexture = ExtResource("42_tmjc8")
 auto_resize = false
 
 [node name="WorldManager" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -3593,6 +3594,7 @@ grow_horizontal = 0
 
 [node name="World Title" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
 clip_contents = false
+layout_mode = 0
 offset_left = 50.0
 offset_top = 49.1011
 offset_right = 334.0
@@ -3822,6 +3824,7 @@ autowrap_mode = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
 custom_minimum_size = Vector2(245, 0)
+layout_mode = 0
 offset_left = 332.0
 offset_top = 360.0
 offset_right = 577.0
@@ -4039,7 +4042,6 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="LoadingScreen" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
