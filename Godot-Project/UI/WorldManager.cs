@@ -16,7 +16,7 @@ public partial class WorldManager : Node
 {
     #region Variables
 
-    [Export] private TextureButton _cancelBtn, _loadBtn;
+    [Export] private TextureButton _cancelBtn, _loadBtn, _newGameBtn;
     private List<WorldSaveTitle> _currentlySelected;
     [Export] private int _testAmount;
     [Export] private bool _testWorldList;
@@ -75,11 +75,12 @@ public partial class WorldManager : Node
                 return;
             }
         }
-        if (_cancelBtn == null || _loadBtn == null)
+        if (_cancelBtn == null || _loadBtn == null || _newGameBtn == null)
         {
             _cancelBtn = (TextureButton)GetParent().FindChild("CancelBtn");
             _loadBtn = (TextureButton)GetParent().FindChild("LoadBtn");
-            if (_cancelBtn == null || _loadBtn == null)
+            _newGameBtn = (TextureButton)GetParent().FindChild("NewGame");
+            if (_cancelBtn == null || _loadBtn == null || _newGameBtn == null)
             {
                 GD.PushError("WorldManager: missing buttons...");
                 return;
@@ -97,6 +98,10 @@ public partial class WorldManager : Node
         {
             _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld));
         }
+        if (!_newGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(NewGameBtnCall)))
+        {
+            _newGameBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGameBtnCall));
+        }
 
         #endregion
 
@@ -104,6 +109,24 @@ public partial class WorldManager : Node
         _loadBtn.Disabled = true;
         _UIManager = ((UIManager)_wmMain.GetParent());
         _data = (Data)_UIManager.GetParent().FindChild("Data");
+    }
+
+    /// <summary>
+    /// Calls new game from the world manager
+    /// </summary>
+    private void NewGameBtnCall()
+    {
+        GD.Print("WorldManager: new game btn pressed");
+        if(GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu)
+        {
+            _UIManager.PopUpManager.DisplayInputPopUp("Enter new world name:", Callable.From(NewWorldConfirmed));
+            // continue as normal in new world
+        }
+        else
+        {
+            // otherwise we need to create a new save for the current game...
+            GD.Print("WorldManager: not implemented - new save for in game"); //TODO: implement new save for in game
+        }
     }
 
     /// <summary>
