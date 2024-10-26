@@ -15,10 +15,8 @@
 [node name="Game" type="Node"]
 script = ExtResource("1_co5c1")
 
-[node name="UI" parent="." node_paths=PackedStringArray("SettingsManager", "PopUpManager", "UIWindowManager") instance=ExtResource("1_18pnr")]
+[node name="UI" parent="." node_paths=PackedStringArray("SettingsManager") instance=ExtResource("1_18pnr")]
 SettingsManager = NodePath("../Settings")
-PopUpManager = NodePath("WindowManager/PopUp")
-UIWindowManager = NodePath("WindowManager")
 
 [node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
 script = ExtResource("2_c4xwi")
