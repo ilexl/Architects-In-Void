@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0seddgp21d6n"]
+[gd_scene load_steps=13 format=3 uid="uid://d0seddgp21d6n"]
 
 [ext_resource type="PackedScene" uid="uid://bt33b5k48ip62" path="res://Scenes/UI.tscn" id="1_18pnr"]
 [ext_resource type="Script" path="res://WorldData/GameManager.cs" id="1_co5c1"]
@@ -9,22 +9,22 @@
 [ext_resource type="Script" path="res://WorldData/VesselData.cs" id="6_s8e62"]
 [ext_resource type="PackedScene" uid="uid://xjqrmh8r7gfp" path="res://Player/Player.tscn" id="7_202vu"]
 [ext_resource type="PackedScene" uid="uid://hjmtbffy8j1q" path="res://Vessels/Vessel.tscn" id="7_nonp3"]
+[ext_resource type="Script" path="res://Scenes/FmodThingyLoader.cs" id="10_kxxpy"]
+[ext_resource type="PackedScene" uid="uid://b42nkolx525n4" path="res://wtf.tscn" id="11_o3yro"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_3yxs1"]
 
 [node name="Game" type="Node"]
 script = ExtResource("1_co5c1")
 
-[node name="UI" parent="." node_paths=PackedStringArray("SettingsManager", "PopUpManager", "UIWindowManager") instance=ExtResource("1_18pnr")]
+[node name="UI" parent="." node_paths=PackedStringArray("SettingsManager") instance=ExtResource("1_18pnr")]
 SettingsManager = NodePath("../Settings")
-PopUpManager = NodePath("WindowManager/PopUp")
-UIWindowManager = NodePath("WindowManager")
 
 [node name="Data" type="Node" parent="." node_paths=PackedStringArray("wmData")]
 script = ExtResource("2_c4xwi")
 _name = "AMONG US"
 _gameVersion = "0.0.1"
-_lastSaved = "23-10-2024 19:59:12"
+_lastSaved = "25-10-2024 34:53:33"
 wmData = NodePath("../World")
 
 [node name="Settings" type="Node" parent="."]
@@ -35,9 +35,9 @@ MusicVolume = 100.0
 DialougeVolume = 100.0
 Subtitles = true
 SpeakerSMode = 3
-Resolution = Vector2i(1920, 1080)
-RefreshRate = 144.0
-DisplaySMode = 2
+Resolution = Vector2i(2560, 1440)
+RefreshRate = 60.0
+DisplaySMode = 1
 
 [node name="World" type="Node3D" parent="." node_paths=PackedStringArray("_dataPlayer", "_dataVessel")]
 script = ExtResource("2_1n58s")
@@ -58,3 +58,10 @@ transform = Transform3D(1, 0, 0, 0, 0.996857, 0.0792247, 0, -0.0792247, 0.996857
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(45.965, 0, 0, 0, 1, 0, 0, 0, 19.8536, 0, 0, 0)
 mesh = SubResource("BoxMesh_3yxs1")
+
+[node name="FmodBankLoader" type="FmodBankLoader" parent="."]
+bank_paths = ["res://Audio/Desktop/Master.strings.bank", "res://Audio/Desktop/Master.bank", "res://Audio/Desktop/Test Bank 1.bank", "res://Audio/Desktop/Test Bank 2.bank"]
+
+[node name="FmodThingyLoader" type="Node3D" parent="."]
+script = ExtResource("10_kxxpy")
+_sceneToSpawn = ExtResource("11_o3yro")

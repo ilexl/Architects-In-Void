@@ -121,7 +121,7 @@ public partial class PlaceableComponent : CollisionShape3D
     {
         if (Engine.IsEditorHint())
         {
-            scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
+            //scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
         }
     }
     public void RecieveThumbnail(string path, Texture2D preview, Texture2D thumb, Variant userData)
