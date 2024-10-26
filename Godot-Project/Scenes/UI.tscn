@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=83 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -25,33 +25,47 @@
 [ext_resource type="Resource" uid="uid://cicfj5bfk046" path="res://UI/SVGTextures/MainMenu/Button-Highlight.svg" id="11_hqo6y"]
 [ext_resource type="Resource" uid="uid://yjmrqcijwo14" path="res://UI/SVGTextures/MainMenu/Button-Disabled.svg" id="12_rvqvx"]
 [ext_resource type="Resource" uid="uid://uuh80hr7ma0m" path="res://UI/SVGTextures/Settings/Settings-Background.svg" id="15_cle0r"]
-[ext_resource type="Texture2D" uid="uid://b81er1dmljkhm" path="res://UI/UIElements/Left-Arrow.png" id="16_kl4ad"]
-[ext_resource type="Texture2D" uid="uid://c8peudbr7m120" path="res://UI/UIElements/Left-Arrow-Disabled.png" id="17_0g42x"]
-[ext_resource type="Texture2D" uid="uid://dh287s5t6mhng" path="res://UI/UIElements/Left-Arrow-Hover.png" id="18_5uouw"]
-[ext_resource type="Texture2D" uid="uid://csajhdj7xhv78" path="res://UI/UIElements/IconGameSettings.png" id="18_54gxq"]
-[ext_resource type="Texture2D" uid="uid://ccacsbwywn0ff" path="res://UI/UIElements/IconControls.png" id="18_gt1ff"]
-[ext_resource type="Texture2D" uid="uid://dlslnpe4i0bs2" path="res://UI/UIElements/Right-Arrow.png" id="19_snjcc"]
-[ext_resource type="Texture2D" uid="uid://c2y8ni8pfpgqb" path="res://UI/UIElements/Right-Arrow-Disabled.png" id="20_28led"]
-[ext_resource type="Texture2D" uid="uid://bb2re1ccvs366" path="res://UI/UIElements/IconAudio.png" id="20_x7oi2"]
-[ext_resource type="Texture2D" uid="uid://bukxdxnf32rut" path="res://UI/UIElements/Right-Arrow-Hover.png" id="21_2rvca"]
-[ext_resource type="Texture2D" uid="uid://c54is2cerp4ni" path="res://UI/UIElements/IconVideo.png" id="21_4wk1p"]
-[ext_resource type="PackedScene" uid="uid://cao7hsumnxbtq" path="res://UI/UIElements/remap_control.tscn" id="22_fcsi1"]
-[ext_resource type="Texture2D" uid="uid://brf6bpw7ab6m6" path="res://UI/UIElements/IconReset.png" id="22_lxoad"]
-[ext_resource type="Texture2D" uid="uid://bxoeqqfmrbjsf" path="res://UI/UIElements/SettingsSliderBackground.png" id="22_ptns7"]
-[ext_resource type="Texture2D" uid="uid://bxsav3qhhqo5f" path="res://UI/UIElements/SettingsSliderFill.png" id="23_ypy8f"]
+[ext_resource type="Resource" uid="uid://bn25anuxdr0tc" path="res://UI/SVGTextures/Settings/Settings-CancelBtn-Normal.svg" id="16_o8wgr"]
+[ext_resource type="Resource" uid="uid://cbsjd48f1pi5o" path="res://UI/SVGTextures/Settings/Settings-CancelBtn-Pressed.svg" id="17_myfua"]
+[ext_resource type="Resource" uid="uid://cxsgaadh2a4ps" path="res://UI/SVGTextures/Settings/Settings-CancelBtn-Highlighted.svg" id="18_7oaya"]
+[ext_resource type="Resource" uid="uid://bso0uvfmpx40j" path="res://UI/SVGTextures/Settings/Settings-ApplyBtn-Normal.svg" id="20_blwjl"]
+[ext_resource type="Resource" uid="uid://bfxi8woyippma" path="res://UI/SVGTextures/Settings/Settings-ApplyBtn-Pressed.svg" id="21_5fpqo"]
+[ext_resource type="Resource" uid="uid://b5sp6s31qp3hf" path="res://UI/SVGTextures/Settings/Settings-ApplyBtn-Highlighted.svg" id="22_5kptb"]
+[ext_resource type="PackedScene" uid="uid://cao7hsumnxbtq" path="res://UI/SVGTextures/Settings/remap_control.tscn" id="22_fcsi1"]
+[ext_resource type="Resource" uid="uid://c4e2cciqjtnfg" path="res://UI/SVGTextures/Settings/Settings-ApplyBtn-Disabled.svg" id="23_3wt2p"]
 [ext_resource type="PackedScene" uid="uid://27r5cfuywm27" path="res://UI/UIElements/world_save.tscn" id="24_6fqay"]
 [ext_resource type="Texture2D" uid="uid://cub3bihau2yo2" path="res://UI/UIElements/WorldManagerBackground.svg" id="24_jxwvm"]
 [ext_resource type="Texture2D" uid="uid://ddjixns0xid0r" path="res://UI/UIElements/Rectangle-Button-Disabled.svg" id="25_ogcwk"]
+[ext_resource type="Resource" uid="uid://dq5uek1on6neo" path="res://UI/SVGTextures/Settings/Left-ArrowBtn-Normal.svg" id="26_lj68i"]
 [ext_resource type="Texture2D" uid="uid://qhg40h18kl4k" path="res://UI/UIElements/Rectangle-Button-Normal.svg" id="26_vltm2"]
+[ext_resource type="Resource" uid="uid://bo1ppqepcfr2" path="res://UI/SVGTextures/Settings/Left-ArrowBtn-Pressed.svg" id="27_jlddn"]
+[ext_resource type="Resource" uid="uid://c76y7idrg40hy" path="res://UI/SVGTextures/Settings/Left-ArrowBtn-Highlighted.svg" id="28_g63ie"]
+[ext_resource type="Resource" uid="uid://l0pp4d0bay5a" path="res://UI/SVGTextures/Settings/Left-ArrowBtn-Disabled.svg" id="29_3hhtu"]
+[ext_resource type="Resource" uid="uid://bjvlk2n3xp8u6" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Normal.svg" id="30_jvfoh"]
 [ext_resource type="Script" path="res://UI/PopUp.cs" id="31_85m2s"]
+[ext_resource type="Resource" uid="uid://71qne3hfdkfs" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Pressed.svg" id="31_ug7fk"]
 [ext_resource type="PackedScene" uid="uid://b5k86ny5x2sv" path="res://UI/UIElements/error_pop_up.tscn" id="32_2yato"]
+[ext_resource type="Resource" uid="uid://dh4226pw6w2wk" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Highlighted.svg" id="32_4nb47"]
+[ext_resource type="Texture2D" uid="uid://bf6qlmem3cga3" path="res://UI/SVGTextures/Settings/Slider-Fill.svg" id="32_7ge8g"]
+[ext_resource type="Texture2D" uid="uid://b7id4v8sfmqqi" path="res://UI/SVGTextures/Settings/Slider-Blank-Texture.png" id="32_f6bbk"]
 [ext_resource type="PackedScene" uid="uid://cm8ih6dwhbcef" path="res://UI/UIElements/confirm_pop_up.tscn" id="33_76cnx"]
+[ext_resource type="Resource" uid="uid://bdeo7o4cm5wrg" path="res://UI/SVGTextures/Settings/Right-ArrowBtn-Disabled.svg" id="33_buqjp"]
+[ext_resource type="Resource" uid="uid://bj4og2k44xcn6" path="res://UI/SVGTextures/Settings/Slider-Background.svg" id="33_mah1y"]
 [ext_resource type="PackedScene" uid="uid://ouv2jnth0qh8" path="res://UI/UIElements/info_pop_up.tscn" id="34_fl41a"]
 [ext_resource type="Resource" uid="uid://cjumwf3nl30gd" path="res://UI/SVGTextures/Settings/Settings-IconHolderNormal.svg" id="34_lm1k5"]
 [ext_resource type="PackedScene" uid="uid://dha0e60iuanfl" path="res://UI/UIElements/input_pop_up.tscn" id="35_2h4aw"]
 [ext_resource type="Resource" uid="uid://kcmy82dbcl7g" path="res://UI/SVGTextures/Settings/Settings-IconHolderSelected.svg" id="35_yw4o0"]
 [ext_resource type="Resource" uid="uid://b2uus7avw372u" path="res://UI/SVGTextures/Settings/Settings-IconHolderHighlighted.svg" id="36_ghbhv"]
+[ext_resource type="Resource" uid="uid://cwarp3vww3wxk" path="res://UI/SVGTextures/Settings/RectangleBtn-Normal.svg" id="36_tb8op"]
+[ext_resource type="Resource" uid="uid://c10sio0mq18xj" path="res://UI/SVGTextures/Settings/RectangleBtn-Pressed.svg" id="37_3lyh8"]
 [ext_resource type="Resource" uid="uid://clmyyh8bgyhb3" path="res://UI/SVGTextures/Settings/Settings-IconHolderDisabled.svg" id="37_n4qx2"]
+[ext_resource type="Resource" uid="uid://c061q0tphpepe" path="res://UI/SVGTextures/Settings/RectangleBtn-Highlighted.svg" id="38_4e0wr"]
+[ext_resource type="Resource" uid="uid://5p8rlhfjy0hb" path="res://UI/SVGTextures/Settings/Gear-icon.svg" id="38_t5keg"]
+[ext_resource type="Resource" uid="uid://b87fkd21lol0i" path="res://UI/SVGTextures/Settings/RectangleBtn-Disabled.svg" id="39_r4aiu"]
+[ext_resource type="Resource" uid="uid://cd3tc8gpp6x7a" path="res://UI/SVGTextures/Settings/ArrowKeys-icon.svg" id="39_sctwa"]
+[ext_resource type="Resource" uid="uid://cnr2ffkm4pwyx" path="res://UI/SVGTextures/Settings/Audio-icon.svg" id="40_kxs8m"]
+[ext_resource type="Resource" uid="uid://bf663080dxmin" path="res://UI/SVGTextures/Settings/Display-icon.svg" id="41_7o8kc"]
+[ext_resource type="Resource" uid="uid://dggo14vsbaq85" path="res://UI/SVGTextures/Settings/Reset-icon.svg" id="42_tmjc8"]
 [ext_resource type="Texture2D" uid="uid://bg5cg8qg2ifif" path="res://UI/UIElements/HUD-Slots-Background.svg" id="43_tv4vx"]
 [ext_resource type="Texture2D" uid="uid://bh2e6lg0q50y6" path="res://UI/UIElements/Pause Background.svg" id="44_f54pe"]
 [ext_resource type="Texture2D" uid="uid://ckjchv3deb0xo" path="res://UI/UIElements/HUD-Hotbar-Selector-Off.svg" id="44_sdh17"]
@@ -68,31 +82,10 @@
 [ext_resource type="Script" path="res://addons/merovi.svgtexture2d/svg_camera_2d.gd" id="60_256pr"]
 [ext_resource type="Script" path="res://addons/merovi.svgtexture2d/svg_sprite_2d.gd" id="61_8cwet"]
 
-[sub_resource type="ImageTexture" id="ImageTexture_pqm2y"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_l2plq"]
-
-[sub_resource type="ImageTexture" id="ImageTexture_pn5ry"]
-
-[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5ipbx"]
-content_margin_left = 1.0
-content_margin_top = 1.0
-content_margin_right = 1.0
-content_margin_bottom = 1.0
-texture = ExtResource("22_ptns7")
-texture_margin_left = 1.0
-texture_margin_top = 1.0
-texture_margin_right = 1.0
-texture_margin_bottom = 1.0
-expand_margin_top = 20.0
-expand_margin_bottom = 20.0
-region_rect = Rect2(0, 0, 1, 1)
-draw_center = false
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
-texture = ExtResource("23_ypy8f")
-expand_margin_top = 20.0
-expand_margin_bottom = 20.0
+texture = ExtResource("32_7ge8g")
+expand_margin_top = 18.0
+expand_margin_bottom = 18.0
 
 [node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_worldMenu", "_loadingMenu", "_hudMenu", "_pauseMenu", "PopUpManager", "UIWindowManager")]
 layout_mode = 3
@@ -121,7 +114,6 @@ script = ExtResource("1_st6gj")
 _windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -213,18 +205,21 @@ _disabled = NodePath("Disabled")
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("9_fgol5")
+auto_resize = false
 
 [node name="Pressed" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Resume"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("10_65du6")
+auto_resize = false
 
 [node name="Hover" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Resume"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("11_hqo6y")
+auto_resize = false
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Resume"]
 layout_mode = 1
@@ -253,6 +248,7 @@ visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("12_rvqvx")
+auto_resize = false
 
 [node name="New" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(10, 135)
@@ -269,18 +265,21 @@ _disabled = NodePath("Disabled")
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("9_fgol5")
+auto_resize = false
 
 [node name="Pressed" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/New"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("10_65du6")
+auto_resize = false
 
 [node name="Hover" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/New"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("11_hqo6y")
+auto_resize = false
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/New"]
 layout_mode = 1
@@ -290,9 +289,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -124.5
-offset_top = -32.0
+offset_top = -29.0
 offset_right = 124.5
-offset_bottom = 32.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -309,6 +308,7 @@ visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("12_rvqvx")
+auto_resize = false
 
 [node name="Load" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(10, 135)
@@ -325,18 +325,21 @@ _disabled = NodePath("Disabled")
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("9_fgol5")
+auto_resize = false
 
 [node name="Pressed" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Load"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("10_65du6")
+auto_resize = false
 
 [node name="Hover" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Load"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("11_hqo6y")
+auto_resize = false
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Load"]
 layout_mode = 1
@@ -346,9 +349,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -131.0
-offset_top = -32.0
+offset_top = -29.0
 offset_right = 131.0
-offset_bottom = 32.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -365,6 +368,7 @@ visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("12_rvqvx")
+auto_resize = false
 
 [node name="Options" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(10, 135)
@@ -381,18 +385,21 @@ _disabled = NodePath("Disabled")
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("9_fgol5")
+auto_resize = false
 
 [node name="Pressed" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Options"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("10_65du6")
+auto_resize = false
 
 [node name="Hover" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Options"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("11_hqo6y")
+auto_resize = false
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Options"]
 layout_mode = 1
@@ -402,9 +409,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -92.0
-offset_top = -32.0
+offset_top = -29.0
 offset_right = 92.0
-offset_bottom = 32.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -421,6 +428,7 @@ visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("12_rvqvx")
+auto_resize = false
 
 [node name="Exit" type="TextureButton" parent="WindowManager/MainMenu/MainMenuScript" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(10, 135)
@@ -437,18 +445,21 @@ _disabled = NodePath("Disabled")
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("9_fgol5")
+auto_resize = false
 
 [node name="Pressed" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Exit"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("10_65du6")
+auto_resize = false
 
 [node name="Hover" type="Sprite2D" parent="WindowManager/MainMenu/MainMenuScript/Exit"]
 visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("11_hqo6y")
+auto_resize = false
 
 [node name="txt" type="RichTextLabel" parent="WindowManager/MainMenu/MainMenuScript/Exit"]
 layout_mode = 1
@@ -458,9 +469,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -44.0
-offset_top = -32.0
+offset_top = -29.0
 offset_right = 44.0
-offset_bottom = 32.0
+offset_bottom = 35.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -477,8 +488,10 @@ visible = false
 centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("12_rvqvx")
+auto_resize = false
 
 [node name="Settings" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -599,18 +612,46 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="CancelBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder"]
+[node name="CancelBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 0
-offset_left = 1698.0
+offset_left = 1690.0
 offset_top = 1051.1
-offset_right = 1948.0
+offset_right = 1940.0
 offset_bottom = 1114.1
-texture_normal = ExtResource("8_lf3yh")
-texture_pressed = ExtResource("9_wbehq")
-texture_hover = ExtResource("10_4g464")
-texture_focused = ExtResource("10_4g464")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/CancelBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("16_o8wgr")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/CancelBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("17_myfua")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/CancelBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("18_7oaya")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/CancelBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("17_myfua")
+auto_resize = false
 
 [node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/CancelBtn"]
 layout_mode = 1
@@ -631,21 +672,48 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ApplyBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder"]
+[node name="ApplyBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 0
-offset_left = 1419.0
+offset_left = 1411.0
 offset_top = 1051.1
-offset_right = 1669.0
+offset_right = 1661.0
 offset_bottom = 1114.1
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
 flip_h = true
 flip_v = true
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/ApplyBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("20_blwjl")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/ApplyBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("21_5fpqo")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/ApplyBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("22_5kptb")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/ApplyBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("23_3wt2p")
+auto_resize = false
 
 [node name="CenterContainer" type="CenterContainer" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/ApplyBtn"]
 layout_mode = 1
@@ -673,9 +741,10 @@ offset_top = 126.0
 offset_right = 1955.0
 offset_bottom = 1030.0
 script = ExtResource("1_st6gj")
-_windows = [null, null, null, null]
+_windows = [NodePath("GameSettings"), NodePath("ControlSettings"), NodePath("AudioSettings"), NodePath("DisplaySettings")]
 
 [node name="GameSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus"]
+visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 1
 anchors_preset = 15
@@ -764,36 +833,92 @@ offset_left = -615.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="LanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
+[node name="LanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 30.0
+offset_right = 22.0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
 
-[node name="LanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="LanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -30.0
+offset_left = -23.0
 grow_horizontal = 0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
 stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder/LanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="LanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/GameSettings/General/Language/ControlHolder"]
 layout_mode = 1
@@ -828,7 +953,7 @@ custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
 offset_left = 42.0
 offset_right = 1716.0
-offset_bottom = 906.0
+offset_bottom = 895.0
 
 [node name="Holder" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/ControlSettings/ScrollContainer"]
 custom_minimum_size = Vector2(0, 3100)
@@ -859,8 +984,9 @@ offset_bottom = 751.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/CONTROLS_Movement"]
 layout_mode = 0
+offset_top = -5.0
 offset_right = 184.0
-offset_bottom = 48.0
+offset_bottom = 43.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 36
 text = "Movement"
@@ -881,7 +1007,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -650.0
+offset_top = -645.0
+offset_bottom = 5.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -957,9 +1084,9 @@ offset_bottom = 1318.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/CONTROLS_Interactions"]
 layout_mode = 0
-offset_top = 3.0
+offset_top = -5.0
 offset_right = 393.0
-offset_bottom = 51.0
+offset_bottom = 43.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 36
 text = "Systems / Interactions"
@@ -980,7 +1107,7 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -440.0
+offset_top = -485.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -1041,9 +1168,9 @@ offset_bottom = 1930.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/CONTROLS_Block Placement"]
 layout_mode = 0
-offset_top = 3.0
+offset_top = -5.0
 offset_right = 288.0
-offset_bottom = 51.0
+offset_bottom = 43.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 36
 text = "Block Placement"
@@ -1064,10 +1191,8 @@ anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 6.0
-offset_top = -499.0
-offset_right = 6.0
-offset_bottom = -4.0
+offset_top = -543.0
+offset_bottom = -3.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/separation = 10
@@ -1133,9 +1258,9 @@ offset_bottom = 2660.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/CONTROLS_Toolbars"]
 layout_mode = 0
-offset_top = 3.0
+offset_top = -5.0
 offset_right = 178.0
-offset_bottom = 51.0
+offset_bottom = 43.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 36
 text = "Toolbars"
@@ -1232,9 +1357,9 @@ offset_bottom = 3057.0
 
 [node name="SubCatergoryTitle" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/ControlSettings/ScrollContainer/Holder/CONTROLS_Miscellaneous"]
 layout_mode = 0
-offset_top = 3.0
+offset_top = -5.0
 offset_right = 246.0
-offset_bottom = 51.0
+offset_bottom = 43.0
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 36
 text = "Miscellaneous"
@@ -1291,7 +1416,6 @@ InputMapName = "miscellaneous_hud_toggle"
 DisplayName = "HUD Toggle"
 
 [node name="AudioSettings" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus"]
-visible = false
 custom_minimum_size = Vector2(944, 456)
 layout_mode = 2
 anchors_preset = 0
@@ -1385,15 +1509,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
-theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
-theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
-theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_icons/grabber = ExtResource("32_f6bbk")
+theme_override_icons/grabber_highlight = ExtResource("32_f6bbk")
+theme_override_icons/grabber_disabled = ExtResource("32_f6bbk")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
 value = 20.0
 rounded = true
 scrollable = false
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MasterVolume/ControlHolder/MasterVolumeSlider"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_mah1y")
+auto_resize = false
 
 [node name="SoundEffectsVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -1429,15 +1558,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
-theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
-theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
-theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_icons/grabber = ExtResource("32_f6bbk")
+theme_override_icons/grabber_highlight = ExtResource("32_f6bbk")
+theme_override_icons/grabber_disabled = ExtResource("32_f6bbk")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
 value = 20.0
 rounded = true
 scrollable = false
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SoundEffectsVolume/ControlHolder/SoundEffectsVolumeSlider"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_mah1y")
+auto_resize = false
 
 [node name="MusicVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -1473,15 +1607,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
-theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
-theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
-theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_icons/grabber = ExtResource("32_f6bbk")
+theme_override_icons/grabber_highlight = ExtResource("32_f6bbk")
+theme_override_icons/grabber_disabled = ExtResource("32_f6bbk")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
 value = 20.0
 rounded = true
 scrollable = false
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/MusicVolume/ControlHolder/MusicVolumeSlider"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_mah1y")
+auto_resize = false
 
 [node name="DialougeVolume" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -1517,15 +1656,20 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_icons/grabber = SubResource("ImageTexture_pqm2y")
-theme_override_icons/grabber_highlight = SubResource("ImageTexture_l2plq")
-theme_override_icons/grabber_disabled = SubResource("ImageTexture_pn5ry")
-theme_override_styles/slider = SubResource("StyleBoxTexture_5ipbx")
+theme_override_icons/grabber = ExtResource("32_f6bbk")
+theme_override_icons/grabber_highlight = ExtResource("32_f6bbk")
+theme_override_icons/grabber_disabled = ExtResource("32_f6bbk")
 theme_override_styles/grabber_area = SubResource("StyleBoxTexture_1wu0f")
 theme_override_styles/grabber_area_highlight = SubResource("StyleBoxTexture_1wu0f")
 value = 20.0
 rounded = true
 scrollable = false
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/DialougeVolume/ControlHolder/DialougeVolumeSlider"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_mah1y")
+auto_resize = false
 
 [node name="SpeakerMode" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -1554,36 +1698,92 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="SpeakerModeLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
+[node name="SpeakerModeLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 22.0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
 
-[node name="SpeakerModeRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="SpeakerModeRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -23.0
 grow_horizontal = 0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeRightBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder/SpeakerModeRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="SpeakerModeDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Sound/VBoxContainer/SpeakerMode/ControlHolder"]
 layout_mode = 1
@@ -1668,36 +1868,93 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="SpokenLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
+[node name="SpokenLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 22.0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
 
-[node name="SpokenLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="SpokenLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -23.0
 grow_horizontal = 0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder/SpokenLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="SpokenLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SpokenLanguage/ControlHolder"]
 layout_mode = 1
@@ -1744,19 +2001,20 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="SubtitlesOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder"]
+[node name="SubtitlesOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 grow_vertical = 2
 toggle_mode = true
-texture_normal = ExtResource("25_ogcwk")
-texture_pressed = ExtResource("25_ogcwk")
-texture_hover = ExtResource("26_vltm2")
-texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("7_hnpww")
+_normal = NodePath("Disabled")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Normal")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn"]
 layout_mode = 1
@@ -1779,7 +2037,34 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="SubtitlesOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("36_tb8op")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("37_3lyh8")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("38_4e0wr")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOffBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("39_r4aiu")
+auto_resize = false
+
+[node name="SubtitlesOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(260, 0)
 layout_mode = 1
 anchors_preset = 11
@@ -1790,12 +2075,13 @@ grow_horizontal = 0
 grow_vertical = 2
 disabled = true
 toggle_mode = true
-texture_normal = ExtResource("25_ogcwk")
-texture_pressed = ExtResource("25_ogcwk")
-texture_hover = ExtResource("26_vltm2")
-texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("7_hnpww")
+_normal = NodePath("Disabled")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Normal")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn"]
 layout_mode = 1
@@ -1817,6 +2103,34 @@ text = "On"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("36_tb8op")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("37_3lyh8")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("38_4e0wr")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubTitles/ControlHolder/SubtitlesOnBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("39_r4aiu")
+auto_resize = false
 
 [node name="SubtitlesLanguage" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -1845,36 +2159,92 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="SubtitlesLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
+[node name="SubtitlesLanguageLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 22.0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
 
-[node name="SubtitlesLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="SubtitlesLanguageRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -23.0
 grow_horizontal = 0
 grow_vertical = 2
 disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
 ignore_texture_size = true
-stretch_mode = 5
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder/SubtitlesLanguageRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="SubtitlesLanguageDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/AudioSettings/Dialouge/VBoxContainer/SubtitlesLanguage/ControlHolder"]
 layout_mode = 1
@@ -1980,37 +2350,6 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="ResolutionLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="ResolutionRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
-ignore_texture_size = true
-stretch_mode = 5
-
 [node name="ResolutionDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
@@ -2028,6 +2367,93 @@ theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="ResolutionLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 22.0
+grow_vertical = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="ResolutionRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+grow_horizontal = 0
+grow_vertical = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionRightBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/Resolution/ControlHolder/ResolutionRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="RefreshRate" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -2056,37 +2482,6 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="RefreshRateLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="RefreshRateRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
-ignore_texture_size = true
-stretch_mode = 5
-
 [node name="RefreshRateDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
@@ -2104,6 +2499,93 @@ theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="RefreshRateLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 22.0
+grow_vertical = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="RefreshRateRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+grow_horizontal = 0
+grow_vertical = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateRightBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/RefreshRate/ControlHolder/RefreshRateRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="FullScreen" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -2132,37 +2614,6 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="FullScreenLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-grow_vertical = 2
-disabled = true
-texture_normal = ExtResource("16_kl4ad")
-texture_pressed = ExtResource("17_0g42x")
-texture_hover = ExtResource("18_5uouw")
-texture_disabled = ExtResource("17_0g42x")
-ignore_texture_size = true
-stretch_mode = 5
-
-[node name="FullScreenRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder"]
-custom_minimum_size = Vector2(30, 0)
-layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 0
-grow_vertical = 2
-disabled = true
-texture_normal = ExtResource("19_snjcc")
-texture_pressed = ExtResource("20_28led")
-texture_hover = ExtResource("21_2rvca")
-texture_disabled = ExtResource("20_28led")
-ignore_texture_size = true
-stretch_mode = 5
-
 [node name="FullScreenDisplayText" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder"]
 layout_mode = 1
 anchors_preset = 13
@@ -2180,6 +2631,93 @@ theme_override_font_sizes/normal_font_size = 30
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="FullScreenLeftBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 22.0
+grow_vertical = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenLeftBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("26_lj68i")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("27_jlddn")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("28_g63ie")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenLeftBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("29_3hhtu")
+auto_resize = false
+
+[node name="FullScreenRightBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -23.0
+grow_horizontal = 0
+grow_vertical = 2
+disabled = true
+ignore_texture_size = true
+stretch_mode = 4
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenRightBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("30_jvfoh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("31_ug7fk")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("32_4nb47")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/FullScreen/ControlHolder/FullScreenRightBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("33_buqjp")
+auto_resize = false
 
 [node name="VSync" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer"]
 custom_minimum_size = Vector2(0, 45)
@@ -2208,19 +2746,20 @@ anchor_bottom = 1.0
 grow_horizontal = 0
 grow_vertical = 2
 
-[node name="VSyncOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder"]
-custom_minimum_size = Vector2(270, 0)
+[node name="VSyncOffBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
+offset_right = 257.0
 grow_vertical = 2
 toggle_mode = true
-texture_normal = ExtResource("25_ogcwk")
-texture_pressed = ExtResource("25_ogcwk")
-texture_hover = ExtResource("26_vltm2")
-texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("7_hnpww")
+_normal = NodePath("Disabled")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Normal")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn"]
 layout_mode = 1
@@ -2228,10 +2767,9 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -21.5
+offset_left = -22.5
 offset_top = 6.0
 offset_right = 21.5
-offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -2243,23 +2781,48 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="VSyncOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder"]
-custom_minimum_size = Vector2(270, 0)
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("36_tb8op")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("37_3lyh8")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("38_4e0wr")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOffBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("39_r4aiu")
+auto_resize = false
+
+[node name="VSyncOnBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -257.0
 grow_horizontal = 0
 grow_vertical = 2
 disabled = true
 toggle_mode = true
-texture_normal = ExtResource("25_ogcwk")
-texture_pressed = ExtResource("25_ogcwk")
-texture_hover = ExtResource("26_vltm2")
-texture_disabled = ExtResource("26_vltm2")
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("7_hnpww")
+_normal = NodePath("Disabled")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Normal")
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn"]
 layout_mode = 1
@@ -2281,6 +2844,30 @@ text = "On"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("36_tb8op")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("37_3lyh8")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("38_4e0wr")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings/Screen/VBoxContainer/VSync/ControlHolder/VSyncOnBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("39_r4aiu")
+auto_resize = false
 
 [node name="Graphics" type="Control" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/SettingsSubMenus/DisplaySettings"]
 custom_minimum_size = Vector2(848, 0)
@@ -2391,13 +2978,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/GameSettingsBtn/CenterContainer"]
-custom_minimum_size = Vector2(90, 90)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("18_54gxq")
-expand_mode = 1
-stretch_mode = 4
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/GameSettingsBtn/CenterContainer"]
+position = Vector2(12, 14)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("38_t5keg")
+auto_resize = false
 
 [node name="ControlsSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(100, 100)
@@ -2451,13 +3037,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/ControlsSettingsBtn/CenterContainer"]
-custom_minimum_size = Vector2(73, 73)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("18_gt1ff")
-expand_mode = 1
-stretch_mode = 4
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/ControlsSettingsBtn/CenterContainer"]
+position = Vector2(12, 24)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("39_sctwa")
+auto_resize = false
 
 [node name="AudioSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(100, 100)
@@ -2511,13 +3096,13 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/AudioSettingsBtn/CenterContainer"]
-custom_minimum_size = Vector2(66, 66)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("20_x7oi2")
-expand_mode = 1
-stretch_mode = 4
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/AudioSettingsBtn/CenterContainer"]
+position = Vector2(10, 12)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("40_kxs8m")
+sprite_size = 0.35
+auto_resize = false
 
 [node name="DisplaySettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(100, 100)
@@ -2571,13 +3156,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/DisplaySettingsBtn/CenterContainer"]
-custom_minimum_size = Vector2(71, 71)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("21_4wk1p")
-expand_mode = 1
-stretch_mode = 4
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/DisplaySettingsBtn/CenterContainer"]
+position = Vector2(12, 21)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("41_7o8kc")
+auto_resize = false
 
 [node name="ResetSettingsBtn" type="TextureButton" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
 custom_minimum_size = Vector2(90, 90)
@@ -2628,13 +3212,12 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="TextureRect" type="TextureRect" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/ResetSettingsBtn/CenterContainer"]
-custom_minimum_size = Vector2(77, 77)
-layout_mode = 2
-mouse_filter = 2
-texture = ExtResource("22_lxoad")
-expand_mode = 1
-stretch_mode = 4
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/Settings/AspectRatioContainer/MarginContainer/Holder/VBoxContainer/ResetSettingsBtn/CenterContainer"]
+position = Vector2(14, -9)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("42_tmjc8")
+auto_resize = false
 
 [node name="WorldManager" type="Control" parent="WindowManager"]
 visible = false
