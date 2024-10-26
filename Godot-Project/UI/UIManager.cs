@@ -63,8 +63,10 @@ public partial class UIManager : Node
 
     public override void _Notification(int what)
     {
+        
         if (what == NotificationEditorPreSave)
         {
+            GD.Print("UIManager: Unloading all SVGTextures");
             foreach (var child in SearchSVGRecursive(this))
             {
                 child.Texture = null;
@@ -72,6 +74,7 @@ public partial class UIManager : Node
         }
         if (what == NotificationEditorPostSave)
         {
+            GD.Print("UIManager: Reloading all SVGTextures");
             foreach (var child in SearchSVGRecursive(this))
             {
                 child.Call("_update_texture");
