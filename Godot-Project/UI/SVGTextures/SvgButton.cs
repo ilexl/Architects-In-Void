@@ -2,6 +2,11 @@ using Godot;
 using System;
 using System.Threading.Tasks;
 
+/// <summary>
+/// Class manages the visuals to behave like TextureButton except uses 
+/// custom plugin for SVG textures that scale properly.
+/// <br/><br/>MUST be attached to a TextureButton
+/// </summary>
 public partial class SvgButton : TextureButton
 {
     [Export] Node2D _normal;

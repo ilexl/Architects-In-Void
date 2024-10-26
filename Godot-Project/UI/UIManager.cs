@@ -3,6 +3,8 @@ using ArchitectsInVoid.UI;
 using Godot;
 using Godot.Collections;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 
 /// <summary>
 /// Manager for anything UI related
@@ -32,6 +34,50 @@ public partial class UIManager : Node
 	{
         if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         _ = _GetDependents();
+    }
+
+
+    private List<Sprite2D> SearchSVGRecursive(Node n)
+    {
+        if (n.GetChildren().Count == 0) return null; // need to check for null later
+
+        List<Sprite2D> list = new List<Sprite2D>();
+
+        foreach(var child in n.GetChildren())
+        {
+            if (child is Sprite2D s) { list.Add(s); } // if child is a sprite2D or can be
+            if(child.GetChildren().Count != 0) // see if child has sub children
+            {
+                List<Sprite2D> sublist = SearchSVGRecursive(child);
+                if (sublist == null || sublist.Count == 0) { continue; } // no children
+                foreach(var subchild in sublist)
+                {
+                    list.Add(subchild);
+                }
+            }
+        }
+
+        return list;
+    }
+
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationEditorPreSave)
+        {
+            foreach (var child in SearchSVGRecursive(this))
+            {
+                child.Texture = null;
+            }
+        }
+        if (what == NotificationEditorPostSave)
+        {
+            foreach (var child in SearchSVGRecursive(this))
+            {
+                child.Call("_update_texture");
+            }
+            
+        }
     }
 
     /// <summary>
