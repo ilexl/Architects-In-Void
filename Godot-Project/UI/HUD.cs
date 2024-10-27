@@ -78,6 +78,7 @@ public partial class HUD : Node
         {
             _hotbarSelections[i] = GetParent().FindChild($"Hotbar-Selection-{i}") as Control;
             _hotbarSelectionEnabled[i] = _hotbarSelections[i].GetChild(0) as Control;
+            _hotbarSelectionEnabled[i] = _hotbarSelections[i].FindChild($"Hotbar-Selection-{i}-ON") as Control;
         }
 
         #endregion
