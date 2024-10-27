@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://c5r21hccfrbjj"
-path="res://.godot/imported/Kufam-Italic-VariableFont_wght.ttf-0e17ab5e2bf35fbb0b054091ee33bc50.fontdata"
+uid="uid://67sxephhnbo5"
+path="res://.godot/imported/SpaceMono-BoldItalic.ttf-7eef145ca396c774aa47f3fbb79649c4.fontdata"
 
 [deps]
 
-source_file="res://UI/Fonts/Kufam-Italic-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/Kufam-Italic-VariableFont_wght.ttf-0e17ab5e2bf35fbb0b054091ee33bc50.fontdata"]
+source_file="res://UI/Fonts/SpaceMono-BoldItalic.ttf"
+dest_files=["res://.godot/imported/SpaceMono-BoldItalic.ttf-7eef145ca396c774aa47f3fbb79649c4.fontdata"]
 
 [params]
 
@@ -28,13 +28,7 @@ Fallbacks=null
 fallbacks=[]
 Compress=null
 compress=false
-preload=[{
-"chars": [],
-"glyphs": [],
-"name": "New Configuration",
-"size": Vector2i(16, 0),
-"variation_embolden": 0.0
-}]
+preload=[]
 language_support={}
 script_support={}
 opentype_features={}
