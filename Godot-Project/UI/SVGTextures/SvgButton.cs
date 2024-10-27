@@ -63,32 +63,109 @@ public partial class SvgButton : TextureButton
         _hover.Visible = false;
         _disabled.Visible = false;
 
-        switch (state)
+        _currentState = state;
+
+        if (_optionalLabel == null)
         {
-            case State.normal:
-                _normal.Visible = true;
-                if (_optionalLabel != null)
+            switch (state)
+            {
+                case State.normal:
+                    _normal.Visible = true;
+                    break;
+                case State.pressed:
+                    _pressed.Visible = true;
+                    break;
+                case State.hover:
+                    _hover.Visible = true;
+                    break;
+                case State.disabled:
+                    _disabled.Visible = true;
+                    break;
+            }
+            return;
+        }
+        else
+        {
+            if (this.ToggleMode)
+            {
+                // normal is off
+                // pressed is on
+                // no hover
+                switch (state)
                 {
-                    _optionalLabel.RemoveThemeColorOverride("default_color");
-                    _optionalLabel.AddThemeColorOverride("default_color", new Color(1f, 1f, 1f));
+                    case State.normal:
+                        _normal.Visible = true;
+                        if (_optionalLabel != null)
+                        {
+                            _optionalLabel.RemoveThemeColorOverride("default_color");
+                            _optionalLabel.AddThemeColorOverride("default_color", new Color(0.5f, 0.5f, 0.5f));
+                        }
+                        break;
+                    case State.pressed:
+                        _pressed.Visible = true;
+                        if (_optionalLabel != null)
+                        {
+                            _optionalLabel.RemoveThemeColorOverride("default_color");
+                            _optionalLabel.AddThemeColorOverride("default_color", new Color(1f, 1f, 1f));
+                        }
+                        break;
+                    default:
+                        if (tBtn.ButtonPressed)
+                        {
+                            _pressed.Visible = true;
+                            if (_optionalLabel != null)
+                            {
+                                _optionalLabel.RemoveThemeColorOverride("default_color");
+                                _optionalLabel.AddThemeColorOverride("default_color", new Color(1f, 1f, 1f));
+                            }
+                        }
+                        else
+                        {
+                            _normal.Visible = true;
+                            if (_optionalLabel != null)
+                            {
+                                _optionalLabel.RemoveThemeColorOverride("default_color");
+                                _optionalLabel.AddThemeColorOverride("default_color", new Color(0.5f, 0.5f, 0.5f));
+                            }
+                        }
+                        break;
                 }
-                break;
-            case State.pressed:
-                _pressed.Visible = true;
-                break;
-            case State.hover:
-                _hover.Visible = true;
-                break;
-            case State.disabled:
-                _disabled.Visible = true;
-                if(_optionalLabel != null)
+
+
+                return;
+            }
+            else
+            {
+                switch (state)
                 {
-                    _optionalLabel.RemoveThemeColorOverride("default_color");
-                    _optionalLabel.AddThemeColorOverride("default_color", new Color(0.75f, 0.75f, 0.75f));
+                    case State.normal:
+                        _normal.Visible = true;
+                        if (_optionalLabel != null)
+                        {
+                            _optionalLabel.RemoveThemeColorOverride("default_color");
+                            _optionalLabel.AddThemeColorOverride("default_color", new Color(1f, 1f, 1f));
+                        }
+                        break;
+                    case State.pressed:
+                        _pressed.Visible = true;
+                        break;
+                    case State.hover:
+                        _hover.Visible = true;
+                        break;
+                    case State.disabled:
+                        _disabled.Visible = true;
+                        if (_optionalLabel != null)
+                        {
+                            _optionalLabel.RemoveThemeColorOverride("default_color");
+                            _optionalLabel.AddThemeColorOverride("default_color", new Color(0.5f, 0.5f, 0.5f));
+                        }
+                        break;
                 }
-                break;
+                return;
+            }
         }
 
-        _currentState = state;
+        
+
     }
 }
