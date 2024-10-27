@@ -5,6 +5,10 @@ var loop_check = 0
 
 func _ready():
 	process_mode = PROCESS_MODE_ALWAYS
+	if(PerformancesDisplay == null):
+		_dont_loop_forever()
+		_ready()
+		return
 	var pd = PerformancesDisplay.new()
 	if(pd == null):
 		_dont_loop_forever()
