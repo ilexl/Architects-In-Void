@@ -120,7 +120,7 @@ _settingsMenu = NodePath("WindowManager/Settings/SettingsManager")
 _worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
 _loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
 _hudMenu = NodePath("WindowManager/HUD/HUDButtons")
-_pauseMenu = NodePath("")
+_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
 PopUpManager = NodePath("WindowManager/PopUp")
 UIWindowManager = NodePath("WindowManager")
 
@@ -4055,7 +4055,6 @@ script = ExtResource("2_5w2l0")
 script = ExtResource("6_unkds")
 
 [node name="HUD" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -4065,13 +4064,15 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("2_5w2l0")
 
-[node name="HUDButtons" type="Node" parent="WindowManager/HUD" node_paths=PackedStringArray("_itemSlots", "_itemSlotSelections", "_itemSlotIcons", "_hotbarSelections", "_hotbarSelectionEnabled", "_infoLeftOpen", "_infoLeftClosed", "_tpbOxygen", "_tpbEnergy", "_tpbFuel", "_tpbHealth", "_infoRightOpen", "_infoRightClosed", "_dampenersToggle", "_autorefToggle", "_relativeToObjectNameTxt", "_mpsTxt", "_mpspsTxt")]
+[node name="HUDButtons" type="Node" parent="WindowManager/HUD" node_paths=PackedStringArray("_itemSlotsHolder", "_itemSlots", "_itemSlotSelections", "_itemSlotIcons", "_hotbarSelectionsHolder", "_hotbarSelections", "_hotbarSelectionEnabled", "_infoLeftOpen", "_infoLeftClosed", "_tpbOxygen", "_tpbEnergy", "_tpbFuel", "_tpbHealth", "_infoRightOpen", "_infoRightClosed", "_dampenersToggle", "_autorefToggle", "_relativeToObjectNameTxt", "_mpsTxt", "_mpspsTxt")]
 script = ExtResource("7_knsfs")
-_itemSlots = [null, null, null, null, null, null, null, null, null, null]
-_itemSlotSelections = [null, null, null, null, null, null, null, null, null, null]
-_itemSlotIcons = [null, null, null, null, null, null, null, null, null, null]
-_hotbarSelections = [null, null, null, null, null, null, null, null, null, null]
-_hotbarSelectionEnabled = [null, null, null, null, null, null, null, null, null, null]
+_itemSlotsHolder = NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder")
+_itemSlots = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9")]
+_itemSlotSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer/Hotbar-Slot-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer/Hotbar-Slot-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer/Hotbar-Slot-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer/Hotbar-Slot-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer/Hotbar-Slot-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer/Hotbar-Slot-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer/Hotbar-Slot-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer/Hotbar-Slot-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer/Hotbar-Slot-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer/Hotbar-Slot-9-ON")]
+_itemSlotIcons = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer/MarginContainer/Hotbar-Slot-0-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer/MarginContainer/Hotbar-Slot-1-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer/MarginContainer/Hotbar-Slot-2-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer/MarginContainer/Hotbar-Slot-3-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer/MarginContainer/Hotbar-Slot-4-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer/MarginContainer/Hotbar-Slot-5-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer/MarginContainer/Hotbar-Slot-6-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer/MarginContainer/Hotbar-Slot-7-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer/MarginContainer/Hotbar-Slot-8-Item"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer/MarginContainer/Hotbar-Slot-9-Item")]
+_hotbarSelectionsHolder = NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder")
+_hotbarSelections = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9")]
+_hotbarSelectionEnabled = [NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0/Hotbar-Selection-0-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1/Hotbar-Selection-1-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2/Hotbar-Selection-2-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3/Hotbar-Selection-3-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4/Hotbar-Selection-4-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5/Hotbar-Selection-5-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6/Hotbar-Selection-6-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7/Hotbar-Selection-7-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8/Hotbar-Selection-8-ON"), NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9/Hotbar-Selection-9-ON")]
 _infoLeftOpen = NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft")
 _infoLeftClosed = NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-ClosedLeft")
 _tpbOxygen = NodePath("../Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft/TextureProgressBar-Oxygen")
@@ -4096,7 +4097,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
-script = ExtResource("4_17pyg")
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder"]
 layout_mode = 2
@@ -4140,7 +4140,7 @@ texture = ExtResource("43_tv4vx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selections" type="HBoxContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
+[node name="Hotbar-Selections-Holder" type="HBoxContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4152,14 +4152,14 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 27
 
-[node name="Hotbar-Selection-1" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-1" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 custom_minimum_size = Vector2(75, 8)
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-1"]
+[node name="Hotbar-Selection-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4170,13 +4170,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-2" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-2" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-2"]
+[node name="Hotbar-Selection-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4188,13 +4188,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-3" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-3" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-3"]
+[node name="Hotbar-Selection-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4206,13 +4206,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-4" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-4" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-4"]
+[node name="Hotbar-Selection-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4224,13 +4224,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-5" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-5" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-5"]
+[node name="Hotbar-Selection-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4242,13 +4242,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-6" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-6" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-6"]
+[node name="Hotbar-Selection-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4260,13 +4260,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-7" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-7" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-7"]
+[node name="Hotbar-Selection-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4278,13 +4278,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-8" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-8" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-8"]
+[node name="Hotbar-Selection-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4296,13 +4296,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-9" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-9" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-9"]
+[node name="Hotbar-Selection-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4314,13 +4314,13 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-0" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections"]
+[node name="Hotbar-Selection-0" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
 layout_mode = 2
 texture = ExtResource("44_sdh17")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selection-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections/Hotbar-Selection-0"]
+[node name="Hotbar-Selection-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0"]
 visible = false
 layout_mode = 1
 anchors_preset = 15
@@ -4332,7 +4332,7 @@ texture = ExtResource("45_bdjj6")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Slots" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
+[node name="Item-Slots-Holder" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -4346,7 +4346,7 @@ offset_bottom = 41.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Slot-1" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-1" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4354,7 +4354,7 @@ offset_left = 1.0
 offset_right = 101.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4366,27 +4366,26 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-1-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-1-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-1/MarginContainer"]
-visible = false
+[node name="Hotbar-Slot-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-2" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-2" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4394,7 +4393,7 @@ offset_left = 103.0
 offset_right = 205.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4406,27 +4405,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-2-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-2-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-2/MarginContainer"]
+[node name="Hotbar-Slot-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-3" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-3" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4434,7 +4433,7 @@ offset_left = 206.0
 offset_right = 308.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4446,27 +4445,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-3-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-3-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-3/MarginContainer"]
+[node name="Hotbar-Slot-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-4" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-4" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4474,7 +4473,7 @@ offset_left = 308.0
 offset_right = 410.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4486,27 +4485,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-4-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-4-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-4/MarginContainer"]
+[node name="Hotbar-Slot-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-5" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-5" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4514,7 +4513,7 @@ offset_left = 410.0
 offset_right = 512.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4526,27 +4525,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-5-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-5-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-5/MarginContainer"]
+[node name="Hotbar-Slot-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-6" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-6" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4554,7 +4553,7 @@ offset_left = 513.0
 offset_right = 615.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4566,27 +4565,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-6-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-6-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-6/MarginContainer"]
+[node name="Hotbar-Slot-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-7" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-7" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4594,7 +4593,7 @@ offset_left = 615.0
 offset_right = 717.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4606,27 +4605,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-7-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-7-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-7/MarginContainer"]
+[node name="Hotbar-Slot-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-8" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-8" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4634,7 +4633,7 @@ offset_left = 717.0
 offset_right = 819.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4646,27 +4645,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-8-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-8-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-8/MarginContainer"]
+[node name="Hotbar-Slot-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-9" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-9" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4674,7 +4673,7 @@ offset_left = 819.0
 offset_right = 921.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4686,27 +4685,27 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-9-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-9-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-9/MarginContainer"]
+[node name="Hotbar-Slot-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer"]
 visible = false
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Slot-0" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots"]
+[node name="Slot-0" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
 custom_minimum_size = Vector2(102, 0)
 layout_mode = 2
 anchors_preset = 0
@@ -4714,7 +4713,7 @@ offset_left = 922.0
 offset_right = 1024.0
 offset_bottom = 92.0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -4726,20 +4725,20 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 5
 theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="Hotbar-Slot-0-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer/MarginContainer"]
+[node name="Hotbar-Slot-0-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("46_bc6vl")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="Hotbar-Slot-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Slots/Slot-0/MarginContainer"]
+[node name="Hotbar-Slot-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("47_243r5")
 expand_mode = 3
@@ -5091,6 +5090,7 @@ texture_normal = ExtResource("49_en26n")
 stretch_mode = 4
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

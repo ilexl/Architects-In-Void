@@ -93,16 +93,7 @@ public partial class UIManager : Node
                 GD.PushError("UIManager: settings menu not found...");
                 return false;
             }
-        }
-        if (SettingsManager == null)
-        {
-            SettingsManager = (Settings)this.GetParent().FindChild("Settings", false);
-            if (SettingsManager == null)
-            {
-                GD.PushError("UIManager: settings not found...");
-                return false;
-            }
-        }
+        }  
         if (_worldMenu == null)
         {
             _worldMenu = (WorldManager)UIWindowManager.FindChild("WorldManagerButtons");
@@ -136,8 +127,7 @@ public partial class UIManager : Node
         }
         if (_pauseMenu == null)
         {
-            _pauseMenu = (Pause)UIWindowManager.FindChild("PauseMenuButtons");
-
+            _pauseMenu = UIWindowManager.FindChild("PauseMenuButtons") as Pause;
 
             if (_pauseMenu == null)
             {
@@ -155,7 +145,16 @@ public partial class UIManager : Node
                 return false;
             }
         }
-
+        if (SettingsManager == null)
+        {
+            SettingsManager = (Settings)this.GetParent().FindChild("Settings", false);
+            if (SettingsManager == null)
+            {
+                GD.Print("UIManager: settings not found... likely called from UI not Game...");
+                return true;
+            }
+            return true;
+        }
         return true;
     }
 
@@ -164,6 +163,7 @@ public partial class UIManager : Node
     /// </summary>
     void _RefreshAllUIElements()
     {
+        GD.Print("UIManager: getting required dependants");
         bool success = _GetDependents();
 
         if(UIWindowManager !=  null)
@@ -171,8 +171,10 @@ public partial class UIManager : Node
             UIWindowManager.ManualRefresh();
         }
 
-        if(success)
+        if (success)
         {
+            GD.Print("UIManager: required dependants being refreshed");
+
             _mainMenu._Ready();
             _settingsMenu._Ready();
             _worldMenu._Ready();

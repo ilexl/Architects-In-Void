@@ -12,10 +12,12 @@ public partial class HUD : Node
 {
     #region Variables
     [ExportGroup("ItemSlots")]
+    [Export] Control _itemSlotsHolder;
     [Export] Control[] _itemSlots;
     [Export] Control[] _itemSlotSelections;
     [Export] Control[] _itemSlotIcons;
     [ExportGroup("HotbarSelection")]
+    [Export] Control _hotbarSelectionsHolder;
     [Export] Control[] _hotbarSelections;
     [Export] Control[] _hotbarSelectionEnabled;
     int _currentItemSlot, _currentHotbar;
@@ -35,6 +37,51 @@ public partial class HUD : Node
     /// </summary>
     public override void _Ready()
     {
+        
+        #region ManualFixArrays
+        
+        GD.Print("HUD: Manually Fixing Arrays");
+
+        if (_itemSlotsHolder == null)
+        {
+            _itemSlotsHolder = GetParent().FindChild("Item-Slots-Holder") as Control;
+            if (_itemSlotsHolder == null)
+            {
+                GD.PushError("HUD: missing holder");
+            }
+        }
+
+        _itemSlots = new Control[10];
+        _itemSlotSelections = new Control[10];
+        _itemSlotIcons = new Control[10];
+
+        for (int i = 0; i < 10; i++)
+        {
+            _itemSlots[i] = GetParent().FindChild($"Slot-{i}") as Control;
+            _itemSlotSelections[i] = _itemSlots[i].FindChild($"Hotbar-Slot-{i}-ON") as Control;
+            _itemSlotIcons[i] = _itemSlots[i].FindChild($"Hotbar-Slot-{i}-Item") as Control;
+        }
+
+        if (_hotbarSelectionsHolder == null)
+        {
+            _hotbarSelectionsHolder = GetParent().FindChild("Hotbar-Selections-Holder") as Control;
+            if (_hotbarSelectionsHolder == null)
+            {
+                GD.PushError("HUD: missing holder");
+            }
+        }
+
+        _hotbarSelections = new Control[10];
+        _hotbarSelectionEnabled = new Control[10];
+
+        for (int i = 0; i < 10; i++)
+        {
+            _hotbarSelections[i] = GetParent().FindChild($"Hotbar-Selection-{i}") as Control;
+            _hotbarSelectionEnabled[i] = _hotbarSelections[i].GetChild(0) as Control;
+        }
+
+        #endregion
+
         if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
 
         #region Error OR Null Checks
