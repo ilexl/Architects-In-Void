@@ -125,8 +125,16 @@ public partial class HUD : Node
             _infoRightClosed.Connect(BaseButton.SignalName.ButtonDown, Callable.From(OpenRightInfo));
         }
 
+        if(!_dampenersToggle.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(DampenersToggle))) {
+            _dampenersToggle.Connect(BaseButton.SignalName.ButtonUp, Callable.From(DampenersToggle));
+        }
+        if (!_autorefToggle.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(AutorefToggle)))
+        {
+            _autorefToggle.Connect(BaseButton.SignalName.ButtonUp, Callable.From(AutorefToggle));
+        }
+
         #endregion
-        
+
         // bind events
         HotBarManager.HotbarSlotChangedEvent += HotbarSlotChanged;
         HotBarManager.HotbarTextureChangedEvent += SetItemSlotIcon;
@@ -146,13 +154,14 @@ public partial class HUD : Node
     /// </summary>
     void DampenersToggle()
     {
+        _dampeners = _dampenersToggle.ButtonPressed;
         if (_dampeners)
         {
-            DampenersOff();
+            DampenersOn();
         }
         else
         {
-            DampenersOn();
+            DampenersOff();
         }
     }
 
@@ -163,10 +172,8 @@ public partial class HUD : Node
     {
         GD.Print("HUD: dampeners toggled off");
         _dampeners = false;
-        _dampenersToggle.TextureNormal = _buttonOffTexture;
-        RichTextLabel rtl = _dampenersToggle.GetChild(0) as RichTextLabel;
-        rtl.RemoveThemeColorOverride("default_color");
-        rtl.AddThemeColorOverride("default_color", Color.Color8(112, 112, 112, 255)); // off color
+        _dampenersToggle.ButtonPressed = false;
+        _dampenersToggle.SetPressedNoSignal(false);
     }
 
     /// <summary>
@@ -176,25 +183,25 @@ public partial class HUD : Node
     {
         GD.Print("HUD: dampeners toggled on");
         _dampeners = true;
-        _dampenersToggle.TextureNormal = _buttonOnTexture;
-        RichTextLabel rtl = _dampenersToggle.GetChild(0) as RichTextLabel;
-        rtl.RemoveThemeColorOverride("default_color");
-        rtl.AddThemeColorOverride("default_color", Color.Color8(255, 255, 255, 255)); // on color
+        _dampenersToggle.ButtonPressed = true;
+        _dampenersToggle.SetPressedNoSignal(true);
+
     }
 
     /// <summary>
     /// UI Button for toggling the Autoref
     /// <br/> NOTE: errors occured when doing this in a more practical way? DONT CHANGE THIS
     /// </summary>
-    void _AutorefToggle()
+    void AutorefToggle()
     {
+        _autoref = _autorefToggle.ButtonPressed;
         if (_autoref)
         {
-            AutorefOff();
+            AutorefOn();
         }
         else
         {
-            AutorefOn();
+            AutorefOff();
         }
     }
 
@@ -205,10 +212,9 @@ public partial class HUD : Node
     {
         GD.Print("HUD: autoref toggled off");
         _autoref = false;
-        _autorefToggle.TextureNormal = _buttonOffTexture;
-        RichTextLabel rtl = _autorefToggle.GetChild(0) as RichTextLabel;
-        rtl.RemoveThemeColorOverride("default_color");
-        rtl.AddThemeColorOverride("default_color", Color.Color8(112, 112, 112, 255)); // off color
+        _autorefToggle.ButtonPressed = false;
+        _autorefToggle.SetPressedNoSignal(false);
+
     }
 
     /// <summary>
@@ -218,10 +224,9 @@ public partial class HUD : Node
     {
         GD.Print("HUD: autoref toggled on");
         _autoref = true;
-        _autorefToggle.TextureNormal = _buttonOnTexture;
-        RichTextLabel rtl = _autorefToggle.GetChild(0) as RichTextLabel;
-        rtl.RemoveThemeColorOverride("default_color");
-        rtl.AddThemeColorOverride("default_color", Color.Color8(255, 255, 255, 255)); // on color
+        _autorefToggle.ButtonPressed = true;
+        _autorefToggle.SetPressedNoSignal(true);
+
     }
 
     /// <summary>
