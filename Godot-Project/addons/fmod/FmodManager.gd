@@ -18,6 +18,7 @@ func _ready():
 
 func _dont_loop_forever() -> void:
 	loop_check += 1
+	print("FmodManager: looped " + loop_check + " times")
 	if(loop_check > 1000):
 		push_error("infinite loop aborted...")
 
