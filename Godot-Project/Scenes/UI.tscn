@@ -1,4 +1,4 @@
-[gd_scene load_steps=103 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=106 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -57,17 +57,9 @@
 [ext_resource type="Resource" uid="uid://cnr2ffkm4pwyx" path="res://UI/SVGTextures/Settings/Audio-icon.svg" id="40_kxs8m"]
 [ext_resource type="Resource" uid="uid://bf663080dxmin" path="res://UI/SVGTextures/Settings/Display-icon.svg" id="41_7o8kc"]
 [ext_resource type="Resource" uid="uid://dggo14vsbaq85" path="res://UI/SVGTextures/Settings/Reset-icon.svg" id="42_tmjc8"]
-[ext_resource type="Texture2D" uid="uid://bg5cg8qg2ifif" path="res://UI/UIElements/HUD-Slots-Background.svg" id="43_tv4vx"]
-[ext_resource type="Texture2D" uid="uid://ckjchv3deb0xo" path="res://UI/UIElements/HUD-Hotbar-Selector-Off.svg" id="44_sdh17"]
-[ext_resource type="Texture2D" uid="uid://bw66xarvj210h" path="res://UI/UIElements/HUD-Hotbar-Selector-On.svg" id="45_bdjj6"]
 [ext_resource type="Texture2D" uid="uid://dbr8m1y4pptbr" path="res://UI/Item-Icons/Blank-Icon.png" id="46_bc6vl"]
-[ext_resource type="Texture2D" uid="uid://bt6soimb5e5fd" path="res://UI/UIElements/HUD Info Left.svg" id="46_f0ex7"]
 [ext_resource type="PackedScene" uid="uid://cfe0elqorxoi" path="res://UI/SVGTextures/PopUp/confirm_pop_up_cd.tscn" id="46_tu8o7"]
-[ext_resource type="Texture2D" uid="uid://b8qxec0ae8j85" path="res://UI/UIElements/HUD-Slot-Selector.svg" id="47_243r5"]
-[ext_resource type="Texture2D" uid="uid://b2t4ygm1cv47j" path="res://UI/UIElements/HUD-Info-Left-Closed.svg" id="47_bhg3r"]
-[ext_resource type="Texture2D" uid="uid://cle482ak4g2ta" path="res://UI/UIElements/HUD Info Right.svg" id="47_li815"]
 [ext_resource type="Texture2D" uid="uid://cdw3o24me4ddn" path="res://UI/UIElements/Radial_Progress.svg" id="47_m5iam"]
-[ext_resource type="Texture2D" uid="uid://bab5wt65gsu5c" path="res://UI/UIElements/HUD-Info-Right-Closed.svg" id="49_en26n"]
 [ext_resource type="Resource" uid="uid://c2b06fva4e1lv" path="res://UI/SVGTextures/WorldManager/WorldManager-Background.svg" id="50_wecmy"]
 [ext_resource type="PackedScene" uid="uid://bdycwnu3c81th" path="res://UI/SVGTextures/PopUp/info_pop_up_mc.tscn" id="52_8l8i6"]
 [ext_resource type="Resource" uid="uid://rl274jnbs8gx" path="res://UI/SVGTextures/WorldManager/CancelBtn-Normal.svg" id="54_snh0l"]
@@ -96,6 +88,17 @@
 [ext_resource type="Resource" uid="uid://bas2s8savswqp" path="res://UI/SVGTextures/WorldManager/Trash-Disabled.svg" id="67_hvebp"]
 [ext_resource type="Script" path="res://UI/SVGTextures/WorldManager/InfoBoxDisplay.cs" id="68_u2cox"]
 [ext_resource type="Resource" uid="uid://j758ufr2fof0" path="res://UI/SVGTextures/WorldManager/WorldSave-InfoBox.svg" id="69_yl6mo"]
+[ext_resource type="Resource" uid="uid://c2jqqqmexspdq" path="res://UI/SVGTextures/HUD/Hotbar-Selection-Off.svg" id="79_0swx8"]
+[ext_resource type="Resource" uid="uid://bro45xgfu2y24" path="res://UI/SVGTextures/HUD/Hotbar-Selection-On.svg" id="80_6ig5g"]
+[ext_resource type="Resource" uid="uid://b8joqemapd25w" path="res://UI/SVGTextures/HUD/HUD-Slots.svg" id="80_fbojq"]
+[ext_resource type="Resource" uid="uid://cfnw4ueo31y3w" path="res://UI/SVGTextures/HUD/HUD-slot-selector.svg" id="83_n6nj2"]
+[ext_resource type="Resource" uid="uid://bbhbp334s20ie" path="res://UI/SVGTextures/HUD/HUD-Left-Open.svg" id="84_kmw47"]
+[ext_resource type="Resource" uid="uid://bgvuyq1qvc550" path="res://UI/SVGTextures/HUD/HUD-Right-Open.svg" id="86_fal3s"]
+[ext_resource type="Resource" uid="uid://de4akwih1ftww" path="res://UI/SVGTextures/HUD/HUD-Left-Closed.svg" id="86_qmmff"]
+[ext_resource type="FontFile" uid="uid://dhktqqlqehrhs" path="res://UI/Fonts/SpaceMono-Regular.ttf" id="87_7omtm"]
+[ext_resource type="Resource" uid="uid://c5jop1pb40btx" path="res://UI/SVGTextures/HUD/HUD-Right-Closed.svg" id="88_0ir70"]
+[ext_resource type="Resource" uid="uid://cqtoyh1g8nob7" path="res://UI/SVGTextures/HUD/HUD-Toggle-On.svg" id="88_sjvqb"]
+[ext_resource type="Resource" uid="uid://b4cf5jfy5iteu" path="res://UI/SVGTextures/HUD/HUD-Toggle-Off.svg" id="88_yptbd"]
 [ext_resource type="Resource" uid="uid://bas26g2u4dc7q" path="res://UI/SVGTextures/PauseMenu/PauseMenuBackground.svg" id="91_hwmh3"]
 [ext_resource type="Resource" uid="uid://cwvxcuo1pjobp" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Normal.svg" id="95_tje2n"]
 [ext_resource type="Resource" uid="uid://cv1jqijhyyx32" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Pressed.svg" id="96_r8fy7"]
@@ -4127,210 +4130,22 @@ theme_override_constants/margin_bottom = 25
 layout_mode = 2
 
 [node name="Background-Hotbar" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area"]
+custom_minimum_size = Vector2(1008, 102)
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -514.182
-offset_right = 514.182
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("43_tv4vx")
 expand_mode = 3
 stretch_mode = 5
 
-[node name="Hotbar-Selections-Holder" type="HBoxContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 55.0
-offset_top = 104.0
-offset_right = -53.8182
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/separation = 27
-
-[node name="Hotbar-Selection-1" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-custom_minimum_size = Vector2(75, 8)
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-2" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-3" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-4" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-5" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-6" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-7" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-8" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-9" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-0" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
-layout_mode = 2
-texture = ExtResource("44_sdh17")
-expand_mode = 3
-stretch_mode = 5
-
-[node name="Hotbar-Selection-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0"]
-visible = false
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("45_bdjj6")
-expand_mode = 3
-stretch_mode = 5
+[node name="Background" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_fbojq")
+auto_resize = false
 
 [node name="Item-Slots-Holder" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
 layout_mode = 1
@@ -4339,20 +4154,21 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -512.909
-offset_top = -51.0
-offset_right = 514.091
-offset_bottom = 41.0
+offset_left = -503.0
+offset_top = -55.0
+offset_right = 505.0
+offset_bottom = 39.0
 grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Slot-1" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(100, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
 offset_left = 1.0
+offset_top = 1.0
 offset_right = 101.0
-offset_bottom = 92.0
+offset_bottom = 101.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1"]
 layout_mode = 1
@@ -4362,15 +4178,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer"]
 layout_mode = 2
-theme_override_constants/margin_left = 5
+theme_override_constants/margin_left = 7
 theme_override_constants/margin_top = 5
-theme_override_constants/margin_right = 5
+theme_override_constants/margin_right = 7
 theme_override_constants/margin_bottom = 5
 
 [node name="Hotbar-Slot-1-Item" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer/MarginContainer"]
@@ -4381,17 +4197,23 @@ stretch_mode = 5
 
 [node name="Hotbar-Slot-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-1/MarginContainer/Hotbar-Slot-1-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-2" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 103.0
-offset_right = 205.0
-offset_bottom = 92.0
+offset_left = 102.0
+offset_right = 202.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2"]
 layout_mode = 1
@@ -4401,7 +4223,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4421,17 +4243,24 @@ stretch_mode = 5
 [node name="Hotbar-Slot-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-2/MarginContainer/Hotbar-Slot-2-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-3" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 206.0
-offset_right = 308.0
-offset_bottom = 92.0
+offset_left = 201.0
+offset_top = 1.0
+offset_right = 303.0
+offset_bottom = 101.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3"]
 layout_mode = 1
@@ -4441,7 +4270,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4459,19 +4288,25 @@ expand_mode = 1
 stretch_mode = 5
 
 [node name="Hotbar-Slot-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer"]
-visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-3/MarginContainer/Hotbar-Slot-3-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-4" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 308.0
-offset_right = 410.0
-offset_bottom = 92.0
+offset_left = 302.0
+offset_top = 1.0
+offset_right = 404.0
+offset_bottom = 101.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4"]
 layout_mode = 1
@@ -4481,7 +4316,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4501,17 +4336,23 @@ stretch_mode = 5
 [node name="Hotbar-Slot-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-4/MarginContainer/Hotbar-Slot-4-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-5" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 410.0
-offset_right = 512.0
-offset_bottom = 92.0
+offset_left = 402.0
+offset_right = 504.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5"]
 layout_mode = 1
@@ -4521,7 +4362,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4541,17 +4382,23 @@ stretch_mode = 5
 [node name="Hotbar-Slot-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-5/MarginContainer/Hotbar-Slot-5-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-6" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 513.0
-offset_right = 615.0
-offset_bottom = 92.0
+offset_left = 503.0
+offset_right = 605.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6"]
 layout_mode = 1
@@ -4561,7 +4408,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4581,17 +4428,23 @@ stretch_mode = 5
 [node name="Hotbar-Slot-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-6/MarginContainer/Hotbar-Slot-6-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-7" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 615.0
-offset_right = 717.0
-offset_bottom = 92.0
+offset_left = 603.0
+offset_right = 705.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7"]
 layout_mode = 1
@@ -4601,7 +4454,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4621,17 +4474,23 @@ stretch_mode = 5
 [node name="Hotbar-Slot-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-7/MarginContainer/Hotbar-Slot-7-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-8" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 717.0
-offset_right = 819.0
-offset_bottom = 92.0
+offset_left = 704.0
+offset_right = 806.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8"]
 layout_mode = 1
@@ -4641,7 +4500,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4661,17 +4520,23 @@ stretch_mode = 5
 [node name="Hotbar-Slot-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-8/MarginContainer/Hotbar-Slot-8-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-9" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 819.0
-offset_right = 921.0
-offset_bottom = 92.0
+offset_left = 804.0
+offset_right = 906.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9"]
 layout_mode = 1
@@ -4681,7 +4546,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4701,17 +4566,23 @@ stretch_mode = 5
 [node name="Hotbar-Slot-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer"]
 visible = false
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
 
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-9/MarginContainer/Hotbar-Slot-9-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
 [node name="Slot-0" type="Control" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder"]
-custom_minimum_size = Vector2(102, 0)
+custom_minimum_size = Vector2(100, 100)
 layout_mode = 2
 anchors_preset = 0
-offset_left = 922.0
-offset_right = 1024.0
-offset_bottom = 92.0
+offset_left = 905.0
+offset_right = 1007.0
+offset_bottom = 100.0
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0"]
 layout_mode = 1
@@ -4721,7 +4592,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/margin_left = 5
-theme_override_constants/margin_top = 5
+theme_override_constants/margin_top = 4
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 0
 
@@ -4740,9 +4611,327 @@ stretch_mode = 5
 
 [node name="Hotbar-Slot-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer"]
 layout_mode = 2
-texture = ExtResource("47_243r5")
 expand_mode = 3
 stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Item-Slots-Holder/Slot-0/MarginContainer/Hotbar-Slot-0-ON"]
+position = Vector2(2, 0)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("83_n6nj2")
+auto_resize = false
+
+[node name="Hotbar-Selections-Holder" type="HBoxContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 17.0
+offset_top = 103.0
+offset_right = -16.0
+offset_bottom = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 25
+
+[node name="Hotbar-Selection-1" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-1-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-1/Hotbar-Selection-1-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-2" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-2-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-2/Hotbar-Selection-2-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-3" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-3-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-3/Hotbar-Selection-3-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-4" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-4-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-4/Hotbar-Selection-4-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-5" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-5-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-5/Hotbar-Selection-5-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-6" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-6-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-6/Hotbar-Selection-6-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-7" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-7-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-7/Hotbar-Selection-7-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-8" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-8-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-8/Hotbar-Selection-8-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-9" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-9-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-9/Hotbar-Selection-9-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
+
+[node name="Hotbar-Selection-0" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder"]
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("79_0swx8")
+auto_resize = false
+
+[node name="Hotbar-Selection-0-ON" type="TextureRect" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0"]
+visible = false
+custom_minimum_size = Vector2(75, 8)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 3
+stretch_mode = 5
+
+[node name="SVGSprite2D2" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Center/Bottom-Area/Background-Hotbar/Hotbar-Selections-Holder/Hotbar-Selection-0/Hotbar-Selection-0-ON"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("80_6ig5g")
+auto_resize = false
 
 [node name="MarginContainer-Left" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background"]
 layout_mode = 1
@@ -4752,9 +4941,9 @@ anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -1280.0
-offset_top = -186.0
-offset_right = -520.0
-offset_bottom = -2.0
+offset_top = -189.0
+offset_right = -523.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 0
@@ -4771,18 +4960,25 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -459.0
+offset_left = -425.0
+offset_top = 11.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 2
-texture_normal = ExtResource("46_f0ex7")
 stretch_mode = 4
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("84_kmw47")
+auto_resize = false
 
 [node name="TextureProgressBar-Oxygen" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
 layout_mode = 0
-offset_left = 43.0
-offset_top = 50.0
-offset_right = 123.0
-offset_bottom = 130.0
+offset_left = 39.0
+offset_top = 46.0
+offset_right = 114.0
+offset_bottom = 121.0
 step = 0.1
 value = 100.0
 fill_mode = 4
@@ -4794,10 +4990,10 @@ tint_progress = Color(0.541176, 1, 0.976471, 1)
 
 [node name="TextureProgressBar-Energy" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
 layout_mode = 0
-offset_left = 141.0
-offset_top = 49.0
-offset_right = 221.0
-offset_bottom = 129.0
+offset_left = 130.0
+offset_top = 45.0
+offset_right = 205.0
+offset_bottom = 120.0
 step = 0.1
 value = 100.0
 fill_mode = 4
@@ -4809,10 +5005,10 @@ tint_progress = Color(0.611765, 1, 0.541176, 1)
 
 [node name="TextureProgressBar-Fuel" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
 layout_mode = 0
-offset_left = 239.0
-offset_top = 49.1011
-offset_right = 319.0
-offset_bottom = 129.101
+offset_left = 221.0
+offset_top = 45.0
+offset_right = 296.0
+offset_bottom = 120.0
 step = 0.1
 value = 100.0
 fill_mode = 4
@@ -4824,10 +5020,10 @@ tint_progress = Color(1, 0.882353, 0, 1)
 
 [node name="TextureProgressBar-Health" type="TextureProgressBar" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-InfoLeft"]
 layout_mode = 0
-offset_left = 337.0
-offset_top = 49.1011
-offset_right = 417.0
-offset_bottom = 129.101
+offset_left = 312.0
+offset_top = 45.0
+offset_right = 387.0
+offset_bottom = 120.0
 step = 0.1
 value = 100.0
 fill_mode = 4
@@ -4839,16 +5035,24 @@ tint_progress = Color(0.87451, 0, 0, 1)
 
 [node name="Background-ClosedLeft" type="TextureButton" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area"]
 visible = false
+custom_minimum_size = Vector2(425, 125)
 layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -459.0
+offset_left = -425.0
+offset_top = 11.0
+offset_bottom = -7.0
 grow_horizontal = 0
 grow_vertical = 2
-texture_normal = ExtResource("47_bhg3r")
 stretch_mode = 4
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Left/Bottom-Area/Background-ClosedLeft"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("86_qmmff")
+auto_resize = false
 
 [node name="MarginContainer-Right" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background"]
 layout_mode = 1
@@ -4857,10 +5061,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 520.0
-offset_top = -186.0
+offset_left = 525.0
+offset_top = -189.0
 offset_right = 1280.0
-offset_bottom = -2.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 theme_override_constants/margin_left = 0
@@ -4876,10 +5080,17 @@ mouse_filter = 1
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 459.0
+offset_top = 11.0
+offset_right = 425.0
+offset_bottom = -7.0
 grow_vertical = 2
-texture_normal = ExtResource("47_li815")
 stretch_mode = 4
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("86_fal3s")
+auto_resize = false
 
 [node name="subtitle" type="RichTextLabel" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight"]
 layout_mode = 1
@@ -4887,10 +5098,10 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 63.5
-offset_top = 57.1011
-offset_right = 156.5
-offset_bottom = -76.8989
+offset_left = 52.5
+offset_top = 52.1011
+offset_right = 145.5
+offset_bottom = -69.8989
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -4909,10 +5120,10 @@ anchors_preset = 13
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 70.5
-offset_top = 119.101
-offset_right = 155.5
-offset_bottom = -19.8989
+offset_left = 60.5
+offset_top = 109.601
+offset_right = 145.5
+offset_bottom = -18.399
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -4932,7 +5143,6 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 234.0
-offset_right = -75.0
 offset_bottom = -1.0
 grow_horizontal = 2
 grow_vertical = 2
@@ -4940,42 +5150,47 @@ mouse_filter = 2
 
 [node name="mps-txt" type="RichTextLabel" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Holder"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -54.0
-offset_top = 22.0
-offset_bottom = -85.0
+anchors_preset = -1
+anchor_left = 0.649
+anchor_top = 0.042
+anchor_right = 0.649
+anchor_bottom = 0.42
+offset_left = -21.959
+offset_top = -0.006
+offset_right = 0.041
+offset_bottom = -0.06
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.541176, 1, 0.976471, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_fonts/normal_font = ExtResource("87_7omtm")
 theme_override_font_sizes/normal_font_size = 36
 bbcode_enabled = true
-text = "0.0"
+text = "0"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
 [node name="mpsps-txt" type="RichTextLabel" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Holder"]
 layout_mode = 1
-anchors_preset = 11
-anchor_left = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -36.0
-offset_top = 94.0
-offset_bottom = -29.0
+anchors_preset = -1
+anchor_left = 0.649
+anchor_top = 0.525
+anchor_right = 0.649
+anchor_bottom = 0.777
+offset_left = -14.959
+offset_top = -0.075
+offset_right = 0.041
+offset_bottom = -0.111
 grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.541176, 1, 0.976471, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_fonts/normal_font = ExtResource("87_7omtm")
 theme_override_font_sizes/normal_font_size = 24
 bbcode_enabled = true
-text = "0.0"
+text = "0
+"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -5002,20 +5217,50 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Dampeners Toggle" type="TextureButton" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight"]
+[node name="Dampeners Toggle" type="TextureButton" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
+custom_minimum_size = Vector2(122, 24)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = 20.0
-offset_right = 222.0
-offset_bottom = -112.0
+offset_left = 80.0
+offset_top = 16.0
+offset_right = 202.0
+offset_bottom = -104.0
 grow_vertical = 2
-mouse_filter = 2
 toggle_mode = true
-texture_normal = ExtResource("26_vltm2")
+button_pressed = true
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("RichTextLabel")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Dampeners Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_yptbd")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Dampeners Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_sjvqb")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Dampeners Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_sjvqb")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Dampeners Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_yptbd")
+auto_resize = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/Dampeners Toggle"]
 layout_mode = 1
@@ -5024,9 +5269,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -50.5
-offset_top = 0.5
+offset_top = -0.5
 offset_right = 50.5
-offset_bottom = 1.5
+offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -5039,23 +5284,50 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="AutoRef Toggle" type="TextureButton" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight"]
+[node name="AutoRef Toggle" type="TextureButton" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
+custom_minimum_size = Vector2(122, 24)
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 88.0
-offset_top = 52.0
-offset_right = 222.0
-offset_bottom = -80.0
+offset_left = 80.0
+offset_top = 51.0
+offset_right = 202.0
+offset_bottom = -69.0
 grow_vertical = 2
-mouse_filter = 2
 toggle_mode = true
-texture_normal = ExtResource("26_vltm2")
-texture_pressed = ExtResource("25_ogcwk")
-texture_hover = ExtResource("26_vltm2")
-texture_disabled = ExtResource("26_vltm2")
+button_pressed = true
 ignore_texture_size = true
 stretch_mode = 5
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("RichTextLabel")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/AutoRef Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_yptbd")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/AutoRef Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_sjvqb")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/AutoRef Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_sjvqb")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/AutoRef Toggle"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_yptbd")
+auto_resize = false
 
 [node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-InfoRight/AutoRef Toggle"]
 layout_mode = 1
@@ -5064,9 +5336,9 @@ anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 1.0
 offset_left = -35.0
-offset_top = 0.5
+offset_top = -0.5
 offset_right = 35.0
-offset_bottom = 1.5
+offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
@@ -5084,10 +5356,17 @@ visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_right = 459.0
+offset_top = 11.0
+offset_right = 425.0
+offset_bottom = -7.0
 grow_vertical = 2
-texture_normal = ExtResource("49_en26n")
 stretch_mode = 4
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/HUD/Holder/MarginContainer/No-Background/MarginContainer-Right/Bottom-Area/Background-ClosedRight"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("88_0ir70")
+auto_resize = false
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
 visible = false
