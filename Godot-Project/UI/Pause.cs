@@ -167,7 +167,7 @@ public partial class Pause : Node
         {
             // confirm with user is this what they want
             // we dont need an unsaved game here :3
-            ((UIManager)GameManager.Singleton.FindChild("UI")).PopUpManager.DisplayConfirmPopUp("Are you sure you want to exit without saving?", Callable.From(MainMenuConfirmed));
+            ((UIManager)GameManager.Singleton.FindChild("UI")).PopUpManager.DisplayConfirmPopUp("Exit without saving?", Callable.From(MainMenuConfirmed));
         }
     }
 

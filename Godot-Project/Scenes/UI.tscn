@@ -8,15 +8,11 @@
 [ext_resource type="Texture2D" uid="uid://cykr4oe6uubyp" path="res://UI/Images/tempBG.png" id="4_g56cw"]
 [ext_resource type="Script" path="res://UI/SettingsMenu.cs" id="4_oc5pt"]
 [ext_resource type="Script" path="res://UI/MainMenu.cs" id="4_xc8gb"]
-[ext_resource type="Texture2D" uid="uid://7dnsnqjj7pxh" path="res://UI/UIElements/Button.svg" id="5_eegk4"]
 [ext_resource type="Script" path="res://UI/WorldManager.cs" id="5_v3f2b"]
-[ext_resource type="Texture2D" uid="uid://cmt1p5l3pp2tc" path="res://UI/UIElements/Button-Pressed.svg" id="6_bw56o"]
 [ext_resource type="Texture2D" uid="uid://dm7u03mrumy6r" path="res://UI/Images/Rectangle 3.svg" id="6_pcm66"]
 [ext_resource type="Script" path="res://UI/LoadingScreen.cs" id="6_unkds"]
 [ext_resource type="Script" path="res://UI/SVGTextures/SvgButton.cs" id="7_hnpww"]
 [ext_resource type="Script" path="res://UI/HUD.cs" id="7_knsfs"]
-[ext_resource type="Texture2D" uid="uid://xycer0altein" path="res://UI/UIElements/Button-Highlight.svg" id="7_vpu1a"]
-[ext_resource type="Texture2D" uid="uid://dfac70vqa0amj" path="res://UI/UIElements/Button-Disabled.svg" id="8_j4xfe"]
 [ext_resource type="Resource" uid="uid://difqx8qjjsgot" path="res://UI/SVGTextures/MainMenu/Button-Normal.svg" id="9_fgol5"]
 [ext_resource type="Resource" uid="uid://c0bm143xgahom" path="res://UI/SVGTextures/MainMenu/Button-Pressed.svg" id="10_65du6"]
 [ext_resource type="Resource" uid="uid://cicfj5bfk046" path="res://UI/SVGTextures/MainMenu/Button-Highlight.svg" id="11_hqo6y"]
@@ -62,7 +58,6 @@
 [ext_resource type="Resource" uid="uid://bf663080dxmin" path="res://UI/SVGTextures/Settings/Display-icon.svg" id="41_7o8kc"]
 [ext_resource type="Resource" uid="uid://dggo14vsbaq85" path="res://UI/SVGTextures/Settings/Reset-icon.svg" id="42_tmjc8"]
 [ext_resource type="Texture2D" uid="uid://bg5cg8qg2ifif" path="res://UI/UIElements/HUD-Slots-Background.svg" id="43_tv4vx"]
-[ext_resource type="Texture2D" uid="uid://bh2e6lg0q50y6" path="res://UI/UIElements/Pause Background.svg" id="44_f54pe"]
 [ext_resource type="Texture2D" uid="uid://ckjchv3deb0xo" path="res://UI/UIElements/HUD-Hotbar-Selector-Off.svg" id="44_sdh17"]
 [ext_resource type="Texture2D" uid="uid://bw66xarvj210h" path="res://UI/UIElements/HUD-Hotbar-Selector-On.svg" id="45_bdjj6"]
 [ext_resource type="Texture2D" uid="uid://dbr8m1y4pptbr" path="res://UI/Item-Icons/Blank-Icon.png" id="46_bc6vl"]
@@ -101,6 +96,11 @@
 [ext_resource type="Resource" uid="uid://bas2s8savswqp" path="res://UI/SVGTextures/WorldManager/Trash-Disabled.svg" id="67_hvebp"]
 [ext_resource type="Script" path="res://UI/SVGTextures/WorldManager/InfoBoxDisplay.cs" id="68_u2cox"]
 [ext_resource type="Resource" uid="uid://j758ufr2fof0" path="res://UI/SVGTextures/WorldManager/WorldSave-InfoBox.svg" id="69_yl6mo"]
+[ext_resource type="Resource" uid="uid://bas26g2u4dc7q" path="res://UI/SVGTextures/PauseMenu/PauseMenuBackground.svg" id="91_hwmh3"]
+[ext_resource type="Resource" uid="uid://cwvxcuo1pjobp" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Normal.svg" id="95_tje2n"]
+[ext_resource type="Resource" uid="uid://cv1jqijhyyx32" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Pressed.svg" id="96_r8fy7"]
+[ext_resource type="Resource" uid="uid://daxoe6tiu6ktu" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Highlighted.svg" id="97_guq2i"]
+[ext_resource type="Resource" uid="uid://cgqbv5sxu7alo" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Disabled.svg" id="98_35sa6"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
 texture = ExtResource("32_7ge8g")
@@ -120,7 +120,7 @@ _settingsMenu = NodePath("WindowManager/Settings/SettingsManager")
 _worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
 _loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
 _hudMenu = NodePath("WindowManager/HUD/HUDButtons")
-_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
+_pauseMenu = NodePath("")
 PopUpManager = NodePath("WindowManager/PopUp")
 UIWindowManager = NodePath("WindowManager")
 
@@ -4042,6 +4042,7 @@ scroll_active = false
 autowrap_mode = 0
 
 [node name="LoadingScreen" type="Control" parent="WindowManager"]
+visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5090,7 +5091,6 @@ texture_normal = ExtResource("49_en26n")
 stretch_mode = 4
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5109,35 +5109,35 @@ grow_vertical = 2
 texture = ExtResource("6_pcm66")
 expand_mode = 1
 
-[node name="PauseMenuButtons" type="AspectRatioContainer" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn")]
+[node name="PauseMenuButtons" type="TextureRect" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -500.0
+offset_top = -508.5
+offset_right = 500.0
+offset_bottom = 508.5
 grow_horizontal = 2
 grow_vertical = 2
-ratio = 1.78
-script = ExtResource("4_17pyg")
-_resumeBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Resume")
-_saveGameBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/New")
-_loadGameBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Load")
-_mainMenuBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Options")
-_desktopBtn = NodePath("MarginContainer/SettingsBackground/PauseBtns/Exit")
-
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/PauseMenu/PauseMenuButtons"]
-layout_mode = 2
-theme_override_constants/margin_left = 200
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 200
-theme_override_constants/margin_bottom = 200
-
-[node name="SettingsBackground" type="TextureRect" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("44_f54pe")
 expand_mode = 1
 stretch_mode = 5
+script = ExtResource("4_17pyg")
+_resumeBtn = NodePath("PauseBtns/Resume")
+_saveGameBtn = NodePath("PauseBtns/Save")
+_loadGameBtn = NodePath("PauseBtns/Load")
+_mainMenuBtn = NodePath("PauseBtns/MainMenu")
+_desktopBtn = NodePath("PauseBtns/Exit")
 
-[node name="Title" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground"]
+[node name="Background" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("91_hwmh3")
+auto_resize = false
+
+[node name="Title" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -5156,7 +5156,7 @@ scroll_active = false
 autowrap_mode = 0
 text_direction = 1
 
-[node name="PauseBtns" type="VBoxContainer" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground"]
+[node name="PauseBtns" type="VBoxContainer" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -5171,18 +5171,43 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 45
 
-[node name="Resume" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Resume" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("txt")
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Resume"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Resume"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("95_tje2n")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Resume"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("96_r8fy7")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Resume"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("97_guq2i")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Resume"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("98_35sa6")
+auto_resize = false
+
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Resume"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -5203,18 +5228,43 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="New" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Save" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("txt")
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/New"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Save"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("95_tje2n")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Save"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("96_r8fy7")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Save"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("97_guq2i")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Save"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("98_35sa6")
+auto_resize = false
+
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Save"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -5235,18 +5285,43 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Load" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Load" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("txt")
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Load"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Load"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("95_tje2n")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Load"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("96_r8fy7")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Load"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("97_guq2i")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Load"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("98_35sa6")
+auto_resize = false
+
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Load"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -5267,18 +5342,43 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Options" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="MainMenu" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("txt")
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Options"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/MainMenu"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("95_tje2n")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/MainMenu"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("96_r8fy7")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/MainMenu"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("97_guq2i")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/MainMenu"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("98_35sa6")
+auto_resize = false
+
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/MainMenu"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
@@ -5299,18 +5399,43 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="Exit" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns"]
+[node name="Exit" type="TextureButton" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
 custom_minimum_size = Vector2(650, 100)
 layout_mode = 2
-texture_normal = ExtResource("5_eegk4")
-texture_pressed = ExtResource("6_bw56o")
-texture_hover = ExtResource("7_vpu1a")
-texture_disabled = ExtResource("8_j4xfe")
-texture_focused = ExtResource("7_vpu1a")
 ignore_texture_size = true
 stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("txt")
 
-[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/MarginContainer/SettingsBackground/PauseBtns/Exit"]
+[node name="Normal" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Exit"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("95_tje2n")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Exit"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("96_r8fy7")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Exit"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("97_guq2i")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Exit"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("98_35sa6")
+auto_resize = false
+
+[node name="txt" type="RichTextLabel" parent="WindowManager/PauseMenu/PauseMenuButtons/PauseBtns/Exit"]
 layout_mode = 1
 anchors_preset = 13
 anchor_left = 0.5
