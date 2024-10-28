@@ -4932,12 +4932,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("2_5w2l0")
 
-[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_newGameBtn", "_deleteBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder", "_UIManager", "_mmBackground")]
+[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_newGameBtn", "_deleteBtn", "_saveBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder", "_UIManager", "_mmBackground")]
 script = ExtResource("5_v3f2b")
 _cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
 _loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
 _newGameBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame")
 _deleteBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn")
+_saveBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn")
 _testAmount = 5
 _winMainMenu = NodePath("../../MainMenu")
 _winHud = NodePath("../../HUD")

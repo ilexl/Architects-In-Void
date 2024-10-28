@@ -117,6 +117,11 @@ public partial class Pause : Node
         
     }
 
+    public void GameSavedTrigger()
+    {
+        _gameSavedWhilePaused = true;
+    }
+
     /// <summary>
     /// Sets the pause state
     /// </summary>
