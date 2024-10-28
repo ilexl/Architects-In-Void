@@ -2,7 +2,6 @@ using Godot;
 using Godot.Collections;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace ArchitectsInVoid.WorldData;
 
@@ -53,6 +52,22 @@ public partial class Data : Node
         file.Close(); // must be called or else creates a bunch of .tmp files
     }
 
+
+    public void DeleteSave(string name)
+    {
+        GD.Print($"Data: DELETING {name}.dat");
+        DirAccess.MakeDirRecursiveAbsolute(GetSavePath());
+        _name = name;
+        if (!FileAccess.FileExists($"{GetSavePath()}{_name}.dat"))
+        {
+            GD.PushWarning($"Data: check failed, no such file name exists {_name}.dat");
+            return;
+        }
+        DirAccess.RemoveAbsolute($"{GetSavePath()}{_name}.dat");
+        GD.Print($"Data: {name}.dat DELETED");
+    }
+
+
     public string GetLastSavedFromFile(string filename)
     {
         DirAccess.MakeDirRecursiveAbsolute(GetSavePath());
@@ -94,26 +109,9 @@ public partial class Data : Node
 
     string GetDateTime()
     {
-        string dateWrong = Time.Singleton.GetDateStringFromSystem(utc:true);
-        string date = $"{dateWrong[8]}{dateWrong[9]}-{dateWrong[5]}{dateWrong[6]}-{dateWrong[0]}{dateWrong[1]}{dateWrong[2]}{dateWrong[3]}";
-        var timeWrong = Time.Singleton.GetTimeStringFromSystem(utc: true);
-
-        if (timeWrong[0] != System.DateTime.Now.Hour.ToString()[0])
-        {
-            int t1 = timeWrong[0];
-            int t2 = timeWrong[1];
-
-            t1 -= 48; // convert from char ascii to int
-            t2 -= 48; // convert from char ascii to int
-
-            t1 += 1; // adds 12 hours (first  collumn)
-            t2 += 2; // adds 12 hours (second collumn)
-            timeWrong = timeWrong.Remove(0, 2); // rempve leading 2 (wrong hour)
-            timeWrong = String.Join(null, t1, t2, timeWrong); // (make correct time 24 hour)
-        }
-
-        string time = $"{timeWrong[0]}{timeWrong[1]}:{timeWrong[3]}{timeWrong[4]}:{timeWrong[6]}{timeWrong[7]}";
-
+        var now = DateTime.Now;
+        string date = $"{now.Day}-{now.Month}-{now.Year}";
+        string time = $"{now.ToString("HH")}:{now.ToString("mm")}:{now.ToString("ss")}";
         GD.Print($"{date} {time}");
         return $"{date} {time}";
     }

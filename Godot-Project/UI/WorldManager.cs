@@ -16,7 +16,7 @@ public partial class WorldManager : Node
 {
     #region Variables
 
-    [Export] private TextureButton _cancelBtn, _loadBtn, _newGameBtn;
+    [Export] private TextureButton _cancelBtn, _loadBtn, _newGameBtn, _deleteBtn;
     private List<WorldSaveTitle> _currentlySelected;
     [Export] private int _testAmount;
     [Export] private bool _testWorldList;
@@ -90,23 +90,28 @@ public partial class WorldManager : Node
         #endregion
         #region Connect buttons
         
-        if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Cancel)))
+        if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(Cancel)))
         {
-            _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
+            _cancelBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(Cancel));
         }
-        if (!_loadBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld)))
+        if (!_loadBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(LoadSelectedWorld)))
         {
-            _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld));
+            _loadBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(LoadSelectedWorld));
         }
-        if (!_newGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(NewGameBtnCall)))
+        if (!_newGameBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(NewGameBtnCall)))
         {
-            _newGameBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGameBtnCall));
+            _newGameBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(NewGameBtnCall));
+        }
+        if (!_deleteBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(DeleteSelectedWorlds)))
+        {
+            _deleteBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(DeleteSelectedWorlds));
         }
 
         #endregion
 
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
+        _deleteBtn.Disabled = true;
         _UIManager = ((UIManager)_wmMain.GetParent());
         _data = (Data)_UIManager.GetParent().FindChild("Data");
     }
@@ -197,6 +202,29 @@ public partial class WorldManager : Node
         CallLoad();
     }
 
+    void DeleteSelectedWorlds()
+    {
+        GD.Print("WorldManager: delete btn pressed");
+        _UIManager.PopUpManager.DisplayConfirmPopUp("Are you sure you want to delete \nthese worlds. It cannot be undone...", Callable.From(DeleteSelectedWorldsConfirmed));
+    }
+
+    void DeleteSelectedWorldsConfirmed()
+    {
+        GD.Print("WorldManager: delete selected worlds confirmed");
+        foreach(WorldSaveTitle wst in _currentlySelected)
+        {
+            DeleteWorld(wst);
+        }
+        RefreshSaves();
+        _currentlySelected = new List<WorldSaveTitle>();
+        ListedWorldClicked(null);
+    }
+
+    void DeleteWorld(WorldSaveTitle wst)
+    {
+        _data.DeleteSave(wst.Title);
+    }
+
     /// <summary>
     /// Call back for when the input for a new world is confirmed
     /// </summary>
@@ -229,17 +257,35 @@ public partial class WorldManager : Node
     /// </summary>
     public void ListedWorldClicked(WorldSaveTitle wst)
     {
-        var currentState = wst.GetButtonState();
-        GD.Print($"ListedWorldClicked: {wst.Title} received with state {currentState}");
-        if (currentState == false) _currentlySelected.Remove(wst);
-        if (currentState) _currentlySelected.Add(wst);
+        if(wst != null)
+        {
+            var currentState = wst.GetButtonState();
+            GD.Print($"ListedWorldClicked: {wst.Title} received with state {currentState}");
+            if (currentState == false) _currentlySelected.Remove(wst);
+            if (currentState) _currentlySelected.Add(wst);
+        }
+
+        if (_currentlySelected.Count > 0)
+        {
+            _deleteBtn.Disabled = false;
+        }
+        else
+        {
+            _deleteBtn.Disabled=true;
+        }
 
         if (_currentlySelected.Count == 0 || _currentlySelected.Count > 1)
+        {
             _loadBtn.Disabled = true;
+        }
         else if (_currentlySelected.Count == 1)
+        {
             _loadBtn.Disabled = false;
-        else
+        }
+        else 
+        {
             GD.PushError("WorldManger: invalid amount in list...");
+        }
     }
 
     /// <summary>
