@@ -187,6 +187,11 @@ public partial class Data : Node
         file.Close(); // must be called or else creates a bunch of .tmp files
     }
 
+    public void QuickSave()
+    {
+        Save(_name);
+    }
+
     string GetSavePath()
     {
         return "user://" + "saves/";

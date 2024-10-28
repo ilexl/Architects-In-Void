@@ -15,12 +15,12 @@ public partial class UIManager : Node
 {
     #region Variables
 
-    [Export] MainMenu _mainMenu;
-	[Export] SettingsMenu _settingsMenu;
-	[Export] WorldManager _worldMenu;
-	[Export] LoadingScreen _loadingMenu;
-	[Export] HUD _hudMenu;
-	[Export] Pause _pauseMenu;
+    [Export] public MainMenu MainMenu;
+	[Export] public SettingsMenu SettingsMenu;
+	[Export] public WorldManager WorldMenu;
+	[Export] public LoadingScreen LoadingMenu;
+	[Export] public HUD HudMenu;
+	[Export] public Pause PauseMenu;
     [Export] public PopUp PopUpManager;
 	[Export] public WindowManager UIWindowManager;
     [Export] public Settings SettingsManager;
@@ -74,62 +74,62 @@ public partial class UIManager : Node
                 return false;
             }
         }
-        if (_mainMenu == null)
+        if (MainMenu == null)
         {
-            _mainMenu = (MainMenu)UIWindowManager.FindChild("MainMenuScript");
+            MainMenu = (MainMenu)UIWindowManager.FindChild("MainMenuScript");
 
-            if (_mainMenu == null)
+            if (MainMenu == null)
             {
                 GD.PushError("UIManager: main menu not found...");
                 return false;
             }
         }
-        if (_settingsMenu == null)
+        if (SettingsMenu == null)
         {
-            _settingsMenu = (SettingsMenu)UIWindowManager.FindChild("SettingsManager");
+            SettingsMenu = (SettingsMenu)UIWindowManager.FindChild("SettingsManager");
 
-            if (_settingsMenu == null)
+            if (SettingsMenu == null)
             {
                 GD.PushError("UIManager: settings menu not found...");
                 return false;
             }
         }  
-        if (_worldMenu == null)
+        if (WorldMenu == null)
         {
-            _worldMenu = (WorldManager)UIWindowManager.FindChild("WorldManagerButtons");
+            WorldMenu = (WorldManager)UIWindowManager.FindChild("WorldManagerButtons");
 
-            if (_worldMenu == null)
+            if (WorldMenu == null)
             {
                 GD.PushError("UIManager: world manager not found...");
                 return false;
             }
         }
-        if (_loadingMenu == null)
+        if (LoadingMenu == null)
         {
-            _loadingMenu = (LoadingScreen)UIWindowManager.FindChild("LoadingScreenLogic");
+            LoadingMenu = (LoadingScreen)UIWindowManager.FindChild("LoadingScreenLogic");
 
-            if (_loadingMenu == null)
+            if (LoadingMenu == null)
             {
                 GD.PushError("UIManager: loading screen not found...");
                 return false;
             }
         }
-        if (_hudMenu == null)
+        if (HudMenu == null)
         {
-            _hudMenu = (HUD)UIWindowManager.FindChild("HUDButtons");
+            HudMenu = (HUD)UIWindowManager.FindChild("HUDButtons");
 
 
-            if (_hudMenu == null)
+            if (HudMenu == null)
             {
                 GD.PushError("UIManager: HUD not found...");
                 return false;
             }
         }
-        if (_pauseMenu == null)
+        if (PauseMenu == null)
         {
-            _pauseMenu = UIWindowManager.FindChild("PauseMenuButtons") as Pause;
+            PauseMenu = UIWindowManager.FindChild("PauseMenuButtons") as Pause;
 
-            if (_pauseMenu == null)
+            if (PauseMenu == null)
             {
                 GD.PushError("UIManager: pause menu not found...");
                 return false;
@@ -175,12 +175,12 @@ public partial class UIManager : Node
         {
             GD.Print("UIManager: required dependants being refreshed");
 
-            _mainMenu._Ready();
-            _settingsMenu._Ready();
-            _worldMenu._Ready();
-            _loadingMenu._Ready();
-            _hudMenu._Ready();
-            _pauseMenu._Ready();
+            MainMenu._Ready();
+            SettingsMenu._Ready();
+            WorldMenu._Ready();
+            LoadingMenu._Ready();
+            HudMenu._Ready();
+            PauseMenu._Ready();
         }
     }
 

@@ -16,6 +16,7 @@ public partial class PopUp : Control
 	[Export] PackedScene _confirmPopUpCD;
     [Export] PackedScene _infoPopUp;
     [Export] PackedScene _infoPopUpNC;
+    [Export] PackedScene _infoPopUpCB;
     [Export] PackedScene _inputPopUp;
     public string LastInput;
 
@@ -89,6 +90,18 @@ public partial class PopUp : Control
         _holder.AddChild(inst);
         InfoPopUp ipu = (InfoPopUp)inst;
         ipu.Setup(message);
+    }
+
+    /// <summary>
+    /// Displays a pop up.
+    /// <br/>This one is an info prompt with a callback
+    /// </summary>
+    public void DisplayInfoPopUp(string message, Callable acknowledgeBind)
+    {
+        var inst = _infoPopUpCB.Instantiate();
+        _holder.AddChild(inst);
+        ConfirmPopUp ipu = (ConfirmPopUp)inst;
+        ipu.Setup(message, acknowledgeBind);
     }
 
     /// <summary>

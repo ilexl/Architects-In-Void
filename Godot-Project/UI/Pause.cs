@@ -19,6 +19,8 @@ public partial class Pause : Node
     private bool _gameSavedWhilePaused;
     private bool _readyForPauseInput;
 
+    [Export] private UIManager _UIManager;
+
     #endregion
 
     /// <summary>
@@ -43,6 +45,14 @@ public partial class Pause : Node
         {
             GD.Print("Pause: missing texture buttons...");
             return;
+        }
+        if(_UIManager == null)
+        {
+            _UIManager = GetParent().GetParent().GetParent() as UIManager;
+            if (_UIManager == null)
+            {
+                GD.Print("Pause: ui manager not found...");
+            }
         }
 
         #endregion
@@ -141,7 +151,8 @@ public partial class Pause : Node
     private void SaveGame()
     {
         GD.Print("Pause: save btn pressed");
-        // TODO: implementation
+        _UIManager.WorldMenu.DataInstance.QuickSave();
+        _UIManager.PopUpManager.DisplayInfoPopUp("Successfully Saved!", Callable.From(ResumeGame));
     }
 
     /// <summary>
@@ -149,8 +160,9 @@ public partial class Pause : Node
     /// </summary>
     private void LoadGame()
     {
-        GD.Print("Pause: load btn pressed");
-        // TODO: implementation
+        GD.Print("Pause: saveload btn pressed");
+        _UIManager.UIWindowManager.ShowOnly("WorldManager");
+        _UIManager.WorldMenu.CallLoad();
     }
 
     /// <summary>

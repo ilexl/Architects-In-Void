@@ -25,7 +25,8 @@ public partial class WorldManager : Node
     [Export] private Node _worldListHolder;
     [Export] private PackedScene _worldSaveListScene;
     [Export] UIManager _UIManager;
-    [Export] Data _data;
+    [Export] public Data DataInstance;
+    [Export] Control _mmBackground; // main menu background image
 
     #endregion
 
@@ -113,7 +114,7 @@ public partial class WorldManager : Node
         _loadBtn.Disabled = true;
         _deleteBtn.Disabled = true;
         _UIManager = ((UIManager)_wmMain.GetParent());
-        _data = (Data)_UIManager.GetParent().FindChild("Data");
+        DataInstance = (Data)_UIManager.GetParent().FindChild("Data");
     }
 
     /// <summary>
@@ -130,8 +131,22 @@ public partial class WorldManager : Node
         else
         {
             // otherwise we need to create a new save for the current game...
-            GD.Print("WorldManager: not implemented - new save for in game"); //TODO: implement new save for in game
+            _UIManager.PopUpManager.DisplayInputPopUp("Save as:", Callable.From(SaveAs));
         }
+    }
+    
+    void SaveAs()
+    {
+        string input = _UIManager.PopUpManager.LastInput;
+        if (input.Length == 0)
+        {
+            _UIManager.PopUpManager.DisplayError("Error: input", "Input cannot be blank... Try filling out the input :)");
+            return;
+        }
+
+        DataInstance.Save(input);
+        RefreshSaves();
+        _UIManager.PopUpManager.DisplayInfoPopUp("Successfully Saved!");
     }
 
     /// <summary>
@@ -139,8 +154,16 @@ public partial class WorldManager : Node
     /// </summary>
     private void Cancel()
     {
-        GD.Print("Settings: Cancel Button Pressed");
-        _wmMain.ShowWindow(_winMainMenu);
+        GD.Print("Settings: Back Button Pressed");
+        if (GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu)
+        {
+            _wmMain.ShowWindow(_winMainMenu);
+        }
+        else
+        {
+            _wmMain.HideOnly("WorldManager");
+        }
+        
     }
 
     /// <summary>
@@ -151,6 +174,7 @@ public partial class WorldManager : Node
         GD.Print("WorldManager: load called");
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
+        _mmBackground.Visible = GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu;
 
         if (_testWorldList) Test();
         else RefreshSaves();
@@ -162,13 +186,13 @@ public partial class WorldManager : Node
     private void RefreshSaves()
     {
         foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
-        foreach (string worldName in _data.RetrieveAllValidSavesAsList())
+        foreach (string worldName in DataInstance.RetrieveAllValidSavesAsList())
         {
             var inst = _worldSaveListScene.Instantiate();
             _worldListHolder.AddChild(inst);
             var wst = (WorldSaveTitle)inst;
             var title = worldName;
-            var date = _data.GetLastSavedFromFile(worldName);
+            var date = DataInstance.GetLastSavedFromFile(worldName);
             wst.UpdateWorldSaveTitle(title, date);
             wst.BindButtonToManager(this);
         }
@@ -222,7 +246,7 @@ public partial class WorldManager : Node
 
     void DeleteWorld(WorldSaveTitle wst)
     {
-        _data.DeleteSave(wst.Title);
+        DataInstance.DeleteSave(wst.Title);
     }
 
     /// <summary>
@@ -237,7 +261,7 @@ public partial class WorldManager : Node
             return;
         }
 
-        _data.NewGame(input);
+        DataInstance.NewGame(input);
         RefreshSaves();
     }
 
@@ -249,7 +273,7 @@ public partial class WorldManager : Node
         GD.Print("WorldManager: loading selected world");
         GameManager.Singleton.SetGameState(GameManager.GameState.InGame);
         _wmMain.ShowWindow(_winHud);
-        _data.Load(_currentlySelected.First().Title);
+        DataInstance.Load(_currentlySelected.First().Title);
     }
 
     /// <summary>

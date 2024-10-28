@@ -1,4 +1,4 @@
-[gd_scene load_steps=106 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=107 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -104,13 +104,14 @@
 [ext_resource type="Resource" uid="uid://cv1jqijhyyx32" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Pressed.svg" id="96_r8fy7"]
 [ext_resource type="Resource" uid="uid://daxoe6tiu6ktu" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Highlighted.svg" id="97_guq2i"]
 [ext_resource type="Resource" uid="uid://cgqbv5sxu7alo" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Disabled.svg" id="98_35sa6"]
+[ext_resource type="PackedScene" uid="uid://bv320klmfeipe" path="res://UI/SVGTextures/PopUp/info_pop_up_cb.tscn" id="104_bdbn7"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
 texture = ExtResource("32_7ge8g")
 expand_margin_top = 18.0
 expand_margin_bottom = 18.0
 
-[node name="UI" type="Control" node_paths=PackedStringArray("_mainMenu", "_settingsMenu", "_worldMenu", "_loadingMenu", "_hudMenu", "_pauseMenu", "PopUpManager", "UIWindowManager")]
+[node name="UI" type="Control" node_paths=PackedStringArray("MainMenu", "SettingsMenu", "WorldMenu", "LoadingMenu", "HudMenu", "PauseMenu", "PopUpManager", "UIWindowManager")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,12 +119,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ae7ch")
-_mainMenu = NodePath("WindowManager/MainMenu/MainMenuScript")
-_settingsMenu = NodePath("WindowManager/Settings/SettingsManager")
-_worldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
-_loadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
-_hudMenu = NodePath("WindowManager/HUD/HUDButtons")
-_pauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
+MainMenu = NodePath("WindowManager/MainMenu/MainMenuScript")
+SettingsMenu = NodePath("WindowManager/Settings/SettingsManager")
+WorldMenu = NodePath("WindowManager/WorldManager/WorldManagerButtons")
+LoadingMenu = NodePath("WindowManager/LoadingScreen/LoadingScreenLogic")
+HudMenu = NodePath("WindowManager/HUD/HUDButtons")
+PauseMenu = NodePath("WindowManager/PauseMenu/PauseMenuButtons")
 PopUpManager = NodePath("WindowManager/PopUp")
 UIWindowManager = NodePath("WindowManager")
 
@@ -134,7 +135,7 @@ script = ExtResource("60_256pr")
 
 [node name="WindowManager" type="CanvasLayer" parent="." node_paths=PackedStringArray("_windows")]
 script = ExtResource("1_st6gj")
-_windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("WorldManager"), NodePath("LoadingScreen"), NodePath("HUD"), NodePath("PauseMenu")]
+_windows = [NodePath("MainMenu"), NodePath("Settings"), NodePath("HUD"), NodePath("PauseMenu"), NodePath("WorldManager"), NodePath("LoadingScreen")]
 
 [node name="MainMenu" type="Control" parent="WindowManager"]
 visible = false
@@ -3243,820 +3244,6 @@ script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("42_tmjc8")
 auto_resize = false
 
-[node name="WorldManager" type="Control" parent="WindowManager"]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_5w2l0")
-
-[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_newGameBtn", "_deleteBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder", "_UIManager")]
-script = ExtResource("5_v3f2b")
-_cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
-_loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
-_newGameBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame")
-_deleteBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn")
-_testAmount = 5
-_winMainMenu = NodePath("../../MainMenu")
-_winHud = NodePath("../../HUD")
-_wmMain = NodePath("../..")
-_worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
-_worldSaveListScene = ExtResource("62_1gypc")
-_UIManager = NodePath("../../..")
-
-[node name="Background" type="TextureRect" parent="WindowManager/WorldManager"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("4_g56cw")
-expand_mode = 1
-
-[node name="ColorRect" type="ColorRect" parent="WindowManager/WorldManager"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.270588, 0.270588, 0.270588, 0.392157)
-
-[node name="AspectRatioContainer" type="AspectRatioContainer" parent="WindowManager/WorldManager"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-ratio = 1.78
-
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/WorldManager/AspectRatioContainer"]
-layout_mode = 2
-theme_override_constants/margin_left = 268
-theme_override_constants/margin_top = 200
-theme_override_constants/margin_right = 268
-theme_override_constants/margin_bottom = 200
-
-[node name="Background" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer"]
-position = Vector2(268, 204)
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("50_wecmy")
-auto_resize = false
-
-[node name="SettingsBackground" type="TextureRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer"]
-layout_mode = 2
-expand_mode = 1
-stretch_mode = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
-clip_contents = false
-layout_mode = 0
-offset_left = 151.0
-offset_top = 151.101
-offset_right = 296.0
-offset_bottom = 183.101
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-text = "World Name"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="RichTextLabel2" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
-clip_contents = false
-layout_mode = 0
-offset_left = 1007.0
-offset_top = 151.101
-offset_right = 1132.0
-offset_bottom = 183.101
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-text = "Last Saved"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 108.0
-offset_top = 4.0
-offset_right = -823.0
-offset_bottom = -898.0
-grow_horizontal = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
-clip_contents = false
-layout_mode = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 86
-text = "World Manager"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="CancelBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
-layout_mode = 0
-offset_left = 1723.0
-offset_top = 1061.1
-offset_right = 1973.0
-offset_bottom = 1124.1
-ignore_texture_size = true
-stretch_mode = 0
-script = ExtResource("7_hnpww")
-_normal = NodePath("Normal")
-_pressed = NodePath("Pressed")
-_hover = NodePath("Highlighted")
-_disabled = NodePath("Disabled")
-_optionalLabel = NodePath("CenterContainer/RichTextLabel")
-
-[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("54_snh0l")
-auto_resize = false
-
-[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("55_um26p")
-auto_resize = false
-
-[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("56_y80dm")
-auto_resize = false
-
-[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("57_0d81u")
-auto_resize = false
-
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 36
-text = "Cancel"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="LoadBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
-layout_mode = 0
-offset_left = 1429.0
-offset_top = 1061.1
-offset_right = 1679.0
-offset_bottom = 1124.1
-disabled = true
-ignore_texture_size = true
-stretch_mode = 0
-flip_h = true
-flip_v = true
-script = ExtResource("7_hnpww")
-_normal = NodePath("Normal")
-_pressed = NodePath("Pressed")
-_hover = NodePath("Highlighted")
-_disabled = NodePath("Disabled")
-_optionalLabel = NodePath("CenterContainer/RichTextLabel")
-
-[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("62_84ltc")
-auto_resize = false
-
-[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("63_at1sg")
-auto_resize = false
-
-[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("64_s6515")
-auto_resize = false
-
-[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("65_nqc7r")
-auto_resize = false
-
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 36
-text = "Load"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="NewSave" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
-custom_minimum_size = Vector2(0, 60)
-anchors_preset = 0
-offset_left = 87.0
-offset_top = 183.101
-offset_right = 1219.0
-offset_bottom = 243.101
-
-[node name="NewGame" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
-clip_contents = true
-custom_minimum_size = Vector2(1026, 55)
-layout_mode = 2
-offset_left = 34.0
-offset_right = 1060.0
-offset_bottom = 55.0
-script = ExtResource("7_hnpww")
-_normal = NodePath("Normal")
-_pressed = NodePath("Pressed")
-_hover = NodePath("Highlighted")
-_disabled = NodePath("Disabled")
-
-[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("59_u7v5p")
-auto_resize = false
-
-[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("60_8wv52")
-auto_resize = false
-
-[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("61_d4hbl")
-auto_resize = false
-
-[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("62_jukt4")
-auto_resize = false
-
-[node name="SaveDate" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
-clip_contents = false
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 29.0
-offset_top = 14.0
-offset_right = 154.0
-offset_bottom = -9.0
-grow_vertical = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-text = "New Save"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 0
-offset_left = 121.0
-offset_top = 256.0
-offset_right = 1147.0
-offset_bottom = 1036.0
-
-[node name="WorldListHolder" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer"]
-clip_contents = true
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_constants/separation = 0
-
-[node name="SavedGame" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
-layout_mode = 2
-
-[node name="SavedGame2" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
-layout_mode = 2
-
-[node name="SavedGame3" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
-layout_mode = 2
-
-[node name="SavedGame4" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
-layout_mode = 2
-
-[node name="SavedGame5" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
-layout_mode = 2
-
-[node name="SavedGame6" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
-layout_mode = 2
-
-[node name="WorldInspector" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -638.0
-offset_top = 17.0
-offset_right = -12.0
-offset_bottom = 1030.0
-grow_horizontal = 0
-
-[node name="World Title" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
-clip_contents = false
-layout_mode = 0
-offset_left = 50.0
-offset_top = 49.1011
-offset_right = 334.0
-offset_bottom = 81.1011
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-text = "Select a world to inspect"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="ColorRect" type="ColorRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
-layout_mode = 0
-offset_left = 50.0
-offset_top = 100.0
-offset_right = 450.0
-offset_bottom = 325.0
-
-[node name="MarginContainer" type="MarginContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/ColorRect"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_constants/margin_left = 3
-theme_override_constants/margin_top = 3
-theme_override_constants/margin_right = 3
-theme_override_constants/margin_bottom = 3
-
-[node name="TextureRect" type="TextureRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/ColorRect/MarginContainer"]
-layout_mode = 2
-texture = ExtResource("63_sylgl")
-
-[node name="Trash-Btn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
-custom_minimum_size = Vector2(76, 76)
-layout_mode = 0
-offset_left = 501.0
-offset_top = 249.101
-offset_right = 577.0
-offset_bottom = 325.101
-script = ExtResource("7_hnpww")
-_normal = NodePath("Normal")
-_pressed = NodePath("Pressed")
-_hover = NodePath("Highlighted")
-_disabled = NodePath("Disabled")
-
-[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("64_f530k")
-auto_resize = false
-
-[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("65_ensq5")
-auto_resize = false
-
-[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("66_2veih")
-auto_resize = false
-
-[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("67_hvebp")
-auto_resize = false
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
-custom_minimum_size = Vector2(245, 0)
-layout_mode = 0
-offset_left = 50.0
-offset_top = 360.0
-offset_right = 295.0
-offset_bottom = 765.0
-theme_override_constants/separation = 15
-
-[node name="info1" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info1"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info1/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info1/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="info2" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info2"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info2/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info2/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="info3" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info3"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info3/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info3/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="info4" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info4"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info4/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info4/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="VBoxContainer2" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
-custom_minimum_size = Vector2(245, 0)
-layout_mode = 0
-offset_left = 332.0
-offset_top = 360.0
-offset_right = 577.0
-offset_bottom = 765.0
-theme_override_constants/separation = 15
-
-[node name="info1" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info1"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info1/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info1/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="info2" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info2"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info2/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info2/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="info3" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info3"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info3/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info3/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="info4" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
-custom_minimum_size = Vector2(245, 90)
-layout_mode = 2
-script = ExtResource("68_u2cox")
-
-[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info4"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("69_yl6mo")
-auto_resize = false
-
-[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info4/SVGSprite2D"]
-clip_contents = false
-offset_left = 9.0
-offset_top = 6.10114
-offset_right = 79.0
-offset_bottom = 31.1011
-theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 18
-text = "Info Box"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info4/SVGSprite2D"]
-clip_contents = false
-offset_left = 10.0
-offset_top = 27.0
-offset_right = 239.0
-offset_bottom = 85.0
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 24
-scroll_active = false
-autowrap_mode = 1
-
-[node name="SaveBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
-custom_minimum_size = Vector2(543, 63)
-layout_mode = 1
-offset_left = 1429.0
-offset_top = 936.0
-offset_right = 1972.0
-offset_bottom = 999.0
-disabled = true
-ignore_texture_size = true
-stretch_mode = 0
-flip_h = true
-flip_v = true
-script = ExtResource("7_hnpww")
-_normal = NodePath("Normal")
-_pressed = NodePath("Pressed")
-_hover = NodePath("Highlighted")
-_disabled = NodePath("Disabled")
-_optionalLabel = NodePath("CenterContainer/RichTextLabel")
-
-[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("59_y6wwh")
-auto_resize = false
-
-[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("60_teah2")
-auto_resize = false
-
-[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
-visible = false
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("61_q47wx")
-auto_resize = false
-
-[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
-centered = false
-script = ExtResource("61_8cwet")
-SVGTexture = ExtResource("62_6r70n")
-auto_resize = false
-
-[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 8.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn/CenterContainer"]
-layout_mode = 2
-mouse_filter = 2
-theme_override_fonts/normal_font = ExtResource("4_fvsai")
-theme_override_font_sizes/normal_font_size = 36
-text = "Save"
-fit_content = true
-scroll_active = false
-autowrap_mode = 0
-
-[node name="LoadingScreen" type="Control" parent="WindowManager"]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-script = ExtResource("2_5w2l0")
-
-[node name="LoadingScreenLogic" type="Node" parent="WindowManager/LoadingScreen"]
-script = ExtResource("6_unkds")
-
 [node name="HUD" type="Control" parent="WindowManager"]
 visible = false
 layout_mode = 3
@@ -5370,7 +4557,6 @@ SVGTexture = ExtResource("88_0ir70")
 auto_resize = false
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
-visible = false
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5389,7 +4575,7 @@ grow_vertical = 2
 texture = ExtResource("6_pcm66")
 expand_mode = 1
 
-[node name="PauseMenuButtons" type="TextureRect" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn")]
+[node name="PauseMenuButtons" type="TextureRect" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn", "_UIManager")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -5410,6 +4596,7 @@ _saveGameBtn = NodePath("PauseBtns/Save")
 _loadGameBtn = NodePath("PauseBtns/Load")
 _mainMenuBtn = NodePath("PauseBtns/MainMenu")
 _desktopBtn = NodePath("PauseBtns/Exit")
+_UIManager = NodePath("../../..")
 
 [node name="Background" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 centered = false
@@ -5560,7 +4747,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "Save Game"
+text = "Quick Save"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -5617,7 +4804,7 @@ mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("4_fvsai")
 theme_override_font_sizes/normal_font_size = 60
 bbcode_enabled = true
-text = "Load Game"
+text = "Save As / Load"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -5736,6 +4923,821 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
+[node name="WorldManager" type="Control" parent="WindowManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="WorldManagerButtons" type="Node" parent="WindowManager/WorldManager" node_paths=PackedStringArray("_cancelBtn", "_loadBtn", "_newGameBtn", "_deleteBtn", "_winMainMenu", "_winHud", "_wmMain", "_worldListHolder", "_UIManager", "_mmBackground")]
+script = ExtResource("5_v3f2b")
+_cancelBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn")
+_loadBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn")
+_newGameBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame")
+_deleteBtn = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn")
+_testAmount = 5
+_winMainMenu = NodePath("../../MainMenu")
+_winHud = NodePath("../../HUD")
+_wmMain = NodePath("../..")
+_worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
+_worldSaveListScene = ExtResource("62_1gypc")
+_UIManager = NodePath("../../..")
+_mmBackground = NodePath("../Background")
+
+[node name="Background" type="TextureRect" parent="WindowManager/WorldManager"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_g56cw")
+expand_mode = 1
+
+[node name="ColorRect" type="ColorRect" parent="WindowManager/WorldManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.2, 0.2, 0.2, 0.752941)
+
+[node name="AspectRatioContainer" type="AspectRatioContainer" parent="WindowManager/WorldManager"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+ratio = 1.78
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/WorldManager/AspectRatioContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 268
+theme_override_constants/margin_top = 200
+theme_override_constants/margin_right = 268
+theme_override_constants/margin_bottom = 200
+
+[node name="Background" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer"]
+position = Vector2(268, 204)
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("50_wecmy")
+auto_resize = false
+
+[node name="SettingsBackground" type="TextureRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+clip_contents = false
+layout_mode = 0
+offset_left = 151.0
+offset_top = 151.101
+offset_right = 296.0
+offset_bottom = 183.101
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+text = "World Name"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="RichTextLabel2" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+clip_contents = false
+layout_mode = 0
+offset_left = 1007.0
+offset_top = 151.101
+offset_right = 1132.0
+offset_bottom = 183.101
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+text = "Last Saved"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 108.0
+offset_top = 4.0
+offset_right = -823.0
+offset_bottom = -898.0
+grow_horizontal = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CenterContainer"]
+clip_contents = false
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 86
+text = "World Manager"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="CancelBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
+layout_mode = 0
+offset_left = 1723.0
+offset_top = 1061.1
+offset_right = 1973.0
+offset_bottom = 1124.1
+ignore_texture_size = true
+stretch_mode = 0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("CenterContainer/RichTextLabel")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("54_snh0l")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("55_um26p")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("56_y80dm")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("57_0d81u")
+auto_resize = false
+
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/CancelBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 36
+text = "Back"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LoadBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
+layout_mode = 0
+offset_left = 1429.0
+offset_top = 1061.1
+offset_right = 1679.0
+offset_bottom = 1124.1
+disabled = true
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+flip_v = true
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("CenterContainer/RichTextLabel")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("62_84ltc")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("63_at1sg")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("64_s6515")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("65_nqc7r")
+auto_resize = false
+
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/LoadBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 36
+text = "Load"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="NewSave" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+custom_minimum_size = Vector2(0, 60)
+anchors_preset = 0
+offset_left = 87.0
+offset_top = 183.101
+offset_right = 1219.0
+offset_bottom = 243.101
+
+[node name="NewGame" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+clip_contents = true
+custom_minimum_size = Vector2(1026, 55)
+layout_mode = 2
+offset_left = 34.0
+offset_right = 1060.0
+offset_bottom = 55.0
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("59_u7v5p")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("60_8wv52")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("61_d4hbl")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("62_jukt4")
+auto_resize = false
+
+[node name="SaveDate" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/NewSave/NewGame"]
+clip_contents = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 29.0
+offset_top = 14.0
+offset_right = 154.0
+offset_bottom = -9.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+text = "New Save"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ScrollContainer" type="ScrollContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 0
+offset_left = 121.0
+offset_top = 256.0
+offset_right = 1147.0
+offset_bottom = 1036.0
+
+[node name="WorldListHolder" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_constants/separation = 0
+
+[node name="SavedGame" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
+layout_mode = 2
+
+[node name="SavedGame2" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
+layout_mode = 2
+
+[node name="SavedGame3" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
+layout_mode = 2
+
+[node name="SavedGame4" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
+layout_mode = 2
+
+[node name="SavedGame5" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
+layout_mode = 2
+
+[node name="SavedGame6" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder" instance=ExtResource("62_1gypc")]
+layout_mode = 2
+
+[node name="WorldInspector" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -638.0
+offset_top = 17.0
+offset_right = -12.0
+offset_bottom = 1030.0
+grow_horizontal = 0
+
+[node name="World Title" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
+clip_contents = false
+layout_mode = 0
+offset_left = 50.0
+offset_top = 49.1011
+offset_right = 334.0
+offset_bottom = 81.1011
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+text = "Select a world to inspect"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="ColorRect" type="ColorRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
+layout_mode = 0
+offset_left = 50.0
+offset_top = 100.0
+offset_right = 450.0
+offset_bottom = 325.0
+
+[node name="MarginContainer" type="MarginContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 3
+theme_override_constants/margin_top = 3
+theme_override_constants/margin_right = 3
+theme_override_constants/margin_bottom = 3
+
+[node name="TextureRect" type="TextureRect" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/ColorRect/MarginContainer"]
+layout_mode = 2
+texture = ExtResource("63_sylgl")
+
+[node name="Trash-Btn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled")]
+custom_minimum_size = Vector2(76, 76)
+layout_mode = 0
+offset_left = 501.0
+offset_top = 249.101
+offset_right = 577.0
+offset_bottom = 325.101
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("64_f530k")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("65_ensq5")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("66_2veih")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/Trash-Btn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("67_hvebp")
+auto_resize = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 0
+offset_left = 50.0
+offset_top = 360.0
+offset_right = 295.0
+offset_bottom = 765.0
+theme_override_constants/separation = 15
+
+[node name="info1" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info1"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info1/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info1/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="info2" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info2"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info2/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info2/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="info3" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info3"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info3/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info3/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="info4" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info4"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info4/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer/info4/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector"]
+custom_minimum_size = Vector2(245, 0)
+layout_mode = 0
+offset_left = 332.0
+offset_top = 360.0
+offset_right = 577.0
+offset_bottom = 765.0
+theme_override_constants/separation = 15
+
+[node name="info1" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info1"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info1/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info1/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="info2" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info2"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info2/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info2/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="info3" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info3"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info3/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info3/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="info4" type="Control" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2"]
+custom_minimum_size = Vector2(245, 90)
+layout_mode = 2
+script = ExtResource("68_u2cox")
+
+[node name="SVGSprite2D" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info4"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("69_yl6mo")
+auto_resize = false
+
+[node name="InfoBoxTitle" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info4/SVGSprite2D"]
+clip_contents = false
+offset_left = 9.0
+offset_top = 6.10114
+offset_right = 79.0
+offset_bottom = 31.1011
+theme_override_colors/default_color = Color(0.678431, 0.678431, 0.678431, 1)
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 18
+text = "Info Box"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="InfoBoxInfo" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/WorldInspector/VBoxContainer2/info4/SVGSprite2D"]
+clip_contents = false
+offset_left = 10.0
+offset_top = 27.0
+offset_right = 239.0
+offset_bottom = 85.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+scroll_active = false
+autowrap_mode = 1
+
+[node name="SaveBtn" type="TextureButton" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground" node_paths=PackedStringArray("_normal", "_pressed", "_hover", "_disabled", "_optionalLabel")]
+custom_minimum_size = Vector2(543, 63)
+layout_mode = 1
+offset_left = 1429.0
+offset_top = 936.0
+offset_right = 1972.0
+offset_bottom = 999.0
+disabled = true
+ignore_texture_size = true
+stretch_mode = 0
+flip_h = true
+flip_v = true
+script = ExtResource("7_hnpww")
+_normal = NodePath("Normal")
+_pressed = NodePath("Pressed")
+_hover = NodePath("Highlighted")
+_disabled = NodePath("Disabled")
+_optionalLabel = NodePath("CenterContainer/RichTextLabel")
+
+[node name="Normal" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("59_y6wwh")
+auto_resize = false
+
+[node name="Pressed" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("60_teah2")
+auto_resize = false
+
+[node name="Highlighted" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
+visible = false
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("61_q47wx")
+auto_resize = false
+
+[node name="Disabled" type="Sprite2D" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
+centered = false
+script = ExtResource("61_8cwet")
+SVGTexture = ExtResource("62_6r70n")
+auto_resize = false
+
+[node name="CenterContainer" type="CenterContainer" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 8.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/WorldManager/AspectRatioContainer/MarginContainer/SettingsBackground/SaveBtn/CenterContainer"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 36
+text = "Save"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="LoadingScreen" type="Control" parent="WindowManager"]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_5w2l0")
+
+[node name="LoadingScreenLogic" type="Node" parent="WindowManager/LoadingScreen"]
+script = ExtResource("6_unkds")
+
 [node name="PopUp" type="Control" parent="WindowManager" node_paths=PackedStringArray("_holder")]
 visible = false
 layout_mode = 3
@@ -5752,6 +5754,7 @@ _confirmPopUp = ExtResource("33_76cnx")
 _confirmPopUpCD = ExtResource("46_tu8o7")
 _infoPopUp = ExtResource("34_fl41a")
 _infoPopUpNC = ExtResource("52_8l8i6")
+_infoPopUpCB = ExtResource("104_bdbn7")
 _inputPopUp = ExtResource("35_2h4aw")
 
 [node name="Holder" type="Control" parent="WindowManager/PopUp"]
