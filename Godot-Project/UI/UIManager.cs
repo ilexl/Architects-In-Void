@@ -23,6 +23,7 @@ public partial class UIManager : Node
 	[Export] public Pause PauseMenu;
     [Export] public PopUp PopUpManager;
 	[Export] public WindowManager UIWindowManager;
+    [Export] public InventoryManager UIInventoryManager;
     [Export] public Settings SettingsManager;
 
     #endregion
@@ -145,6 +146,15 @@ public partial class UIManager : Node
                 return false;
             }
         }
+        if (UIInventoryManager == null)
+        {
+            UIInventoryManager = FindChild("Inventories") as InventoryManager;
+            if (UIInventoryManager == null)
+            {
+                GD.PushError("UIManager: inventories not found...");
+                return false;
+            }
+        } 
         if (SettingsManager == null)
         {
             SettingsManager = (Settings)this.GetParent().FindChild("Settings", false);
