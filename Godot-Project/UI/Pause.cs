@@ -113,6 +113,19 @@ public partial class Pause : Node
                 }
                 _readyForPauseInput = true; // allow further calls now that we are done
             }
+
+            // switch show / hide cursor
+            if (@event.IsActionPressed("miscellaneous_show_cursor"))
+            {
+                if(Input.MouseMode == Input.MouseModeEnum.Captured)
+                {
+                    Input.MouseMode = Input.MouseModeEnum.Visible;
+                }
+                else
+                {
+                    Input.MouseMode = Input.MouseModeEnum.Captured;
+                }
+            }
         }
         
     }
@@ -133,11 +146,14 @@ public partial class Pause : Node
         {
             ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("PauseMenu");
             GD.Print("Pause: game has been paused");
+            // This probably shouldn't be here
+            Input.MouseMode = Input.MouseModeEnum.Visible;
         }
         else
         {
             ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("HUD");
             GD.Print("Pause: game has been unpaused");
+            Input.MouseMode = Input.MouseModeEnum.Captured;
         }
     }
 
@@ -193,9 +209,10 @@ public partial class Pause : Node
     /// </summary>
     public void MainMenuConfirmed()
     {
-        ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("MainMenu");
+        _UIManager.UIWindowManager.ShowWindow("MainMenu");
         GameManager.Singleton.SetGameState(GameManager.GameState.MainMenu);
         ((Data)GameManager.Singleton.FindChild("Data")).Clear();
+        _UIManager.UIInventoryManager.HideInventoryList();
     }
 
     /// <summary>
