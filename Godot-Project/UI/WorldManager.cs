@@ -306,6 +306,7 @@ public partial class WorldManager : Node
         GameManager.Singleton.SetGameState(GameManager.GameState.InGame);
         _wmMain.ShowWindow(_winHud);
         DataInstance.Load(_currentlySelected.First().Title);
+        _UIManager.PauseMenu.SetPause(false);
     }
 
     /// <summary>
