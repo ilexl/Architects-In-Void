@@ -44,8 +44,7 @@ public partial class PlayerController : Node
         
         Head.Transform = _headPosition.Transform;
         
-        // This probably shouldn't be here
-        Input.MouseMode = Input.MouseModeEnum.Captured;
+        
     }
 
 
@@ -63,10 +62,7 @@ public partial class PlayerController : Node
     public override void _PhysicsProcess(double delta)
     {
         Head.DebugDrawLine();
-        if (Input.IsKeyPressed(Key.Escape))
-        {
-            Input.MouseMode = Input.MouseModeEnum.Visible;
-        }
+
         // Multiply vectors in head space by this to convert to "PlayerOrigin" space
         var headTransform = Head.Transform.Basis.Inverse();
         var bodyTransform = Body.Transform.Basis.Inverse();
