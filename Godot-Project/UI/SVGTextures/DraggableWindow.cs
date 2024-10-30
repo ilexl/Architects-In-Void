@@ -22,6 +22,10 @@ public partial class DraggableWindow : Window
         if (what == NotificationWMCloseRequest)
         {
             Visible = false;
+            if(GetParent() is InventoryWindow iw)
+            {
+                iw.CallCloseFW();
+            }
         }
         if (what == NotificationWMWindowFocusIn)
         {
