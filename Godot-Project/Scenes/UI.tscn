@@ -1,4 +1,4 @@
-[gd_scene load_steps=112 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=111 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -57,7 +57,7 @@
 [ext_resource type="Resource" uid="uid://cnr2ffkm4pwyx" path="res://UI/SVGTextures/Settings/Audio-icon.svg" id="40_kxs8m"]
 [ext_resource type="Resource" uid="uid://bf663080dxmin" path="res://UI/SVGTextures/Settings/Display-icon.svg" id="41_7o8kc"]
 [ext_resource type="Resource" uid="uid://dggo14vsbaq85" path="res://UI/SVGTextures/Settings/Reset-icon.svg" id="42_tmjc8"]
-[ext_resource type="Texture2D" uid="uid://dbr8m1y4pptbr" path="res://UI/Item-Icons/Blank-Icon.png" id="46_bc6vl"]
+[ext_resource type="Texture2D" uid="uid://dbr8m1y4pptbr" path="res://UI/Hotbar-Icons/None.png" id="46_bc6vl"]
 [ext_resource type="PackedScene" uid="uid://cfe0elqorxoi" path="res://UI/SVGTextures/PopUp/confirm_pop_up_cd.tscn" id="46_tu8o7"]
 [ext_resource type="Texture2D" uid="uid://cdw3o24me4ddn" path="res://UI/UIElements/Radial_Progress.svg" id="47_m5iam"]
 [ext_resource type="Resource" uid="uid://c2b06fva4e1lv" path="res://UI/SVGTextures/WorldManager/WorldManager-Background.svg" id="50_wecmy"]
@@ -83,8 +83,10 @@
 [ext_resource type="Resource" uid="uid://dujf4fqj85151" path="res://UI/SVGTextures/WorldManager/Trash-Normal.svg" id="64_f530k"]
 [ext_resource type="Resource" uid="uid://bo3uf5so08eso" path="res://UI/SVGTextures/WorldManager/LoadBtn-Highlighted.svg" id="64_s6515"]
 [ext_resource type="Resource" uid="uid://0fg7ok0f56yt" path="res://UI/SVGTextures/WorldManager/Trash-Selected.svg" id="65_ensq5"]
+[ext_resource type="PackedScene" uid="uid://8g4nt5hmqlbb" path="res://UI/SVGTextures/Inventory/inventory_window.tscn" id="65_ijsn3"]
 [ext_resource type="Resource" uid="uid://dd7jl1ugoimmy" path="res://UI/SVGTextures/WorldManager/LoadBtn-Disabled.svg" id="65_nqc7r"]
 [ext_resource type="Resource" uid="uid://bmbdsdt2m8sjp" path="res://UI/SVGTextures/WorldManager/Trash-Highlighted.svg" id="66_2veih"]
+[ext_resource type="PackedScene" uid="uid://vk6nb82xcpap" path="res://UI/SVGTextures/Inventory/AccessableInventoryTitle.tscn" id="67_fli3w"]
 [ext_resource type="Resource" uid="uid://bas2s8savswqp" path="res://UI/SVGTextures/WorldManager/Trash-Disabled.svg" id="67_hvebp"]
 [ext_resource type="Script" path="res://UI/SVGTextures/WorldManager/InfoBoxDisplay.cs" id="68_u2cox"]
 [ext_resource type="Resource" uid="uid://j758ufr2fof0" path="res://UI/SVGTextures/WorldManager/WorldSave-InfoBox.svg" id="69_yl6mo"]
@@ -106,9 +108,6 @@
 [ext_resource type="Resource" uid="uid://cgqbv5sxu7alo" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Disabled.svg" id="98_35sa6"]
 [ext_resource type="PackedScene" uid="uid://bv320klmfeipe" path="res://UI/SVGTextures/PopUp/info_pop_up_cb.tscn" id="104_bdbn7"]
 [ext_resource type="Script" path="res://UI/InventoryManager.cs" id="106_kslu5"]
-[ext_resource type="PackedScene" uid="uid://cfgvwvao1sd0i" path="res://UI/SVGTextures/Inventory/inventory_slot.tscn" id="106_rogqq"]
-[ext_resource type="Script" path="res://UI/SVGTextures/DraggableWindow.cs" id="107_bttyw"]
-[ext_resource type="Script" path="res://UI/InventoryWindow.cs" id="108_ssw6s"]
 [ext_resource type="Resource" uid="uid://t7lr6f7c2xnp" path="res://UI/SVGTextures/Inventory/InventoriesListBackground.svg" id="110_qwl6r"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
@@ -4901,7 +4900,7 @@ script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("88_0ir70")
 auto_resize = false
 
-[node name="Inventories" type="Control" parent="WindowManager" node_paths=PackedStringArray("_inventoryWindowParent", "_inventoriesList")]
+[node name="Inventories" type="Control" parent="WindowManager" node_paths=PackedStringArray("_inventoryWindowParent", "_inventoriesList", "_inventoriesListParent")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -4910,69 +4909,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("106_kslu5")
+_inventoryUIWindow = ExtResource("65_ijsn3")
 _inventoryWindowParent = NodePath("WindowsHolder")
 _inventoriesList = NodePath("ListHolder")
-metadata/_edit_lock_ = true
-
-[node name="Window" type="Window" parent="WindowManager/Inventories"]
-disable_3d = true
-title = "Test"
-initial_position = 2
-size = Vector2i(445, 230)
-visible = false
-always_on_top = true
-extend_to_title = true
-keep_title_visible = true
-script = ExtResource("107_bttyw")
-
-[node name="InventoryWindow" type="Node" parent="WindowManager/Inventories/Window" node_paths=PackedStringArray("_window", "_containerVertical")]
-script = ExtResource("108_ssw6s")
-_slotsAmount = 24
-_inventorySlotScene = ExtResource("106_rogqq")
-_window = NodePath("..")
-_containerVertical = NodePath("../Control/VBoxContainer")
-
-[node name="Control" type="ScrollContainer" parent="WindowManager/Inventories/Window"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Inventories/Window/Control"]
-layout_mode = 2
-theme_override_constants/separation = -2
-
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/Inventories/Window/Control/VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = -2
-
-[node name="InventorySlot" parent="WindowManager/Inventories/Window/Control/VBoxContainer/HBoxContainer" instance=ExtResource("106_rogqq")]
-layout_mode = 2
-
-[node name="InventorySlot2" parent="WindowManager/Inventories/Window/Control/VBoxContainer/HBoxContainer" instance=ExtResource("106_rogqq")]
-layout_mode = 2
-
-[node name="InventorySlot3" parent="WindowManager/Inventories/Window/Control/VBoxContainer/HBoxContainer" instance=ExtResource("106_rogqq")]
-layout_mode = 2
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="WindowManager/Inventories/Window/Control/VBoxContainer"]
-layout_mode = 2
-
-[node name="InventorySlot" parent="WindowManager/Inventories/Window/Control/VBoxContainer/HBoxContainer2" instance=ExtResource("106_rogqq")]
-layout_mode = 2
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="WindowManager/Inventories/Window/Control/VBoxContainer"]
-layout_mode = 2
-
-[node name="InventorySlot" parent="WindowManager/Inventories/Window/Control/VBoxContainer/HBoxContainer3" instance=ExtResource("106_rogqq")]
-layout_mode = 2
-
-[node name="HBoxContainer4" type="HBoxContainer" parent="WindowManager/Inventories/Window/Control/VBoxContainer"]
-layout_mode = 2
-
-[node name="InventorySlot" parent="WindowManager/Inventories/Window/Control/VBoxContainer/HBoxContainer4" instance=ExtResource("106_rogqq")]
-layout_mode = 2
+_AccessableInventoryTitle = ExtResource("67_fli3w")
+_inventoriesListParent = NodePath("ListHolder/Background/Container2/Control/Container/Control/VBoxContainer")
 
 [node name="WindowsHolder" type="Control" parent="WindowManager/Inventories"]
 layout_mode = 1
@@ -4982,13 +4923,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+metadata/_edit_lock_ = true
 
 [node name="ListHolder" type="Control" parent="WindowManager/Inventories"]
+visible = false
 custom_minimum_size = Vector2(350, 500)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 350.0
 offset_bottom = 500.0
+metadata/_edit_lock_ = true
 
 [node name="Background" type="Control" parent="WindowManager/Inventories/ListHolder"]
 layout_mode = 1
@@ -5003,6 +4947,51 @@ centered = false
 script = ExtResource("61_8cwet")
 SVGTexture = ExtResource("110_qwl6r")
 auto_resize = false
+
+[node name="Container2" type="MarginContainer" parent="WindowManager/Inventories/ListHolder/Background"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 30
+theme_override_constants/margin_top = 30
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 30
+
+[node name="Control" type="Control" parent="WindowManager/Inventories/ListHolder/Background/Container2"]
+layout_mode = 2
+
+[node name="Container" type="MarginContainer" parent="WindowManager/Inventories/ListHolder/Background/Container2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 50
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Control" type="ScrollContainer" parent="WindowManager/Inventories/ListHolder/Background/Container2/Control/Container"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WindowManager/Inventories/ListHolder/Background/Container2/Control/Container/Control"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RichTextLabel" type="RichTextLabel" parent="WindowManager/Inventories/ListHolder/Background/Container2/Control"]
+layout_mode = 1
+offset_right = 176.0
+offset_bottom = 23.0
+theme_override_fonts/normal_font = ExtResource("4_fvsai")
+theme_override_font_sizes/normal_font_size = 24
+text = "Accessable Inventories"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
 visible = false
