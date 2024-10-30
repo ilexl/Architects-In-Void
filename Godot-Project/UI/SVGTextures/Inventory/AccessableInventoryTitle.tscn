@@ -1,0 +1,40 @@
+[gd_scene load_steps=3 format=3 uid="uid://vk6nb82xcpap"]
+
+[ext_resource type="Script" path="res://UI/SVGTextures/Inventory/AccessableInventoryTitle.cs" id="1_k4nmr"]
+[ext_resource type="FontFile" uid="uid://b0v3fyhp3yp2f" path="res://UI/Fonts/Kufam-VariableFont_wght.ttf" id="3_528xj"]
+
+[node name="Control" type="Control" node_paths=PackedStringArray("_btn", "_label")]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_k4nmr")
+_btn = NodePath("TextureButton")
+_label = NodePath("TextureButton/RichTextLabel")
+
+[node name="TextureButton" type="TextureButton" parent="."]
+custom_minimum_size = Vector2(0, 25)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+toggle_mode = true
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureButton"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1.0
+grow_vertical = 2
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("3_528xj")
+theme_override_font_sizes/normal_font_size = 20
+text = "Vessel 1"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0

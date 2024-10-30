@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 
 public partial class InventoryWindow : Node
 {
@@ -7,12 +8,42 @@ public partial class InventoryWindow : Node
     [Export] PackedScene _inventorySlotScene;
     [Export] Window _window;
     [Export] VBoxContainer _containerVertical;
+    Inventory _inventory;
+    List<InventorySlot> _slots;
+    private Callable _callClose;
+    public Callable CallClose
+    {
+        set => _callClose = value;
+    }
+    public Inventory Inventory
+    {
+        get => _inventory;
+        set
+        {
+            _inventory = value;
+            _slots = new List<InventorySlot>();
+            _slotsAmount = _inventory.Items.Count;
+            RecalculateSlots();
+            _window.Title = _inventory.InventoryName;
+        }
+    }
+
+
 
     public override void _Ready()
     {
+        _slots = new List<InventorySlot>();
         _window.SizeChanged += RecalculateSlots;
-        RecalculateSlots(); 
+        RecalculateSlots();
+        Shown(false);
     }
+
+    public void Shown(bool shown)
+    {
+        _window.Visible = shown;
+    }
+
+    
 
     void RecalculateSlots()
     {
@@ -38,6 +69,7 @@ public partial class InventoryWindow : Node
             verticalSlots++;
         }
 
+        _slots.Clear();
         int slotCounter = 0;
         for(int i = 0 ; i < verticalSlots; i++)
         {
@@ -48,6 +80,9 @@ public partial class InventoryWindow : Node
                 {
                     var slot = _inventorySlotScene.Instantiate();
                     containerH.AddChild(slot);
+                    InventorySlot s = slot as InventorySlot;
+                    s.SetItem(_inventory.Items[slotCounter]);
+                    _slots.Add(s);
                     slotCounter++;
                 }
             }
@@ -55,5 +90,18 @@ public partial class InventoryWindow : Node
             _containerVertical.AddChild(containerH);
         }
 
+    }
+
+    internal void CallCloseFW()
+    {
+        _callClose.Call(this);
+    }
+
+    internal void UpdateInventoryFromSlots()
+    {
+        for(int i = 0 ; i < _slots.Count; i++)
+        {
+            _inventory.Items[i] = _slots[i].GetItem();
+        }
     }
 }
