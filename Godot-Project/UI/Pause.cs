@@ -124,6 +124,8 @@ public partial class Pause : Node
                 else
                 {
                     Input.MouseMode = Input.MouseModeEnum.Captured;
+                    _UIManager.UIInventoryManager.CancelItemInCursor();
+                    // Cancel item being in cursor
                 }
             }
         }
