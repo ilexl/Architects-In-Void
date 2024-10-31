@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 public partial class InventoryWindow : Node
 {
@@ -28,7 +29,10 @@ public partial class InventoryWindow : Node
         }
     }
 
-
+    public bool IsVisible()
+    {
+        return _window.Visible;
+    }
 
     public override void _Ready()
     {
@@ -92,12 +96,13 @@ public partial class InventoryWindow : Node
 
     }
 
-    internal void CallCloseFW()
+
+    public void CallCloseFW()
     {
         _callClose.Call(this);
     }
 
-    internal void UpdateInventoryFromSlots()
+    public void UpdateInventoryFromSlots()
     {
         for(int i = 0 ; i < _slots.Count; i++)
         {

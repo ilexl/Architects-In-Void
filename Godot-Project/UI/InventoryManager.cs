@@ -22,6 +22,7 @@ public partial class InventoryManager : Node
 
     public override void _Ready()
     {
+        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         Singleton = this;
         _activeSlot = null;
         _inventoriesList.Hide();
@@ -77,6 +78,10 @@ public partial class InventoryManager : Node
             {
                 ait.UntoggleFromWindow();
             }
+        }
+        if (_activeSlot != null)
+        {
+            _activeSlot.Refresh();
         }
     }
 
@@ -194,9 +199,23 @@ public partial class InventoryManager : Node
     public void CancelItemInCursor()
     {
         GD.Print("InventoryManager: cursor hidden - putting back item into previous slot");
-        _activeSlot.SetItem(_currentItemInCursor);
-        _activeSlot = null;
+        if (_activeSlot != null)
+        {
+            if (_activeSlot.GetItem().GetCurrentItem() == Item.Type.None)
+            {
+                _activeSlot.SetItem(_currentItemInCursor);
+            }
+            else
+            {
+                _activeSlot.GetItem().ChangeAmount(_currentItemInCursor.GetCurrentAmount());
+            }
+            _activeSlot.Refresh();
+            _activeSlot = null;
+        }
         _currentItemInCursor = null;
+        UpdateInventories();
+        ResetCursor();
+
     }
 
     public void HideInventoryList()
@@ -254,6 +273,21 @@ public partial class InventoryManager : Node
             if (inventorySlot.GetItem().GetCurrentItem() == _currentItemInCursor.GetCurrentItem())
             {
                 // try place some or all of cursor item into slot
+                if(inventorySlot.GetItem().GetFreeAmount() >= _currentItemInCursor.GetCurrentAmount())
+                {
+                    // enough free room to clear cursor
+                    inventorySlot.GetItem().ChangeAmount(_currentItemInCursor.GetCurrentAmount());
+                    _activeSlot = null;
+                    _currentItemInCursor = null;
+                    ResetCursor();
+                }
+                else
+                {
+                    // not enough free room but will still drop off what we can
+                    int freeRoom = inventorySlot.GetItem().GetFreeAmount();
+                    inventorySlot.GetItem().ChangeAmount(freeRoom);
+                    _currentItemInCursor.ChangeAmount(-freeRoom);
+                }
             }
             else
             {
@@ -273,6 +307,40 @@ public partial class InventoryManager : Node
             }
         }
         UpdateInventories();
+        inventorySlot.Refresh();
+        if(_activeSlot != null)
+        {
+            _activeSlot.Refresh();
+        }
+    }
+
+    public void SlotActivated(InventorySlot inventorySlot, int amount)
+    {
+        if (amount == inventorySlot.GetItem().GetCurrentAmount())
+        {
+            SlotActivated(inventorySlot);
+            return; // if full amount - use normal function
+        }
+        if (_activeSlot == null)
+        {
+            if (inventorySlot.GetItem().GetCurrentItem() == Item.Type.None)
+            {
+                // no point in activating a blank slot if it will do nothing
+                ResetCursor();
+                return;
+            }
+            // take item from slot
+            _activeSlot = inventorySlot;
+            _currentItemInCursor = new Item(inventorySlot.GetItem().GetCurrentItem(), amount);
+            inventorySlot.GetItem().ChangeAmount(-amount);
+            SetCursorToImage(_currentItemInCursor);
+        }
+        UpdateInventories();
+        inventorySlot.Refresh();
+        if (_activeSlot != null)
+        {
+            _activeSlot.Refresh();
+        }
     }
 
     void UpdateInventories()
@@ -294,5 +362,18 @@ public partial class InventoryManager : Node
     {
         GD.Print("InventoryManager: custom cursor");
         Input.SetCustomMouseCursor(Item.GetItemDataTexture(item.GetCurrentItem()));
+    }
+
+    internal bool IsAnyWindowActive()
+    {
+        foreach(var child in _inventoryWindowParent.GetChildren())
+        {
+            var window = child as InventoryWindow;
+            if (window.IsVisible())
+            {
+                return true;
+            }
+        }
+        return false;
     }
 }

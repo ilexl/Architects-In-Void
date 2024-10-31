@@ -43,6 +43,11 @@ public partial class Item : Node
         return AddMeasurement(amountStr);
     }
 
+    public int GetCurrentAmount()
+    {
+        return _amount;
+    }
+
     private string AddMeasurement(string num)
     {
         switch (_measurement)
@@ -76,6 +81,11 @@ public partial class Item : Node
         return _type;
     }
 
+    internal void ChangeAmount(int change)
+    {
+        _amount += change;
+    }
+
     public Item() : this(Type.None) { }
     public Item(Type type) : this(type, GetItemDataMaxAmount(type)) { }
     public Item(Type type, int amount)
@@ -89,7 +99,7 @@ public partial class Item : Node
 
 public partial class Item : Node
 {
-    private static int GetItemDataMaxAmount(Type type)
+    public static int GetItemDataMaxAmount(Type type)
     {
         return ALL_ITEMS[(int)type].MaxAmount;
     }
