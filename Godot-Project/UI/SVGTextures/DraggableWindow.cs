@@ -41,6 +41,11 @@ public partial class DraggableWindow : Window
         }
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        ArchitectsInVoid.UI.Pause.Singleton._Input(@event);
+    }
+
     public override void _Process(double delta)
     {
         if (_focused) // force the window to stay on screen
