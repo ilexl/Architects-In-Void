@@ -24,6 +24,7 @@ public partial class UIManager : Node
     [Export] public PopUp PopUpManager;
 	[Export] public WindowManager UIWindowManager;
     [Export] public InventoryManager UIInventoryManager;
+    [Export] public ComponentSelectionUI ComponentSelection;
     [Export] public Settings SettingsManager;
 
     #endregion
@@ -154,7 +155,16 @@ public partial class UIManager : Node
                 GD.PushError("UIManager: inventories not found...");
                 return false;
             }
-        } 
+        }
+        if (ComponentSelection == null)
+        {
+            ComponentSelection = FindChild("ComponentSelection") as ComponentSelectionUI;
+            if (ComponentSelection == null)
+            {
+                GD.PushError("UIManager: component selection not found...");
+                return false;
+            }
+        }
         if (SettingsManager == null)
         {
             SettingsManager = (Settings)this.GetParent().FindChild("Settings", false);
@@ -191,6 +201,7 @@ public partial class UIManager : Node
             LoadingMenu._Ready();
             HudMenu._Ready();
             PauseMenu._Ready();
+            ComponentSelection._Ready();
         }
     }
 
