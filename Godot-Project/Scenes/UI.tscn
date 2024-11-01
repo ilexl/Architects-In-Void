@@ -1,4 +1,4 @@
-[gd_scene load_steps=111 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=112 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -88,6 +88,7 @@
 [ext_resource type="Resource" uid="uid://bmbdsdt2m8sjp" path="res://UI/SVGTextures/WorldManager/Trash-Highlighted.svg" id="66_2veih"]
 [ext_resource type="PackedScene" uid="uid://vk6nb82xcpap" path="res://UI/SVGTextures/Inventory/AccessableInventoryTitle.tscn" id="67_fli3w"]
 [ext_resource type="Resource" uid="uid://bas2s8savswqp" path="res://UI/SVGTextures/WorldManager/Trash-Disabled.svg" id="67_hvebp"]
+[ext_resource type="Script" path="res://UI/ComponentSelectionUI.cs" id="68_rkcf5"]
 [ext_resource type="Script" path="res://UI/SVGTextures/WorldManager/InfoBoxDisplay.cs" id="68_u2cox"]
 [ext_resource type="Resource" uid="uid://j758ufr2fof0" path="res://UI/SVGTextures/WorldManager/WorldSave-InfoBox.svg" id="69_yl6mo"]
 [ext_resource type="Resource" uid="uid://c2jqqqmexspdq" path="res://UI/SVGTextures/HUD/Hotbar-Selection-Off.svg" id="79_0swx8"]
@@ -4997,7 +4998,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="BlockSelection" type="Control" parent="WindowManager"]
+[node name="ComponentSelection" type="Control" parent="WindowManager" node_paths=PackedStringArray("_blockSelectionMenu")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5005,6 +5006,16 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("68_rkcf5")
+_blockSelectionMenu = NodePath("MenuHolder")
+
+[node name="MenuHolder" type="Control" parent="WindowManager/ComponentSelection"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
 visible = false
