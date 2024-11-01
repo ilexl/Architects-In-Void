@@ -3632,14 +3632,17 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 ratio = 1.78
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="WindowManager/HUD/Holder"]
 layout_mode = 2
+metadata/_edit_lock_ = true
 
 [node name="No-Background" type="ColorRect" parent="WindowManager/HUD/Holder/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
 color = Color(0.560784, 0.541176, 0.545098, 0)
+metadata/_edit_lock_ = true
 
 [node name="MarginContainer-Center" type="MarginContainer" parent="WindowManager/HUD/Holder/MarginContainer/No-Background"]
 layout_mode = 1
@@ -4914,6 +4917,7 @@ _inventoryWindowParent = NodePath("WindowsHolder")
 _inventoriesList = NodePath("ListHolder")
 _AccessableInventoryTitle = ExtResource("67_fli3w")
 _inventoriesListParent = NodePath("ListHolder/Background/Container2/Control/Container/Control/VBoxContainer")
+metadata/_edit_lock_ = true
 
 [node name="WindowsHolder" type="Control" parent="WindowManager/Inventories"]
 layout_mode = 1
@@ -4992,6 +4996,15 @@ text = "Accessable Inventories"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
+
+[node name="BlockSelection" type="Control" parent="WindowManager"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
 
 [node name="PauseMenu" type="Control" parent="WindowManager"]
 visible = false

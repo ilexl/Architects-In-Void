@@ -1,0 +1,14 @@
+[remap]
+
+importer="merovi.svgtexture2d"
+type="SVGTexture2D"
+uid="uid://cnbu1nx1ukc8w"
+path="res://.godot/imported/BlockSelection-Background-Main.svg-3e408cf335d6f8aa20b4f204c2635692.sex"
+
+[deps]
+
+source_file="res://UI/SVGTextures/BlockSelection/BlockSelection-Background-Main.svg"
+dest_files=["res://.godot/imported/BlockSelection-Background-Main.svg-3e408cf335d6f8aa20b4f204c2635692.sex"]
+
+[params]
+
