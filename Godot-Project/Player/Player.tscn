@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://xjqrmh8r7gfp"]
+[gd_scene load_steps=11 format=3 uid="uid://xjqrmh8r7gfp"]
 
 [ext_resource type="Script" path="res://Player/PlayerController.cs" id="1_mue7o"]
 [ext_resource type="PackedScene" uid="uid://bds1pv8qbk2ms" path="res://Player/PlayerHead.tscn" id="2_ti0ub"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Player/HotBar/HotBarManager.cs" id="4_rodfu"]
 [ext_resource type="PackedScene" uid="uid://jk854i5562q4" path="res://Vessels/VesselComponents/Armour/Armour.tscn" id="6_xtdry"]
 [ext_resource type="PackedScene" uid="uid://qtuqp5vywd8v" path="res://Vessels/VesselComponents/Thruster/Thruster.tscn" id="7_gucnc"]
+[ext_resource type="PackedScene" uid="uid://bhfhgvggl7hea" path="res://Vessels/VesselComponents/Cockpit/Cockpit.tscn" id="7_vvypq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_10an4"]
 
@@ -53,4 +54,4 @@ _body = NodePath("../Body")
 
 [node name="HotbarManager" type="Node" parent="."]
 script = ExtResource("4_rodfu")
-HotBar = Array[PackedScene]([null, ExtResource("6_xtdry"), ExtResource("7_gucnc"), null, null, null, null, null, null, null])
+HotBar = Array[PackedScene]([null, ExtResource("6_xtdry"), ExtResource("7_gucnc"), ExtResource("7_vvypq"), null, null, null, null, null, null])
