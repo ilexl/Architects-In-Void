@@ -1,8 +1,8 @@
 using System;
-using ArchitectsInVoid.WorldData;
+using ArchitectsInVoid.VesselComponent;
 using Godot;
 
-namespace ArchitectsInVoid.VesselComponent.Thruster;
+namespace ArchitectsInVoid.Vessels.VesselComponents.Thruster;
 
 /// <summary>
 /// A component that can be scaled and has stats determined by its size and width to length to height ratio.
@@ -35,10 +35,9 @@ public partial class Thruster : PlaceableComponent
 
     private Node3D _thrusterContainerNode;
 
+    public override PlaceableComponentType ComponentType { get; set; } = PlaceableComponentType.DynamicScale;
     public override void _Ready()
     {
-        if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
-        ComponentType = PlaceableComponentType.DynamicScale;
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
