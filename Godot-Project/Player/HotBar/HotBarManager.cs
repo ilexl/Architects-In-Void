@@ -43,7 +43,7 @@ public partial class HotBarManager : Node
 				if (scene == null) continue;
 				PlaceableComponent comp = (PlaceableComponent)scene.Instantiate();
 				if (comp == null) continue;
-				HotbarTextureChangedEvent(comp.Thumbnail, index);
+				HotbarTextureChangedEvent(ImageTexture.CreateFromImage(comp.Thumbnail), index);
 			}
 
 			_hotbarIconsNeedUpdating = false;
