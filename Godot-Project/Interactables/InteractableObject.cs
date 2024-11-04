@@ -8,6 +8,13 @@ namespace ArchitectsInVoid.Interactables;
 /// </summary>
 public partial class InteractableObject : StaticBody3D
 {
-    public delegate void DInteracted(PlayerController player);
+    public enum InteractionType
+    {
+        None,
+        UseAction,
+        LookedAt
+    }
+    
+    public delegate void DInteracted(PlayerController player, InteractionType type);
     public DInteracted Interacted;
 }
