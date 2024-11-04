@@ -97,6 +97,5 @@ bank_paths = ["res://Audio/Desktop/Master.strings.bank", "res://Audio/Desktop/Ma
 visible = false
 script = ExtResource("10_kxxpy")
 _sceneToSpawn = ExtResource("11_o3yro")
-on = null
 
 [node name="FmodListener3D" type="FmodListener3D" parent="."]

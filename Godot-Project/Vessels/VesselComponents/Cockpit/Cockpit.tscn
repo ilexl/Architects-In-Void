@@ -24,13 +24,6 @@ height = 1.0
 transform = Transform3D(1, 0, 0, 0, 1.5, 0, 0, 0, 2, 0, 0, 0)
 shape = SubResource("BoxShape3D_1s8d4")
 script = ExtResource("1_s7dop")
-_cmpSlcData_Title = "Cockpit"
-_cmpSlcData_Desc = "Cockpit v1 used to control vessels"
-_category = 2
-_cmpSlcData_infoTitle0 = "Test title"
-_cmpSlcData_infoDesc0 = "Test desc"
-ComponentType = 0
-Vessel = null
 Thumbnail = ExtResource("2_4m6me")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

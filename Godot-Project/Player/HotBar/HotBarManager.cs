@@ -23,7 +23,7 @@ public partial class HotBarManager : Node
 	public delegate void HotbarSlotChanged(int index);
 	public static HotbarSlotChanged HotbarSlotChangedEvent;
 	
-	public delegate void HotbarTextureChanged(Texture2D texture, int index);
+	public delegate void HotbarTextureChanged(Image texture, int index);
 	public static HotbarTextureChanged HotbarTextureChangedEvent;
 	
 	public override void _Ready()
@@ -68,7 +68,7 @@ public partial class HotBarManager : Node
                     HotbarTextureChangedEvent(null, index);
                     continue;
                 }
-				HotbarTextureChangedEvent(ImageTexture.CreateFromImage(comp.Thumbnail), index);
+				HotbarTextureChangedEvent(comp.Thumbnail, index);
 			}
 
 			_hotbarIconsNeedUpdating = false;

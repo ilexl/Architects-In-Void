@@ -489,13 +489,13 @@ public partial class HUD : Node
     }
     
     // Am I understanding this correctly?
-    public void SetItemSlotIcon(Texture2D texture, int slot)
+    public void SetItemSlotIcon(Image texture, int slot)
     {
         //GD.Print("HUD: hotbar icon recieved");
         if(_itemSlotIcons == null || _itemSlotIcons.Length != 10) { return; }
 
         TextureRect icon = (TextureRect)_itemSlotIcons[slot];
-        icon.Texture = texture;
+        icon.Texture = ImageTexture.CreateFromImage(texture);
     }
     /* End william */
 

@@ -142,7 +142,7 @@ public partial class PlaceableComponent : CollisionShape3D
 
     protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position, Vector3 scale, Basis rotation)
     {
-        //vessel.AddComponent(this);
+        //vessel.AddComponent(this);        
 
         var vesselRb = vessel.RigidBody;
         //var componentData = vessel.ComponentData;
