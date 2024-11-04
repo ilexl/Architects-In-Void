@@ -1,5 +1,6 @@
 using ArchitectsInVoid.Debug;
 using ArchitectsInVoid.Debug.Meshes;
+using ArchitectsInVoid.Interactables;
 using Godot;
 
 namespace ArchitectsInVoid.Player;
@@ -24,12 +25,9 @@ public partial class PlayerController : Node
     
     private Vector3 _gravity = ProjectSettings.GetSetting("physics/3d/default_gravity_vector").As<Vector3>() *
                                ProjectSettings.GetSetting("physics/3d/default_gravity").As<float>();
-    
-    
-    
 
-    
-    
+    [Export] private Vector3 _useDistance;
+
 
     public override void _Ready()
     {
@@ -145,5 +143,22 @@ public partial class PlayerController : Node
 
 
         return new Vector3(inputLeftRight, inputUpDown, inputForwardBackward);
+    }
+    
+    // TODO: Bind this to a control
+    private void Interact()
+    {
+        var spaceState = Body.GetWorld3D().DirectSpaceState;
+        var query = PhysicsRayQueryParameters3D.Create(Head.GlobalPosition, Head.GlobalPosition - Head.GlobalBasis * _useDistance, 3);
+        var result = spaceState.IntersectRay(query);
+        // DebugDraw.Ray(query, result, 10);
+
+        if (!result.TryGetValue("collider", out var value)) return;
+		
+        if ((Node3D)value is InteractableObject interactor)
+        {
+            GD.Print("TRUE");
+            interactor.Interacted(this);
+        }
     }
 }
