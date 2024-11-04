@@ -1,9 +1,7 @@
 using ArchitectsInVoid.Inventory;
 using ArchitectsInVoid.UI;
 using Godot;
-using System;
 using System.Collections.Generic;
-using System.Net;
 
 [Tool]
 public partial class InventoryManager : Node
