@@ -18,7 +18,7 @@ public partial class ComponentSelect : TextureButton
             var pc = temp as PlaceableComponent;
             if( pc != null )
             {
-                _componentRect.Texture = ImageTexture.CreateFromImage(pc.Thumbnail);
+                _componentRect.Texture = ImageTexture.CreateFromImage(pc._Thumbnail);
             }
         }
 

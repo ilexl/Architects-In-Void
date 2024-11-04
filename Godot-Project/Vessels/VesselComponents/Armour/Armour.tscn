@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://jk854i5562q4"]
 
 [ext_resource type="Script" path="res://Vessels/VesselComponents/Armour/Armour.cs" id="1_ut5e1"]
-[ext_resource type="Image" uid="uid://y88ntiuf7yyf" path="res://Vessels/VesselComponents/Armour/thumb.res" id="2_15bs4"]
+[ext_resource type="Image" uid="uid://0e45242kfqhw" path="res://Vessels/VesselComponents/Armour/thumb.res" id="2_15bs4"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_6dp60"]
 
@@ -11,7 +11,7 @@
 shape = SubResource("BoxShape3D_6dp60")
 script = ExtResource("1_ut5e1")
 Density = 7850.0
-Thumbnail = ExtResource("2_15bs4")
+_Thumbnail = ExtResource("2_15bs4")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ka1ks")

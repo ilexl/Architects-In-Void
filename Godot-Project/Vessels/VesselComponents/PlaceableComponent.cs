@@ -30,8 +30,8 @@ public partial class PlaceableComponent : CollisionShape3D
     public virtual PlaceableComponentType ComponentType { get; set; }
     
     [Export] protected double Density;
-    
-    [Export] public Image Thumbnail;
+
+    [Export] public Image _Thumbnail;
 
     [Export] private string _thumbnailName = "thumb.res";
 
@@ -173,29 +173,29 @@ public partial class PlaceableComponent : CollisionShape3D
         // Gets the containing folder of the component scene
         path = SceneUtility.GetSceneDirectory(path)  + "/" + _thumbnailName;
         GD.Print(path);
-        if (Thumbnail != null)
+        if (_Thumbnail != null)
         {
-            Thumbnail.ResourcePath = null;
+            _Thumbnail.ResourcePath = null;
         }
-        Thumbnail = null;
+        _Thumbnail = null;
         ResourceSaver.Save(newThumbnail, path, _flags);
         newThumbnail.ResourcePath = path;
-        Thumbnail = newThumbnail;
+        _Thumbnail = newThumbnail;
     }
 
 
     public override void _Notification(int what)
     {
-        if (what == NotificationEditorPostSave)
+        if (Engine.IsEditorHint())
         {
-            GenerateThumbnail();
+            if (what == NotificationEditorPostSave)
+            {
+                GenerateThumbnail();
+            }
         }
     }
     protected virtual void GenerateThumbnail()
     {
-        if (Engine.IsEditorHint())
-        {
-            scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
-        }
+        scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
     }
 }
