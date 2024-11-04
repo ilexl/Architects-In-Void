@@ -5499,6 +5499,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.541176, 1, 0.976471, 1)
@@ -5902,9 +5903,9 @@ _wmMain = NodePath("../..")
 _worldListHolder = NodePath("../AspectRatioContainer/MarginContainer/SettingsBackground/ScrollContainer/WorldListHolder")
 _worldSaveListScene = ExtResource("62_1gypc")
 _UIManager = NodePath("../../..")
-_mmBackground = NodePath("../Background")
+_mmBackground = NodePath("../Background-WM")
 
-[node name="Background" type="TextureRect" parent="WindowManager/WorldManager"]
+[node name="Background-WM" type="TextureRect" parent="WindowManager/WorldManager"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0

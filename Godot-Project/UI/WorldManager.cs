@@ -88,9 +88,30 @@ public partial class WorldManager : Node
             }
         }
 
+        if(_deleteBtn == null || _saveBtn == null)
+        {
+            _deleteBtn = GetParent().FindChild("Trash-Btn") as TextureButton;
+            _saveBtn = GetParent().FindChild("SaveBtn") as TextureButton;
+            if (_deleteBtn == null || _saveBtn == null)
+            {
+                GD.PushError("WorldManager: no node found for trash/save btns...");
+                return;
+            }
+        }
+        if(_mmBackground == null)
+        {
+            _mmBackground = GetParent().FindChild("Background-WM") as Control;
+
+            if (_mmBackground == null)
+            {
+                GD.PushError("WorldManager: no node found for background...");
+                return;
+            }
+        }
+        
         #endregion
         #region Connect buttons
-        
+
         if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(Cancel)))
         {
             _cancelBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(Cancel));
