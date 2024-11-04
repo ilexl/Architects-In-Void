@@ -439,7 +439,6 @@ miscellaneous_show_cursor={
 
 3d/run_on_separate_thread=true
 3d/physics_engine="JoltPhysics3D"
-3d/default_gravity=0.0
 3d/default_linear_damp=0.0
 3d/default_angular_damp=0.0
 jolt_3d/limits/max_linear_velocity=2.14748e+09
