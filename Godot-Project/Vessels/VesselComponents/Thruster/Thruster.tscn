@@ -8,4 +8,17 @@
 [node name="Thruster" type="CollisionShape3D"]
 shape = SubResource("BoxShape3D_1s8d4")
 script = ExtResource("1_d8u15")
+ComponentType = 1
 Thumbnail = ExtResource("2_7uscb")
+Vessel = null
+_height = 0.0
+_length = 0.0
+_width = 0.0
+Efficiency = 0.0
+MaterialUse = 0.0
+SurfaceArea = 0.0
+Thrust = 0.0
+ThrustPerVolume = 0.0
+ThrustSpoolTime = 0.0
+Volume = 0.0
+_thrusterContainerNode = null

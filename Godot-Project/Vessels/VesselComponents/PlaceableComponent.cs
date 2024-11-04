@@ -34,7 +34,9 @@ public partial class PlaceableComponent : CollisionShape3D
     [Export] public Image Thumbnail;
 
     [Export] private string _thumbnailName = "thumb.res";
-    
+
+
+    public Vessel Vessel;
     private readonly sf _flags =
         sf.ReplaceSubresourcePaths & 
         sf.Compress;
@@ -65,6 +67,7 @@ public partial class PlaceableComponent : CollisionShape3D
         vesselRB.AddChild(this);
         vesselRB.Mass += Density * Scale.LengthSquared();
         vesselRB.Transform = vesselRB.Transform with { Basis = rotation };
+        Vessel = vessel;
         return PlaceableComponentResult.Success;
         
     }
@@ -100,7 +103,7 @@ public partial class PlaceableComponent : CollisionShape3D
         
         Scale = scale;
         vesselRb.Mass += Density * Scale.LengthSquared();
-        
+        Vessel = vessel;
         return PlaceableComponentResult.Success;
     }
     #endregion
