@@ -1,6 +1,10 @@
 using System.IO;
+using ArchitectsInVoid.Helper;
 using ArchitectsInVoid.WorldData;
 using Godot;
+using FileAccess = Godot.FileAccess;
+
+using sf = Godot.ResourceSaver.SaverFlags;
 
 namespace ArchitectsInVoid.VesselComponent;
 
@@ -27,11 +31,13 @@ public partial class PlaceableComponent : CollisionShape3D
     
     [Export] protected double Density;
     
-    [Export] public Texture2D Thumbnail;
+    [Export] public Image Thumbnail;
+
+    [Export] private string _thumbnailName = "thumb.res";
     
-    
-    
-    
+    private readonly sf _flags =
+        sf.ReplaceSubresourcePaths & 
+        sf.Compress;
     
     /***************NEW VESSEL***************/
     #region NewVessel
@@ -109,17 +115,26 @@ public partial class PlaceableComponent : CollisionShape3D
 
     public void RecieveThumbnail(string path, Texture2D preview, Texture2D thumb, Variant userData)
     {
-        path = Path.GetDirectoryName(path);
-
-        ResourceSaver.Save(preview, path);
+        
+        // Gets the actual raw image type which means it can be converted to binary
+        var newThumbnail = preview.GetImage();
+        // Gets the containing folder of the component scene
+        path = SceneUtility.GetSceneDirectory(path)  + "/" + _thumbnailName;
         GD.Print(path);
-        Thumbnail = preview;
+        if (Thumbnail != null)
+        {
+            Thumbnail.ResourcePath = null;
+        }
+        Thumbnail = null;
+        ResourceSaver.Save(newThumbnail, path, _flags);
+        newThumbnail.ResourcePath = path;
+        Thumbnail = newThumbnail;
     }
 
 
     public override void _Notification(int what)
     {
-        if (what == NotificationEditorPreSave)
+        if (what == NotificationEditorPostSave)
         {
             GenerateThumbnail();
         }
