@@ -68,7 +68,7 @@ public partial class HotBarManager : Node
                     HotbarTextureChangedEvent(null, index);
                     continue;
                 }
-				HotbarTextureChangedEvent(comp.Thumbnail, index);
+				HotbarTextureChangedEvent(ImageTexture.CreateFromImage(comp.Thumbnail), index);
 			}
 
 			_hotbarIconsNeedUpdating = false;

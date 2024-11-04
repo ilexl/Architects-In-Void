@@ -41,7 +41,6 @@ public partial class PlaceableComponent : CollisionShape3D
         sf.ReplaceSubresourcePaths & 
         sf.Compress;
     
-    [Export] public Texture2D Thumbnail;
 
     #region Component Selection Data
 
