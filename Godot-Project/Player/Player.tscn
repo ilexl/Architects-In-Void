@@ -17,6 +17,7 @@ height = 3.0
 
 [node name="PlayerRoot" type="Node"]
 script = ExtResource("1_mue7o")
+_useDistance = Vector3(0, 0, 5)
 
 [node name="Body" type="RigidBody3D" parent="."]
 mass = 100.0
@@ -43,7 +44,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 
 [node name="ComponentCreator" type="Node" parent="." node_paths=PackedStringArray("_head", "_body")]
 script = ExtResource("3_btxcd")
+_gridSnap = null
+_gridSize = null
+_placementDistanceSensitivity = null
 _placementRotationSensitivity = 2.0
+_minPlacementDistance = null
+_maxPlacementDistance = null
 _maxTruncationThreshold = 8.0
 _minTruncationThreshold = 0.5
 _maxTruncationColor = Color(0.614057, 0.102782, 1, 1)
@@ -54,4 +60,5 @@ _body = NodePath("../Body")
 
 [node name="HotbarManager" type="Node" parent="."]
 script = ExtResource("4_rodfu")
+HotBarCount = null
 HotBar = Array[PackedScene]([null, ExtResource("6_xtdry"), ExtResource("7_gucnc"), ExtResource("7_vvypq"), null, null, null, null, null, null])
