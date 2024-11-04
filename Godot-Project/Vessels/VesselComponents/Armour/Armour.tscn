@@ -10,8 +10,10 @@
 [node name="Armour" type="CollisionShape3D"]
 shape = SubResource("BoxShape3D_6dp60")
 script = ExtResource("1_ut5e1")
+ComponentType = 1
 Density = 7850.0
 Thumbnail = ExtResource("2_bq0fd")
+Vessel = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 mesh = SubResource("BoxMesh_ka1ks")
