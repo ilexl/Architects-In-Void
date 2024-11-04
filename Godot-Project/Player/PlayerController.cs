@@ -208,7 +208,7 @@ public partial class PlayerController : Node
         }
         else
         {
-            Body.LinearVelocity += input.Normalized() * Acceleration * delta;
+            Body.LinearVelocity += Head.Basis * input.Normalized() * Acceleration * delta;
         }
         
     }
