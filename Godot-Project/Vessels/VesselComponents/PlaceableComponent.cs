@@ -22,22 +22,10 @@ public enum PlaceableComponentResult
 [Tool]
 public partial class PlaceableComponent : CollisionShape3D
 {
-    protected virtual PlaceableComponentType ComponentType { get; set; }
+    public virtual PlaceableComponentType ComponentType { get; set; }
     
     [Export] protected double Density;
-
-    [Export]
-    public bool GenerateThumb
-    {
-        get => false;
-        set
-        {
-            if (value)
-            {
-                GenerateThumbnail();
-            }
-        }
-    }
+    
     [Export] public Texture2D Thumbnail;
     
     
@@ -117,25 +105,25 @@ public partial class PlaceableComponent : CollisionShape3D
 
     }
 
-    protected virtual void GenerateThumbnail()
-    {
-        if (Engine.IsEditorHint())
-        {
-            //scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
-        }
-    }
+
     public void RecieveThumbnail(string path, Texture2D preview, Texture2D thumb, Variant userData)
     {
         Thumbnail = preview;
     }
 
-    public override void _EnterTree()
+
+    public override void _Notification(int what)
+    {
+        if (what == NotificationEditorPreSave)
+        {
+            GenerateThumbnail();
+        }
+    }
+    protected virtual void GenerateThumbnail()
     {
         if (Engine.IsEditorHint())
         {
-            GD.Print("Loaded");
-
+            scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
         }
-        
     }
 }
