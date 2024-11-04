@@ -433,6 +433,7 @@ miscellaneous_show_cursor={
 
 3d_physics/layer_1="Physics collision"
 3d_physics/layer_2="Component placement collision"
+3d_physics/layer_3="Interaction Collision"
 
 [physics]
 
