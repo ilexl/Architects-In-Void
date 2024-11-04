@@ -1,6 +1,7 @@
 using Godot;
 using System.Reflection.Metadata;
 using ArchitectsInVoid.Player.HotBar;
+using System;
 
 namespace ArchitectsInVoid.UI;
 
@@ -39,7 +40,7 @@ public partial class HUD : Node
     {
         
         #region ManualFixArrays
-        
+
         GD.Print("HUD: Manually Fixing Arrays");
 
         if (_itemSlotsHolder == null)
@@ -138,7 +139,8 @@ public partial class HUD : Node
         // bind events
         HotBarManager.HotbarSlotChangedEvent += HotbarSlotChanged;
         HotBarManager.HotbarTextureChangedEvent += SetItemSlotIcon;
-        
+        BindHover();
+
         // defaults shown
         SelectItemSlot(0);
         SelectHotbar(1);
@@ -146,6 +148,36 @@ public partial class HUD : Node
         OpenRightInfo();
         AutorefOn();
         DampenersOn();
+    }
+
+
+    void BindHover()
+    {
+       
+        for (int index = 0; index < _itemSlots.Length; index++)
+        {
+            Control slot = _itemSlots[index];
+            GD.Print($"Binding hover slot {index}");
+            int i = index;
+            slot.Connect(Control.SignalName.MouseEntered, Callable.From(() => MouseEntered(i)));
+            slot.Connect(Control.SignalName.MouseExited, Callable.From(() => MouseExited(i)));
+        }
+    }
+
+    int CurrentHoverSlot = -1;
+    void MouseExited(int slot)
+    {
+        GD.Print($"Mouse hovering over slot {slot}");
+        if (CurrentHoverSlot == slot)
+        {
+            CurrentHoverSlot = -1;
+        }
+    }
+    
+    void MouseEntered(int slot)
+    {
+        GD.Print($"Mouse no longer over slot {slot}");
+        CurrentHoverSlot = slot;
     }
 
     /// <summary>
@@ -378,6 +410,11 @@ public partial class HUD : Node
             item.Visible = false;
         }
         _hotbarSelectionEnabled[hotbar].Visible = true;
+        if(HotBarManager.Singleton == null)
+        {
+            return;
+        }
+        HotBarManager.Singleton.SelectHotbar(hotbar);
     }
 
     /// <summary>
@@ -454,11 +491,18 @@ public partial class HUD : Node
     // Am I understanding this correctly?
     public void SetItemSlotIcon(Texture2D texture, int slot)
     {
-        GD.Print("HUD: hotbar icon recieved");
+        //GD.Print("HUD: hotbar icon recieved");
         if(_itemSlotIcons == null || _itemSlotIcons.Length != 10) { return; }
 
         TextureRect icon = (TextureRect)_itemSlotIcons[slot];
         icon.Texture = texture;
     }
     /* End william */
+
+
+    internal int CheckIfMouseOver()
+    {
+        return CurrentHoverSlot;
+    }
+    
 }

@@ -27,11 +27,54 @@ public partial class PlaceableComponent : CollisionShape3D
     [Export] protected double Density;
     
     [Export] public Texture2D Thumbnail;
-    
-    
-    
-    
-    
+
+    #region Component Selection Data
+
+    public enum Category
+    {
+        Other,
+        Armour,
+        Controls,
+        Movement,
+        Power,
+        Storage,
+        Utility,
+        Defense,
+        Production,
+        Temperature,
+        Doors,
+        Aesthetics
+    }
+
+    [ExportGroup("Component Selection Data")]
+    [Export] public string _cmpSlcData_Title;
+    [Export] public string _cmpSlcData_Desc;
+    [Export] public Category _category;
+    [ExportSubgroup("Extra Properties")]
+    [Export] public string _cmpSlcData_infoTitle0;
+    [Export] public string _cmpSlcData_infoDesc0;
+    [Export] public string _cmpSlcData_infoTitle1;
+    [Export] public string _cmpSlcData_infoDesc1;
+    [Export] public string _cmpSlcData_infoTitle2;
+    [Export] public string _cmpSlcData_infoDesc2;
+    [Export] public string _cmpSlcData_infoTitle3;
+    [Export] public string _cmpSlcData_infoDesc3;
+    [Export] public string _cmpSlcData_infoTitle4;
+    [Export] public string _cmpSlcData_infoDesc4;
+    [Export] public string _cmpSlcData_infoTitle5;
+    [Export] public string _cmpSlcData_infoDesc5;
+    [Export] public string _cmpSlcData_infoTitle6;
+    [Export] public string _cmpSlcData_infoDesc6;
+    [Export] public string _cmpSlcData_infoTitle7;
+    [Export] public string _cmpSlcData_infoDesc7;
+    [Export] public string _cmpSlcData_infoTitle8;
+    [Export] public string _cmpSlcData_infoDesc8;
+    [Export] public string _cmpSlcData_infoTitle9;
+    [Export] public string _cmpSlcData_infoDesc9;
+
+    #endregion
+
+
     /***************NEW VESSEL***************/
     #region NewVessel
     // Scaled
@@ -84,9 +127,10 @@ public partial class PlaceableComponent : CollisionShape3D
 
     protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position, Vector3 scale, Basis rotation)
     {
-        
+        //vessel.AddComponent(this);
+
         var vesselRb = vessel.RigidBody;
-        var componentData = vessel.ComponentData;
+        //var componentData = vessel.ComponentData;
         Transform = Transform with { Basis =  vesselRb.Transform.Basis.Inverse() * rotation };
         vesselRb.AddChild(this);
         Position = position * vesselRb.Transform;

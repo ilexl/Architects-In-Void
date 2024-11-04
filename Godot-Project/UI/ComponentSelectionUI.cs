@@ -1,13 +1,18 @@
+using ArchitectsInVoid.Player.HotBar;
 using ArchitectsInVoid.UI;
 using Godot;
 using System;
 using System.Collections.Generic;
 
+[Tool]
 public partial class ComponentSelectionUI : Control
 {
     #region Variables
-
+    public static ComponentSelectionUI Singleton;
     [Export] Control _blockSelectionMenu;
+    [Export] GetPackedScenes _gps;
+    [Export] VBoxContainer _containerVertical;
+    [Export] PackedScene _blankComponentSelection;
     [ExportGroup("ComponentInfoList")]
     [Export] Control _componentInfo0;
     [Export] Control _componentInfo1;
@@ -29,6 +34,7 @@ public partial class ComponentSelectionUI : Control
 
     public override void _Ready()
     {
+        Singleton = this;
         MenuShown(false);
         _componentInfos = new List<Control>()
         {
@@ -44,12 +50,15 @@ public partial class ComponentSelectionUI : Control
             _componentInfo9
         };
         ShowComponentInfo(null);
+
+        List<PackedScene> packedScenes = _gps.GetAll();
+        GenerateSlots(packedScenes);
     }
 
-    struct ComponentInfo
+    public struct ComponentInfo
     {
-        public string Title;
-        public string Info;
+        [Export]public string Title;
+        [Export]public string Info;
     }
 
     void ShowComponentInfo(List<ComponentInfo> componentInfos)
@@ -114,4 +123,57 @@ public partial class ComponentSelectionUI : Control
         }
     }
 
+    public void GenerateSlots(List<PackedScene> packedScenes)
+    {
+        foreach(var child in _containerVertical.GetChildren())
+        {
+            child.QueueFree();
+        }
+
+        double verticalSlotsRaw = (double)packedScenes.Count / 12d;
+        double verticalSlots = System.Math.Round(verticalSlotsRaw);
+        if (verticalSlotsRaw.ToString().Contains(".") && verticalSlots < verticalSlotsRaw)
+        {
+            verticalSlots++;
+        }
+
+        for (int i = 0; i < verticalSlots; i++)
+        {
+            HBoxContainer containerH = new HBoxContainer();
+            for (int j = 0; j < 12; j++)
+            {
+                Node c = _blankComponentSelection.Instantiate();
+                containerH.AddChild(c);
+                ComponentSelect cs = c as ComponentSelect;
+                
+                if (i * 12 + j < packedScenes.Count)
+                {
+                    cs.Setup(packedScenes[i * 12 + j]);
+                }
+                else
+                {
+                    cs.Setup(null);
+                }
+            }
+            containerH.AddThemeConstantOverride("separation", -2);
+            _containerVertical.AddChild(containerH);
+        }
+    }
+
+    internal void CheckIfDroppedOnHotbar(ComponentSelect componentSelect)
+    {
+        UIManager _uiManger = GetParent().GetParent() as UIManager;
+        
+        if(_uiManger == null)
+        {
+            GD.PushError("ComponentSelectionUI: no ui manager found...");
+            return;
+        }
+        
+        var HUD = _uiManger.HudMenu;
+        int slot = HUD.CheckIfMouseOver();
+        if(slot == -1 || slot == 10) { return; }
+
+        HotBarManager.Singleton.SetSlot(slot, componentSelect.Component);
+    }
 }
