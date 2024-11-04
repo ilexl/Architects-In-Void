@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=116 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -112,7 +112,6 @@
 [ext_resource type="Resource" uid="uid://cv1jqijhyyx32" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Pressed.svg" id="96_r8fy7"]
 [ext_resource type="Resource" uid="uid://daxoe6tiu6ktu" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Highlighted.svg" id="97_guq2i"]
 [ext_resource type="Resource" uid="uid://cgqbv5sxu7alo" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Disabled.svg" id="98_35sa6"]
-[ext_resource type="PackedScene" uid="uid://bv320klmfeipe" path="res://UI/SVGTextures/PopUp/info_pop_up_cb.tscn" id="104_bdbn7"]
 [ext_resource type="Script" path="res://UI/InventoryManager.cs" id="106_kslu5"]
 [ext_resource type="Resource" uid="uid://t7lr6f7c2xnp" path="res://UI/SVGTextures/Inventory/InventoriesListBackground.svg" id="110_qwl6r"]
 
@@ -142,7 +141,7 @@ metadata/_edit_lock_ = true
 
 [node name="SVGCamera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-zoom = Vector2(392, 392)
+zoom = Vector2(429.5, 429.5)
 script = ExtResource("60_256pr")
 metadata/_edit_lock_ = true
 
@@ -5499,6 +5498,7 @@ anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -1.0
 grow_horizontal = 0
 grow_vertical = 2
 theme_override_colors/default_color = Color(0.541176, 1, 0.976471, 1)
@@ -5529,7 +5529,7 @@ grow_vertical = 2
 texture = ExtResource("6_pcm66")
 expand_mode = 1
 
-[node name="PauseMenuButtons" type="TextureRect" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn", "_UIManager")]
+[node name="PauseMenuButtons" type="TextureRect" parent="WindowManager/PauseMenu" node_paths=PackedStringArray("_resumeBtn", "_saveGameBtn", "_loadGameBtn", "_mainMenuBtn", "_desktopBtn")]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -5550,7 +5550,6 @@ _saveGameBtn = NodePath("PauseBtns/Save")
 _loadGameBtn = NodePath("PauseBtns/Load")
 _mainMenuBtn = NodePath("PauseBtns/MainMenu")
 _desktopBtn = NodePath("PauseBtns/Exit")
-_UIManager = NodePath("../../..")
 
 [node name="Background" type="Sprite2D" parent="WindowManager/PauseMenu/PauseMenuButtons"]
 centered = false
@@ -6712,7 +6711,6 @@ _confirmPopUp = ExtResource("33_76cnx")
 _confirmPopUpCD = ExtResource("46_tu8o7")
 _infoPopUp = ExtResource("34_fl41a")
 _infoPopUpNC = ExtResource("52_8l8i6")
-_infoPopUpCB = ExtResource("104_bdbn7")
 _inputPopUp = ExtResource("35_2h4aw")
 metadata/_edit_lock_ = true
 
