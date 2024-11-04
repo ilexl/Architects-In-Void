@@ -16,7 +16,7 @@ public partial class WorldManager : Node
 {
     #region Variables
 
-    [Export] private TextureButton _cancelBtn, _loadBtn, _newGameBtn;
+    [Export] private TextureButton _cancelBtn, _loadBtn, _newGameBtn, _deleteBtn, _saveBtn;
     private List<WorldSaveTitle> _currentlySelected;
     [Export] private int _testAmount;
     [Export] private bool _testWorldList;
@@ -25,7 +25,8 @@ public partial class WorldManager : Node
     [Export] private Node _worldListHolder;
     [Export] private PackedScene _worldSaveListScene;
     [Export] UIManager _UIManager;
-    [Export] Data _data;
+    [Export] public Data DataInstance;
+    [Export] Control _mmBackground; // main menu background image
 
     #endregion
 
@@ -90,25 +91,35 @@ public partial class WorldManager : Node
         #endregion
         #region Connect buttons
         
-        if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(Cancel)))
+        if (!_cancelBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(Cancel)))
         {
-            _cancelBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(Cancel));
+            _cancelBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(Cancel));
         }
-        if (!_loadBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld)))
+        if (!_loadBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(LoadSelectedWorld)))
         {
-            _loadBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(LoadSelectedWorld));
+            _loadBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(LoadSelectedWorld));
         }
-        if (!_newGameBtn.IsConnected(BaseButton.SignalName.ButtonDown, Callable.From(NewGameBtnCall)))
+        if (!_newGameBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(NewGameBtnCall)))
         {
-            _newGameBtn.Connect(BaseButton.SignalName.ButtonDown, Callable.From(NewGameBtnCall));
+            _newGameBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(NewGameBtnCall));
+        }
+        if (!_deleteBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(DeleteSelectedWorlds)))
+        {
+            _deleteBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(DeleteSelectedWorlds));
+        }
+        if (!_saveBtn.IsConnected(BaseButton.SignalName.ButtonUp, Callable.From(SaveSelectedOverwrite)))
+        {
+            _saveBtn.Connect(BaseButton.SignalName.ButtonUp, Callable.From(SaveSelectedOverwrite));
         }
 
         #endregion
 
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
+        _saveBtn.Disabled = true;
+        _deleteBtn.Disabled = true;
         _UIManager = ((UIManager)_wmMain.GetParent());
-        _data = (Data)_UIManager.GetParent().FindChild("Data");
+        DataInstance = (Data)_UIManager.GetParent().FindChild("Data");
     }
 
     /// <summary>
@@ -125,8 +136,36 @@ public partial class WorldManager : Node
         else
         {
             // otherwise we need to create a new save for the current game...
-            GD.Print("WorldManager: not implemented - new save for in game"); //TODO: implement new save for in game
+            _UIManager.PopUpManager.DisplayInputPopUp("Save as:", Callable.From(SaveAs));
         }
+    }
+    
+    void SaveAs()
+    {
+        string input = _UIManager.PopUpManager.LastInput;
+        if (input.Length == 0)
+        {
+            _UIManager.PopUpManager.DisplayError("Error: input", "Input cannot be blank... Try filling out the input :)");
+            return;
+        }
+
+        DataInstance.Save(input);
+        RefreshSaves();
+        _UIManager.PopUpManager.DisplayInfoPopUp("Successfully Saved!");
+        _UIManager.PauseMenu.GameSavedTrigger();
+    }
+
+    void SaveSelectedOverwrite()
+    {
+        _UIManager.PopUpManager.DisplayConfirmPopUp("Are you sure?\nThis will overwrite the save data...", Callable.From(SaveSelectedOverwriteConfirmed));
+    }
+
+    void SaveSelectedOverwriteConfirmed()
+    {
+        GD.Print("WorldManager: overwriting save for selected world");
+        DataInstance.Save(_currentlySelected.First().Title);
+        _UIManager.PopUpManager.DisplayInfoPopUp("Saved successfully...");
+        _UIManager.PauseMenu.GameSavedTrigger();
     }
 
     /// <summary>
@@ -134,8 +173,16 @@ public partial class WorldManager : Node
     /// </summary>
     private void Cancel()
     {
-        GD.Print("Settings: Cancel Button Pressed");
-        _wmMain.ShowWindow(_winMainMenu);
+        GD.Print("Settings: Back Button Pressed");
+        if (GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu)
+        {
+            _wmMain.ShowWindow(_winMainMenu);
+        }
+        else
+        {
+            _wmMain.HideOnly("WorldManager");
+        }
+        
     }
 
     /// <summary>
@@ -146,6 +193,7 @@ public partial class WorldManager : Node
         GD.Print("WorldManager: load called");
         _currentlySelected = new List<WorldSaveTitle>();
         _loadBtn.Disabled = true;
+        _mmBackground.Visible = GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu;
 
         if (_testWorldList) Test();
         else RefreshSaves();
@@ -157,13 +205,13 @@ public partial class WorldManager : Node
     private void RefreshSaves()
     {
         foreach (var n in _worldListHolder.GetChildren()) _worldListHolder.RemoveChild(n);
-        foreach (string worldName in _data.RetrieveAllValidSavesAsList())
+        foreach (string worldName in DataInstance.RetrieveAllValidSavesAsList())
         {
             var inst = _worldSaveListScene.Instantiate();
             _worldListHolder.AddChild(inst);
             var wst = (WorldSaveTitle)inst;
             var title = worldName;
-            var date = _data.GetLastSavedFromFile(worldName);
+            var date = DataInstance.GetLastSavedFromFile(worldName);
             wst.UpdateWorldSaveTitle(title, date);
             wst.BindButtonToManager(this);
         }
@@ -197,6 +245,29 @@ public partial class WorldManager : Node
         CallLoad();
     }
 
+    void DeleteSelectedWorlds()
+    {
+        GD.Print("WorldManager: delete btn pressed");
+        _UIManager.PopUpManager.DisplayConfirmPopUp("Are you sure you want to delete \nthese worlds. It cannot be undone...", Callable.From(DeleteSelectedWorldsConfirmed));
+    }
+
+    void DeleteSelectedWorldsConfirmed()
+    {
+        GD.Print("WorldManager: delete selected worlds confirmed");
+        foreach(WorldSaveTitle wst in _currentlySelected)
+        {
+            DeleteWorld(wst);
+        }
+        RefreshSaves();
+        _currentlySelected = new List<WorldSaveTitle>();
+        ListedWorldClicked(null);
+    }
+
+    void DeleteWorld(WorldSaveTitle wst)
+    {
+        DataInstance.DeleteSave(wst.Title);
+    }
+
     /// <summary>
     /// Call back for when the input for a new world is confirmed
     /// </summary>
@@ -209,7 +280,7 @@ public partial class WorldManager : Node
             return;
         }
 
-        _data.NewGame(input);
+        DataInstance.NewGame(input);
         RefreshSaves();
     }
 
@@ -218,10 +289,24 @@ public partial class WorldManager : Node
     /// </summary>
     private void LoadSelectedWorld()
     {
+        if (GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu)
+        {
+            LoadSelectedWorldConfirmed();
+        }
+        else
+        {
+            _UIManager.PopUpManager.DisplayConfirmPopUp("Are you sure?\nAny Unsaved Progress will be lost...", Callable.From(LoadSelectedWorldConfirmed));
+        }
+        
+    }
+
+    void LoadSelectedWorldConfirmed()
+    {
         GD.Print("WorldManager: loading selected world");
         GameManager.Singleton.SetGameState(GameManager.GameState.InGame);
         _wmMain.ShowWindow(_winHud);
-        _data.Load(_currentlySelected.First().Title);
+        DataInstance.Load(_currentlySelected.First().Title);
+        _UIManager.PauseMenu.SetPause(false);
     }
 
     /// <summary>
@@ -229,17 +314,45 @@ public partial class WorldManager : Node
     /// </summary>
     public void ListedWorldClicked(WorldSaveTitle wst)
     {
-        var currentState = wst.GetButtonState();
-        GD.Print($"ListedWorldClicked: {wst.Title} received with state {currentState}");
-        if (currentState == false) _currentlySelected.Remove(wst);
-        if (currentState) _currentlySelected.Add(wst);
+        if(wst != null)
+        {
+            var currentState = wst.GetButtonState();
+            GD.Print($"ListedWorldClicked: {wst.Title} received with state {currentState}");
+            if (currentState == false) _currentlySelected.Remove(wst);
+            if (currentState) _currentlySelected.Add(wst);
+        }
+
+        if (_currentlySelected.Count > 0)
+        {
+            _deleteBtn.Disabled = false;
+        }
+        else
+        {
+            _deleteBtn.Disabled=true;
+        }
+
 
         if (_currentlySelected.Count == 0 || _currentlySelected.Count > 1)
+        {
             _loadBtn.Disabled = true;
+            _saveBtn.Disabled = true;
+        }
         else if (_currentlySelected.Count == 1)
+        {
             _loadBtn.Disabled = false;
-        else
+            if (GameManager.Singleton.CurrentGameState == GameManager.GameState.MainMenu)
+            {
+                _saveBtn.Disabled = true; // cant save in main menu
+            }
+            else
+            {
+                _saveBtn.Disabled = false; // can save while in game
+            }
+        }
+        else 
+        {
             GD.PushError("WorldManger: invalid amount in list...");
+        }
     }
 
     /// <summary>

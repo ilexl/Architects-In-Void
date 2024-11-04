@@ -19,6 +19,8 @@ public partial class Pause : Node
     private bool _gameSavedWhilePaused;
     private bool _readyForPauseInput;
 
+    [Export] private UIManager _UIManager;
+
     #endregion
 
     /// <summary>
@@ -43,6 +45,14 @@ public partial class Pause : Node
         {
             GD.Print("Pause: missing texture buttons...");
             return;
+        }
+        if(_UIManager == null)
+        {
+            _UIManager = GetParent().GetParent().GetParent() as UIManager;
+            if (_UIManager == null)
+            {
+                GD.Print("Pause: ui manager not found...");
+            }
         }
 
         #endregion
@@ -103,8 +113,28 @@ public partial class Pause : Node
                 }
                 _readyForPauseInput = true; // allow further calls now that we are done
             }
+
+            // switch show / hide cursor
+            if (@event.IsActionPressed("miscellaneous_show_cursor"))
+            {
+                if(Input.MouseMode == Input.MouseModeEnum.Captured)
+                {
+                    Input.MouseMode = Input.MouseModeEnum.Visible;
+                }
+                else
+                {
+                    Input.MouseMode = Input.MouseModeEnum.Captured;
+                    _UIManager.UIInventoryManager.CancelItemInCursor();
+                    // Cancel item being in cursor
+                }
+            }
         }
         
+    }
+
+    public void GameSavedTrigger()
+    {
+        _gameSavedWhilePaused = true;
     }
 
     /// <summary>
@@ -118,11 +148,14 @@ public partial class Pause : Node
         {
             ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("PauseMenu");
             GD.Print("Pause: game has been paused");
+            // This probably shouldn't be here
+            Input.MouseMode = Input.MouseModeEnum.Visible;
         }
         else
         {
             ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("HUD");
             GD.Print("Pause: game has been unpaused");
+            Input.MouseMode = Input.MouseModeEnum.Captured;
         }
     }
 
@@ -141,7 +174,8 @@ public partial class Pause : Node
     private void SaveGame()
     {
         GD.Print("Pause: save btn pressed");
-        // TODO: implementation
+        _UIManager.WorldMenu.DataInstance.QuickSave();
+        _UIManager.PopUpManager.DisplayInfoPopUp("Successfully Saved!", Callable.From(ResumeGame));
     }
 
     /// <summary>
@@ -149,8 +183,9 @@ public partial class Pause : Node
     /// </summary>
     private void LoadGame()
     {
-        GD.Print("Pause: load btn pressed");
-        // TODO: implementation
+        GD.Print("Pause: saveload btn pressed");
+        _UIManager.UIWindowManager.ShowOnly("WorldManager");
+        _UIManager.WorldMenu.CallLoad();
     }
 
     /// <summary>
@@ -176,9 +211,10 @@ public partial class Pause : Node
     /// </summary>
     public void MainMenuConfirmed()
     {
-        ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("MainMenu");
+        _UIManager.UIWindowManager.ShowWindow("MainMenu");
         GameManager.Singleton.SetGameState(GameManager.GameState.MainMenu);
         ((Data)GameManager.Singleton.FindChild("Data")).Clear();
+        _UIManager.UIInventoryManager.HideInventoryList();
     }
 
     /// <summary>
