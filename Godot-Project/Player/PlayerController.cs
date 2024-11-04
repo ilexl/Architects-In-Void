@@ -141,7 +141,7 @@ public partial class PlayerController : Node
         if (Input.IsActionJustPressed("toggle_dampeners")) Dampeners = !Dampeners;
         if (Input.IsActionJustPressed("toggle_jetpack")) Jetpack = !Jetpack;
 
-
+        if (Input.IsActionJustPressed("interact_use_or_interact")) Interact();
         return new Vector3(inputLeftRight, inputUpDown, inputForwardBackward);
     }
     
@@ -151,7 +151,7 @@ public partial class PlayerController : Node
         var spaceState = Body.GetWorld3D().DirectSpaceState;
         var query = PhysicsRayQueryParameters3D.Create(Head.GlobalPosition, Head.GlobalPosition - Head.GlobalBasis * _useDistance, 3);
         var result = spaceState.IntersectRay(query);
-        // DebugDraw.Ray(query, result, 10);
+        DebugDraw.Ray(query, result, 10);
 
         if (!result.TryGetValue("collider", out var value)) return;
 		
