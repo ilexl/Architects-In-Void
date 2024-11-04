@@ -23,16 +23,6 @@ public partial class GameManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
-        // TEMPORARY TEMPORARY
-        var options = new JsonSerializerOptions
-        {
-            WriteIndented = true,
-            Converters =
-            {
-                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
-            }
-        };
-        GD.Print(JsonSerializer.Serialize( ArchitectsInVoid.Inventory.Item.ALL_ITEMS, options));
         
         
         
