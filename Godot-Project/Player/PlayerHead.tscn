@@ -3,7 +3,7 @@
 [sub_resource type="SphereMesh" id="SphereMesh_1nc7u"]
 
 [node name="Head" type="Node3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.00022219, -0.0483966, 0.0365229)
+rotation_edit_mode = 1
 
 [node name="Camera" type="Camera3D" parent="."]
 

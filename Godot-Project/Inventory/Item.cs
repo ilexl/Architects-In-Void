@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Text.Json.Serialization;
 
 namespace ArchitectsInVoid.Inventory;
 
@@ -113,9 +114,10 @@ public partial class Item : Node
         return GD.Load($"res://UI/Item-Icons/{name}.png") as Texture2D;
     }
 
-    private struct ItemData
+    internal struct ItemData
     {
-        Type _type;
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Type? _type { get; set; }
         int _maxAmount;
         public int MaxAmount { get => _maxAmount; }
         Measurement _measurement;
@@ -130,7 +132,7 @@ public partial class Item : Node
         }
 
     }
-    private enum Measurement: int
+    internal enum Measurement: int
     {
         Amount = 0,
         Mass = 1,
@@ -153,10 +155,14 @@ public partial class Item : Node
 
         Count = 3, // this has to be the length this enum aka the last value
     }
-    private static readonly ItemData[] ALL_ITEMS = new ItemData[(int)Type.Count]
+    internal static readonly ItemData[] ALL_ITEMS = new ItemData[(int)Type.Count]
     {
         new ItemData(Type.None,             0,          Measurement.Amount),
         new ItemData(Type.IronPlate,        100,        Measurement.Amount),
         new ItemData(Type.CopperPlate,      100,        Measurement.Amount)
     };
+}
+
+internal class StringEnumConverter
+{
 }

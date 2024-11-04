@@ -285,14 +285,11 @@ public partial class ComponentCreator : Node
 
         
         // This is a sign that this whole thing needs a refactor. This shouldn't be here.
-        var component = _selectedComponentScene.Instantiate() as PlaceableComponent;
-        GD.Print(component.ComponentType);
-        if (component.ComponentType == PlaceableComponentType.FixedScale)
+        
+        if (_selectedComponentScene?.Instantiate() is PlaceableComponent { ComponentType: PlaceableComponentType.FixedScale } component)
         {
             Vector3 previewScale = component.Scale;
-
             Vector3 previewOffset = _cursor.Transform.Basis * previewScale;
-
             Vector3 normalOffset = GetOffsetFromSurface(component);
             
             _cursor.SetCornerPositions(position - previewOffset / 2 + normalOffset, position + previewOffset / 2 + normalOffset);
@@ -379,7 +376,7 @@ public partial class ComponentCreator : Node
     }
 
 
-    private Vector3 GetOffsetFromSurface(PlaceableComponent component)
+    private Vector3 GetOffsetFromSurface(PlaceableComponent component)  
     {
         Vector3 widthXNormal = _cursor.Transform.Basis * component.Transform.Basis.X;
         Vector3 widthYNormal = _cursor.Transform.Basis * component.Transform.Basis.Y;

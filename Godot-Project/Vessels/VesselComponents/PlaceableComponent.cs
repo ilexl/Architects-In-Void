@@ -1,5 +1,10 @@
+using System.IO;
+using ArchitectsInVoid.Helper;
 using ArchitectsInVoid.WorldData;
 using Godot;
+using FileAccess = Godot.FileAccess;
+
+using sf = Godot.ResourceSaver.SaverFlags;
 
 namespace ArchitectsInVoid.VesselComponent;
 
@@ -25,6 +30,16 @@ public partial class PlaceableComponent : CollisionShape3D
     public virtual PlaceableComponentType ComponentType { get; set; }
     
     [Export] protected double Density;
+    
+    [Export] public Image Thumbnail;
+
+    [Export] private string _thumbnailName = "thumb.res";
+
+
+    public Vessel Vessel;
+    private readonly sf _flags =
+        sf.ReplaceSubresourcePaths & 
+        sf.Compress;
     
     [Export] public Texture2D Thumbnail;
 
@@ -101,6 +116,7 @@ public partial class PlaceableComponent : CollisionShape3D
         vesselRB.AddChild(this);
         vesselRB.Mass += Density * Scale.LengthSquared();
         vesselRB.Transform = vesselRB.Transform with { Basis = rotation };
+        Vessel = vessel;
         return PlaceableComponentResult.Success;
         
     }
@@ -137,7 +153,7 @@ public partial class PlaceableComponent : CollisionShape3D
         
         Scale = scale;
         vesselRb.Mass += Density * Scale.LengthSquared();
-        
+        Vessel = vessel;
         return PlaceableComponentResult.Success;
     }
     #endregion
@@ -152,13 +168,26 @@ public partial class PlaceableComponent : CollisionShape3D
 
     public void RecieveThumbnail(string path, Texture2D preview, Texture2D thumb, Variant userData)
     {
-        Thumbnail = preview;
+        
+        // Gets the actual raw image type which means it can be converted to binary
+        var newThumbnail = preview.GetImage();
+        // Gets the containing folder of the component scene
+        path = SceneUtility.GetSceneDirectory(path)  + "/" + _thumbnailName;
+        GD.Print(path);
+        if (Thumbnail != null)
+        {
+            Thumbnail.ResourcePath = null;
+        }
+        Thumbnail = null;
+        ResourceSaver.Save(newThumbnail, path, _flags);
+        newThumbnail.ResourcePath = path;
+        Thumbnail = newThumbnail;
     }
 
 
     public override void _Notification(int what)
     {
-        if (what == NotificationEditorPreSave)
+        if (what == NotificationEditorPostSave)
         {
             GenerateThumbnail();
         }
