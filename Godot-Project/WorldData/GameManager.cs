@@ -1,5 +1,7 @@
 using Godot;
 using System;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 /// <summary>
 /// A mananger for keeping track of the games current state
@@ -21,6 +23,24 @@ public partial class GameManager : Node
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
 	{
+        // TEMPORARY TEMPORARY
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Converters =
+            {
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            }
+        };
+        GD.Print(JsonSerializer.Serialize( ArchitectsInVoid.Inventory.Item.ALL_ITEMS, options));
+        
+        
+        
+        
+        
+        
+        
+        
         if (Engine.IsEditorHint()) { return; } // do NOT run when not in game
         if (_singleton != null)
         {
