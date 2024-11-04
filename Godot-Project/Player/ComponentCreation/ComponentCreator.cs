@@ -44,6 +44,8 @@ public partial class ComponentCreator : Node
     private double _storedPlacementDistance; // The stored distance after initiating a placement to be returned to after ending the placement
     
     private Vector3 _truncatedPlacementPosition;
+
+    private Vector3 _placementNormal;
     
     private Vector3 _cursorStart;
     private Vector3 _cursorEnd;
@@ -55,13 +57,14 @@ public partial class ComponentCreator : Node
     
     
     // Component selection
-    private PackedScene _selectedComponent;
-    public PackedScene SelectedComponent // Useful for setting the label in addition to the value
+    private PackedScene _selectedComponentScene;
+    
+    public PackedScene SelectedComponentScene // Useful for setting the label in addition to the value
     {
-        get => _selectedComponent;
+        get => _selectedComponentScene;
         set
         {
-            _selectedComponent = value;
+            _selectedComponentScene = value;
             _cursor.SetLabelName(value);
         } 
     }
@@ -92,7 +95,7 @@ public partial class ComponentCreator : Node
         
         // Show the cursor and handle placement distance if the player has a component selected on their hotbar
         SetPlaceRotation(delta);
-        if (SelectedComponent is not null)
+        if (SelectedComponentScene is not null)
         {
             _cursor.Visible = true; 
             SetPlaceDistance(placementDistanceControl);
@@ -108,7 +111,7 @@ public partial class ComponentCreator : Node
             // The player isn't already placing something
             case ComponentPlacerState.Idle:
                 // Set the starting position of the cursor and move on to the next state if the player has depressed the place button
-                if (placeAction == 1.0 && SelectedComponent is not null)
+                if (placeAction == 1.0 && SelectedComponentScene is not null)
                 {
                     StartPlace();
                     
@@ -151,7 +154,7 @@ public partial class ComponentCreator : Node
             CollisionShape3D targetedShape = (CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"]);
             _cursor.Basis = _targetedCollider.Transform.Basis * targetedShape.Transform.Basis;
             _cursor.Scale = Vector3.One; // Reset the scale since the basis also includes it
-
+            
             SetPlaceColor();
             SnapPlacementToGrid(targetedShape, result);
             
@@ -191,8 +194,11 @@ public partial class ComponentCreator : Node
         
         double widthLength = widthV.Length();
         double heightLength = heightV.Length();
+        
         Vector3 faceCenter = targetedShape.GlobalPosition + depthV / 2;
         DebugDraw.Grid(faceCenter,  widthV / widthLength, heightV / heightLength, countUp: widthLength / 0.2, countRight: heightLength / 0.2);
+
+        _placementNormal = (Vector3)result["normal"];
     }
     
     /// <summary>
@@ -230,7 +236,30 @@ public partial class ComponentCreator : Node
             // _cursorEnd = transformOrtho * targetRelativeEndPosition;
             //
         }
-        _cursor.SetCornerPositions(_cursorStart, _cursorEnd);
+        
+        
+        
+        
+        
+        // This is a sign that this whole thing needs a refactor. This shouldn't be here.
+        var component = _selectedComponentScene.Instantiate() as PlaceableComponent;
+        if (component.ComponentType == PlaceableComponentType.FixedScale)
+        {
+            Vector3 previewScale = component.Scale;
+
+            Vector3 previewOffset = _cursor.Transform.Basis * previewScale;
+
+            
+            Vector3 normalOffset = GetOffsetFromSurface(component);
+            
+            _cursor.SetCornerPositions(_cursorStart - previewOffset / 2 + normalOffset, _cursorStart + previewOffset / 2 + normalOffset);
+        }
+        else
+        {
+            _cursor.SetCornerPositions(_cursorStart, _cursorEnd);
+        }
+        
+        
         // _cursor.SetScale(scale);
         _cursor.SetLabelVisible(true);
     }
@@ -253,7 +282,26 @@ public partial class ComponentCreator : Node
         Vector3 position = _truncatedPlacementPosition == Vector3.Zero ? CalculateCursorPosition() : _truncatedPlacementPosition;
         _cursor.Position = position;
         _cursor.SetScale(Vector3.Zero);
-        _cursor.SetCornerPositions(position, position);
+
+        
+        // This is a sign that this whole thing needs a refactor. This shouldn't be here.
+        var component = _selectedComponentScene.Instantiate() as PlaceableComponent;
+        GD.Print(component.ComponentType);
+        if (component.ComponentType == PlaceableComponentType.FixedScale)
+        {
+            Vector3 previewScale = component.Scale;
+
+            Vector3 previewOffset = _cursor.Transform.Basis * previewScale;
+
+            Vector3 normalOffset = GetOffsetFromSurface(component);
+            
+            _cursor.SetCornerPositions(position - previewOffset / 2 + normalOffset, position + previewOffset / 2 + normalOffset);
+        }
+        else
+        {
+            _cursor.SetCornerPositions(position, position);
+        }
+        
     }
     
 
@@ -262,18 +310,25 @@ public partial class ComponentCreator : Node
     /// </summary>
     private void FinishPlace()
     {
+        var placeableComponent = _selectedComponentScene.Instantiate() as PlaceableComponent;
         // Resolve the stored distance
         _desiredPlacementDistance = _storedPlacementDistance;
         _state = ComponentPlacerState.Idle;
         _cursor.SetLabelVisible(false);
-        if (_selectedComponent is null) return;
+        if (_selectedComponentScene is null) return;
         
         
         var scale = _cursor.GetComponentScale();
         if (scale.X * scale.Y * scale.Z == 0) return;
         var position = _cursorStart.Lerp(_cursorEnd, 0.5);
+        if (placeableComponent.ComponentType == PlaceableComponentType.FixedScale)
+        {
+            
+            position += GetOffsetFromSurface(placeableComponent);
+        }
+        
         var rotation = _cursor.Transform.Basis;
-        var placeableComponent = _selectedComponent.Instantiate() as PlaceableComponent;
+        
         placeableComponent.Place(position, scale, rotation.Orthonormalized(), _targetedVessel);
         
         
@@ -321,6 +376,22 @@ public partial class ComponentCreator : Node
         // The normal is aligned with the local Z axis, so X and Y are width and height
         return (axisX, axisY, axisZ * Math.Sign(dotZ));
         
+    }
+
+
+    private Vector3 GetOffsetFromSurface(PlaceableComponent component)
+    {
+        Vector3 widthXNormal = _cursor.Transform.Basis * component.Transform.Basis.X;
+        Vector3 widthYNormal = _cursor.Transform.Basis * component.Transform.Basis.Y;
+        Vector3 widthZNormal = _cursor.Transform.Basis * component.Transform.Basis.Z;
+
+        double dotX = Math.Abs(widthXNormal.Dot(_placementNormal));
+        double dotY = Math.Abs(widthYNormal.Dot(_placementNormal));
+        double dotZ = Math.Abs(widthZNormal.Dot(_placementNormal));
+
+        double maxDot = Math.MaxMagnitude(Math.MaxMagnitude(dotX, dotY), dotZ);
+            
+        return maxDot * _placementNormal / 2;
     }
 
 }
