@@ -1,3 +1,4 @@
+using System.IO;
 using ArchitectsInVoid.WorldData;
 using Godot;
 
@@ -108,6 +109,10 @@ public partial class PlaceableComponent : CollisionShape3D
 
     public void RecieveThumbnail(string path, Texture2D preview, Texture2D thumb, Variant userData)
     {
+        path = Path.GetDirectoryName(path);
+
+        ResourceSaver.Save(preview, path);
+        GD.Print(path);
         Thumbnail = preview;
     }
 
