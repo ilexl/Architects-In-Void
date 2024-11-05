@@ -495,6 +495,7 @@ public partial class HUD : Node
         if(_itemSlotIcons == null || _itemSlotIcons.Length != 10) { return; }
 
         TextureRect icon = (TextureRect)_itemSlotIcons[slot];
+        if (texture == null) return;
         icon.Texture = ImageTexture.CreateFromImage(texture);
     }
     /* End william */

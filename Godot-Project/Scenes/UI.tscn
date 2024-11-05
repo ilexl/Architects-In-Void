@@ -1,4 +1,4 @@
-[gd_scene load_steps=116 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=117 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -92,6 +92,7 @@
 [ext_resource type="Script" path="res://UI/SVGTextures/WorldManager/InfoBoxDisplay.cs" id="68_u2cox"]
 [ext_resource type="PackedScene" uid="uid://tffhfy1jrt7j" path="res://UI/SVGTextures/ComponentSelection/SelectableComponents.tscn" id="69_8hws8"]
 [ext_resource type="Resource" uid="uid://cfg5lbsx0oyo" path="res://UI/SVGTextures/ComponentSelection/ComponentSelection-Background-Filter.svg" id="69_rc7th"]
+[ext_resource type="PackedScene" uid="uid://mjcmpfuv5u0b" path="res://UI/SVGTextures/ComponentSelection/ComponentSelect.tscn" id="69_tw44r"]
 [ext_resource type="Resource" uid="uid://j758ufr2fof0" path="res://UI/SVGTextures/WorldManager/WorldSave-InfoBox.svg" id="69_yl6mo"]
 [ext_resource type="Resource" uid="uid://cnbu1nx1ukc8w" path="res://UI/SVGTextures/ComponentSelection/ComponentSelection-Background-Main.svg" id="70_vcepu"]
 [ext_resource type="Resource" uid="uid://bajhcqfng12t4" path="res://UI/SVGTextures/ComponentSelection/ComponentSelection-Background-Information.svg" id="71_8434c"]
@@ -142,7 +143,7 @@ metadata/_edit_lock_ = true
 
 [node name="SVGCamera2D" type="Camera2D" parent="."]
 anchor_mode = 0
-zoom = Vector2(356.5, 356.5)
+zoom = Vector2(429.5, 429.5)
 script = ExtResource("60_256pr")
 metadata/_edit_lock_ = true
 
@@ -5003,7 +5004,7 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="ComponentSelection" type="Control" parent="WindowManager" node_paths=PackedStringArray("_blockSelectionMenu", "_componentInfo0", "_componentInfo1", "_componentInfo2", "_componentInfo3", "_componentInfo4", "_componentInfo5", "_componentInfo6", "_componentInfo7", "_componentInfo8", "_componentInfo9", "_componentInfoTitle", "_componentInfoDesc", "_componentTexture")]
+[node name="ComponentSelection" type="Control" parent="WindowManager" node_paths=PackedStringArray("_blockSelectionMenu", "_gps", "_containerVertical", "_componentInfo0", "_componentInfo1", "_componentInfo2", "_componentInfo3", "_componentInfo4", "_componentInfo5", "_componentInfo6", "_componentInfo7", "_componentInfo8", "_componentInfo9", "_componentInfoTitle", "_componentInfoDesc", "_componentTexture")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -5013,6 +5014,9 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("68_rkcf5")
 _blockSelectionMenu = NodePath("MenuHolder")
+_gps = NodePath("SelectableComponents")
+_containerVertical = NodePath("MenuHolder/MiddleContainer/Control/MarginContainer/ScrollContainer/VBoxContainer")
+_blankComponentSelection = ExtResource("69_tw44r")
 _componentInfo0 = NodePath("MenuHolder/RightContainer/Bottom/Control/MarginContainer/VBoxContainer/ComponentInfo0")
 _componentInfo1 = NodePath("MenuHolder/RightContainer/Bottom/Control/MarginContainer/VBoxContainer/ComponentInfo1")
 _componentInfo2 = NodePath("MenuHolder/RightContainer/Bottom/Control/MarginContainer/VBoxContainer/ComponentInfo2")
