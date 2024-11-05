@@ -82,12 +82,17 @@ public partial class PlayerController : Node
     }
     public override void _PhysicsProcess(double delta)
     {
-        var moveVector = ProcessKeys(delta);
-        
-        HeadMovement();
-        BodyRotation();
-        
-        HighlightObjectsUnderCrosshair();
+        var moveVector = new Vector3(0, 0, 0);
+        if (Input.MouseMode != Input.MouseModeEnum.Visible)
+        {
+            moveVector = ProcessKeys(delta);
+
+            HeadMovement();
+            BodyRotation();
+
+            HighlightObjectsUnderCrosshair();
+        }
+
         if (Jetpack) JetpackProcess(moveVector, delta);
         else NoJetpackProcess(delta);
         if (_mountedCockpit != null)
@@ -100,6 +105,8 @@ public partial class PlayerController : Node
     #region Input
     public override void _Input(InputEvent @event)
     {
+        if (Input.MouseMode == Input.MouseModeEnum.Visible) { return; }
+
         if (@event is InputEventMouseMotion mouseEvent)
         {
             ProcessMouseInput(mouseEvent);

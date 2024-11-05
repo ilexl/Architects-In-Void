@@ -88,6 +88,7 @@ public partial class ComponentCreator : Node
 
     public override void _PhysicsProcess(double delta)
     {
+        if(Input.MouseMode == Input.MouseModeEnum.Visible) { return; }
         // Store if player inputs have been taken this frame
         // This should probably be in PhysicsProcess
         float placeAction = Input.GetActionStrength("place_component");
