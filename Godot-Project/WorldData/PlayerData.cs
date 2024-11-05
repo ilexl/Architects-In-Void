@@ -108,4 +108,9 @@ public partial class PlayerData : Node
         }
         
     }
+
+    internal void _NewGame(FileAccess file)
+    {
+        file.StoreVar(0);
+    }
 }

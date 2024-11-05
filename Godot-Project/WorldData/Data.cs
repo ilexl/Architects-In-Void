@@ -101,8 +101,7 @@ public partial class Data : Node
         _gameVersion = GetGameVerstion();
         file.StoreVar(_gameVersion);
         file.StoreVar(VALID_FILE_STRING);
-        file.StoreVar(0);
-        file.StoreVar(0);
+        wmData.NewGame(file);
         file.StoreVar(GetDateTime());
         file.Close();
     }

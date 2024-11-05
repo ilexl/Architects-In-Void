@@ -1,4 +1,7 @@
 using Godot;
+using System;
+using System.Collections.Generic;
+using System.Text.Json;
 
 namespace ArchitectsInVoid.WorldData;
 
@@ -34,26 +37,29 @@ public partial class VesselData : Node
     public void _Load(FileAccess file)
     {
         // get amount of ships
-        int shipsAmount = file.GetVar().AsInt32();
-        for (int i = 0; i < shipsAmount; i++)
-        {
-            // load the ships data
-        }
+        _ = file.GetVar();
     }
 
     public void _DiscardLoadPast(FileAccess file)
     {
         // get amount of players
-        int playerAmount = file.GetVar().AsInt32();
-        for (int i = 0; i < playerAmount; i++)
-        {
-            // load the players data
-        }
+        _ = file.GetVar();
     }
 
     public void _Save(FileAccess file)
     {
         file.StoreVar(0);
+        var options = new JsonSerializerOptions { WriteIndented = true };
+        foreach(var child in GetChildren())
+        {
+            // each one of these is a child needing to be saved
+            if(child is Vessel vessel)
+            {
+                string test = JsonSerializer.Serialize(vessel, options);
+                GD.Print(test);
+            }
+        }
+
     }
 
     public Vessel CreateVessel(Vector3 position)
@@ -62,6 +68,10 @@ public partial class VesselData : Node
         newVessel.RigidBody.Position = position;
         AddChild(newVessel);
         return newVessel;
-        
+    }
+
+    internal void _NewGame(FileAccess file)
+    {
+        file.StoreVar(0);
     }
 }

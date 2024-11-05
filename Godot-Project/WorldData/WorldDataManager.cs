@@ -88,4 +88,10 @@ public partial class WorldDataManager : Node
             _dataVessel.RemoveChild(child);
         }
     }
+
+    internal void NewGame(FileAccess file)
+    {
+        _dataPlayer._NewGame(file);
+        _dataVessel._NewGame(file);
+    }
 }
