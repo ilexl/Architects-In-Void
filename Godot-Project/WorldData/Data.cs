@@ -101,7 +101,9 @@ public partial class Data : Node
         _gameVersion = GetGameVerstion();
         file.StoreVar(_gameVersion);
         file.StoreVar(VALID_FILE_STRING);
+
         wmData.NewGame(file);
+
         file.StoreVar(GetDateTime());
         file.Close();
     }
@@ -261,14 +263,6 @@ public partial class Data : Node
         return buttons;
     }
 
-
-    public override void _Process(double delta)
-    {
-        if (Input.IsKeyPressed(Key.Y))
-        {
-            Save("AMONG US");
-        }
-    }
 }
 
 // 
