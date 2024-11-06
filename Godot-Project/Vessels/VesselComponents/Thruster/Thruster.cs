@@ -36,6 +36,9 @@ public partial class Thruster : PlaceableComponent
     private Node3D _thrusterContainerNode;
 
     public override PlaceableComponentType ComponentType { get; set; } = PlaceableComponentType.DynamicScale;
+    public override Component Type { get; set; } = Component.Thruster;
+
+
     public override void _Ready()
     {
     }

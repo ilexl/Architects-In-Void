@@ -1,5 +1,7 @@
 using System.IO;
+using System.Text.Json.Serialization;
 using ArchitectsInVoid.Helper;
+using ArchitectsInVoid.JsonDataConversion;
 using ArchitectsInVoid.WorldData;
 using Godot;
 using FileAccess = Godot.FileAccess;
@@ -35,12 +37,53 @@ public partial class PlaceableComponent : CollisionShape3D
 
     [Export] private string _thumbnailName = "thumb.res";
 
+    public virtual Component Type { get; set; } = Component.None;
+
+    public Data SaveData { get; set; }
 
     public Vessel Vessel;
     private readonly sf _flags =
         sf.ReplaceSubresourcePaths & 
         sf.Compress;
     
+    public enum Component
+    {
+        None,
+        Armour,
+        Cockpit,
+        Thruster
+    }
+
+    public class Data
+    {
+        [JsonInclude][JsonPropertyName("Type")] public Component JComponent { get; set; }
+        [JsonInclude] public JVector3 Position { get; set; }
+        [JsonInclude] public JVector3 Scale { get; set; }
+        [JsonInclude] public JBasis Basis { get; set; }
+        
+
+        public Data()
+        {
+            JComponent = Component.None;
+            Position = null;
+            Scale = null;
+            Basis = null;
+        }
+
+        public Data(Component type, JVector3 position, JVector3 scale, JBasis basis)
+        {
+            JComponent = type;
+            Position = position;
+            Scale = scale;
+            Basis = basis;
+        }
+    }
+
+    public override void _Ready()
+    {
+        SaveData = new Data(); // get data in memory
+    }
+
 
     #region Component Selection Data
 
@@ -92,6 +135,28 @@ public partial class PlaceableComponent : CollisionShape3D
     /***************NEW VESSEL***************/
     #region NewVessel
     // Scaled
+    public virtual Vessel PlaceRVN(Vector3 position, Vector3 scale, Basis rotation)
+    {
+        SaveData = new Data(Type, position, scale, rotation);
+        Scale = scale;
+        var vessel = VesselData._VesselData.CreateVessel(position);
+        if (vessel == null)
+        {
+            GD.PushError("FAILED TO CREATE A NEW VESSEL");
+            return null;
+        }
+
+        
+        var vesselRB = vessel.RigidBody;
+        var componentData = vessel.ComponentData;
+        vesselRB.AddChild(this);
+        vesselRB.Mass += Density * Scale.LengthSquared();
+        vesselRB.Transform = vesselRB.Transform with { Basis = rotation };
+        Vessel = vessel;
+        return vessel;
+    }
+
+    // Scaled
     public virtual PlaceableComponentResult Place(Vector3 position, Vector3 scale, Basis rotation)
     {
         Scale = scale;
@@ -106,6 +171,7 @@ public partial class PlaceableComponent : CollisionShape3D
 
     protected PlaceableComponentResult AddToNewVessel(Vector3 position, Basis rotation)
     {
+        SaveData = new Data(Type, position, Scale, rotation);
         var vessel = VesselData._VesselData.CreateVessel(position);
         if (vessel == null) return PlaceableComponentResult.ErrorCreateNewVessel;
         
@@ -140,17 +206,40 @@ public partial class PlaceableComponent : CollisionShape3D
         return AddToVessel(vessel, position, Vector3.One, rotation);
     }
 
-    protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position, Vector3 scale, Basis rotation)
+    public Vessel PlaceRV(Vector3 position, Vector3 scale, Basis rotation, Vessel vessel)
     {
-        //vessel.AddComponent(this);        
+        SaveData = new Data(Type, position, scale, rotation);
+        GD.Print($"Exising scale is {scale}");
 
         var vesselRb = vessel.RigidBody;
+
         //var componentData = vessel.ComponentData;
-        Transform = Transform with { Basis =  vesselRb.Transform.Basis.Inverse() * rotation };
+        Transform = Transform with { Basis = vesselRb.Transform.Basis.Inverse() * rotation };
         vesselRb.AddChild(this);
         Position = position * vesselRb.Transform;
-        
+
         Scale = scale;
+
+        vesselRb.Mass += Density * Scale.LengthSquared();
+        Vessel = vessel;
+        return vessel;
+    }
+
+    protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position, Vector3 scale, Basis rotation)
+    {
+        SaveData = new Data(Type, position, scale, rotation);
+        
+        //vessel.AddComponent(this);
+
+        var vesselRb = vessel.RigidBody;
+
+        //var componentData = vessel.ComponentData;
+        Transform = Transform with { Basis = vesselRb.Transform.Basis.Inverse() * rotation };
+        vesselRb.AddChild(this);
+        Position = position * vesselRb.Transform;
+
+        Scale = scale;
+
         vesselRb.Mass += Density * Scale.LengthSquared();
         Vessel = vessel;
         return PlaceableComponentResult.Success;
@@ -161,7 +250,7 @@ public partial class PlaceableComponent : CollisionShape3D
     {
         PackedScene scene = new PackedScene();
         // scene
-
+        Type = Component.None;
     }
 
 

@@ -8,7 +8,8 @@ namespace ArchitectsInVoid.Vessels.VesselComponents.Cockpit;
 public partial class Cockpit : PlaceableComponent
 {
 	public override PlaceableComponentType ComponentType { get; set; } = PlaceableComponentType.FixedScale;
-	public override void _Ready()
+    public override Component Type { get; set; } = Component.Cockpit;
+    public override void _Ready()
 	{
 	}
 

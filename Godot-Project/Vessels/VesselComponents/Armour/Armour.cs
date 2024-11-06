@@ -9,6 +9,7 @@ namespace ArchitectsInVoid.VesselComponent.Armour;
 public partial class Armour : PlaceableComponent
 {
     public override PlaceableComponentType ComponentType { get; set; } = PlaceableComponentType.DynamicScale;
+    public override Component Type { get; set; } = Component.Armour;
     public override void _Ready()
     {
     }

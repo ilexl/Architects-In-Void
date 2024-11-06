@@ -1,7 +1,9 @@
+using ArchitectsInVoid.Player.ComponentCreation;
 using Godot;
 using System;
 using System.Collections.Generic;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace ArchitectsInVoid.WorldData;
 
@@ -37,7 +39,39 @@ public partial class VesselData : Node
     public void _Load(FileAccess file)
     {
         // get amount of ships
-        _ = file.GetVar();
+        string json = file.GetVar().AsString();
+        var options = new JsonSerializerOptions
+        {
+            WriteIndented = true,
+            Converters =
+            {
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            }
+        };
+        if(json == "NULL") { return; }
+        List<Vessel.Data> data = JsonSerializer.Deserialize<List<Vessel.Data>>(json, options);
+        foreach(var vesselData in data)
+        {
+            Vessel vessel = null;
+            foreach(var componentData in vesselData.Components)
+            {
+                // in theory adds each component to the vessel
+                Vessel temp = ComponentCreator.Singleton.PlaceFromData(componentData.Position, componentData.Scale, componentData.Basis, componentData.JComponent, vessel); 
+                if(temp != null)
+                {
+                    GD.Print("vessel exists now");
+                    vessel = temp;
+                }
+            }
+            if (vessel == null)
+            {
+                GD.PushError("FAILED TO CREATE VESSEL???");
+                continue;
+            }
+            vessel.RigidBody.Transform = vesselData.Transform;
+            
+            //vessel.RigidBody.Position = vesselData.Position;
+        }
     }
 
     public void _DiscardLoadPast(FileAccess file)
@@ -48,18 +82,31 @@ public partial class VesselData : Node
 
     public void _Save(FileAccess file)
     {
-        file.StoreVar(0);
-        var options = new JsonSerializerOptions { WriteIndented = true };
+        var options = new JsonSerializerOptions 
+        { 
+            WriteIndented = true,
+            Converters =
+            {
+                new JsonStringEnumConverter(JsonNamingPolicy.CamelCase)
+            }
+        };
+        string test = "NULL";
+        List <Vessel.Data> data = new List<Vessel.Data>();
         foreach(var child in GetChildren())
         {
-            // each one of these is a child needing to be saved
+            
             if(child is Vessel vessel)
             {
-                string test = JsonSerializer.Serialize(vessel, options);
-                GD.Print(test);
+                data.Add(vessel.SaveData);
+                
             }
         }
 
+        if(data.Count != 0)
+        {
+            test = JsonSerializer.Serialize(data, options);
+        }
+        file.StoreVar(test);
     }
 
     public Vessel CreateVessel(Vector3 position)
@@ -72,6 +119,7 @@ public partial class VesselData : Node
 
     internal void _NewGame(FileAccess file)
     {
-        file.StoreVar(0);
+        string data = "NULL";
+        file.StoreVar(data);
     }
 }

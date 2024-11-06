@@ -54,6 +54,8 @@ public partial class ComponentCreator : Node
     private Vessel _targetedVessel;
     private RigidBody3D _targetedCollider;
     private Window _root;
+
+    public static ComponentCreator Singleton;
     
     
     // Component selection
@@ -79,6 +81,9 @@ public partial class ComponentCreator : Node
         var cursorScene = (PackedScene)ResourceLoader.Load("res://Player/ComponentCreation/Cursor.tscn");
         var cursorObject = cursorScene.Instantiate();
         _cursor = cursorObject as Cursor;
+
+        Singleton = this;
+
         CallDeferred("add_child", _cursor);
 
         _root = GetTree().Root;
@@ -328,9 +333,43 @@ public partial class ComponentCreator : Node
         var rotation = _cursor.Transform.Basis;
         
         placeableComponent.Place(position, scale, rotation.Orthonormalized(), _targetedVessel);
-        
-        
+    }
 
+    public Vessel PlaceFromData(Vector3 position, Vector3 scale, Basis basis, PlaceableComponent.Component type, Vessel vessel)
+    {
+        PackedScene typeScene = GetPackedSceneForType(type);
+        if(typeScene == null) return vessel;
+        var placeableComponent = typeScene.Instantiate() as PlaceableComponent;
+        if(vessel == null)
+        {
+            GD.Print("Creating new vessel with component");
+            vessel = placeableComponent.PlaceRVN(position, scale, basis);
+            return vessel;
+        }
+        else
+        {
+            GD.Print("Adding component to existing vessel");
+            vessel = placeableComponent.PlaceRV(position, scale, basis, vessel);
+            return vessel;
+        }
+    }
+
+    private PackedScene GetPackedSceneForType(PlaceableComponent.Component type)
+    {
+        switch (type)
+        {
+            case PlaceableComponent.Component.Armour:
+                return GD.Load("res://Vessels/VesselComponents/Armour/Armour.tscn") as PackedScene;
+            case PlaceableComponent.Component.Cockpit:
+                return GD.Load("res://Vessels/VesselComponents/Cockpit/Cockpit.tscn") as PackedScene;
+            case PlaceableComponent.Component.Thruster:
+                return GD.Load("res://Vessels/VesselComponents/Thruster/Thruster.tscn") as PackedScene;
+            case PlaceableComponent.Component.None:
+            default:
+                GD.PushWarning("ComponentCreator: component type not defined - not creating a component...");
+                return null;
+
+        }
     }
 
     private Vector3 CalculateCursorPosition()
