@@ -1,4 +1,4 @@
-[gd_scene load_steps=117 format=3 uid="uid://bt33b5k48ip62"]
+[gd_scene load_steps=118 format=3 uid="uid://bt33b5k48ip62"]
 
 [ext_resource type="Script" path="res://UI/UIManager.cs" id="1_ae7ch"]
 [ext_resource type="Script" path="res://UI/WindowManager.cs" id="1_st6gj"]
@@ -115,6 +115,7 @@
 [ext_resource type="Resource" uid="uid://cgqbv5sxu7alo" path="res://UI/SVGTextures/PauseMenu/PauseBtn-Disabled.svg" id="98_35sa6"]
 [ext_resource type="Script" path="res://UI/InventoryManager.cs" id="106_kslu5"]
 [ext_resource type="Resource" uid="uid://t7lr6f7c2xnp" path="res://UI/SVGTextures/Inventory/InventoriesListBackground.svg" id="110_qwl6r"]
+[ext_resource type="PackedScene" uid="uid://bv320klmfeipe" path="res://UI/SVGTextures/PopUp/info_pop_up_cb.tscn" id="115_yaf8m"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1wu0f"]
 texture = ExtResource("32_7ge8g")
@@ -5114,9 +5115,6 @@ size_flags_vertical = 3
 mouse_filter = 2
 theme_override_constants/separation = -2
 
-[node name="HBoxContainer" type="HBoxContainer" parent="WindowManager/ComponentSelection/MenuHolder/MiddleContainer/Control/MarginContainer/ScrollContainer/VBoxContainer"]
-layout_mode = 2
-
 [node name="RightContainer" type="MarginContainer" parent="WindowManager/ComponentSelection/MenuHolder"]
 layout_mode = 1
 anchors_preset = 15
@@ -6755,6 +6753,7 @@ _confirmPopUp = ExtResource("33_76cnx")
 _confirmPopUpCD = ExtResource("46_tu8o7")
 _infoPopUp = ExtResource("34_fl41a")
 _infoPopUpNC = ExtResource("52_8l8i6")
+_infoPopUpCB = ExtResource("115_yaf8m")
 _inputPopUp = ExtResource("35_2h4aw")
 metadata/_edit_lock_ = true
 
