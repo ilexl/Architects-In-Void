@@ -19,6 +19,8 @@ static func fc():
 	for arg in currentArgs:
 		printString += arg + ", "
 	print(printString)
+	if not FmodServer.has_method(currentFunction):
+		push_error("FmodServerWrapper: Function not found: " + currentFunction)
 	var result = FmodServer.callv(currentFunction, currentArgs)
 	currentArgs = []
 	return result

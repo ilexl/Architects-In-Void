@@ -14,10 +14,10 @@ public class FmodGdAPI
     private const string WrapperSetProperty = "sp";
     #endregion
     #region Object Initialization
-    private Variant _object;
+    public Variant Object;
     public FmodGdAPI(Variant @object)
     {
-        _object = @object;
+        Object = @object;
     }
     #endregion
     #region Wrapper singleton
@@ -27,7 +27,7 @@ public class FmodGdAPI
     #region Wrapper interfacers
     protected Variant FmodCall(string functionName, params Variant[] args)
     {
-        Wrapper.Call(SetEvent, _object);
+        Wrapper.Call(SetEvent, Object);
         Wrapper.Call(SetFunction, functionName);
         foreach (var arg in args)
         {
@@ -39,13 +39,13 @@ public class FmodGdAPI
 
     protected Variant GetProperty(string propertyName)
     {
-        Wrapper.Call(SetEvent, _object);
+        Wrapper.Call(SetEvent, Object);
         return Wrapper.Call(WrapperGetProperty, propertyName);
     }
 
     protected void SetProperty(string propertyName, Variant value)
     {
-        Wrapper.Call(SetEvent, _object);
+        Wrapper.Call(SetEvent, Object);
         Wrapper.Call(WrapperSetProperty, propertyName, value);
     }
     #endregion
