@@ -37,22 +37,22 @@ public partial class Thruster : PlaceableComponent
 
     public override PlaceableComponentType ComponentType { get; set; } = PlaceableComponentType.DynamicScale;
     public override Component Type { get; set; } = Component.Thruster;
-
     
-    
-    public override void _Notification(int what)
+    protected override void EditorPreSave()
     {
-        if (Engine.IsEditorHint())
-        {
-            if (what == NotificationEditorPreSave)
-            {
-                _thrusterContainerNode = new Node3D();
-                CallDeferred("add_child", _thrusterContainerNode);
-                
-                GenerateThruster();
-            }
-        }
+
+        _thrusterContainerNode?.QueueFree();
+
+
+        _thrusterContainerNode = new Node3D();
+        _width = 5;
+        _height = 5;
+        _length = 5;
+        CallDeferred("add_child", _thrusterContainerNode);
+            
+        GenerateThruster();
     }
+
 
     public override void _Ready()
     {
