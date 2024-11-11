@@ -275,14 +275,29 @@ public partial class PlaceableComponent : CollisionShape3D
 
     public override void _Notification(int what)
     {
-        if (Engine.IsEditorHint())
+        if (!Engine.IsEditorHint()) return;
+
+        if (what == NotificationEditorPreSave)
         {
-            if (what == NotificationEditorPostSave)
-            {
-                GenerateThumbnail();
-            }
+            EditorPreSave();
         }
+        else if (what == NotificationEditorPostSave)
+        {
+            EditorPostSave();
+        }
+
     }
+
+    protected virtual void EditorPreSave()
+    {
+        
+    }
+
+    protected virtual void EditorPostSave()
+    {
+        GenerateThumbnail();
+    }
+    
     protected virtual void GenerateThumbnail()
     {
         scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
