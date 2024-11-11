@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using ArchitectsInVoid.Audio;
 using ArchitectsInVoid.Debug;
 using ArchitectsInVoid.Debug.Meshes;
@@ -70,10 +71,11 @@ public partial class PlayerController : Node
             _rotationMode = hasFuel && hasPower && value ? RotationControlMode.HeadAndBody : RotationControlMode.HeadOnly;
         }
     }
-    
+
+    private FmodEvent ev;
     public override void _Ready()
     {
-        var ev = FmodServer.CreateEventInstance("event:/BarneyFromBlackMesa");
+        ev = FmodServer.CreateEventInstance("event:/BarneyFromBlackMesa");
         ev.Start();
         // Assign our components
         Body = GetNode<RigidBody3D>("Body");
