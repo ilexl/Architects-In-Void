@@ -24,15 +24,11 @@ public static class FmodServer
     #region FunctionCallWrapper
     private static Variant FmodCall(string functionName, params Variant[] args)
     {
-        GD.Print("FMODServerC: Begin wrapper call");
         Wrapper.Call(ReceiveFunction, functionName);
-        GD.Print("FMODServerC: sent function name");
         foreach (var arg in args)
         {
             Wrapper.Call(ReceiveArgument, arg);
-            GD.Print("FmodServerC: sent argument");
         }
-        GD.Print("FmodServerC: finalizing call");
         return Wrapper.Call(FinalizeCall);
     }
     #endregion
