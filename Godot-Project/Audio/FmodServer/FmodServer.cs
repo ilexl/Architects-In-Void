@@ -36,43 +36,43 @@ public static class FmodServer
     #endregion
 
 
-    public static void AddListener(int index, Object gameObject)
+    public static void AddListener(int index, Variant gameObject)
     {
-        
+        FmodCall("add_listener", index, gameObject);
     }
 
     public static bool BanksStillLoading()
     {
-        
+        return (bool)FmodCall("banks_still_loading");
     }
 
     public static bool CheckBusGuid(string guid)
     {
-        
+        return (bool)FmodCall("check_bus_guid", guid);
     }
     public static bool CheckBusPath(string busPath)
     {
-        
+        return (bool)FmodCall("check_bus_path", busPath);
     }
 
     public static bool CheckEventGuid(string guid)
     {
-        
+        return (bool)FmodCall("check_event_guid", guid);
     }
 
     public static bool CheckEventPath(string eventPath)
     {
-        
+        return (bool)FmodCall("check_event_path", eventPath);
     }
 
     public static bool CheckVcaGuid(string guid)
     {
-        
+        return (bool)FmodCall("check_vca_guid", guid);
     }
 
     public static bool CheckVcaPath(string vcaPath)
     {
-        
+        return (bool)FmodCall("check_vca_path", vcaPath);
     }
     public static FmodEvent CreateEventInstance(string eventPath)
     {
@@ -82,52 +82,57 @@ public static class FmodServer
 
     public static FmodEvent CreateEventInstanceFromDescription(FmodEventDescription description)
     {
-        
+        var gdEvent = FmodCall("create_event_instance_from_description", description);
+        return new FmodEvent(gdEvent);
     }
 
     public static FmodEvent CreateEventInstanceWithGuid(string guid)
     {
-        
+        var gdEvent = FmodCall("create_event_instance_with_guid", guid);
+        return new FmodEvent(gdEvent);
     }
 
-    public static FmodEvent CreateSoundInstance(string path)
+    public static FmodSound CreateSoundInstance(string path)
     {
-        
+        var gdEvent = FmodCall("create_sound_instance", path);
+        return new FmodSound(gdEvent);
     }
 
     public static Array GetAllBanks()
     {
-        
+        return (Array)FmodCall("get_all_banks");
     }
 
     public static Array GetAllBuses()
     {
-        
+        return (Array)FmodCall("get_all_buses");
     }
 
     public static Array GetAllEventDescriptions()
     {
-        
+        return (Array)FmodCall("get_all_event_descriptions");
     }
 
     public static Array GetAllVca()
     {
-        
+        return (Array)FmodCall("get_all_vca");
     }
 
     public static Array GetAvailableDrivers()
     {
-        
+        return (Array)FmodCall("get_available_drivers");
     }
 
     public static FmodBus GetBus(string busPath)
     {
-        
+        var gdBus = FmodCall("get_bus", busPath);
+        return new FmodBus(gdBus);
     }
 
     public static FmodBus GetBusFromGuid(string guid)
     {
-        
+        var gdBus = FmodCall("get_bus_from_guid", guid);
+        return new FmodBus(gdBus);
     }
 
     public static int GetDriver()
