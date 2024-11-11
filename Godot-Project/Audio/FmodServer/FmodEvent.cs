@@ -2,58 +2,11 @@ using Godot;
 
 namespace ArchitectsInVoid.Audio;
 
-public class FmodEvent
+public class FmodEvent : FmodGdAPI
 {
-    #region Config
-    private const string WrapperPath = "res://Audio/FmodServer/fmod_event_wrapper.gd";
-    private const string SetEvent = "re";
-    private const string SetFunction = "rf";
-    private const string SendArgument = "rx";
-    private const string CallFunction = "fc";
-
-    private const string WrapperGetProperty = "gp";
-    private const string WrapperSetProperty = "sp";
-    #endregion
-
-    private Variant _event;
-
-    public FmodEvent(Variant ev)
+    public FmodEvent(Variant ev) : base(ev)
     {
-        _event = ev;
     }
-
-    #region InstancingWrapper
-    private static Script _wrapper;
-    private static Script Wrapper => _wrapper ??= (Script)GD.Load(WrapperPath);
-    #endregion
-
-    #region FunctionCallWrapper
-    private Variant FmodCall(string functionName, params Variant[] args)
-    {
-        Wrapper.Call(SetEvent, _event);
-        Wrapper.Call(SetFunction, functionName);
-        foreach (var arg in args)
-        {
-            Wrapper.Call(SendArgument, arg);
-        }
-
-        return Wrapper.Call(CallFunction);
-    }
-    #endregion
-
-    #region PropertyCallWrapper
-    private Variant GetProperty(string propertyName)
-    {
-        Wrapper.Call(SetEvent, _event);
-        return Wrapper.Call(WrapperGetProperty, propertyName);
-    }
-
-    private void SetProperty(string propertyName, Variant value)
-    {
-        Wrapper.Call(SetEvent, _event);
-        Wrapper.Call(WrapperSetProperty, propertyName, value);
-    }
-    #endregion
 
     #region Properties
     
