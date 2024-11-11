@@ -33,26 +33,5 @@ public partial class FmodManager : Node
 	
 	
 	
-	[Export] private Node _gdFmodManager;
-
-	public static FmodManager Singleton;
-	public override void _Ready()
-	{
-		if (Singleton == null) Singleton = this;
-	}
-
-	public void SetParameter(string param, Variant value)
-	{
-		_gdFmodManager.Call("_SetParameter", param, value);
-	}
-
-	public void PlayEventAtPosition(Transform3D transform, string path)
-	{
-		_gdFmodManager.Call("_CreateEvent", transform, path);
-	}
-	
-	
-	
-	
 	
 }
