@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Sound manager for Fmod sounds
 /// </summary>
-public partial class FmodSoundMananger : Node
+public partial class FmodManager : Node
 {
 
 	bool loaded = false; // temp
@@ -30,4 +30,29 @@ public partial class FmodSoundMananger : Node
 		loaded = true;
 
     }
+	
+	
+	
+	[Export] private Node _gdFmodManager;
+
+	public static FmodManager Singleton;
+	public override void _Ready()
+	{
+		if (Singleton == null) Singleton = this;
+	}
+
+	public void SetParameter(string param, Variant value)
+	{
+		_gdFmodManager.Call("_SetParameter", param, value);
+	}
+
+	public void PlayEventAtPosition(Transform3D transform, string path)
+	{
+		_gdFmodManager.Call("_CreateEvent", transform, path);
+	}
+	
+	
+	
+	
+	
 }
