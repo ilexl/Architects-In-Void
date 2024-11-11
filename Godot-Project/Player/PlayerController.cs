@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using ArchitectsInVoid.Audio;
 using ArchitectsInVoid.Debug;
 using ArchitectsInVoid.Debug.Meshes;
 using ArchitectsInVoid.Interactables;
@@ -72,6 +73,8 @@ public partial class PlayerController : Node
     
     public override void _Ready()
     {
+        var ev = FmodServer.CreateEventInstance("event:/BarneyFromBlackMesa");
+        ev.Start();
         // Assign our components
         Body = GetNode<RigidBody3D>("Body");
         Head = GetNode<Node3D>("Head");
