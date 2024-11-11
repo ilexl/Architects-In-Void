@@ -261,7 +261,7 @@ public partial class PlaceableComponent : CollisionShape3D
         var newThumbnail = preview.GetImage();
         // Gets the containing folder of the component scene
         path = SceneUtility.GetSceneDirectory(path)  + "/" + _thumbnailName;
-        GD.Print(path);
+        GD.Print("Creating new thumbnail at " + path);
         if (_Thumbnail != null)
         {
             _Thumbnail.ResourcePath = null;
