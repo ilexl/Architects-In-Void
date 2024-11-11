@@ -8,7 +8,7 @@ public partial class FmodSoundMananger : Node
 {
 
 	bool loaded = false; // temp
-	[Export] PackedScene soundTemp; // temp 
+	[Export] PackedScene _soundTemp; // temp 
 	double time = 10; // temp
 
 	/// <summary>
@@ -25,7 +25,7 @@ public partial class FmodSoundMananger : Node
         }
 
         if (loaded) return;
-		var _s = soundTemp.Instantiate();
+		var _s = _soundTemp.Instantiate();
 		AddChild(_s);
 		loaded = true;
 
