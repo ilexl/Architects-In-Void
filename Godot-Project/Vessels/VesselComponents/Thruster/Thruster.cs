@@ -93,6 +93,7 @@ public partial class Thruster : PlaceableComponent
 
 
         Scale = scale;
+        _thrusterContainerNode?.QueueFree();
         _thrusterContainerNode = new Node3D();
         Vector3 scaleInverse = new Vector3(1 / scale.X, 1 / scale.Y, 1 / scale.Z);
         _thrusterContainerNode.Scale = scaleInverse;
