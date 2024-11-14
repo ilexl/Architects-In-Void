@@ -1,5 +1,4 @@
 using Godot;
-
 namespace ArchitectsInVoid.Audio;
 
 public class FmodDspSettings : FmodGdAPI
