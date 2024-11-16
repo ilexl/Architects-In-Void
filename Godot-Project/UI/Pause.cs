@@ -123,6 +123,7 @@ public partial class Pause : Node
                 }
                 else
                 {
+                    if (CheckIfCursorForced()) { return; }
                     Input.MouseMode = Input.MouseModeEnum.Captured;
                     _UIManager.UIInventoryManager.CancelItemInCursor();
                     // Cancel item being in cursor
@@ -130,6 +131,14 @@ public partial class Pause : Node
             }
         }
         
+    }
+
+    public bool CheckIfCursorForced()
+    {
+        if (IsPaused) { return true; }// cursor forced in pause menu
+        if (ComponentSelectionUI.Singleton.IsCurrentlyShown()) { return true; }// cursor forced in component menu
+
+        return false; // cursor is not forced after all these checks
     }
 
     public void GameSavedTrigger()
@@ -155,6 +164,7 @@ public partial class Pause : Node
         {
             ((UIManager)GameManager.Singleton.FindChild("UI")).UIWindowManager.ShowWindow("HUD");
             GD.Print("Pause: game has been unpaused");
+            if (CheckIfCursorForced()) { return; }
             Input.MouseMode = Input.MouseModeEnum.Captured;
         }
     }
@@ -212,9 +222,18 @@ public partial class Pause : Node
     public void MainMenuConfirmed()
     {
         _UIManager.UIWindowManager.ShowWindow("MainMenu");
+        HideAllGameRelatedUI();
         GameManager.Singleton.SetGameState(GameManager.GameState.MainMenu);
         ((Data)GameManager.Singleton.FindChild("Data")).Clear();
         _UIManager.UIInventoryManager.HideInventoryList();
+    }
+
+    void HideAllGameRelatedUI()
+    {
+        // hide inventories componentselection
+        _UIManager.ComponentSelection.MenuShown(false);
+        _UIManager.UIInventoryManager.HideInventoryList();
+        _UIManager.UIInventoryManager.ClearWindows();
     }
 
     /// <summary>

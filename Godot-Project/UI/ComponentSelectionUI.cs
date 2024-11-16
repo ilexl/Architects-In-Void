@@ -97,6 +97,10 @@ public partial class ComponentSelectionUI : Control
     {
         _blockSelectionMenu.Visible = shown;
     }
+    public bool IsCurrentlyShown()
+    {
+        return _blockSelectionMenu.Visible;
+    }
 
     public override void _Input(InputEvent @event)
     {

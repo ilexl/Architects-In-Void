@@ -1,10 +1,13 @@
+using ArchitectsInVoid.UI;
 using Godot;
 using System;
 
-public partial class DraggableWindow : Window
+public partial class DraggableWindow : Godot.Window
 {
     bool _focused = false;
     Vector2I _startPos, _newPos;
+    bool _wasVisable = false;
+    Vector2I _wasPos, _wasSize;
     public override void _Ready()
     {
     }
@@ -43,11 +46,26 @@ public partial class DraggableWindow : Window
 
     public override void _Input(InputEvent @event)
     {
-        ArchitectsInVoid.UI.Pause.Singleton._Input(@event);
+        Pause.Singleton._Input(@event);
     }
 
     public override void _Process(double delta)
     {
+        if (Pause.Singleton.IsPaused && Visible)
+        {
+            _wasVisable = true;
+            Visible = false;
+            _wasPos = Position;
+            _wasSize = Size;
+        }
+        else if (Pause.Singleton.IsPaused is false && _wasVisable)
+        {
+            _wasVisable = false;
+            Visible = true;
+            Position = _wasPos;
+            Size = _wasSize;
+        }
+
         if (_focused) // force the window to stay on screen
         {
             if(_startPos == GetPositionWithDecorations())
