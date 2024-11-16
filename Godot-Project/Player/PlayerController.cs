@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using ArchitectsInVoid.Debug;
 using ArchitectsInVoid.Debug.Meshes;
 using ArchitectsInVoid.Interactables;
+using ArchitectsInVoid.UI;
 using ArchitectsInVoid.Vessels.VesselComponents.Cockpit;
 using Godot;
 using Godot.Collections;
@@ -83,23 +84,31 @@ public partial class PlayerController : Node
     public override void _PhysicsProcess(double delta)
     {
         var moveVector = new Vector3(0, 0, 0);
-        if (Input.MouseMode != Input.MouseModeEnum.Visible)
+        if (Pause.Singleton.IsPaused is not true)
         {
-            moveVector = ProcessKeys(delta);
-
+            Body.Freeze = false;
+            if(Input.MouseMode != Input.MouseModeEnum.Visible)
+            {
+                moveVector = ProcessKeys(delta);
+                HighlightObjectsUnderCrosshair();
+            }
             HeadMovement();
             BodyRotation();
 
-            HighlightObjectsUnderCrosshair();
+            if (Jetpack) JetpackProcess(moveVector, delta);
+            else NoJetpackProcess(delta);
+            if (_mountedCockpit != null)
+            {
+                Body.GlobalPosition = _mountedCockpit.PhysicalCockpit.GlobalPosition;
+                Head.GlobalRotation = _mountedCockpit.PhysicalCockpit.GlobalRotation;
+            }
+        }
+        else
+        {
+            Body.Freeze = true;
         }
 
-        if (Jetpack) JetpackProcess(moveVector, delta);
-        else NoJetpackProcess(delta);
-        if (_mountedCockpit != null)
-        {
-            Body.GlobalPosition = _mountedCockpit.PhysicalCockpit.GlobalPosition;
-            Head.GlobalRotation = _mountedCockpit.PhysicalCockpit.GlobalRotation;
-        }
+        
     }
 
     #region Input
