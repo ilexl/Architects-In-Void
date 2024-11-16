@@ -137,6 +137,8 @@ public partial class PlaceableComponent : CollisionShape3D
     // Scaled
     public virtual Vessel PlaceRVN(Vector3 position, Vector3 scale, Basis rotation)
     {
+        GD.Print($"Placing new vessel with the following data: \nPosition : {position}\nScale : {scale}\nBasis : {rotation}");
+
         SaveData = new Data(Type, position, scale, rotation);
         Scale = scale;
         var vessel = VesselData._VesselData.CreateVessel(position);
@@ -171,6 +173,7 @@ public partial class PlaceableComponent : CollisionShape3D
 
     protected PlaceableComponentResult AddToNewVessel(Vector3 position, Basis rotation)
     {
+        GD.Print($"Adding to new vessel with the following data: \nPosition : {position}\nScale : {Scale}\nBasis : {rotation}");
         SaveData = new Data(Type, position, Scale, rotation);
         var vessel = VesselData._VesselData.CreateVessel(position);
         if (vessel == null) return PlaceableComponentResult.ErrorCreateNewVessel;
@@ -208,6 +211,8 @@ public partial class PlaceableComponent : CollisionShape3D
 
     public Vessel PlaceRV(Vector3 position, Vector3 scale, Basis rotation, Vessel vessel)
     {
+        GD.Print($"Placing with existing vessel with the following data: \nPosition : {position}\nScale : {scale}\nBasis : {rotation}");
+
         SaveData = new Data(Type, position, scale, rotation);
         GD.Print($"Exising scale is {scale}");
 
@@ -227,6 +232,7 @@ public partial class PlaceableComponent : CollisionShape3D
 
     protected PlaceableComponentResult AddToVessel(Vessel vessel, Vector3 position, Vector3 scale, Basis rotation)
     {
+        GD.Print($"Adding to existing vessel with the following data: \nPosition : {position}\nScale : {scale}\nBasis : {rotation}");
         SaveData = new Data(Type, position, scale, rotation);
         
         //vessel.AddComponent(this);
