@@ -55,6 +55,8 @@ public partial class ComponentCreator : Node
     private RigidBody3D _targetedCollider;
     private Window _root;
 
+    private bool _canPlace;
+
     public static ComponentCreator Singleton;
     
     
@@ -87,54 +89,76 @@ public partial class ComponentCreator : Node
         CallDeferred("add_child", _cursor);
 
         _root = GetTree().Root;
+        _canPlace = true;
     }
 
     
 
     public override void _PhysicsProcess(double delta)
     {
-        if(Input.MouseMode == Input.MouseModeEnum.Visible) { return; }
+        if (Input.MouseMode == Input.MouseModeEnum.Visible) 
+        {
+            if (_canPlace)
+            {
+                _canPlace = false;
+                GD.Print("Can NOT place component now...");
+            }
+        }
         // Store if player inputs have been taken this frame
         // This should probably be in PhysicsProcess
         float placeAction = Input.GetActionStrength("place_component");
-        float placementDistanceControl = (Input.IsActionJustPressed("increase_placement_distance") ? 1 : 0) + (Input.IsActionJustPressed("decrease_placement_distance") ? -1 : 0);
-        
-        // Show the cursor and handle placement distance if the player has a component selected on their hotbar
-        SetPlaceRotation(delta);
-        if (SelectedComponentScene is not null)
+
+        if (_canPlace is false)
         {
-            _cursor.Visible = true; 
-            SetPlaceDistance(placementDistanceControl);
+            _cursor.Visible = false;
+            _state = ComponentPlacerState.Idle;
+            if (placeAction == 0.0 && Input.MouseMode == Input.MouseModeEnum.Captured)
+            {
+                _canPlace = true;
+                GD.Print("Can NOW place component again...");
+            }
         }
         else
         {
-            _cursor.Visible = false;
-        }
-        
-        
-        switch (_state)
-        {
-            // The player isn't already placing something
-            case ComponentPlacerState.Idle:
-                // Set the starting position of the cursor and move on to the next state if the player has depressed the place button
-                if (placeAction == 1.0 && SelectedComponentScene is not null)
-                {
-                    StartPlace();
-                    
-                }
-                // Set the whole cursor to be at the cursor position
-                else
-                {
-                    Idle();
-                }
-                
-                break;
-            // The player has started placing something TODO: cancellation
-            case ComponentPlacerState.Placing:
-                PlacingVisuals();
-                if (placeAction == 0.0) FinishPlace();
-                break;
-        }
+
+            float placementDistanceControl = (Input.IsActionJustPressed("increase_placement_distance") ? 1 : 0) + (Input.IsActionJustPressed("decrease_placement_distance") ? -1 : 0);
+
+            // Show the cursor and handle placement distance if the player has a component selected on their hotbar
+            SetPlaceRotation(delta);
+            if (SelectedComponentScene is not null)
+            {
+                _cursor.Visible = true;
+                SetPlaceDistance(placementDistanceControl);
+            }
+            else
+            {
+                _cursor.Visible = false;
+            }
+
+            switch (_state)
+            {
+                // The player isn't already placing something
+                case ComponentPlacerState.Idle:
+                    // Set the starting position of the cursor and move on to the next state if the player has depressed the place button
+                    if (placeAction == 1.0 && SelectedComponentScene is not null)
+                    {
+                        StartPlace();
+
+                    }
+                    // Set the whole cursor to be at the cursor position
+                    else
+                    {
+                        Idle();
+                    }
+
+                    break;
+                // The player has started placing something TODO: cancellation
+                case ComponentPlacerState.Placing:
+                    PlacingVisuals();
+                    if (placeAction == 0.0) FinishPlace();
+                    break;
+            }
+        }   
     }
     
     private void SetPlaceDistance(float value)
