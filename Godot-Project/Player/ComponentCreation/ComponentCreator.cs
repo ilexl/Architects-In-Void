@@ -362,6 +362,7 @@ public partial class ComponentCreator : Node
     public Vessel PlaceFromData(Vector3 position, Vector3 scale, Basis basis, PlaceableComponent.Component type, Vessel vessel)
     {
         PackedScene typeScene = GetPackedSceneForType(type);
+        GD.Print($"Component being placed is {typeScene.ResourcePath}");
         if(typeScene == null) return vessel;
         var placeableComponent = typeScene.Instantiate() as PlaceableComponent;
         if(vessel == null)
