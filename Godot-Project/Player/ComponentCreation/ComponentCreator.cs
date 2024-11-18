@@ -53,6 +53,7 @@ public partial class ComponentCreator : Node
 
     private Vessel _targetedVessel;
     private RigidBody3D _targetedCollider;
+    private CollisionShape3D _targetedShape;
     private Window _root;
 
     private bool _canPlace;
@@ -181,12 +182,12 @@ public partial class ComponentCreator : Node
                 _targetedVessel = (Vessel)_targetedCollider.GetParent();
             }
 
-            CollisionShape3D targetedShape = (CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"]);
-            _cursor.Basis = _targetedCollider.Transform.Basis * targetedShape.Transform.Basis;
+            _targetedShape = (CollisionShape3D)_targetedCollider.GetChild(1 + (int)result["shape"]);
+            _cursor.Basis = _targetedCollider.Transform.Basis * _targetedShape.Transform.Basis;
             _cursor.Scale = Vector3.One; // Reset the scale since the basis also includes it
             
             SetPlaceColor();
-            SnapPlacementToGrid(targetedShape, result);
+            SnapPlacementToGrid(_targetedShape, result);
             
         }
         else

@@ -1,5 +1,7 @@
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using ArchitectsInVoid.Audio;
 using ArchitectsInVoid.Debug;
 using ArchitectsInVoid.Debug.Meshes;
 using ArchitectsInVoid.Interactables;
@@ -50,7 +52,9 @@ public partial class PlayerController : Node
     
     public bool Dampeners = true;
     
-    
+    public delegate void InputHandler(InputEventMouseMotion movement);
+
+    public InputHandler _InputHandler;
     public bool Jetpack
     {
         get
@@ -70,9 +74,12 @@ public partial class PlayerController : Node
             _rotationMode = hasFuel && hasPower && value ? RotationControlMode.HeadAndBody : RotationControlMode.HeadOnly;
         }
     }
-    
+
+    private FmodEvent ev;
     public override void _Ready()
     {
+        ev = FmodServer.CreateEventInstance("event:/BarneyFromBlackMesa");
+        ev.Start();
         // Assign our components
         Body = GetNode<RigidBody3D>("Body");
         Head = GetNode<Node3D>("Head");
@@ -80,6 +87,7 @@ public partial class PlayerController : Node
         _camera = Head.GetNode<Camera3D>("Camera");
         
         Head.Transform = _headPosition.Transform;
+        _InputHandler = ProcessMouseInput;
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -118,11 +126,12 @@ public partial class PlayerController : Node
 
         if (@event is InputEventMouseMotion mouseEvent)
         {
-            ProcessMouseInput(mouseEvent);
+            _InputHandler(mouseEvent);
         }
     }
 
 
+    
     private void ProcessMouseInput(InputEventMouseMotion movement)
     {
         double azimuthInput = Mathf.DegToRad(-movement.Relative.X * MouseSensitivity);

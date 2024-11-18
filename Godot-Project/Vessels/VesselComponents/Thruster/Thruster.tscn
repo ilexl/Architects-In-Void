@@ -8,4 +8,5 @@
 [node name="Thruster" type="CollisionShape3D"]
 shape = SubResource("BoxShape3D_1s8d4")
 script = ExtResource("1_d8u15")
+_previewScale = Vector3(5, 5, 5)
 _Thumbnail = ExtResource("2_7uscb")

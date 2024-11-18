@@ -267,7 +267,7 @@ public partial class PlaceableComponent : CollisionShape3D
         var newThumbnail = preview.GetImage();
         // Gets the containing folder of the component scene
         path = SceneUtility.GetSceneDirectory(path)  + "/" + _thumbnailName;
-        GD.Print(path);
+        GD.Print("Creating new thumbnail at " + path);
         if (_Thumbnail != null)
         {
             _Thumbnail.ResourcePath = null;
@@ -281,14 +281,29 @@ public partial class PlaceableComponent : CollisionShape3D
 
     public override void _Notification(int what)
     {
-        if (Engine.IsEditorHint())
+        if (!Engine.IsEditorHint()) return;
+
+        if (what == NotificationEditorPreSave)
         {
-            if (what == NotificationEditorPostSave)
-            {
-                GenerateThumbnail();
-            }
+            EditorPreSave();
         }
+        else if (what == NotificationEditorPostSave)
+        {
+            EditorPostSave();
+        }
+
     }
+
+    protected virtual void EditorPreSave()
+    {
+        
+    }
+
+    protected virtual void EditorPostSave()
+    {
+        GenerateThumbnail();
+    }
+    
     protected virtual void GenerateThumbnail()
     {
         scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);

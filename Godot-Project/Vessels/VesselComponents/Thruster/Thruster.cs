@@ -17,11 +17,32 @@ public partial class Thruster : PlaceableComponent
     [Export] private double _engineCornerRadius = 0.5;
     [Export] private double _finSpacing = 0.2;
     [Export] private double _finWidth = 0.05;
-    private double _height;
-    private double _length;
+   
+    
     [Export] private double _nozzleLength = 1.5;
 
-    private double _width;
+    [Export(PropertyHint.Range, "0,20,")]
+    private Vector3 _previewScale
+    {
+        get
+        {
+            return new Vector3(_width, _height, _length);
+        }
+        set
+        {
+            _width = value.X;
+            _height = value.Y;
+            _length = value.Z;
+            GenerateThrusterPreview();
+        }
+    }
+    
+    
+    
+    private double _width = 5;
+    private double _height = 5;
+    private double _length = 5;
+    
     public double Efficiency;
     public double MaterialUse;
 
@@ -37,7 +58,16 @@ public partial class Thruster : PlaceableComponent
 
     public override PlaceableComponentType ComponentType { get; set; } = PlaceableComponentType.DynamicScale;
     public override Component Type { get; set; } = Component.Thruster;
-
+    
+    
+    private void GenerateThrusterPreview()
+    {
+        _thrusterContainerNode?.QueueFree();
+        _thrusterContainerNode = new Node3D();
+        CallDeferred("add_child", _thrusterContainerNode);
+            
+        GenerateThruster();
+    }
 
     public override void _Ready()
     {
@@ -63,6 +93,7 @@ public partial class Thruster : PlaceableComponent
 
 
         Scale = scale;
+        _thrusterContainerNode?.QueueFree();
         _thrusterContainerNode = new Node3D();
         Vector3 scaleInverse = new Vector3(1 / scale.X, 1 / scale.Y, 1 / scale.Z);
         _thrusterContainerNode.Scale = scaleInverse;

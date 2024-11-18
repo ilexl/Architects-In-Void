@@ -4,7 +4,7 @@ using System;
 /// <summary>
 /// Sound manager for Fmod sounds
 /// </summary>
-public partial class FmodSoundMananger : Node
+public partial class FmodManager : Node
 {
 
 	bool loaded = false; // temp
@@ -30,4 +30,8 @@ public partial class FmodSoundMananger : Node
 		loaded = true;
 
     }
+	
+	
+	
+	
 }
