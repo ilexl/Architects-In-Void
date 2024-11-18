@@ -2,7 +2,7 @@ using Godot;
 
 namespace ArchitectsInVoid.Audio;
 
-public class FmodGdAPI
+public abstract class FmodGdAPI
 {
     #region Config
     private const string WrapperPath = "res://Audio/FmodServer/generic_fmod_wrapper.gd";
