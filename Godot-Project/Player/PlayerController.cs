@@ -51,7 +51,9 @@ public partial class PlayerController : Node
     
     public bool Dampeners = true;
     
-    
+    public delegate void InputHandler(InputEventMouseMotion movement);
+
+    public InputHandler _InputHandler;
     public bool Jetpack
     {
         get
@@ -84,6 +86,7 @@ public partial class PlayerController : Node
         _camera = Head.GetNode<Camera3D>("Camera");
         
         Head.Transform = _headPosition.Transform;
+        _InputHandler = ProcessMouseInput;
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -114,11 +117,12 @@ public partial class PlayerController : Node
 
         if (@event is InputEventMouseMotion mouseEvent)
         {
-            ProcessMouseInput(mouseEvent);
+            _InputHandler(mouseEvent);
         }
     }
 
 
+    
     private void ProcessMouseInput(InputEventMouseMotion movement)
     {
         double azimuthInput = Mathf.DegToRad(-movement.Relative.X * MouseSensitivity);
