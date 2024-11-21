@@ -306,6 +306,6 @@ public partial class PlaceableComponent : CollisionShape3D
     
     protected virtual void GenerateThumbnail()
     {
-        scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
+        //scenepreviewextractor.GetPreview(SceneFilePath, this, "RecieveThumbnail", 0);
     }
 }

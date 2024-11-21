@@ -52,9 +52,6 @@ public partial class PlayerController : Node
     
     public bool Dampeners = true;
     
-    public delegate void InputHandler(InputEventMouseMotion movement);
-
-    public InputHandler _InputHandler;
     public bool Jetpack
     {
         get
@@ -74,11 +71,10 @@ public partial class PlayerController : Node
             _rotationMode = hasFuel && hasPower && value ? RotationControlMode.HeadAndBody : RotationControlMode.HeadOnly;
         }
     }
-
-    private FmodEvent ev;
+    
     public override void _Ready()
     {
-        ev = FmodServer.CreateEventInstance("event:/BarneyFromBlackMesa");
+        var ev = FmodServer.CreateEventInstance("event:/BarneyFromBlackMesa");
         ev.Start();
         // Assign our components
         Body = GetNode<RigidBody3D>("Body");
@@ -87,7 +83,7 @@ public partial class PlayerController : Node
         _camera = Head.GetNode<Camera3D>("Camera");
         
         Head.Transform = _headPosition.Transform;
-        _InputHandler = ProcessMouseInput;
+        DebugDraw.Line(Body.Position, duration: 50);
     }
     public override void _PhysicsProcess(double delta)
     {
@@ -126,7 +122,7 @@ public partial class PlayerController : Node
 
         if (@event is InputEventMouseMotion mouseEvent)
         {
-            _InputHandler(mouseEvent);
+            ProcessMouseInput(mouseEvent);
         }
     }
 

@@ -41,13 +41,10 @@ public partial class CockpitBehavior : Node
     {
         if (_mountedPlayer != null) return;
         _mountedPlayer = newPlayer;
-        newPlayer._InputHandler += MovementInput;
         newPlayer.MountToCockpit(this);
     }
 
-    
-
-    private void MovementInput(InputEventMouseMotion movement)
+    public override void _Process(double delta)
     {
         
     }
